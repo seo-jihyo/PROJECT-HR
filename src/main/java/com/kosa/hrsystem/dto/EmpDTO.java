@@ -26,7 +26,7 @@ public class EmpDTO {
     private String direct_num;      // 직통 번호
     private String phone;           // 연락처
     private String regist_num;      // 주민등록번호
-    private int annual_num;         // 연차 수
+    private double annual_num;         // 연차 수
     private String address;         // 주소
     private String detail_address;  // 상세주소
     private char emp_sort;          // 직원 구분(관리자 or 사용자)
