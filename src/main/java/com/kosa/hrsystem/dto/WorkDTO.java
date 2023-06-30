@@ -13,7 +13,6 @@ public class WorkDTO {
 	private int bsns_num;
 	private String work_name;
 	private int pay;
-	private int min_working_day;
 	private int weekly_holiday;
 	private String remarks;
 	private char mon;
