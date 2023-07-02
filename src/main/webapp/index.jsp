@@ -15,6 +15,12 @@
     <title>Document</title>
 </head>
 <body id="body-pd">
+<h1>기타</h1>
+<ul>
+    <li><a href="#">마이페이지</a></li>
+    <li><a href="#">회원가입</a></li>
+    <li><a href="#">로그인</a></li>
+</ul>
 <h1>사용자</h1>
 <ul>
     <li><a href="#">스케줄</a></li>
