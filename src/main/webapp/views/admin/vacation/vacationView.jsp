@@ -20,7 +20,7 @@
 
   <div class="main_title">
     <h2>휴가 관리</h2>
-    <button><a href="/views/admin/vacationModal.jsp">휴가 관리</a></button>
+    <button><a href="/views/admin/vacation/vacationModal.jsp">휴가 관리</a></button>
   </div>
 
   <table class="table table-hover">

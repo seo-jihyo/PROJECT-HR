@@ -20,7 +20,7 @@
 
   <div class="main_title">
     <h2>근무일정</h2>
-    <button><a href="/views/admin/workScheduleModal.jsp">+ 근무일정 추가하기</a></button>
+    <button><a href="/views/admin/workSchedule/workScheduleModal.jsp">+ 근무일정 추가하기</a></button>
   </div>
 
   <table class="table table-hover">

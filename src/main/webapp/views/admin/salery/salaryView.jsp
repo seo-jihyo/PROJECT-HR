@@ -20,7 +20,7 @@
 
   <div class="main_title">
     <h2>급여</h2>
-    <button><a href="/views/admin/saleryModal.jsp">급여</a></button>
+    <button><a href="/views/admin/salery/saleryModal.jsp">급여</a></button>
   </div>
 
   <table class="table table-hover">

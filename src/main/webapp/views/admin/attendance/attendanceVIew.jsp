@@ -20,7 +20,7 @@
 
   <div class="main_title">
     <h2>출퇴근기록</h2>
-    <button><a href="/views/admin/attendanceModal.jsp">+ 출퇴근기록 추가하기</a></button>
+    <button><a href="/views/admin/attendance/attendanceModal.jsp">+ 출퇴근기록 추가하기</a></button>
   </div>
 
   <table class="table table-hover">
