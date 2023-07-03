@@ -11,8 +11,7 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 	rel='stylesheet'>
 
-<link rel="stylesheet" href="/assets/css/managerMain.css">
-<link rel="stylesheet" href="/assets/css/table.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
@@ -72,8 +71,7 @@
 					</ul>
 				</div>
 				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bxs-plane-alt'></i></i> <span class="nav_name">绒
-						啊</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
+					<i class='nav_icon bx bxs-plane-alt'></i></i> <span class="nav_name">绒啊</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
 
 					<ul class="collapse_menu">
 						<a href="#" class="collapse_sublink">Deta</a>
@@ -104,8 +102,7 @@
 					</ul>
 				</div>
 				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bxs-report'></i></i> <span class="nav_name">包
-						府</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
+					<i class='nav_icon bx bxs-report'></i></i> <span class="nav_name">包府</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
 
 					<ul class="collapse_menu">
 						<a href="#" class="collapse_sublink">Deta</a>
@@ -158,9 +155,12 @@
 				</tr>
 			</tbody>
 		</table>
+		
 	</div>
+
+
+
 	</section>
-	<script src="/assets/js/selectAll.js"></script>
-	<script src="/assets/js/managerMain.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
