@@ -1,22 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-   
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <title>Document</title>
-    
+
 </head>
 <body>
-    
-    <header>
+<header>
         <h1 class="company">MAIN</h1>
 
         <nav class="top-nav">
@@ -25,7 +23,7 @@
             <input type="checkbox" class="toggle" id="rounded">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked= "  퇴   근" />
             </div>
-        
+
             <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
             <button class="mode-btn">관리자 모드</button>
         </nav>
@@ -120,9 +118,9 @@
 
             </div>
 
-                
-                
-           
+
+
+
             <a href="#" class="nav_link">
                 <i class='nav_icon bx bx-log-out' id="log_out"></i>
                 <span class="nav_name">Log Out</span>
@@ -130,12 +128,6 @@
         </nav>
     </div>
 </div>
-    <section id="body-pd">
-        <h1>dsklfjldjfl</h1>
-
-
-    </section>
-
     <script src="/assets/js/main.js"></script>
 </body>
 </html>

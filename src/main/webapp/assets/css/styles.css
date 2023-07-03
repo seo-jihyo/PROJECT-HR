@@ -1,19 +1,19 @@
 @charset "UTF-8";
 :root{
-  --nav-width:92px;
+    --nav-width:92px;
 
-  --first-color: #5e5e7c;
-  --bg-color: hsl(256, 88%, 16%);
-  --sub-color:black;
-  --white-color: white;
+    --first-color: #5e5e7c;
+    --bg-color: hsl(256, 88%, 16%);
+    --sub-color:black;
+    --white-color: white;
 
-  --nomal-font-size: 1rem;
-  --small-font-size: .875rem;
+    --nomal-font-size: 1rem;
+    --small-font-size: .875rem;
 
-  --z-fixed: 100;
+    --z-fixed: 100;
 }
 ::before, ::after{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 *{
     margin: 0;
@@ -21,24 +21,25 @@
     box-sizing: border-box;
 }
 body{
-  position: relative;
-  margin: 0;
-   padding: 0 0 6.75rem; 
-  transition: .5s;
-} 
+    position: relative;
+    margin: 0;
+    padding: 0 0 6.75rem;
+    transition: .5s;
+}
 ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-} 
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 a{
-  text-decoration: none;
+    text-decoration: none;
 }
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    height: 101px;
     box-shadow: 0 10px 10px -5px #babcbc ;
 }
 
@@ -50,7 +51,7 @@ header {
 .top-nav {
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
 }
 
 .container{
@@ -170,159 +171,155 @@ input[type=checkbox].toggle:checked + label:before{
 }
 
 .navbar_1{
-  position: fixed;
-  top: 101px;
-  left: 0;
-  width: var(--nav-width);
-  height: 90vh;
-  background-color: var(--bg-color);
-  color: var(--white-color);
-  padding: 1.5rem 1.5rem 2rem;
-  transition: .5s;
-  z-index: var(--z-fixed);
-  
+    position: absolute;
+    top: 101px;
+    left: 0;
+    width: var(--nav-width);
+    height: calc(100% - 101px);
+    background-color: var(--bg-color);
+    color: var(--white-color);
+    padding: 1.5rem 1.5rem 2rem;
+    transition: .5s;
+    z-index: var(--z-fixed);
+
 }
 
 .nav{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
 }
 .nav_brand{
-  display: grid;
-  grid-template-columns: max-content max-content;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 .nav_toggle{
-  font-size: 1.25rem;
-  padding: .75rem;
-  cursor: pointer;
+    font-size: 1.25rem;
+    padding: .75rem;
+    cursor: pointer;
 }
 .nav_logo {
-  color: var(--white-color);
-  font-weight: 400;
+    color: var(--white-color);
+    font-weight: 400;
 }
 
 .nav_link{
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: center;
-  column-gap: .75rem;
-  padding: .75rem;
-  color: var(--white-color);
-  border-radius: .5rem;
-  margin-bottom: 1rem;
-  transition: .3s;
-  cursor: pointer;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: .75rem;
+    padding: .75rem;
+    color: var(--white-color);
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    transition: .3s;
+    cursor: pointer;
 }
 .nav_link:hover{
-  background-color: var(--first-color);
+    background-color: var(--first-color);
 }
 .nav_icon{
-  font-size: 1.25rem;
+    font-size: 1.25rem;
 }
 
 .nav_name{
-  font-size: var(--small-font-size);
+    font-size: var(--small-font-size);
 }
 
 .expander{
-  width: calc(var(--nav-width) + 7rem);
+    width: calc(var(--nav-width) + 7rem);
 }
 section{
-  position: relative;
-  margin: 0;
-  padding: 2rem 0 0 6.75rem;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  transition: .5s;
-}  
+    position: relative;
+    margin: 0;
+    padding: 2rem 0 0 6.75rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+}
 .body-pd{
-  padding: 2rem 0 0 16rem;
+    padding: 2rem 0 0 16rem;
 
 }
 
 .active{
-  background-color: var(--first-color);
+    background-color: var(--first-color);
 }
 
 .collapse{
-  grid-template-columns: 20px max-content 1fr;
+    grid-template-columns: 20px max-content 1fr;
 }
 
 .collapse_link{
-  justify-self: flex-end;
-  transition: .5;
+    justify-self: flex-end;
+    transition: .5;
 }
 .collapse_menu{
-  display: none;
-  padding: .75rem 2.25rem;
+    display: none;
+    padding: .75rem 2.25rem;
 }
 
 .collapse_sublink{
-  color:var(--sub-color);
-  font-size: var(--small-font-size);
+    color:var(--sub-color);
+    font-size: var(--small-font-size);
 }
 .collapse_sublink:hover{
-  color: var(--white-color);
+    color: var(--white-color);
 }
 
 .showCollapse{
-  display: block;
+    display: block;
 }
 
 .rotate{
-  transform: rotate(180deg);
-  transition: .5s;
+    transform: rotate(180deg);
+    transition: .5s;
 }
 
 table{
-	border-collapse : collapse;
-	width:98%;
-	text-align:center;
-	margin-top:80px;
+    border-collapse : collapse;
+    width:98%;
+    text-align:center;
+    margin-top:80px;
 }
 
 tbody tr:hover{
-	 background-color: #E1E1E1; 
-	 cursor: pointer; 
+    background-color: #E1E1E1;
+    cursor: pointer;
 }
 thead th{
-	border-bottom:solid 1.5px black;
+    border-bottom:solid 1.5px black;
 }
 tbody th, td{
-	border-collapse : collapse;
-	border-bottom:solid 1px gray;
+    border-collapse : collapse;
+    border-bottom:solid 1px gray;
 }
 
 .plusinfo{
-
-  position: absolute;
-  right: 0;
-  padding: 20px;
+    position: absolute;
+    right: 0;
+    padding: 20px;
 }
 
 .plusinfo button{
-	font-size:14px;
-	font-weight: bold;
-	border:0px;
-	border-radius: 7px;
-	color: white;
-	background-color: #0A0A69;
-	width:150px;
+    font-size:14px;
+    font-weight: bold;
+    border:0px;
+    border-radius: 7px;
+    color: white;
+    background-color: #0A0A69;
+    width:150px;
     height: 30px;
 }
 
 #dutysearchsel{
-	height: 30px;
+    height: 30px;
 }
 .dutysearch{
-		height: 30px;
+    height: 30px;
 }
-
-
-

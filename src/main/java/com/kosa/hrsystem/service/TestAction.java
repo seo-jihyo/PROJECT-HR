@@ -4,6 +4,8 @@ package com.kosa.hrsystem.service;
 
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.dao.testDAO;
+import com.kosa.hrsystem.dto.testDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +17,18 @@ public class TestAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// 1. request 요청으로부터 데이터 입력 받기
+		testDTO dto = new testDTO();
+		dto.setTestval1(request.getParameter("testVal1"));
+		dto.setTestval2(request.getParameter("testVal2"));
+		testDAO dao = new testDAO();
 
+		try {
+			System.out.println("db ="+dao.selectDataAll());
+			System.out.println("insert="+dao.insertData(dto));
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		// 2. db에서 데이터를 받기위해 dao객체를 생성하고 받아오려는 메소드 호출
 		
 	    // 3. 뷰(프론트)한테 다시 보내줄 데이터 저장
