@@ -8,7 +8,7 @@
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
    
-    <link rel="stylesheet" href="/assets/css/managerMain.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
     <title>Document</title>
@@ -136,6 +136,6 @@
 
     </section>
 
-    <script src="/assets/js/managerMain.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
