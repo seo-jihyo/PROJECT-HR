@@ -175,7 +175,7 @@ input[type=checkbox].toggle:checked + label:before{
     top: 101px;
     left: 0;
     width: var(--nav-width);
-    height: calc(100% - 101px);
+    height: calc(100vh - 101px);
     background-color: var(--bg-color);
     color: var(--white-color);
     padding: 1.5rem 1.5rem 2rem;
