@@ -1,0 +1,43 @@
+table{
+	border-collapse : collapse;
+	width:98%;
+	text-align:center;
+	margin-top:80px;
+}
+
+tbody tr:hover{
+	 background-color: #E1E1E1; 
+	 cursor: pointer; 
+}
+thead th{
+	border-bottom:solid 1.5px black;
+}
+tbody th, td{
+	border-collapse : collapse;
+	border-bottom:solid 1px gray;
+}
+
+.plusinfo{
+
+  position: absolute;
+  right: 0;
+  padding: 20px;
+}
+
+.plusinfo button{
+	font-size:14px;
+	font-weight: bold;
+	border:0px;
+	border-radius: 7px;
+	color: white;
+	background-color: #0A0A69;
+	width:150px;
+    height: 30px;
+}
+
+#dutysearchsel{
+	height: 30px;
+}
+.dutysearch{
+		height: 30px;
+}
