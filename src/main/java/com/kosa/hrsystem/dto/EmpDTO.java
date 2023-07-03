@@ -6,7 +6,8 @@ import lombok.ToString;
 
 import java.util.Date;
 
-@Getter @Setter
+@Getter 
+@Setter
 @ToString
 public class EmpDTO {
     private int emp_num;            // 사원 번호
@@ -33,3 +34,4 @@ public class EmpDTO {
     private Date hire_date;         // 입사일
     private Date departure_date;    // 퇴사일
 }
+
