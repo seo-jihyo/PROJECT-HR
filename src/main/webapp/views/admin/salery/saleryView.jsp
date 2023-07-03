@@ -11,7 +11,9 @@
 
   <link rel="stylesheet" href="/assets/css/styles.css">
   <%--    <link rel="stylesheet" href="static/css/style.css">--%>
-  <title>출퇴근기록</title>
+  <link href="/assets/css/modal.css">
+  <script type="text/javascript" src="/assets/js/modal.js"></script>
+  <title>근로정보</title>
 </head>
 <body id="body-pd">
 <%@include file="/views/include/header.jsp" %>
@@ -19,8 +21,8 @@
 <div class="main">
 
   <div class="main_title">
-    <h2>출퇴근기록</h2>
-    <button><a href="/views/admin/attendance/attendanceModal.jsp">+ 출퇴근기록 추가하기</a></button>
+    <h2>급여</h2>
+    <button><a href="/views/admin/salery/saleryModal.jsp">급여</a></button>
   </div>
 
   <table class="table table-hover">
@@ -40,46 +42,40 @@
       <th><input type="text" placeholder="검색.."></th>
       <th><input type="text" placeholder="검색.."></th>
       <th><input type="text" placeholder="검색.."></th>
-      <th><input type="text" placeholder="검색.."></th>
-      <th><input type="text" placeholder="검색.."></th>
     </tr>
     <tr>
       <th>사원번호</th>
-      <th>직원</th>
-      <th>날짜</th>
-      <th>근무시간</th>
-      <th>근무일정</th>
-      <th>조직</th>
-      <th>직무</th>
-      <th>출근 장소</th>
-      <th>퇴근 장소</th>
-      <th>근무노트</th>
-      <th>휴게시간</th>
-      <th>총 시간</th>
-      <th>근무일정 오차범위</th>
-      <th>출근시간 오차범위</th>
-      <th>퇴근시간 오차범위</th>
-      <th>급여</th>
+      <th>귀속연월</th>
+      <th>이름</th>
+      <th>기본금</th>
+      <th>상여금</th>
+      <th>직책수당(팀장이상)</th>
+      <th>연차수당</th>
+      <th>국민연금(4.5%)</th>
+      <th>건강보험(3.99%)</th>
+      <th>장기요양보험</th>
+      <th>고용보험</th>
+      <th>소득세</th>
+      <th>지방소득세</th>
+      <th>실수령액</th>
     </tr>
     </thead>
     <tbody>
     <tr>
       <td>001</td>
-      <td>이재경</td>
       <td>7/1</td>
-      <td>09:00 - 18:00</td>
-      <td>무일정근무</td>
-      <td>조직없음</td>
-      <td>직무없음</td>
-      <td>서울지점</td>
-      <td>서울지점</td>
+      <td>이재경</td>
+      <td>하루 종일</td>
+      <td>연차</td>
+      <td>개발부서</td>
+      <td>직무</td>
       <td></td>
-      <td>60분</td>
-      <td>8시간</td>
+      <td>일정노트</td>
       <td></td>
       <td></td>
       <td></td>
-      <td>￦ 100,000</td>
+      <td></td>
+      <td></td>
     </tr>
     </tbody>
   </table>

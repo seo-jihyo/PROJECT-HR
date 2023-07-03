@@ -30,11 +30,11 @@
 <h2>관리자</h2>
 <ul>
     <li><a href="#">대쉬보드</a></li>
-    <li><a href="#">근무일정</a></li>
-    <li><a href="#">출퇴근기록</a></li>
-    <li><a href="#">휴가</a></li>
-    <li><a href="#">요청내역</a></li>
-    <li><a href="#">급여</a></li>
+    <li><a href="/views/admin/workSchedule/workScheduleView.jsp">근무일정</a></li>
+    <li><a href="/views/admin/attendance/attendanceView.jsp">출퇴근기록</a></li>
+    <li><a href="/views/admin/vacation/vacationView.jsp">휴가</a></li>
+    <li><a href="/views/admin/requestHistory/requestHistoryView.jsp">요청내역</a></li>
+    <li><a href="/views/admin/salery/saleryView.jsp">급여</a></li>
     <li><h2>관리</h2>
         <ul>
             <li><a href="#">직원</a></li>
