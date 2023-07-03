@@ -1,0 +1,62 @@
+
+select{
+    width: 170px;
+    height: 25px;
+}
+textarea{
+    width: 240px;
+    height: 200px;
+}
+.emptext{
+    height: 100px;
+}
+.title{
+    background-color: rgb(220, 218, 218);
+    width: 240px;
+}
+
+.calendar{
+    width: 165px;
+}
+
+.check-btn-work:checked ~ .menubars-work { display: block; } 
+.menubars-work { display: none; }
+
+.check-btn-vac:checked ~ .menubars-vac { display: block; } 
+.menubars-vac { display: none; }
+
+.title-vac{
+    background-color: rgb(220, 218, 218);
+    width: 270px;
+}
+
+.vactext{
+    height: 100px;
+}
+.time-in:checked ~ .time-input{ display: block; }
+.time-input { display: none; } 
+
+.fix-no:checked ~ .fix-time{ display: block; } 
+.fix-time { display: none; }
+
+.workrectime{
+    width: 50px;
+}
+.hometime{
+    width: 50px;
+}
+.reviewform_1 {
+    float:left; 
+    width:200px; 
+  }
+  
+  .reviewform_2{
+    margin-left: 20px;
+    display:inline-block; 
+    width:700px; 
+  }
+
+  .reviewtext{
+    width: 180px;
+    height: 50px;
+  }
