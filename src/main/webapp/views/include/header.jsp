@@ -1,19 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-    <!-- Boxicons CSS -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <title>Document</title>
-
-</head>
-<body>
 <header>
         <h1 class="company">MAIN</h1>
 
@@ -128,6 +113,4 @@
         </nav>
     </div>
 </div>
-    <script src="/assets/js/main.js"></script>
-</body>
-</html>
+
