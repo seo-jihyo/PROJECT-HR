@@ -1,87 +1,141 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<header>
-    <div class="wrap wrap_title">
-        <h1 class="doc-title">
-            <a href="#"><span class="img_admin">회사 명</span></a>
-        </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+    <link rel="stylesheet" href="/assets/css/managerMain.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 
+    <title>Document</title>
+    
+</head>
+<body>
+    
+    <header>
+        <h1 class="company">MAIN</h1>
 
-       <div class="top_nav">
-           <%--출퇴근--%>
+        <nav class="top-nav">
 
-           <%--새로고침--%>
-               <a onClick="history.go(0)" style="cursor: pointer;"><img src="assets/images/reload.png" width="25px" alt="reload btn"></a>
-           <%--모드 전환(관리자 전용)--%>
-           <Button type="button" onclick="">직원모드</Button>
-           <Button type="button" onclick="">관리자모드</Button>
-       </div>
-
-    </div>
-
-    <%-- 사이드 바 --%>
-    <div class="l-navbar" id="navbar">
+            <div class="container">
+            <input type="checkbox" class="toggle" id="rounded">
+            <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked= "  퇴   근" />
+            </div>
+        
+            <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
+            <button class="mode-btn">관리자 모드</button>
+        </nav>
+    </header>
+    <div class="navbar_1" id="navbar">
         <nav class="nav">
             <div>
-                <div class="nav__brand">
-                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
-                    <a href="#" class="nav__logo">Bedimcode</a>
+                <div class="nav_brand">
+                    <i class='nav_toggle nav_icon menu-outline bx bx-menu' id="nav-toggle"></i>
+                    <a href="#" class="nav_logo">Menu</a>
                 </div>
-                <div class="nav__list">
-                    <a href="#" class="nav__link active">
-                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Dashboard</span>
+
+                <a class="nav_list">
+                    <a href="#" class="nav_link active">
+                        <i class='nav_icon bx bx-home'></i>
+                        <span class="nav_name">메인</span>
+
                     </a>
-                    <a href="#" class="nav__link">
-                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Messenger</span>
                     </a>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bx-calendar'></i>
+                        <span class="nav_name">근무일정</span>
 
-                    <div  class="nav__link collapse">
-                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Projects</span>
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
 
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                        </ul>
+                    </div>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bx-time'></i>
+                        <span class="nav_name">출퇴근 기록</span>
 
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
+
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                        </ul>
+                    </div>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bxs-plane-alt'></i></i>
+                        <span class="nav_name">휴   가</span>
+
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
+
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                        </ul>
+                    </div>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bxs-paper-plane' ></i>
+                        <span class="nav_name">요청내역</span>
+
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
+
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                        </ul>
+                    </div>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bx-money-withdraw' ></i>
+                        <span class="nav_name">급여내역</span>
+
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
+
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                        </ul>
+                    </div>
+                    <div href="#" class="nav_link collapse">
+                        <i class='nav_icon bx bxs-report' ></i></i>
+                        <span class="nav_name">관   리</span>
+
+                        <i class='collapse_link bx bxs-chevron-down arrow'></i>
+
+                        <ul class="collapse_menu">
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
+                            <a href="#" class="collapse_sublink">Deta</a>
                         </ul>
                     </div>
 
-                    <a href="#" class="nav__link">
-                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Analytics</span>
-                    </a>
-                    <div class="nav__link collapse">
-                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Team</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="#" class="collapse__sublink">Data</a>
-                            <a href="#" class="collapse__sublink">Group</a>
-                            <a href="#" class="collapse__sublink">Members</a>
-                        </ul>
-                    </div>
-                    <a href="#" class="nav__link">
-                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
-                        <span class="nav__name">Settings</span>
-                    </a>
-                </div>
             </div>
 
-            <a href="#" class="nav__link">
-                <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
-                <span class="nav__name">Log Out</span>
+                
+                
+           
+            <a href="#" class="nav_link">
+                <i class='nav_icon bx bx-log-out' id="log_out"></i>
+                <span class="nav_name">Log Out</span>
             </a>
         </nav>
     </div>
+</div>
+    <section id="body-pd">
+        <h1>dsklfjldjfl</h1>
 
-    <!-- ===== IONICONS ===== -->
-    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 
-    <!-- ===== MAIN JS ===== -->
-    <script src="assets/js/main.js"></script>
-</header>
+    </section>
+
+    <script src="/assets/js/managerMain.js"></script>
+</body>
+</html>
