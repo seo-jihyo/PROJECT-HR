@@ -23,8 +23,8 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 50%;
-	height: 50%;
+	width: 70%;
+	height: 70%;
 	background: #fff;
 	z-index: 2;
 }
@@ -56,4 +56,8 @@ input[id*="popup"]+label+div {
 
 input[id*="popup"]:checked+label+div {
 	display: block;
+}
+
+.labelBtn {
+		border: 1px solid black;
 }
