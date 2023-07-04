@@ -6,118 +6,25 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/css/styles.css">
+<!-- <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet"> -->
+<!-- CSS -->
 <link rel="stylesheet" href="/assets/css/modal.css">
-<!-- jQuery UI 라이브러리 로드 -->
-<!-- <link rel='stylesheet'
-	href='https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
-<script src='https://code.jquery.com/jquery-1.12.4.js'></script>
-<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script> -->
-
-<!-- <script defer type="text/javascript">
-	function btnClose() {
-		var modal = document.querySelector('.modal');
-		// 팝업 닫기
-		modal.style.display = "none";
-		
-	}
-	
-	$(function() {
-		$('#datepicker')
-				.datepicker(
-						{
-							dateFormat : 'yy-mm-dd' //달력 날짜 형태
-							,
-							showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-							,
-							showMonthAfterYear : true // 월- 년 순서가아닌 년도 - 월 순서
-							,
-							changeYear : true //option값 년 선택 가능
-							,
-							changeMonth : true //option값  월 선택 가능                
-							,
-							showOn : "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-							,
-							buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-							,
-							buttonImageOnly : true //버튼 이미지만 깔끔하게 보이게함
-							,
-							buttonText : "선택" //버튼 호버 텍스트              
-							,
-							yearSuffix : "년" //달력의 년도 부분 뒤 텍스트
-							,
-							monthNamesShort : [ '1월', '2월', '3월', '4월', '5월',
-									'6월', '7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 텍스트
-							,
-							monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월',
-									'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip
-							,
-							dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 텍스트
-							,
-							dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일',
-									'금요일', '토요일' ] //달력의 요일 Tooltip
-							,
-							minDate : "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-							,
-							maxDate : "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-						})
-	})
-
-	function inputTimeColon(time) {
-		// replace 함수를 사용하여 콜론( : )을 공백으로 치환한다.
-		var replaceTime = time.value.replace(/\:/g, "");
-
-		// 텍스트박스의 입력값이 4~5글자 사이가 되는 경우에만 실행한다.
-		if (replaceTime.length >= 4 && replaceTime.length < 5) {
-			var hours = replaceTime.substring(0, 2); // 선언한 변수 hours에 시간값을 담는다.
-			var minute = replaceTime.substring(2, 4); // 선언한 변수 minute에 분을 담는다.
-
-			// isFinite함수를 사용하여 문자가 선언되었는지 확인한다.
-			if (isFinite(hours + minute) == false) {
-				alert("문자는 입력하실 수 없습니다.");
-				time.value = "00:00";
-				return false;
-			}
-			// 두 변수의 시간과 분을 합쳐 입력한 시간이 24시가 넘는지를 체크한다.
-			if (hours + minute > 2400) {
-				alert("시간은 24시를 넘길 수 없습니다.");
-				time.value = "24:00";
-				return false;
-			}
-			// 입력한 분의 값이 60분을 넘는지 체크한다.
-			if (minute > 60) {
-				alert("분은 60분을 넘길 수 없습니다.");
-				time.value = hours + ":00";
-				return false;
-			}
-
-			time.value = hours + ":" + minute;
-		}
-	}
-	
-	
-</script> -->
-
-<link href="/assets/css/modal.css">
-<script type="text/javascript" src="/assets/js/modal.js"></script>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<%--jquery--%>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <title>근로정보</title>
+
 </head>
-<body id="body-pd">
+<body>
 	<%@include file="/views/include/header.jsp"%>
-
-	<div class="main">
-
+	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>근무일정</h2>
-			<input type="checkbox" id="popup"> 
-				<label for="popup">+ 근무일정 추가하기</label>
-			<div class="modal" style="display:hidden;">
+			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
+				근무일정 추가하기</label>
+			<div class="modal">
 				<div>
 					<label for="popup">X</label>
 					<h3>근무일정 추가하기(토, 7월 1일)</h3>
@@ -127,9 +34,7 @@
 						<table>
 							<tr>
 								<td>날짜</td>
-								<td>
-									<input type="date" name="날짜">
-								<!-- <input type="text" id="datepicker"> --> 
+								<td><input type="date" name="날짜"> <!-- <input type="text" id="datepicker"> -->
 								</td>
 							</tr>
 							<tr>
@@ -169,13 +74,11 @@
 							</tr>
 							<tr>
 								<td>시간</td>
-								<td>
-									<input type="text" class="startTime"
+								<td><input type="text" class="startTime"
 									onKeyup="inputTimeColon(this);" placeholder="출근시간"
 									maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="text"
 									class="endTime" onKeyup="inputTimeColon(this);"
-									placeholder="퇴근시간" maxlength="5" /> 
-								</td>
+									placeholder="퇴근시간" maxlength="5" /></td>
 							</tr>
 							<tr>
 								<td>일정노트</td>
@@ -184,18 +87,13 @@
 							</tr>
 						</table>
 					</form>
-					
+
 					<hr>
-    				
+
 					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
 				</div>
 				<label for="popup"></label>
 			</div>
-
-			<!-- <button>
-				<a href="/views/admin/workSchedule/workScheduleModal.jsp">+ 근무일정
-					추가하기</a>
-			</button> -->
 		</div>
 
 		<table class="table table-hover">
@@ -256,9 +154,11 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	</section>
+
+<!-- js -->
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>
