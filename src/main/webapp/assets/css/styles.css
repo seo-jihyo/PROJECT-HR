@@ -151,6 +151,24 @@ input[type=checkbox].toggle:checked + label:before{
     height: 45px;
     margin-right: 20px;
 }
+.mode-btn {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    padding: 10px 30px;
+    background-color: rgb(4, 4, 80);
+    border: 2px solid rgb(4, 4, 80);
+    border-radius: 8px;
+    letter-spacing: 2px;
+    transition: all 0.4s;
+}
+.mode-btn:focus{
+    outline: none;
+}
+.mode-btn:hover{
+    background-color: white;
+    color: black;
+}
 
 
 .navbar_1{
@@ -286,7 +304,7 @@ section{
 .sec-table tbody th{
     border-collapse : collapse;
     border-bottom:solid 1px gray;
-        padding: 5px 5px;
+    padding: 5px 5px;
 } 
 
 .sec-table tbody td{
