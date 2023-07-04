@@ -235,7 +235,7 @@ input[type=checkbox].toggle:checked + label:before{
 .expander{
     width: calc(var(--nav-width) + 7rem);
 }
-.body-section{
+section{
     position: relative;
     margin: 0;
     padding: 2rem 0 0 6.75rem;
