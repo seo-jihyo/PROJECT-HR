@@ -3,10 +3,13 @@ input[id*="popup"] {
 }
 
 input[id*="popup"]+label {
-	display: inline-block;
-	padding: 20px;
-	background: #fff;
-	color: black;
+	display: inline-table;
+	background: hsl(256, 88%, 16%);
+	color: white;
+	text-align: center;
+	width: 200px;
+	height: 30px;
+	padding: 2px;
 }
 
 input[id*="popup"]+label+div {
@@ -59,5 +62,20 @@ input[id*="popup"]:checked+label+div {
 }
 
 .labelBtn {
-		border: 1px solid black;
+		border: 1.5px solid hsl(256, 88%, 16%);
+		border-radius: 8px;
+		letter-spacing: 2px;
+		transition: all 0.4s
+}
+
+.labelBtn:focus{
+    outline: none;
+}
+.labelBtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.modal-header{
+	height:50px;
 }
