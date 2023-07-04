@@ -256,6 +256,7 @@ section{
 }
 
 .collapse_link{
+	
     justify-self: flex-end;
     transition: .5;
 }
@@ -274,6 +275,7 @@ section{
 
 .showCollapse{
     display: block;
+    width: 170px;
 }
 
 .rotate{
@@ -317,9 +319,18 @@ tbody th, td{
     height: 30px;
 }
 
-#dutysearchsel{
+#searchsel{
     height: 30px;
 }
-.dutysearch{
+.search{
     height: 30px;
+}
+
+.workrec-container{
+	display: flex;
+}
+.workrec-item {
+	width: 100px;
+	height: 100px;
+	margin: 3px;
 }
