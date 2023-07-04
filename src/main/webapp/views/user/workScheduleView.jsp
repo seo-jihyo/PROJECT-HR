@@ -29,7 +29,7 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-<section id="body-pd">
+<section id="body-pd" class="body-pd">
   <!-- calendar 태그 -->
   <div id='calendar-container'>
     <div id='calendar'></div>

@@ -17,7 +17,7 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-<section id="body-pd">
+<section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>근로정보</h2>
         <button><a href="/views/admin/manage/workModal.jsp">근로정보 추가하기</a></button>

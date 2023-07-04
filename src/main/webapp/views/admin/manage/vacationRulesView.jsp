@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-<section id="body-pd">
+<section id="body-pd" class="body-pd">
   <div class="main_title">
     <h2>휴가 발생규칙</h2>
     <button><a href="/views/admin/manage/vacationRulesModal.jsp">휴가 발생규칙 추가하기</a></button>

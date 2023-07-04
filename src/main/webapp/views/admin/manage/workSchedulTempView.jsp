@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-<section id="body-pd">
+<section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>근무일정 템플릿</h2>
         <button><a href="/views/admin/manage/workScheduleTempModal.jsp">근무일정 템플릿 추가하기</a></button>
