@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
- <link rel="stylesheet" href="../../assets/css/myPage.css">
 <title>My Page</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-  <style type="text/css">
-  @charset "UTF-8";
+<style type="text/css">
 
 body, div {
 	margin: 0;
@@ -20,8 +21,8 @@ body, div {
 
 table {
 	margin: auto;
-	margin-top: 40px;
-    margin-bottom: 40px;
+	margin-top: 60px;
+    margin-bottom: 60px;
 	width: 80%;
 	heignt: 20%;
  	align-content: center;
@@ -38,13 +39,9 @@ th {
 td {
 	text-align: left;
 }
-/* tr{
-	text
-} */
 img{
 	width: 200px;
 }
-/* -----------------------------------------------------------------*/
 .tabs {
 
 	border-bottom:1px solid #777;
@@ -63,14 +60,16 @@ img{
 }
 
 .tabs a:active {
-	background-color: red;
+	background-color: gray;
 }
 .tabs a:focus {
 	color: red;
 }
   
-  </style>
+  </style> 
 <body>
+  <%@include file="/views/include/header.jsp" %>
+  <section id="body-pd" class="body-pd">
 		<div>
 			<h3>내 인사정보</h3>
 			<hr>
@@ -106,7 +105,7 @@ img{
 				</tr>
 			</table>
 		</div>
-		<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+		
 		<!-- 탭 메뉴--><!-- 인사정보 개인정보 인사발령 경력·학력 포상·징계 인사평가 -->
 <div class="tabs">
   <a data-tab="tab-1">인사정보</a>
@@ -119,7 +118,6 @@ img{
 <br>
 
 <!-- 내용 -->
-
 <div class="modal_nav" id="tab-1" style="display: block;">
 <table>
 					<tr>
@@ -149,7 +147,8 @@ img{
 <div class="modal_nav" id="tab-5" style="display: none;"></div>
 <div class="modal_nav" id="tab-6" style="display: none;"></div>
 
-	
+</section>
+<script src="/assets/js/main.js"></script>	
 <script>
 	  // 버튼 눌렀을때 해당하는 form 의 ajax 통신
 	  function testfn(){
