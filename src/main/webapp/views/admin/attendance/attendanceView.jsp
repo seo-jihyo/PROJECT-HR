@@ -6,27 +6,26 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-	rel="stylesheet">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 
-<link rel="stylesheet" href="/assets/css/styles.css">
+<!-- <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet"> -->
+<!-- CSS -->
 <link rel="stylesheet" href="/assets/css/modal.css">
-<script type="text/javascript" src="/assets/js/modal.js"></script>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<%--jquery--%>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <title>출퇴근기록</title>
 </head>
-<body id="body-pd">
+<body>
 	<%@include file="/views/include/header.jsp"%>
 
-	<div class="main">
+	<section id="body-pd" class="body-pd">
 
 		<div class="main_title">
 			<h2>출퇴근기록</h2>
-			<input type="checkbox" id="popup"> <label for="popup">+
+			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
 				출퇴근기록 추가하기</label>
-			<div class="modal" style="display: hidden;">
+			<div class="modal">
 				<div>
 					<label for="popup">X</label>
 					<h3>출퇴근기록 추가하기</h3>
@@ -35,12 +34,12 @@
 					<form method="get" action="/">
 						<table>
 							<tr>
-								<td>날짜<br>
+								<td>날짜
 								<br></td>
-								<td><input type="text" id="datepicker"></td>
+								<td><input type="date"></td>
 							</tr>
 							<tr>
-								<td>직원<br>
+								<td>직원
 								<br></td>
 								<td><select name="employee" id="employee">
 										<option value="">이재경</option>
@@ -50,7 +49,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td>근무일정<br>
+								<td>근무일정
 								<br></td>
 								<td><select name="work" id="work">
 										<option value="">근무1</option>
@@ -59,7 +58,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td>조직<br>
+								<td>조직
 								<br></td>
 								<td><select name="group" id="group">
 										<option value="">조직없음</option>
@@ -68,7 +67,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td>직무<br>
+								<td>직무
 								<br></td>
 								<td><select name="" id="">
 										<option value="">직무없음</option>
@@ -77,7 +76,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td>출근시간<br>
+								<td>출근시간
 								<br></td>
 								<td><input type="text" class="startTime"
 									onKeyup="inputTimeColon(this);" placeholder="출근시간"
@@ -85,7 +84,7 @@
 
 							</tr>
 							<tr>
-								<td>퇴근시간<br>
+								<td>퇴근시간
 								<br></td>
 								<td><input type="text" class="endTime"
 									onKeyup="inputTimeColon(this);" placeholder="퇴근시간"
@@ -94,7 +93,7 @@
 							</tr>
 
 							<tr>
-								<td>근무노트<br>
+								<td>근무노트
 								<br></td>
 								<td><textarea name="" id="" cols="30" rows="4">
     	</textarea></td>
@@ -167,9 +166,9 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
+	</section>
+<!-- js -->
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>

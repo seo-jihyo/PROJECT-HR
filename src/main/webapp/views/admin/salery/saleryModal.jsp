@@ -24,16 +24,6 @@
 </head>
 <body id="body-pd">
 
-<script type="text/javascript">
-	function getselect() {
-		var select = document.getElementById('select');
-		var option = select.options[select.selectedIndex];
-		
-		document.getElementById('name').text = option.text;
-		document.getElementById('name').innerText = option.text;
-	} 
-</script>
-
 <div>
 	<h1>급여명세서</h1>
 	직원 : <select name="select" id="select">
@@ -47,7 +37,7 @@
 <table>
 	<tr>
 		<td>성명</td>
-		<td><div id="name" onChange="getselect()">이재경</div></td>
+		<td><div id="name">이재경</div></td>
 	</tr>
 	<tr>
 		<td>지급일</td>
