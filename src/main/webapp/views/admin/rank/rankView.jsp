@@ -17,15 +17,15 @@
 <body>
 <%@include file="/views/include/header.jsp" %>
 
-<section id="body-pd" class="body-pd body-section">
-    <h1>부서 관리</h1>
+<section id="body-pd" class="body-pd">
+    <h1>직급 관리</h1>
 		<nav class="plusinfo">
 			<select id="searchsel">
 				<option value="none">선택없음</option>
-				<option value="duty">부서명</option>
+				<option value="rank">직급명</option>
 				<option value="memo">메모</option>
 			</select> <input type="text" class="search">
-			<button>부서 추가하기</button>
+			<button>직급 추가하기</button>
 		</nav>
 		<div class= "tab-scroll">
 		<table class="sec-table table-hover">
@@ -34,7 +34,7 @@
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
 						onclick="allCheckboxes('chk[]', this.checked)"></th>
-					<th>부서명</th>
+					<th>직급명</th>
 					<th>메모</th>
 				</tr>
 				</thead>
@@ -42,14 +42,14 @@
 					<tr>
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td>인사</td>
+						<td></td>
 						<td></td>
 
 					</tr>
 					<tr>
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td>개발</td>
+						<td></td>
 						<td></td>
 
 					</tr>
