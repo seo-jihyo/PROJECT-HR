@@ -67,11 +67,10 @@ input[id*="popup"]:checked+label+div {
 }
 
 .labelBtn {
-<<<<<<< Updated upstream
-		border: 1.5px solid hsl(256, 88%, 16%);
-		border-radius: 8px;
-		letter-spacing: 2px;
-		transition: all 0.4s
+	border: 1.5px solid hsl(256, 88%, 16%);
+	border-radius: 8px;
+	letter-spacing: 2px;
+	transition: all 0.4s
 }
 
 .labelBtn:focus{
@@ -84,7 +83,6 @@ input[id*="popup"]:checked+label+div {
 
 .modal-header{
 	height:50px;
-=======
 	border: 1px solid black;
 }
 
@@ -113,5 +111,5 @@ div.right-btn {
 	display: flex;
 	justify-content: flex-end;
 	cursor: pointer;
->>>>>>> Stashed changes
+
 }
