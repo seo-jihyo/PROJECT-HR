@@ -229,12 +229,13 @@ input[type=checkbox].toggle:checked + label:before{
 
 .nav_name{
     font-size: var(--small-font-size);
+    font-weight: bold;
 }
 
 .expander{
     width: calc(var(--nav-width) + 7rem);
 }
-section{
+.body-section{
     position: relative;
     margin: 0;
     padding: 2rem 0 0 6.75rem;
@@ -262,18 +263,21 @@ section{
 .collapse_menu{
     display: none;
     padding: .75rem 2.25rem;
+    line-height: 2;
 }
 
+
 .collapse_sublink{
-    color:var(--sub-color);
+    color:white;
     font-size: var(--small-font-size);
 }
 .collapse_sublink:hover{
-    color: var(--white-color);
+    background-color:darkgray;
 }
 
 .showCollapse{
     display: block;
+    width: 170px;
 }
 
 .rotate{
@@ -281,21 +285,21 @@ section{
     transition: .5s;
 }
 
-table{
+.sec-table{
     border-collapse : collapse;
     width:98%;
     text-align:center;
     margin-top:80px;
 }
 
-tbody tr:hover{
+.sec-table tbody tr:hover{
     background-color: #E1E1E1;
     cursor: pointer;
 }
-thead th{
+.sec-table thead th{
     border-bottom:solid 1.5px black;
 }
-tbody th, td{
+.sec-table tbody th, td{
     border-collapse : collapse;
     border-bottom:solid 1px gray;
 }
@@ -317,9 +321,18 @@ tbody th, td{
     height: 30px;
 }
 
-#dutysearchsel{
+#searchsel{
     height: 30px;
 }
-.dutysearch{
+.search{
     height: 30px;
+}
+
+.workrec-container{
+	display: flex;
+}
+.workrec-item {
+	width: 100px;
+	height: 100px;
+	margin: 3px;
 }
