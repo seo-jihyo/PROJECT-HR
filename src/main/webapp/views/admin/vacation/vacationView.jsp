@@ -34,6 +34,28 @@ html, body {
 	padding-right: 1em;
 }
 </style> -->
+<style type="text/css">
+.vacation-table {
+	margin: 0px auto;
+	padding: 20px 20px;
+	width: 100%;
+}
+.vacation-table tr {
+	margin: 5px;
+}
+.vacation-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.selectBox {
+	width: 100px;
+    height: 30px;
+}
+.vacation-type {
+	width: 150px;
+    height: 30px;
+}
+</style>
 <title>휴가관리</title>
 <style type="text/css">
 	
