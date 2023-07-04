@@ -17,7 +17,7 @@
 <body>
 <%@include file="/views/include/header.jsp" %>
 
-<section id="body-pd">
+<section id="body-pd" class="body-pd body-section">
     <h1>부서 관리</h1>
 		<nav class="plusinfo">
 			<select id="searchsel">
@@ -28,7 +28,7 @@
 			<button>부서 추가하기</button>
 		</nav>
 		<div class= "tab-scroll">
-		<table class="table table-hover">
+		<table class="sec-table table-hover">
 			<thead class="thead">
 
 				<tr>

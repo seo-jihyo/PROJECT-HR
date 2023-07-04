@@ -47,20 +47,20 @@
                 <span class="nav_name">급여내역</span>
             </a>
             <div href="#" class="nav_link collapse">
-                <i class='nav_icon bx bxs-report'></i></i>
+                <i class='nav_icon bx bxs-report'></i>
                 <span class="nav_name">관   리</span>
 
                 <i class='collapse_link bx bxs-chevron-down arrow'></i>
 
                 <ul class="collapse_menu">
-                    <a href="#" class="collapse_sublink">직원</a>
-                    <a href="#" class="collapse_sublink">조직</a>
-                    <a href="#" class="collapse_sublink">직무</a>
-                    <a href="#" class="collapse_sublink">휴가유형</a>
-                    <a href="/views/admin/manage/workView.jsp" class="collapse_sublink">근로정보</a>
-                    <a href="/views/admin/manage/workScheduleView.jsp" class="collapse_sublink">근무일정유형</a>
-                    <a href="/views/admin/manage/workSchedulTempView.jsp" class="collapse_sublink">근무일정템플릿</a>
-                    <a href="/views/admin/manage/vacationRulesView.jsp" class="collapse_sublink">휴가발생규칙</a>
+                    <a href="#" class="collapse_sublink">직원</a><br>
+                    <a href="#" class="collapse_sublink">조직</a><br>
+                    <a href="#" class="collapse_sublink">직무</a><br>
+                    <a href="#" class="collapse_sublink">휴가유형</a><br>
+                    <a href="/views/admin/manage/workView.jsp" class="collapse_sublink">근로정보</a><br>
+                    <a href="/views/admin/manage/workScheduleView.jsp" class="collapse_sublink">근무일정유형</a><br>
+                    <a href="/views/admin/manage/workSchedulTempView.jsp" class="collapse_sublink">근무일정템플릿</a><br>
+                    <a href="/views/admin/manage/vacationRulesView.jsp" class="collapse_sublink">휴가발생규칙</a><br>
                 </ul>
             </div>
 
