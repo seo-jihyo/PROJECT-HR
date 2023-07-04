@@ -121,7 +121,7 @@ body{
       
       <div class="signup"> 
  		  <div class="column">      
-        	<input type="button" value="회원가입" class="signup" onclick="">
+        	<input type="button" value="회원가입" class="signup" onClick="location.href='/views/user/registration.jsp'">
         	<input type="button" value="ID/비밀번호 찾기" class="searchpwd" onclick="">
           </div>
       </div>
