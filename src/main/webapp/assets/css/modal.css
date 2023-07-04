@@ -7,9 +7,8 @@ input[id*="popup"]+label {
 	background: hsl(256, 88%, 16%);
 	color: white;
 	text-align: center;
-	width: 200px;
 	height: 30px;
-	padding: 2px;
+	padding: 2px 20px;
 }
 
 input[id*="popup"]+label+div {
