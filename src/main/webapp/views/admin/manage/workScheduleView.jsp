@@ -59,20 +59,8 @@
         </div>
     </div>
 
-    <table class="table table-hover">
+    <table class="sec-table table-hover">
         <thead>
-        <tr>
-            <th></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-        </tr>
         <tr>
             <th><input type="checkbox"></th>
             <th>근로일정 유형명</th>

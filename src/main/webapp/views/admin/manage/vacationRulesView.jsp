@@ -110,7 +110,7 @@
 
   </div>
 
-  <table class="table table-hover">
+  <table class="sec-table table-hover">
     <thead>
     <tr>
       <th>휴가 그룹</th>

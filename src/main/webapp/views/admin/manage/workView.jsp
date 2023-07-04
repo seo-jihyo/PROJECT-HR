@@ -65,16 +65,9 @@
         </div>
     </div>
 
-    <table class="table table-hover">
+
+    <table class="sec-table table-hover">
         <thead>
-        <tr>
-            <th></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-            <th><input type="text" placeholder="검색.."></th>
-        </tr>
         <tr>
             <th><input type="checkbox"></th>
             <th>근로정보명</th>
@@ -111,7 +104,6 @@
         </tr>
         </tbody>
     </table>
-    </div>
 </section>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modal.js"></script>
