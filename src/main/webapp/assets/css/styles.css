@@ -285,7 +285,6 @@ input[type=checkbox].toggle:checked + label:before{
     transition: .5s;
 }
 
-
 .sec-table{
     border-collapse : collapse;
     width:98%;
@@ -297,14 +296,12 @@ input[type=checkbox].toggle:checked + label:before{
     background-color: #E1E1E1;
     cursor: pointer;
 }
-
 .sec-table thead th{
     border-bottom:solid 1.5px black;
 }
-
 .sec-table tbody th, td{
-    background-color: #E1E1E1;
-    cursor: pointer;
+    border-collapse : collapse;
+    border-bottom:solid 1px gray;
 }
 
 .plusinfo{
