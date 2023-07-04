@@ -170,6 +170,7 @@ input[type=checkbox].toggle:checked + label:before{
     color: black;
 }
 
+
 .navbar_1{
     position: absolute;
     top: 101px;
@@ -288,6 +289,7 @@ section{
 .sec-table{
     border-collapse : collapse;
     width:98%;
+    height:10px;
     text-align:center;
     margin-top:80px;
 }
@@ -299,9 +301,16 @@ section{
 .sec-table thead th{
     border-bottom:solid 1.5px black;
 }
-.sec-table tbody th, td{
+.sec-table tbody th{
     border-collapse : collapse;
     border-bottom:solid 1px gray;
+    padding: 5px 5px;
+} 
+
+.sec-table tbody td{
+    border-collapse : collapse;
+    border-bottom:solid 1px gray;
+    padding: 5px 5px;
 }
 
 .plusinfo{
