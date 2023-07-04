@@ -28,7 +28,7 @@
 			<div class="modal">
 				<div>
 					<label for="popup">X</label>
-					<h3>급여명세서</h3>
+					<h1>급여명세서</h1>
 					<hr>
 
 					<div>
@@ -99,7 +99,9 @@
 						</tr>
 					</table>
 					<hr>
-					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="right-btn">
+						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					</div>
 				</div>
 			<label for="popup"></label>
 			</div>

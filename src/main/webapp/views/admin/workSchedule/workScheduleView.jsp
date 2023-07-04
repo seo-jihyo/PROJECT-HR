@@ -9,8 +9,8 @@
 
 <!-- <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet"> -->
 <!-- CSS -->
-<link rel="stylesheet" href="/assets/css/modal.css">
 <link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/modal.css">
 <%--jquery--%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -27,17 +27,17 @@
 			<div class="modal">
 				<div>
 					<label for="popup">X</label>
-					<h3>근무일정 추가하기(토, 7월 1일)</h3>
+					<h1>근무일정 추가하기(토, 7월 1일)</h1>
 					<hr>
 
 					<form method="get" action="/">
-						<table>
-							<tr>
-								<td>날짜</td>
+						<table class="modal-table">
+							<tr class="modal-tr">
+								<td >날짜</td>
 								<td><input type="date" name="날짜"> <!-- <input type="text" id="datepicker"> -->
 								</td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>근무일정 유형</td>
 								<td><select name="workType" id="workType">
 										<option value="">(없음)</option>
@@ -45,7 +45,7 @@
 										<option value="">재택근무(간주근로)</option>
 								</select></td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>조직</td>
 								<td><select name="group" id="group">
 										<option value="">조직없음</option>
@@ -54,7 +54,7 @@
 										<option value="">인사부서</option>
 								</select></td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>직무</td>
 								<td><select name="" id="">
 										<option value="">직무없음</option>
@@ -62,7 +62,7 @@
 										<option value="">개발업무</option>
 								</select></td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>직원</td>
 								<td><select name="" id="">
 										<option value="">직원없음</option>
@@ -72,7 +72,7 @@
 										<option value="">서지효</option>
 								</select></td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>시간</td>
 								<td><input type="text" class="startTime"
 									onKeyup="inputTimeColon(this);" placeholder="출근시간"
@@ -80,7 +80,7 @@
 									class="endTime" onKeyup="inputTimeColon(this);"
 									placeholder="퇴근시간" maxlength="5" /></td>
 							</tr>
-							<tr>
+							<tr class="modal-tr">
 								<td>일정노트</td>
 								<td><textarea name="" id="" cols="30" rows="4">
     							</textarea></td>
@@ -89,8 +89,9 @@
 					</form>
 
 					<hr>
-
-					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="right-btn">
+						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					</div>
 				</div>
 				<label for="popup"></label>
 			</div>
