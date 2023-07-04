@@ -47,50 +47,56 @@ html, body {
 	<div class="main">
 
 		<div class="main_title">
-			<h2>휴가 관리</h2>
-			<input type="checkbox" id="popup"> <label for="popup">휴가관리하기</label>
-			<div class="modal" style="display: hidden">
+			<h2>근무일정</h2>
+			<input type="checkbox" id="popup"> 
+				<label for="popup">+ 근무일정 추가하기</label>
+			<div class="modal" style="display:hidden;">
 				<div>
 					<label for="popup">X</label>
-					<h3>휴가 관리하기</h3>
-					<hr>
+					<h1>휴가관리하기</h1>
+	<hr>
 
-					<form method="get" action="/">
-						<table>
-							<tr>
-								<td>직원</td>
-								<td><select name="" id="">
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<!-- calendar 태그 -->
-									<div id='calendar-container'>
-										<div id='calendar'></div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>휴가 유형</td>
-								<td><select name="" id="">
-										<option value="">선택안됨</option>
-										<option value="">연차(8h, 1일)</option>
-										<option value="">반차(4h, 0.5일)</option>
-										<option value="">병가(8h, 1일)</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>사유</td>
-								<td><textarea name="" id="" cols="30" rows="3">
+	<form method="get" action="/">
+		<table>
+			<tr>
+				<td>직원</td>
+				<td><select name="" id="">
+						<option value="">이재경</option>
+						<option value="">송기석</option>
+						<option value="">권지연</option>
+						<option value="">서지효</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<!-- calendar 태그 -->
+					<div id='calendar-container'>
+						<div id='calendar'></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>휴가 유형</td>
+				<td><select name="" id="">
+						<option value="">선택안됨</option>
+						<option value="">연차(8h, 1일)</option>
+						<option value="">반차(4h, 0.5일)</option>
+						<option value="">병가(8h, 1일)</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>사유</td>
+				<td><textarea name="" id="" cols="30" rows="3">
       </textarea></td>
-							</tr>
-						</table>
-					</form>
+			</tr>
+		</table>
+	</form>
+					
+					<hr>
+    				
+					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
 				</div>
+				<label for="popup"></label>
 			</div>
 		</div>
 

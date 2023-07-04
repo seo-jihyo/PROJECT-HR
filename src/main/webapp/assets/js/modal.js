@@ -1,7 +1,8 @@
 function btnClose() {
-	var modal = document.querySelector('.modal');
-	// 팝업 닫기
-	modal.style.display = "none";
+	//var modal = document.querySelector('.modal');
+	document.getElementById('popup').checked = false;
+	// 모달 닫기
+	//modal.style.display = "none";
 }
 
 document.addEventListener('DOMContentLoaded', function() {

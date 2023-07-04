@@ -29,12 +29,7 @@ public class TestAction implements Action {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		// 2. db에서 데이터를 받기위해 dao객체를 생성하고 받아오려는 메소드 호출
 		
-	    // 3. 뷰(프론트)한테 다시 보내줄 데이터 저장
-	   
-		// 4. 뷰설정하기
-
 		return null;
 	}
 
