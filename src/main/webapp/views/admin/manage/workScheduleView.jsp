@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-<section id="body-pd">
+<section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>근무일정 유형</h2>
         <button><a href="/views/admin/manage/workScheduleModal.jsp">근무일정 유형 추가하기</a></button>
