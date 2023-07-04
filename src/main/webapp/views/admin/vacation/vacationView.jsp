@@ -45,20 +45,20 @@ html, body {
 	<section id="body-pd" class="body-pd">
 
 		<div class="main_title">
-			<h2>근무일정</h2>
+			<h2>휴가</h2>
 			<input type="checkbox" id="popup"><label class="labelBtn" for="popup">+
-				근무일정 추가하기</label>
+				휴가 관리하기</label>
 			<div class="modal" style="display: hidden;">
-				<div>
-					<label for="popup">X</label>
+				<div class="modal-content">
+					<label for="popup">x</label>
 					<h1>휴가관리하기</h1>
 					<hr>
 
 					<form method="get" action="/">
-						<table>
-							<tr>
+						<table class="vacation-table">
+							<tr class="vacation-tr1">
 								<td>직원</td>
-								<td><select name="" id="">
+								<td><select name="" class="selectBox">
 										<option value="">이재경</option>
 										<option value="">송기석</option>
 										<option value="">권지연</option>
@@ -75,7 +75,7 @@ html, body {
 							</tr>
 							<tr>
 								<td>휴가 유형</td>
-								<td><select name="" id="">
+								<td><select name="" class="vacation-type">
 										<option value="">선택안됨</option>
 										<option value="">연차(8h, 1일)</option>
 										<option value="">반차(4h, 0.5일)</option>
@@ -84,7 +84,7 @@ html, body {
 							</tr>
 							<tr>
 								<td>사유</td>
-								<td><textarea name="" id="" cols="30" rows="3">
+								<td><textarea name="" class="vacation-area" cols="70" rows="4">
       </textarea></td>
 							</tr>
 						</table>
@@ -92,7 +92,9 @@ html, body {
 
 					<hr>
 
-					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="right-btn">
+						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					</div>
 				</div>
 				<label for="popup"></label>
 			</div>

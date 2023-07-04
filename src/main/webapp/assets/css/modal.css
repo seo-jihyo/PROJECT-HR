@@ -25,8 +25,8 @@ input[id*="popup"]+label+div>div {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 70%;
-	height: 70%;
+	width: auto;
+	padding: 5px;
 	background: #fff;
 	z-index: 2;
 }
@@ -35,11 +35,17 @@ input[id*="popup"]+label+div>div>label {
 	position: absolute;
 	top: 0%;
 	right: 0%;
-	transform: translate(40%, -40%);
-	padding: 20px;
-	background: #dd5347;
-	border-radius: 100%;
+	transform: translate(-40%, 30%);
+	padding: 5px 8px;
+	background: #fff;
+	border-radius: 0;
 	z-index: 1;
+	color: rgb(4, 4, 80);
+	font-size: 20px;
+}
+
+input[id*="popup"]+label+div>div>h1 {
+	margin: 15px;
 }
 
 input[id*="popup"]+label+div>label {
@@ -61,6 +67,7 @@ input[id*="popup"]:checked+label+div {
 }
 
 .labelBtn {
+<<<<<<< Updated upstream
 		border: 1.5px solid hsl(256, 88%, 16%);
 		border-radius: 8px;
 		letter-spacing: 2px;
@@ -77,4 +84,34 @@ input[id*="popup"]:checked+label+div {
 
 .modal-header{
 	height:50px;
+=======
+	border: 1px solid black;
+}
+
+.vacation-table {
+	margin: 0px auto;
+	padding: 20px 20px;
+	width: 100%;
+}
+.vacation-table tr {
+	margin: 5px;
+}
+.vacation-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.selectBox {
+	width: 100px;
+    height: 30px;
+}
+.vacation-type {
+	width: 150px;
+    height: 30px;
+}
+
+div.right-btn {
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
+>>>>>>> Stashed changes
 }

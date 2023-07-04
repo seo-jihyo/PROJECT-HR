@@ -298,10 +298,19 @@ section{
     background-color: #E1E1E1;
     cursor: pointer;
 }
+<<<<<<< Updated upstream
 .sec-table thead th{
     border-bottom:solid 1.5px black;
 }
 .sec-table tbody th{
+=======
+.sec-table tbody th td{
+    border-collapse : collapse;
+    border-bottom:solid 1px gray;
+} 
+
+.sec-table tbody td{
+>>>>>>> Stashed changes
     border-collapse : collapse;
     border-bottom:solid 1px gray;
     padding: 5px 5px;
