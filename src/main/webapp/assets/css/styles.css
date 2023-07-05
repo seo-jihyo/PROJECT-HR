@@ -56,7 +56,7 @@ header {
 
 .container{
     margin-right: 20px;
-	 margin-top: 7px; 
+	margin-top: 7px; 
     text-align: center;
     color: white;
 }
@@ -182,7 +182,6 @@ input[type=checkbox].toggle:checked + label:before{
     padding: 1.5rem 1.5rem 2rem;
     transition: .5s;
     z-index: var(--z-fixed);
-
 }
 
 .nav{
