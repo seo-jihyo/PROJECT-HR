@@ -13,106 +13,94 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    
     <link rel="stylesheet" href="/assets/css/modal.css">
+<style type="text/css">
+
+.vacation-table {
+	margin: 0px auto;
+	padding: 20px 20px;
+	width: 100%;
+}
+.vacation-table tr {
+	margin: 5px;
+}
+.vacation-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.selectBox {
+	width: 100px;
+    height: 30px;
+}
+.vacation-type {
+	width: 150px;
+    height: 30px;
+}
+
+</style>
+<title>휴가관리</title>
+<style type="text/css">
+	
+</style>
 </head>
 <body>
-<%@include file="/views/include/header.jsp" %>
+	<%@include file="/views/include/header.jsp"%>
 
-<section id="body-pd" class="body-pd">
-	
-	<div class="main_title">
-    <h1>직급 관리</h1>
-    		<nav class="plusinfo">
-			<select id="searchsel">
-				<option value="none">선택없음</option>
-				<option value="rank">직급명</option>
-				<option value="memo">메모</option>
-			</select> <input type="text" class="search">
-    		<!-- 모달 창 -->
-			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
-				직급 추가하기</label>
-			<div class="modal">
-				<div>
-					<div class="modal-header">
-					<label for="popup">X</label>
-					<h3>급여명세서</h3>
-					<hr>
-					</div>
-					<div>
-						직원 : <select name="select" id="select">
-							<option value="lee">이재경</option>
-							<option value="song">송기석</option>
-							<option value="gun">권지연</option>
-							<option value="seo">서지효</option>
-						</select>
-					</div>
+	<section id="body-pd" class="body-pd">
+
+		<div class="main_title">
+		
+			<h2>직급 관리</h2>
+			
+						<select class="searchtype searchs">
+				<option>선택없음</option>
+				<option>직급명</option>
+				<option>메모</option>
+			</select>
+			<input type="text" class="search searchs">
+			
+			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
+				직급 관리하기</label>
+
+			<div class="modal" style="display: hidden;">
+			
+				<div class="modal-content">
+				
+					<label for="popup">x</label>
+					<h1>직급 추가하기</h1>
 					<hr>
 
-					<table>
-						<tr>
-							<td>성명</td>
-							<td><div id="name" onChange="getselect()">이재경</div></td>
-						</tr>
-						<tr>
-							<td>지급일</td>
-							<td>2023.07.02</td>
-						</tr>
-					</table>
-					<br>
-					<table>
-						<tr>
-							<td colspan="2">임금지급내역</td>
-							<td colspan="2">공제내역</td>
-						</tr>
-						<tr>
-							<td>임금항목</td>
-							<td>지급금액(원)</td>
-							<td>공제항목</td>
-							<td>지급금액(원)</td>
-						</tr>
-						<tr>
-							<td>기본금</td>
-							<td>5,000,000</td>
-							<td>소득세</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>상여금</td>
-							<td>1,000,000</td>
-							<td>국민연금</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>직책수당</td>
-							<td>0</td>
-							<td>건강보험</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>연차수당</td>
-							<td>0</td>
-							<td>고용보험</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>지급액 계</td>
-							<td>6,000,000</td>
-							<td>공제액 계</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>실지급액</td>
-							<td colspan="3">6,000,000</td>
-						</tr>
-					</table>
+					<form method="get" action="/">
+						<table class="vacation-table">
+							<tr class="vacation-tr1">
+								<td>직급명</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+
+							<tr>
+								<td>메모</td>
+								<td><textarea name="" class="vacation-area" cols="70" rows="4">
+      						</textarea></td>
+							</tr>
+						</table>
+					</form>
+
 					<hr>
-					<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+
+					<div class="right-btn">
+						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					</div>
 				</div>
-			<label for="popup"></label>
+				<label for="popup"></label>
 			</div>
 		</div>
-		</nav>
+
+
+
+		
 		<div class= "tab-scroll">
+
 		<table class="sec-table table-hover">
 			<thead class="thead">
 
