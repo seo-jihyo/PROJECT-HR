@@ -52,8 +52,8 @@
 		<div class="main_title">
 		
 			<h2>직급 관리</h2>
-			
-						<select class="searchtype searchs">
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
 				<option>선택없음</option>
 				<option>직급명</option>
 				<option>메모</option>
@@ -93,9 +93,10 @@
 					</div>
 				</div>
 				<label for="popup"></label>
+			
 			</div>
 		</div>
-
+</nav>
 
 
 		
