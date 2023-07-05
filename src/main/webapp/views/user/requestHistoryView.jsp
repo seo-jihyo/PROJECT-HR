@@ -11,7 +11,7 @@
     <%--jquery--%>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
+<%--    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">--%>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
@@ -21,16 +21,7 @@
     <div class="main_title">
         <h2>요청 내역</h2>
     </div>
-    <table class="table table-hover">
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th><input type="text" placeholder="검색.."></th>
-        <th></th>
-        </tr>
+    <table class="sec-table table-hover">
         <tr>
             <th>요청종류</th>
             <th>요청 보낸 사람</th>

@@ -31,8 +31,10 @@
 <%@include file="/views/include/header.jsp" %>
 <section id="body-pd" class="body-pd">
   <!-- calendar 태그 -->
-  <div id='calendar-container'>
-    <div id='calendar'></div>
+  <div style="width:80%">
+    <div id='calendar-container'>
+      <div id='calendar'></div>
+    </div>
   </div>
   <script>
     (function(){
