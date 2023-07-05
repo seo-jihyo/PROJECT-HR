@@ -16,6 +16,22 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <title>근로정보</title>
 
+<style type="text/css">
+	.ws-table {
+		height: 400px;
+	}
+	.ws-table tr td {
+		padding: 7px;
+		font-size: 15px;
+	}
+	#workType, #group, #job, #emp-name, #ws-area {
+		border: 1px solid black;
+	}
+	.ws-date, .startTime, .endTime {
+		border: 1px solid black;
+	}
+</style>
+
 </head>
 <body>
 	<%@include file="/views/include/header.jsp"%>
@@ -31,10 +47,10 @@
 					<hr>
 
 					<form method="get" action="/">
-						<table class="modal-table">
+						<table class="ws-table">
 							<tr class="modal-tr">
 								<td >날짜</td>
-								<td><input type="date" name="날짜"> <!-- <input type="text" id="datepicker"> -->
+								<td><input type="date" name="날짜" class="ws-date"> <!-- <input type="text" id="datepicker"> -->
 								</td>
 							</tr>
 							<tr class="modal-tr">
@@ -56,7 +72,7 @@
 							</tr>
 							<tr class="modal-tr">
 								<td>직무</td>
-								<td><select name="" id="">
+								<td><select name="" id="job">
 										<option value="">직무없음</option>
 										<option value="">인사업무</option>
 										<option value="">개발업무</option>
@@ -64,7 +80,7 @@
 							</tr>
 							<tr class="modal-tr">
 								<td>직원</td>
-								<td><select name="" id="">
+								<td><select name="" id="emp-name">
 										<option value="">직원없음</option>
 										<option value="">이재경</option>
 										<option value="">송기석</option>
@@ -82,15 +98,18 @@
 							</tr>
 							<tr class="modal-tr">
 								<td>일정노트</td>
-								<td><textarea name="" id="" cols="30" rows="4">
+								<td><textarea name="" id="ws-area" cols="30" rows="4">
     							</textarea></td>
 							</tr>
 						</table>
 					</form>
 
 					<hr>
-					<div class="right-btn">
-						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">추가하기</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+						</div>
 					</div>
 				</div>
 				<label for="popup"></label>
