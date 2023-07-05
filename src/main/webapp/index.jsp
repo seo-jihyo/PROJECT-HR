@@ -23,13 +23,13 @@
 </ul>
 <h1>사용자</h1>
 <ul>
-    <li><a href="#">스케줄</a></li>
+    <li><a href="/views/user/userScheduleView.jsp">스케줄</a></li>
     <li><a href="#">출퇴근기록</a></li>
     <li><a href="/views/user/requestHistoryView.jsp">요청내역</a></li>
 </ul>
 <h2>관리자</h2>
 <ul>
-    <li><a href="#">대쉬보드</a></li>
+    <li><a href="/views/user/dashboard.jsp">대쉬보드</a></li>
     <li><a href="/views/admin/workSchedule/workScheduleView.jsp">근무일정</a></li>
     <li><a href="/views/admin/attendance/attendanceView.jsp">출퇴근기록</a></li>
     <li><a href="/views/admin/vacation/vacationView.jsp">휴가</a></li>
