@@ -15,6 +15,38 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>급여</title>
+  
+<style type="text/css">
+	.salery-emp {
+		font-size: 15px;
+		padding: 5px 0;
+	}
+	.salery-table {
+		width: 500px;
+	}
+	.salery-table tr td {
+		border: 1px solid black;
+		padding: 7px;
+		font-size: 15px;
+	}
+	.salery-table2 {
+		width: 500px;
+		margin-bottom: 10px;
+	}
+	.salery-table2 tr td {
+		border: 1px solid black;
+		padding: 7px;
+		font-size: 15px;
+	}
+	#select {
+		border: 1px solid black;
+		margin-left: 20px;
+		padding: 0 7px;
+		width: 100px;
+		height: 25px;
+	}
+</style>
+  
 </head>
 <body>
 	<%@include file="/views/include/header.jsp"%>
@@ -31,8 +63,8 @@
 					<h1>급여명세서</h1>
 					<hr>
 
-					<div>
-						직원 : <select name="select" id="select">
+					<div class="salery-emp">
+						<p>직원 : <select name="select" id="select">
 							<option value="lee">이재경</option>
 							<option value="song">송기석</option>
 							<option value="gun">권지연</option>
@@ -41,7 +73,7 @@
 					</div>
 					<hr>
 
-					<table>
+					<table class="salery-table">
 						<tr>
 							<td>성명</td>
 							<td><div id="name" onChange="getselect()">이재경</div></td>
@@ -52,7 +84,7 @@
 						</tr>
 					</table>
 					<br>
-					<table>
+					<table class="salery-table2">
 						<tr>
 							<td colspan="2">임금지급내역</td>
 							<td colspan="2">공제내역</td>
@@ -99,8 +131,11 @@
 						</tr>
 					</table>
 					<hr>
-					<div class="right-btn">
-						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">추가하기</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+						</div>
 					</div>
 				</div>
 			<label for="popup"></label>

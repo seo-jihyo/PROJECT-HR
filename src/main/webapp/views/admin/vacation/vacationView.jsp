@@ -37,7 +37,7 @@ html, body {
 <style type="text/css">
 .vacation-table {
 	margin: 0px auto;
-	padding: 20px 20px;
+	padding: 8px 0;
 	width: 100%;
 }
 .vacation-table tr {
@@ -50,10 +50,15 @@ html, body {
 .selectBox {
 	width: 100px;
     height: 30px;
+    border: 1px solid black;
 }
 .vacation-type {
 	width: 150px;
     height: 30px;
+    border: 1px solid black;
+}
+.vacation-area {
+	border: 1px solid black;
 }
 </style>
 <title>휴가관리</title>
@@ -113,9 +118,11 @@ html, body {
 					</form>
 
 					<hr>
-
-					<div class="right-btn">
-						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">추가하기</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+						</div>
 					</div>
 				</div>
 				<label for="popup"></label>

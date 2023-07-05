@@ -15,6 +15,20 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <title>출퇴근기록</title>
+
+<style type="text/css">
+	.attend-table {
+		height: 400px;
+	}
+	.attend-table tr td {
+		padding: 7px;
+		font-size: 15px;
+	}
+	.attend-date, #attend-emp, #attend-work, #attend-group, #attend-job, #attend-area, .startTime, .endTime {
+		border: 1px solid black;
+	}
+</style>
+
 </head>
 <body>
 	<%@include file="/views/include/header.jsp"%>
@@ -32,16 +46,16 @@
 					<hr>
 
 					<form method="get" action="/">
-						<table>
+						<table class="attend-table">
 							<tr>
 								<td>날짜
 								<br></td>
-								<td><input type="date"></td>
+								<td><input type="date" class="attend-date"></td>
 							</tr>
 							<tr>
 								<td>직원
 								<br></td>
-								<td><select name="employee" id="employee">
+								<td><select name="employee" id="attend-emp">
 										<option value="">이재경</option>
 										<option value="">송기석</option>
 										<option value="">권지연</option>
@@ -51,7 +65,7 @@
 							<tr>
 								<td>근무일정
 								<br></td>
-								<td><select name="work" id="work">
+								<td><select name="work" id="attend-work">
 										<option value="">근무1</option>
 										<option value="">근무2</option>
 										<option value="">근무3</option>
@@ -60,7 +74,7 @@
 							<tr>
 								<td>조직
 								<br></td>
-								<td><select name="group" id="group">
+								<td><select name="group" id="attend-group">
 										<option value="">조직없음</option>
 										<option value="">인사부서</option>
 										<option value="">개발부서</option>
@@ -69,7 +83,7 @@
 							<tr>
 								<td>직무
 								<br></td>
-								<td><select name="" id="">
+								<td><select name="" id="attend-job">
 										<option value="">직무없음</option>
 										<option value="">인사업무</option>
 										<option value="">개발업무</option>
@@ -95,13 +109,17 @@
 							<tr>
 								<td>근무노트
 								<br></td>
-								<td><textarea name="" id="" cols="30" rows="4">
+								<td><textarea name="" id="attend-area" cols="30" rows="4">
     	</textarea></td>
 							</tr>
 						</table>
 					</form>
-					<div class="right-btn">
-						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<hr>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">추가하기</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+						</div>
 					</div>
 				</div>
 				<label for="popup"></label>
