@@ -71,6 +71,7 @@ input[id*="popup"]:checked+label+div {
 	border-radius: 8px;
 	letter-spacing: 2px;
 	transition: all 0.4s;
+	cursor: pointer;
 }
 
 .labelBtn:focus{
@@ -103,7 +104,7 @@ div.bottom-btn {
 
 .searchtype{
 	height: 30px;
-	}
+}
 
 .search{
 	height: 30px;

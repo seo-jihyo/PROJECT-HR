@@ -14,6 +14,10 @@
 <%--jquery--%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>근로정보</title>
 
 <style type="text/css">
@@ -38,6 +42,22 @@
 	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>근무일정</h2>
+			<input type="text" id="datepicker1"> -
+       	 	<input type="text" id="datepicker2">
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
+				<option>전체</option>
+				<option>사원번호</option>
+				<option>직원</option>
+				<option>날짜</option>
+				<option>일정시간</option>
+				<option>근무일정유형</option>
+				<option>조직</option>
+				<option>직무</option>
+				<option>휴게시간</option>
+				<option>총 시간</option>
+			</select>
+			<input type="text" class="search searchs">
 			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
 				근무일정 추가하기</label>
 			<div class="modal">
@@ -50,7 +70,7 @@
 						<table class="ws-table">
 							<tr class="modal-tr">
 								<td >날짜</td>
-								<td><input type="date" name="날짜" class="ws-date"> <!-- <input type="text" id="datepicker"> -->
+								<td><input type="date" name="날짜" class="ws-date">
 								</td>
 							</tr>
 							<tr class="modal-tr">
@@ -115,23 +135,12 @@
 				<label for="popup"></label>
 			</div>
 		</div>
-
-		<table class="table table-hover">
+</nav>
+		<table class="sec-table table-hover">
 			<thead>
 				<tr>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-				</tr>
-				<tr>
+					<th style="width: 30px"><input type='checkbox' id="chkAll"
+						onclick="allCheckboxes('chk[]', this.checked)"></th>
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>날짜</th>
@@ -147,6 +156,8 @@
 			</thead>
 			<tbody>
 				<tr>
+					<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>001</td>
 					<td>이재경</td>
 					<td>7/1</td>
@@ -160,6 +171,8 @@
 					<td>8시간</td>
 				</tr>
 				<tr>
+					<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>001</td>
 					<td>이재경</td>
 					<td>7/1</td>
