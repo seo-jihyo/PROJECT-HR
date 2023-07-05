@@ -17,25 +17,24 @@
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
 
-.vacation-table {
-	margin: 0px auto;
+.rank-table {
 	padding: 20px 20px;
 	width: 100%;
 }
-.vacation-table tr {
+.rank-table tr {
 	margin: 5px;
 }
-.vacation-table tr td {
+.rank-table tr td {
 	padding: 7px;
 	font-size: 15px;
 }
-.selectBox {
-	width: 100px;
-    height: 30px;
+.rankadd{
+	height: 25px;
+	border: 1px solid black;
 }
-.vacation-type {
-	width: 150px;
-    height: 30px;
+.rank-area{
+	height: 200px;
+	border: 1px solid black;
 }
 
 </style>
@@ -55,13 +54,15 @@
 			<nav class="plusinfo">
 			<select class="searchtype searchs">
 				<option>선택없음</option>
+				<option>상위코드</option>
+				<option>코드번호</option>
 				<option>직급명</option>
 				<option>메모</option>
 			</select>
 			<input type="text" class="search searchs">
 			
 			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
-				직급 관리하기</label>
+				직급 추가하기</label>
 
 			<div class="modal" style="display: hidden;">
 			
@@ -70,33 +71,43 @@
 					<label for="popup">x</label>
 					<h1>직급 추가하기</h1>
 					<hr>
+					
 
 					<form method="get" action="/">
-						<table class="vacation-table">
-							<tr class="vacation-tr1">
+						<table class="rank-table">
+							<tr class="rank-tr1">
+								<td>상위코드</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>코드번호</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+							<tr class="rank-tr1">
 								<td>직급명</td>
 								<td><input type="text" class="rankadd"></td>
 							</tr>
 
 							<tr>
 								<td>메모</td>
-								<td><textarea name="" class="vacation-area" cols="70" rows="4">
+								<td><textarea name="" class="rank-area" cols="70" rows="4">
       						</textarea></td>
 							</tr>
 						</table>
 					</form>
 
 					<hr>
-
-					<div class="right-btn">
-						<button type="button" class="btn_close" onclick="btnClose();">닫기</button>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">추가하기</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+						</div>
 					</div>
 				</div>
 				<label for="popup"></label>
-			
 			</div>
 		</div>
-</nav>
+		</nav>
 
 
 		
@@ -108,6 +119,8 @@
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
 						onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th>상위코드</th>
+					<th>코드번호</th>
 					<th>직급명</th>
 					<th>메모</th>
 				</tr>
@@ -118,14 +131,16 @@
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td></td>
 						<td></td>
-
+						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td></td>
 						<td></td>
-
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

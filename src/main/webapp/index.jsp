@@ -37,10 +37,10 @@
     <li><a href="/views/admin/salery/saleryView.jsp">급여</a></li>
     <li><h2>관리</h2>
         <ul>
-            <li><a href="#">직원</a></li>
-            <li><a href="#">조직</a></li>
-            <li><a href="#">직무</a></li>
-            <li><a href="#">휴가유형</a></li>
+            <li><a href="/views/admin/employee/employeeView.jsp">직원</a></li>
+            <li><a href="/views/admin/duty/dutyView.jsp">부서</a></li>
+            <li><a href="/views/admin/rank/rankView.jsp">직급</a></li>
+            <li><a href="/views/admin/vacationType/vacationTypeView.jsp">휴가유형</a></li>
             <li><a href="/views/admin/manage/workView.jsp">근로정보</a></li>
             <li><a href="/views/admin/manage/workScheduleView.jsp">근무일정유형</a></li>
             <li><a href="/views/admin/manage/workSchedulTempView.jsp">근무일정템플릿</a></li>
