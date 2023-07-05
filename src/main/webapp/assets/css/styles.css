@@ -319,12 +319,30 @@ section{
     padding: 20px;
 }
 
-
 .workrec-container{
 	display: flex;
 }
+
 .workrec-item {
 	width: 100px;
 	height: 100px;
 	margin: 3px;
+}
+
+/* requestHistoryView */
+.approve {
+	width: 50px;
+	height: 30px;
+	border: 1px solid #4B89DC;
+	background-color: #4B89DC;
+	color: #fff;
+	cursor: pointer;
+}
+.reject {
+	width: 50px;
+	height: 30px;
+	border: 1px solid #FF6666;
+	background-color: #FF6666;
+	color: #fff;
+	cursor: pointer;
 }

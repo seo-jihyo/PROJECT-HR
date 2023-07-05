@@ -13,7 +13,10 @@
 <%--jquery--%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <title>요청내역</title>
 </head>
 <body>
@@ -21,23 +24,26 @@
 	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>요청 내역</h2>
+			<input type="text" id="datepicker1"> -
+       	 	<input type="text" id="datepicker2">
+			<nav class="plusinfo">
+				<select class="searchtype searchs">
+					<option>전체</option>
+					<option>사원번호</option>
+					<option>요청종류</option>
+					<option>요청 보낸 사람</option>
+					<option>본조직</option>
+					<option>요청사항</option>
+					<option>요청사유</option>
+					<option>상태</option>
+					<option>신청일자</option>
+					<option>관리</option>
+				</select>
+				<input type="text" class="search searchs">
+			</nav>
 		</div>
-		<div>캘린더 API</div>
-		<div>요청 필터</div>
-		<table class="table table-hover">
+		<table class="sec-table table-hover">
 			<thead>
-				<tr>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-				</tr>
 				<tr>
 					<th>사원번호</th>
 					<th>요청 종류</th>
@@ -63,8 +69,8 @@
 					<td></td>
 					<td>7/1</td>
 					<td>
-						<button type="button">승인</button>&nbsp;
-						<button type="button">거절</button>
+						<button type="button" class="approve">승인</button>&nbsp;
+						<button type="button" class="reject">거절</button>
 					</td>
 				</tr>
 			</tbody>

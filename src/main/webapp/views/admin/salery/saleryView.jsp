@@ -14,6 +14,10 @@
 <%--jquery--%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <title>급여</title>
   
 <style type="text/css">
@@ -49,12 +53,35 @@
   
 </head>
 <body>
+
 	<%@include file="/views/include/header.jsp"%>
 
 	<section id="body-pd" class="body-pd">
 
 		<div class="main_title">
 			<h2>급여</h2>
+			<input type="text" id="datepicker1"> -
+       	 	<input type="text" id="datepicker2">
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
+				<option>전체</option>
+				<option>사원번호</option>
+				<option>귀속연월</option>
+				<option>이름</option>
+				<option>기본금</option>
+				<option>상여금</option>
+				<option>직책수당</option>
+				<option>연차수당</option>
+				<option>국민연금</option>
+				<option>건강보험</option>
+				<option>장기요양보험</option>
+				<option>고용보험</option>
+				<option>소득세</option>
+				<option>지방소득세</option>
+				<option>실수령액</option>
+			</select>
+			<input type="text" class="search searchs">
+			
 			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
 				급여명세서</label>
 			<div class="modal">
@@ -141,25 +168,12 @@
 			<label for="popup"></label>
 			</div>
 		</div>
-		<table class="table table-hover">
+		</nav>
+		<table class="sec-table table-hover">
 			<thead>
 				<tr>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-				</tr>
-				<tr>
+					<th style="width: 30px"><input type='checkbox' id="chkAll"
+						onclick="allCheckboxes('chk[]', this.checked)"></th>
 					<th>사원번호</th>
 					<th>귀속연월</th>
 					<th>이름</th>
@@ -178,6 +192,8 @@
 			</thead>
 			<tbody>
 				<tr>
+					<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>001</td>
 					<td>7/1</td>
 					<td>이재경</td>

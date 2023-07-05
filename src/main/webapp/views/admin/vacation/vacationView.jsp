@@ -19,21 +19,10 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/modal.css">
-
-<!-- <style>
-/* body 스타일 */
-html, body {
-	overflow: hidden;
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 14px;
-}
-/* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
-.fc-header-toolbar {
-	padding-top: 1em;
-	padding-left: 1em;
-	padding-right: 1em;
-}
-</style> -->
+<!-- datepicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
 .vacation-table {
 	margin: 0px auto;
@@ -73,6 +62,21 @@ html, body {
 
 		<div class="main_title">
 			<h2>휴가</h2>
+			<input type="text" id="datepicker1"> -
+       	 	<input type="text" id="datepicker2">
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
+				<option>전체</option>
+				<option>사원번호</option>
+				<option>직원</option>
+				<option>휴가시간</option>
+				<option>휴가그룹</option>
+				<option>휴가유형</option>
+				<option>유급시간</option>
+				<option>차감일수</option>
+				<option>사유</option>
+			</select>
+			<input type="text" class="search searchs">
 			<input type="checkbox" id="popup"><label class="labelBtn" for="popup">+
 				휴가 관리하기</label>
 			<div class="modal" style="display: hidden;">
@@ -128,20 +132,12 @@ html, body {
 				<label for="popup"></label>
 			</div>
 		</div>
-
-		<table class="table table-hover">
+</nav>
+		<table class="sec-table table-hover">
 			<thead>
 				<tr>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-					<th><input type="text" placeholder="검색.."></th>
-				</tr>
-				<tr>
+					<th style="width: 30px"><input type='checkbox' id="chkAll"
+						onclick="allCheckboxes('chk[]', this.checked)"></th>
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>휴가시간</th>
@@ -154,6 +150,8 @@ html, body {
 			</thead>
 			<tbody>
 				<tr>
+					<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>001</td>
 					<td>이재경</td>
 					<td>7월 3일 (월) 09:00 - 18:00</td>
