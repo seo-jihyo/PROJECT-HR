@@ -329,6 +329,13 @@ section{
 	margin: 3px;
 }
 
+/* datepicker */
+#datepicker1, #datepicker2 {
+	height: 30px;
+	border: 1px solid black;
+	text-align: center;
+}
+
 /* requestHistoryView */
 .approve {
 	width: 50px;

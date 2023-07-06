@@ -108,10 +108,14 @@ div.bottom-btn {
 
 .search{
 	height: 30px;
-}
+} 
 
 .plusinfo{
     float:right;
+}
+
+select.searchtype.searchs {
+	height: 30px;
 }
 
 div.right-btn {

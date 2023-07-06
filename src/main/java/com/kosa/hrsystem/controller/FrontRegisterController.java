@@ -3,7 +3,10 @@ package com.kosa.hrsystem.controller;
 
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.service.RankOkService;
+import com.kosa.hrsystem.service.RankService;
 import com.kosa.hrsystem.service.TestAction;
+import com.kosa.hrsystem.service.WorkScheduleOkService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,6 +49,16 @@ public class FrontRegisterController extends HttpServlet {
             action = new TestAction(); // 서비스가 필요하니 서비스를 처리해주는 TestAction이라는 서비스 클래스를 생성해서 사용
             forward = action.execute(request, response); //request 클라이언트가 요청한 페이지당 1개씩 만들어지는 request객체
 
+        } else if (urlcommand.equals("/rankok.do")) {
+        	// 추가하는 서비스
+        	action = new RankOkService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/rank.do")) {
+        	action = new RankService();
+        	forward = action.execute(request, response);
+        } else if(urlcommand.equals("/workscheduleok.do")) {
+        	action = new WorkScheduleOkService();
+        	forward = action.execute(request, response);
         }
 
         if (forward != null) {

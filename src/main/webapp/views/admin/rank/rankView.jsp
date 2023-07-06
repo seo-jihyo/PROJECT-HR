@@ -93,7 +93,9 @@
 
 							<tr>
 								<td>메모</td>
+
 								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+
 							</tr>
 						</table>
 					</form>
@@ -138,9 +140,6 @@
 						<td>${rankList.remarks}</td>
 					</tr>
 				</c:forEach>
-				
-					
-
 				</tbody>
 			</table>
 
@@ -149,7 +148,6 @@
    
     
 </div>
-
 
 
 

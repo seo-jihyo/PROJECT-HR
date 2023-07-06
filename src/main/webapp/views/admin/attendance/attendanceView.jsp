@@ -28,7 +28,11 @@
 		padding: 7px;
 		font-size: 15px;
 	}
-	.attend-date, #attend-emp, #attend-work, #attend-group, #attend-job, #attend-area, .startTime, .endTime {
+	.attend-date, #attend-emp, #attend-work, #attend-group, #attend-job, .startTime, .endTime {
+		border: 1px solid black;
+		height: 30px;
+	}
+	#attend-area {
 		border: 1px solid black;
 	}
 </style>
@@ -115,7 +119,7 @@
 							<tr>
 								<td>출근시간
 								<br></td>
-								<td><input type="text" class="startTime"
+								<td><input type="time" class="startTime"
 									onKeyup="inputTimeColon(this);" placeholder="출근시간"
 									maxlength="5" /></td>
 
@@ -123,7 +127,7 @@
 							<tr>
 								<td>퇴근시간
 								<br></td>
-								<td><input type="text" class="endTime"
+								<td><input type="time" class="endTime"
 									onKeyup="inputTimeColon(this);" placeholder="퇴근시간"
 									maxlength="5" /> <input type="checkbox" name="check" id="check"
 									value="">현재 근무중</td>

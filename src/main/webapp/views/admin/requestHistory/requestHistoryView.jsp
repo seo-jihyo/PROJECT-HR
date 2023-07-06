@@ -27,7 +27,7 @@
 			<input type="text" id="datepicker1"> -
        	 	<input type="text" id="datepicker2">
 			<nav class="plusinfo">
-				<select class="searchtype searchs">
+				<select class="searchs searchtype">
 					<option>전체</option>
 					<option>사원번호</option>
 					<option>요청종류</option>
@@ -39,7 +39,7 @@
 					<option>신청일자</option>
 					<option>관리</option>
 				</select>
-				<input type="text" class="search searchs">
+				<input type="text" class="searchs search">
 			</nav>
 		</div>
 		<table class="sec-table table-hover">
