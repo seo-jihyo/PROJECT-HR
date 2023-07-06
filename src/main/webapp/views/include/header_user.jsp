@@ -3,7 +3,7 @@
     <h1 class="company">MAIN</h1>
         <nav class="link-menu">
             <a href="">스케줄</a>
-            <a href="">출퇴근기록</a>
+            <a href="/views/user/workRecord/workRecordView.jsp">출퇴근기록</a>
             <a href="">요청 내역</a>
         </nav>
     <nav class="top-nav">
