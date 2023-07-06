@@ -206,34 +206,82 @@
 					<hr>
 					
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
+					<form method="get">
+						<table class="attend-table">
+							<tr>
+								<td>날짜
+								<br></td>
+								<td><input type="date" class="attend-date"></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
+							<tr>
+								<td>직원
+								<br></td>
+								<td><select name="employee" id="attend-emp">
+										<option value="">이재경</option>
+										<option value="">송기석</option>
+										<option value="">권지연</option>
+										<option value="">서지효</option>
+								</select></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
+							<tr>
+								<td>근무일정
+								<br></td>
+								<td><select name="work" id="attend-work">
+										<option value="">근무1</option>
+										<option value="">근무2</option>
+										<option value="">근무3</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>조직
+								<br></td>
+								<td><select name="group" id="attend-group">
+										<option value="">조직없음</option>
+										<option value="">인사부서</option>
+										<option value="">개발부서</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>직무
+								<br></td>
+								<td><select name="" id="attend-job">
+										<option value="">직무없음</option>
+										<option value="">인사업무</option>
+										<option value="">개발업무</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>출근시간
+								<br></td>
+								<td><input type="time" class="startTime"
+									onKeyup="inputTimeColon(this);" placeholder="출근시간"
+									maxlength="5" /></td>
+
+							</tr>
+							<tr>
+								<td>퇴근시간
+								<br></td>
+								<td><input type="time" class="endTime"
+									onKeyup="inputTimeColon(this);" placeholder="퇴근시간"
+									maxlength="5" /> <input type="checkbox" name="check" id="check"
+									value="">현재 근무중</td>
 							</tr>
 
 							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+								<td>근무노트
+								<br></td>
+								<td><textarea name="" id="attend-area" cols="30" rows="4"></textarea></td>
 							</tr>
 						</table>
-						
-					
-       				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
-        </form>
+					<hr>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">삭제하기</button>
+            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+						</div>
+					</div>
+				</form>
     </dialog>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");
