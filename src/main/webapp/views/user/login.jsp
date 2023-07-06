@@ -85,7 +85,9 @@ body{
   transition: 0.4s;
 }
 .form input.button:hover{
-  background: #5e5e7c;
+  color: black;
+  background: #fff;
+  border: 1px solid #172b4d;
 }
 .form .column {
   display: flex;
