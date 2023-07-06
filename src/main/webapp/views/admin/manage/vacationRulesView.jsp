@@ -35,18 +35,27 @@
           <hr>
           <div class="modal_nav" id="tab-1" style="display: block;">
             <form action="" id="기본정보">
-              <label for="휴가그룹">휴가 그룹</label>
-              <select name="휴가그룹" id="휴가그룹" multiple required>
-                <option value="인사팀" >인사팀</option>
-                <option value="개발팀" >개발팀</option>
-              </select> <br>
-              <label for="규칙명">규칙명</label>
-              <input type="text" id="규칙명"> <br>
-              <label for="remarks">메모</label> <br>
-              <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea>
+              <table>
+                <tr>
+                  <td>휴가 그룹</td>
+                  <td>
+                    <select name="휴가그룹" id="휴가그룹" multiple required>
+                      <option value="인사팀" >인사팀</option>
+                      <option value="개발팀" >개발팀</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>규칙명</td>
+                  <td><input type="text" id="규칙명"></td>
+                </tr>
+                <tr>
+                  <td>메모</td>
+                  <td><textarea name="remarks" id="remarks" cols="30" rows="2"></textarea></td>
+                </tr>
+              </table>
             </form>
           </div>
-
           <div class="modal_nav" id="tab-2" style="display: none;">
             <form action="" id="월기준발생">
               <table class="table table-hover">
@@ -72,7 +81,6 @@
               </table>
             </form>
           </div>
-
           <div class="modal_nav"  id="tab-3" style="display: none;">
             <form action="" id="연기준발생" name="frm">
               <table class="table table-hover">
@@ -103,7 +111,6 @@
           <hr>
           <button type="button" class="btn_close" onclick="btnClose();">닫기</button>
           <input type="button" onclick="testfn(this.form)" form="기본정보" value="추가하기">
-
       </div>
       <label for="popup"></label>
     </div>

@@ -29,27 +29,42 @@
                 <hr>
                 <div class="modal_nav">
                     <form action="">
-                        <label for="근무유형">근무일정 유형명</label>
-                        <input type="text" id="근무유형" name="근무유형"> <br>
-                        <label for="조직">조직</label>
-                        <select name="조직" id="조직" multiple required>
-                            <option value="인사팀" selected>인사팀</option>
-                            <option value="개발팀" selected>개발팀</option>
-                        </select> <br>
-                        <label for="직무">직무</label>
-                        <select name="직무" id="직무" multiple required>
-                            <option value="인사팀" selected>인사팀</option>
-                            <option value="개발팀" selected>개발팀</option>
-                        </select> <br>
+                        <table>
+                            <tr>
+                                <td>근무일정 유형 명</td>
+                                <td><input type="text" id="근무유형" name="근무유형"></td>
+                            </tr>
+                            <tr>
+                                <td>조직</td>
+                                <td>
+                                    <select name="조직" id="조직" multiple required>
+                                        <option value="인사팀" selected>인사팀</option>
+                                        <option value="개발팀" selected>개발팀</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>직무</td>
+                                <td>
+                                    <select name="직무" id="직무" multiple required>
+                                        <option value="인사팀" selected>인사팀</option>
+                                        <option value="개발팀" selected>개발팀</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>메모</td>
+                                <td>
+                                    <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </table>
                         <hr>
-                        <input type="checkbox" name="출근가능여부" id="출근가능여부"> 출근가능여부 <br>
-                        <input type="checkbox" name="연장근무일정 여부" id="연장근무일정 여부"> 연장근무일정 여부 <br>
-                        <input type="checkbox" name="휴일근무 미적용 여부" id="휴일근무 미적용 여부"> 휴일근무 미적용 여부 <br>
-                        <input type="checkbox" name="간주근로 여부" id="간주근로 여부"> 간주근로 여부 <br>
-                        <input type="checkbox" name="출근 전 확인사항" id="출근 전 확인사항"> 출근 전 확인사항 <br>
-                        <label for="remarks">메모</label> <br>
-                        <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea>
-                        <hr>
+<%--                        <input type="checkbox" name="출근가능여부" id="출근가능여부"> 출근가능여부 <br>--%>
+<%--                        <input type="checkbox" name="연장근무일정 여부" id="연장근무일정 여부"> 연장근무일정 여부 <br>--%>
+<%--                        <input type="checkbox" name="휴일근무 미적용 여부" id="휴일근무 미적용 여부"> 휴일근무 미적용 여부 <br>--%>
+<%--                        <input type="checkbox" name="간주근로 여부" id="간주근로 여부"> 간주근로 여부 <br>--%>
+<%--                        <input type="checkbox" name="출근 전 확인사항" id="출근 전 확인사항"> 출근 전 확인사항 <br>--%>
                         <button type="button" class="btn_close" onclick="btnClose();">닫기</button>
                         <input type="submit" value="추가하기">
                     </form>

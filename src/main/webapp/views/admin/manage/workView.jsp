@@ -30,33 +30,48 @@
                 <label for="popup">X</label>
                 <hr>
                 <form action="">
-                    <label for="workName">근로정보명</label>
-                    <input type="text" id="workName" name="workName"> <br>
-                    <label for="pay">시급(&#8361;)</label>
-                    <input type="number" value="0" id="pay" name="workName"> <br>
-                    <label for="fixedWorkingDay">소정근로요일</label>
-                    <select name="fixedWorkingDay" id="fixedWorkingDay" multiple>
-                        <option value="mon" selected>월</option>
-                        <option value="tue" selected>화</option>
-                        <option value="wed" selected>수</option>
-                        <option value="thu" selected>목</option>
-                        <option value="fri" selected>금</option>
-                        <option value="sat">토</option>
-                        <option value="sun">일</option>
-                    </select> <br>
-                    <label for="weekly_holiday">주휴요일</label>
-                    <select name="weekly_holiday" id="weekly_holiday" multiple>
-                        <option value="mon">월</option>
-                        <option value="tue">화</option>
-                        <option value="wed">수</option>
-                        <option value="thu">목</option>
-                        <option value="fri">금</option>
-                        <option value="sat">토</option>
-                        <option value="sun" selected>일</option>
-                    </select> <br> <br>
-                    <label for="remarks">메모</label>
-                    <input type="text" id="remarks" name="remarks">
-                    <hr>
+                    <table>
+                        <tr>
+                            <td>근로정보명</td>
+                            <td><input type="text" id="workName" name="workName"></td>
+                        </tr>
+                        <tr>
+                            <td>시급(&#8361;)</td>
+                            <td><input type="number" value="0" id="pay" name="workName"></td>
+                        </tr>
+                        <tr>
+                            <td>소정근로요일</td>
+                            <td>
+                                <select name="fixedWorkingDay" id="fixedWorkingDay" multiple>
+                                    <option value="mon" selected>월</option>
+                                    <option value="tue" selected>화</option>
+                                    <option value="wed" selected>수</option>
+                                    <option value="thu" selected>목</option>
+                                    <option value="fri" selected>금</option>
+                                    <option value="sat">토</option>
+                                    <option value="sun">일</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>주휴요일</td>
+                            <td>
+                                <select name="weekly_holiday" id="weekly_holiday" multiple>
+                                    <option value="mon">월</option>
+                                    <option value="tue">화</option>
+                                    <option value="wed">수</option>
+                                    <option value="thu">목</option>
+                                    <option value="fri">금</option>
+                                    <option value="sat">토</option>
+                                    <option value="sun" selected>일</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>메모</td>
+                            <td><input type="text" id="remarks" name="remarks"></td>
+                        </tr>
+                    </table>
                     <button type="button" class="btn_close" onclick="btnClose();">닫기</button>
                     <input type="submit" value="추가하기">
                 </form>

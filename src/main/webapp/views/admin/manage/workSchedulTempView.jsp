@@ -29,33 +29,48 @@
                 <hr>
                 <div class="modal_nav">
                     <form action="">
-                        <label for="템플릿">템플릿 명</label>
-                        <input type="text" id="템플릿" name="템플릿"> <br>
-                        <label for="startTime">시간</label>
-                        <input type="text" placeholder="HH" value="09" id="startTime" name="startTime1">:<input type="text" placeholder="MM" value="00" name="startTime2">
-                        ~
-                        <input type="text" placeholder="HH" value="18" name="endTime1">:<input type="text" placeholder="MM" value="00" name="endTime2">
-                        <br>
-                        <label for="근무일정유형">근무일정 유형</label>
-                        <select name="근무일정유형" id="근무일정유형" multiple required>
-                            <option value="없음" selected>없음</option>
-                            <option value="외근" >외근</option>
-                            <option value="재택근무" >재택근무</option>
-                        </select> <br>
-
-                        <label for="조직">조직</label>
-                        <select name="조직" id="조직" multiple required>
-                            <option value="인사팀" selected>인사팀</option>
-                            <option value="개발팀" selected>개발팀</option>
-                        </select> <br>
-                        <label for="직무">직무</label>
-                        <select name="직무" id="직무" multiple required>
-                            <option value="인사팀" selected>인사팀</option>
-                            <option value="개발팀" selected>개발팀</option>
-                        </select> <br>
-                        <label for="remarks">메모</label> <br>
-                        <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea>
-
+                        <table>
+                            <tr>
+                                <td>템플릿 명</td>
+                                <td> <input type="text" id="템플릿" name="템플릿"></td>
+                            </tr>
+                            <tr>
+                                <td>시간</td>
+                                <td><input type="time" id="startTime" name="startTime1">~<input type="time" name="startTime2"></td>
+                            </tr>
+                            <tr>
+                                <td>근무일정 유형</td>
+                                <td>
+                                    <select name="근무일정유형" id="근무일정유형" multiple required>
+                                        <option value="없음" selected>없음</option>
+                                        <option value="외근" >외근</option>
+                                        <option value="재택근무" >재택근무</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>조직</td>
+                                <td>
+                                    <select name="조직" id="조직" multiple required>
+                                        <option value="인사팀" selected>인사팀</option>
+                                        <option value="개발팀" selected>개발팀</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>직무</td>
+                                <td>
+                                    <select name="직무" id="직무" multiple required>
+                                        <option value="인사팀" selected>인사팀</option>
+                                        <option value="개발팀" selected>개발팀</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>메모</td>
+                                <td><textarea name="remarks" id="remarks" cols="30" rows="2"></textarea></td>
+                            </tr>
+                        </table>
                         <hr>
                         <button type="button" class="btn_close" onclick="btnClose();">닫기</button>
                         <input type="submit" value="추가하기">
