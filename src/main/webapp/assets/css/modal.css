@@ -121,7 +121,7 @@ select.searchtype.searchs {
 div.right-btn {
 	display: inherit;
 	justify-content: space-around;
-	width: 150px;
+	width: 250px;
 	cursor: pointer;
 }
 
@@ -171,6 +171,7 @@ dialog{
 }
 
 .dialogbtn{
+  width: 100px;
   height: 40px;
   padding: 10px;
   border: 2px solid #000;

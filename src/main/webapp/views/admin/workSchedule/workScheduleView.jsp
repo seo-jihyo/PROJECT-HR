@@ -212,34 +212,74 @@
 					<hr>
 					
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
+					<form method="post">
+						<table class="ws-table">
+							<tr class="modal-tr">
+								<td >날짜</td>
+								<td><input type="date" name="ws_date" class="ws-date">
+								</td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
+							<tr class="modal-tr">
+								<td>근무일정 유형</td>
+								<td><select name="workType" id="workType">
+										<option value="none">(없음)</option>
+										<option value="out_work">외근(간주근로 9h)</option>
+										<option value="home_work">재택근무(간주근로)</option>
+								</select></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
+							<tr class="modal-tr">
+								<td>조직</td>
+								<td><select name="group" id="group">
+										<option value="none_group">조직없음</option>
+										<option value="strategy_dept">전략부서</option>
+										<option value="development_dept">개발부서</option>
+										<option value="hr_dept">인사부서</option>
+								</select></td>
 							</tr>
-
-							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+							<tr class="modal-tr">
+								<td>직급</td>
+								<td><select name="job" id="job">
+										<option value="none_job">직급없음</option>
+										<option value="hr_job">사장</option>
+										<option value="development_job">부장</option>
+								</select></td>
+							</tr>
+							<tr class="modal-tr">
+								<td>직원</td>
+								<td><select name="empName" id="emp-name">
+										<option value="none_emp">직원없음</option>
+										<option value="emp1">이재경</option>
+										<option value="emp2">송기석</option>
+										<option value="emp3">권지연</option>
+										<option value="emp4">서지효</option>
+								</select></td>
+							</tr>
+							<tr class="modal-tr">
+								<td>시간</td>
+								<td><input type="time" name="startTime" class="startTime"
+									onKeyup="inputTimeColon(this);" placeholder="출근시간"
+									maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="time"
+									name="endTime" class="endTime" onKeyup="inputTimeColon(this);"
+									placeholder="퇴근시간" maxlength="5" /></td>
+							</tr>
+							<tr class="modal-tr">
+								<td>일정노트</td>
+								<td><textarea name="ws_area" id="ws-area" cols="65" rows="4">
+    							</textarea></td>
 							</tr>
 						</table>
+
+					<hr>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">삭제하기</button>
+            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+						</div>
+					</div>
+				</form>
 						
 					
-       				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
-        </form>
     </dialog>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");

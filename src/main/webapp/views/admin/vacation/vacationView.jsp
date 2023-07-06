@@ -170,34 +170,47 @@
 					<hr>
 					
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
+					<form method="get">
+						<table class="vacation-table">
+							<tr class="vacation-tr1">
+								<td>직원</td>
+								<td><select name="" class="selectBox">
+										<option value="">이재경</option>
+										<option value="">송기석</option>
+										<option value="">권지연</option>
+										<option value="">서지효</option>
+								</select></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
-							</tr>
-
 							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+								<td colspan="2">
+									<!-- calendar 태그 -->
+									<div id='calendar-container'>
+										<div id='calendar'></div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>휴가 유형</td>
+								<td><select name="" class="vacation-type">
+										<option value="">선택안됨</option>
+										<option value="">연차(8h, 1일)</option>
+										<option value="">반차(4h, 0.5일)</option>
+										<option value="">병가(8h, 1일)</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>사유</td>
+								<td><textarea name="" class="vacation-area" cols="70" rows="4"></textarea></td>
 							</tr>
 						</table>
-						
-					
-       				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
-        </form>
+						<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">삭제하기</button>
+            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+						</div>
+					</div>
+					</form>
     </dialog>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");

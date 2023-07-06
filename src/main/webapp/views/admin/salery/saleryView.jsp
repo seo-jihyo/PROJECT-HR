@@ -218,7 +218,7 @@
 					<hr>
 					
 
-					<form method="dialog">
+					<form method="post">
 						<table class="rank-table">
 						
 							<tr class="rank-tr1">
