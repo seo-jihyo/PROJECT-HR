@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+    <insert id="insertRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+    	insert into code_table("code_name","code_value","parent_code","remarks") values (#{code_name},#{code_value},#{parent_code},#{remarks})
+    </insert>
+	<select id="selectAllRank" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
+		select * from code_table
+	</select>
+</mapper>

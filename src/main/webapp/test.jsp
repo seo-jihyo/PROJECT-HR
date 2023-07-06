@@ -12,8 +12,8 @@
 </head>
 <body>
 <form action="testok.do">
-  <input type="text" name="testVal1">
-  <input type="text" name="testVal2">
+  <input type="text" name="testval1">
+  <input type="text" name="testval2">
 
   <input type="submit" value="전송">
 </form>

@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<<<<<<< Updated upstream
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+>>>>>>> Stashed changes
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
@@ -93,7 +97,9 @@
 
 							<tr>
 								<td>메모</td>
+
 								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+
 							</tr>
 						</table>
 					</form>
@@ -138,9 +144,6 @@
 						<td>${rankList.remarks}</td>
 					</tr>
 				</c:forEach>
-				
-					
-
 				</tbody>
 			</table>
 
@@ -149,7 +152,6 @@
    
     
 </div>
-
 
 
 

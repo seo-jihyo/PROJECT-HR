@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- CSS Files -->
+<link href="../../assets/css/dashboard.css?v=1.1.2" rel="stylesheet" />
 <title>근로정보</title>
 
 <style type="text/css">
@@ -28,11 +30,23 @@
 		padding: 7px;
 		font-size: 15px;
 	}
-	#workType, #group, #job, #emp-name, #ws-area {
+	#workType, #group, #job, #emp-name {
+		border: 1px solid black;
+		width: 100px;
+		height: 30px;
+	}
+	#ws-area {
 		border: 1px solid black;
 	}
 	.ws-date, .startTime, .endTime {
 		border: 1px solid black;
+		width: 100px;
+		height: 30px;
+	}
+	.ws-title {
+		display: flex;
+		justify-content: flex-start;
+		padding: 7px 300px 10px 5px;
 	}
 </style>
 
@@ -63,62 +77,65 @@
 			<div class="modal">
 				<div>
 					<label for="popup">X</label>
-					<h1>근무일정 추가하기(토, 7월 1일)</h1>
+					<div class="ws-title text-white mb-0">
+						<h3 id="ws-add">근무일정 추가하기</h3>&nbsp;
+						<h4 id="current_date"></h4>
+          			</div>
 					<hr>
 
-					<form method="get" action="/">
+					<form method="get" action="/workscheduleok.do" id="frm">
 						<table class="ws-table">
 							<tr class="modal-tr">
 								<td >날짜</td>
-								<td><input type="date" name="날짜" class="ws-date">
+								<td><input type="date" name="ws_date" class="ws-date">
 								</td>
 							</tr>
 							<tr class="modal-tr">
 								<td>근무일정 유형</td>
 								<td><select name="workType" id="workType">
-										<option value="">(없음)</option>
-										<option value="">외근(간주근로 9h)</option>
-										<option value="">재택근무(간주근로)</option>
+										<option value="none">(없음)</option>
+										<option value="out_work">외근(간주근로 9h)</option>
+										<option value="home_work">재택근무(간주근로)</option>
 								</select></td>
 							</tr>
 							<tr class="modal-tr">
 								<td>조직</td>
 								<td><select name="group" id="group">
-										<option value="">조직없음</option>
-										<option value="">전략부서</option>
-										<option value="">개발부서</option>
-										<option value="">인사부서</option>
+										<option value="none_group">조직없음</option>
+										<option value="strategy_dept">전략부서</option>
+										<option value="development_dept">개발부서</option>
+										<option value="hr_dept">인사부서</option>
 								</select></td>
 							</tr>
 							<tr class="modal-tr">
-								<td>직무</td>
-								<td><select name="" id="job">
-										<option value="">직무없음</option>
-										<option value="">인사업무</option>
-										<option value="">개발업무</option>
+								<td>직급</td>
+								<td><select name="job" id="job">
+										<option value="none_job">직급없음</option>
+										<option value="hr_job">사장</option>
+										<option value="development_job">부장</option>
 								</select></td>
 							</tr>
 							<tr class="modal-tr">
 								<td>직원</td>
-								<td><select name="" id="emp-name">
-										<option value="">직원없음</option>
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
+								<td><select name="empName" id="emp-name">
+										<option value="none_emp">직원없음</option>
+										<option value="emp1">이재경</option>
+										<option value="emp2">송기석</option>
+										<option value="emp3">권지연</option>
+										<option value="emp4">서지효</option>
 								</select></td>
 							</tr>
 							<tr class="modal-tr">
 								<td>시간</td>
-								<td><input type="text" class="startTime"
+								<td><input type="time" name="startTime" class="startTime"
 									onKeyup="inputTimeColon(this);" placeholder="출근시간"
-									maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="text"
-									class="endTime" onKeyup="inputTimeColon(this);"
+									maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="time"
+									name="endTime" class="endTime" onKeyup="inputTimeColon(this);"
 									placeholder="퇴근시간" maxlength="5" /></td>
 							</tr>
 							<tr class="modal-tr">
 								<td>일정노트</td>
-								<td><textarea name="" id="ws-area" cols="30" rows="4">
+								<td><textarea name="ws_area" id="ws-area" cols="65" rows="4">
     							</textarea></td>
 							</tr>
 						</table>
@@ -127,7 +144,7 @@
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
@@ -189,7 +206,17 @@
 		</table>
 
 	</section>
+<script>
+    /* 오늘 날짜 출력 js */
+    var date = new Date();
+    var week = ['일', '월', '화', '수', '목', '금', '토'];
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var dayOfWeek = week[date.getDay()];
 
+    document.getElementById("current_date").innerHTML = "(" + month + "월 " + day + "일 " + ", " + dayOfWeek + ")";
+</script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
