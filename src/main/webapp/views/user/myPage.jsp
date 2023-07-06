@@ -52,20 +52,22 @@ img{
 	height: 32px;
 	text-align: center;
 	line-height: 32px; 
-	cursor:pointer
+	cursor:pointer;
 	}
 
 .tabs a:hover{
-	background-color: lightgray;
+	border-bottom: solid 2px;
 }
 
 .tabs a:active {
-	background-color: gray;
+	border-bottom: solid 2px;
 }
 .tabs a:focus {
 	color: red;
 }
-  
+hr {
+background-color: #d3d3d3;
+}  
   </style> 
 <body>
   <%@include file="/views/include/header.jsp" %>
@@ -150,16 +152,18 @@ img{
 </section>
 <script src="/assets/js/main.js"></script>	
 <script>
-	  // 버튼 눌렀을때 해당하는 form 의 ajax 통신
-	  function testfn(){
-	  }
-	  $('.tabs a').click(function(){
-	    let $tabId = $(this).data('tab')
-	    $('.modal_nav').hide()
+ $('.tabs a').click(function(){
+	  let $tabId = $(this).data('tab')
+	  $('.modal_nav').hide()
 
-	    $('#'+$tabId).show()
-	    $('input[type="submit"]').attr('form',$('#'+$tabId).children('form').attr("id"))
-	  })
+	  $('#'+$tabId).show()
+	  $('input[type="submit"]').attr('form',$('#'+$tabId).children('form').attr("id"))
+
+	  // 버튼 스타일 변경
+	  $('.tabs a').css('border-bottom', ''); // 모든 버튼의 스타일 초기화
+	  $(this).css('border-bottom', 'solid 2px'); // 눌러진 버튼의 스타일 변경
+	})
+
 </script>
 	</body>	
 </html>
