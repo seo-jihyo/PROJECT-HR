@@ -117,7 +117,7 @@
 		
 		<div class= "tab-scroll">
 
-		<table class="sec-table table-hover">
+		<table class="sec-table table-hover table">
 			<thead class="thead">
 
 				<tr>
@@ -153,50 +153,67 @@
 
 	
 </section>
-<dialog>
-    
-    				<h1>직급 추가하기</h1>
-					<hr>
-					
+	<dialog>
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
-							</tr>
+	<h3>직급 추가하기</h3>
+	<hr>
 
-							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
-							</tr>
-						</table>
-						
-					
-       				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
-        </form>
-    </dialog>
-<script src="/assets/js/main.js"></script>
-<script type="text/javascript" src="/assets/js/modal.js"></script>
-<script type="text/javascript">
-const dialog = document.querySelector("dialog");
-$(document).on("click","section tbody tr",function (){
-	dialog.showModal();
-	console.log(this);
- });
 
+	<form method="dialog">
+		<table class="rank-table">
+
+			<tr class="rank-tr1">
+				<td>상위코드</td>
+				<td><input type="text" class="rankadd" name="parent_code"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<td>코드번호</td>
+				<td><input type="text" class="rankadd" name="code_name"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<td>직급명</td>
+				<td><input type="text" class="rankadd" name="code_value"></td>
+			</tr>
+
+			<tr>
+				<td>메모</td>
+				<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+			</tr>
+		</table>
+
+
+		<hr>
+		<button class="dialogbtn">수정</button>
+		<button class="dialogbtn">삭제</button>
+		<button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
+	</form>
+	</dialog>
+	<script src="/assets/js/main.js"></script>
+	<script type="text/javascript" src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
+	
+/* 	
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", "section tbody tr", function() {
+		dialog.showModal();
+		console.log(this);
+	});
+	 */
+	 const dialog = document.querySelector("dialog");
+	    $(document).on("click", ".table tbody tr", function () {
+	        dialog.showModal();
+	        console.log(this);
+	    });
+
+	    $(document).on("click",".table tbody tr",function (){
+	        $td = $(this).children('td')
+	        let str = '';
+	        $.each($td,(i,item)=>{
+	            str +='값='+ item.innerText +'<br>'
+	        })
+	        console.log(str)
+	    })
+	
 </script>
 </body>
 </html>
