@@ -24,7 +24,7 @@
 <h1>사용자</h1>
 <ul>
     <li><a href="/views/user/userScheduleView.jsp">스케줄</a></li>
-    <li><a href="#">출퇴근기록</a></li>
+    <li><a href="/views/user/workRecord/workRecordView.jsp">출퇴근기록</a></li>
     <li><a href="/views/user/requestHistoryView.jsp">요청내역</a></li>
 </ul>
 <h2>관리자</h2>
