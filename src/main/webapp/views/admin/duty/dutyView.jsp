@@ -1,166 +1,158 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name='viewport'
-	content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-<!-- Boxicons CSS -->
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-	rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
+    <%--jquery--%>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/modal.css">
+<style type="text/css">
 
-<title>Document</title>
+.rank-table {
+	padding: 20px 20px;
+	width: 100%;
+}
+.rank-table tr {
+	margin: 5px;
+}
+.rank-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.rankadd{
+	height: 25px;
+	border: 1px solid black;
+}
+.rank-area{
+	height: 200px;
+	border: 1px solid black;
+}
 
+</style>
+<title>íœ´ê°€ê´€ë¦¬</title>
+<style type="text/css">
+	
+</style>
 </head>
 <body>
+	<%@include file="/views/include/header.jsp"%>
 
-	<header>
-		<h1 class="company">MAIN</h1>
+	<section id="body-pd" class="body-pd">
 
-		<nav class="top-nav">
+		<div class="main_title">
+		
+			<h2>ë¶€ì„œ ê´€ë¦¬</h2>
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
+				<option>ì„ íƒì—†ìŒ</option>
+				<option>ìƒìœ„ì½”ë“œ</option>
+				<option>ì½”ë“œë²ˆí˜¸</option>
+				<option>ë¶€ì„œëª…</option>
+				<option>ë©”ëª¨</option>
+			</select>
+			<input type="text" class="search searchs">
+			
+			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
+				ë¶€ì„œ ì¶”ê°€í•˜ê¸°</label>
 
-			<div class="container">
-				<input type="checkbox" class="toggle" id="rounded"> <label
-					for="rounded" data-checked="±Ù ¹« Áß" class="rounded"
-					data-unchecked="  Åğ   ±Ù" />
+			<div class="modal" style="display: hidden;">
+			
+				<div class="modal-content">
+				
+					<label for="popup">x</label>
+					<h1>ë¶€ì„œ ì¶”ê°€í•˜ê¸°</h1>
+					<hr>
+					
+
+					<form method="get" action="/">
+						<table class="rank-table">
+							<tr class="rank-tr1">
+								<td>ìƒìœ„ì½”ë“œ</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>ì½”ë“œë²ˆí˜¸</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>ë¶€ì„œëª…</td>
+								<td><input type="text" class="rankadd"></td>
+							</tr>
+
+							<tr>
+								<td>ë©”ëª¨</td>
+								<td><textarea name="" class="rank-area" cols="70" rows="4">
+      						</textarea></td>
+							</tr>
+						</table>
+					</form>
+
+					<hr>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">ì¶”ê°€í•˜ê¸°</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">ë‹«ê¸°</button>
+						</div>
+					</div>
+				</div>
+				<label for="popup"></label>
 			</div>
-
-			<img class="reload" src="/assets/images/reload.png"
-				onClick="window.location.reload()" />
-			<button class="mode-btn">°ü¸®ÀÚ ¸ğµå</button>
+		</div>
 		</nav>
-	</header>
-	<div class="navbar_1" id="navbar">
-		<nav class="nav">
-			<div>
-				<div class="nav_brand">
-					<i class='nav_toggle nav_icon menu-outline bx bx-menu'
-						id="nav-toggle"></i> <a href="#" class="nav_logo">Menu</a>
-				</div>
 
-				<a class="nav_list"> <a href="#" class="nav_link active"> <i
-						class='nav_icon bx bx-home'></i> <span class="nav_name">¸ŞÀÎ</span>
 
-				</a>
-				</a>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bx-calendar'></i> <span class="nav_name">±Ù¹«ÀÏÁ¤</span>
-
-					<i class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bx-time'></i> <span class="nav_name">ÃâÅğ±Ù
-						±â·Ï</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bxs-plane-alt'></i></i> <span class="nav_name">ÈŞ°¡</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bxs-paper-plane'></i> <span class="nav_name">¿äÃ»³»¿ª</span>
-
-					<i class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bx-money-withdraw'></i> <span
-						class="nav_name">±Ş¿©³»¿ª</span> <i
-						class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-				<div href="#" class="nav_link collapse">
-					<i class='nav_icon bx bxs-report'></i></i> <span class="nav_name">°ü¸®</span> <i class='collapse_link bx bxs-chevron-down arrow'></i>
-
-					<ul class="collapse_menu">
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-						<a href="#" class="collapse_sublink">Deta</a>
-					</ul>
-				</div>
-			</div>
-
-			<a href="#" class="nav_link"> <i class='nav_icon bx bx-log-out'
-				id="log_out"></i> <span class="nav_name">Log Out</span>
-			</a>
-		</nav>
-	</div>
-
-	<section id="body-pd">
-		<h1>Á÷¹« Ãß°¡ÇÏ±â</h1><br>
-		<nav class="plusinfo">
-            <select id="dutysearchsel">
-                <option value="none">¼±ÅÃ¾øÀ½</option>
-                <option value="dutyname">Á÷¹«¸í</option>
-                <option value="memo">¸Ş¸ğ</option>
-            </select>
-			<input type="text" class="dutysearch">
-			<button>Á÷¹«Ãß°¡ÇÏ±â</button>
-		</nav>
+		
 		<div class= "tab-scroll">
-		<table class="table table-hover">
+
+		<table class="sec-table table-hover">
 			<thead class="thead">
 
 				<tr>
-					 <th style="width:30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
-					<th>Á÷¹«¸í</th>
-					<th>¸Ş¸ğ</th>
+					<th style="width: 30px"><input type='checkbox' id="chkAll"
+						onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th>ìƒìœ„ì½”ë“œ</th>
+					<th>ì½”ë“œë²ˆí˜¸</th>
+					<th>ë¶€ì„œëª…</th>
+					<th>ë©”ëª¨</th>
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
- 				 <th><input type='checkbox' name = 'chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<td>1</td>
-					<td>±è¿¬¾Æ</td>
+				</thead>
+				<tbody>
+					<tr>
+						<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
 
-				</tr>
-				<tr>
-
-  				<th><input type='checkbox' name = 'chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<td>¿¬Â÷ÈŞ°¡</td>
-					<td>(È¸°è¿¬µµ ±âÁØ)¿¬Â÷ ÈŞ°¡ ¹ß»ı ±ÔÄ¢</td>
-
-				</tr>
-			</tbody>
-		</table>
-		
-	</div>
 
 
 
-	</section>
-    <script src="/assets/js/main.js"></script>
+
+	
+</section>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>
