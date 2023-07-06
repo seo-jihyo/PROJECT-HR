@@ -159,3 +159,13 @@ div.right-btn {
   transform: scale(1);
 }
 
+dialog{
+	width: 40%;
+	height: 55%;
+	top:20%;
+	left: 35%	
+}
+dialog:backdrop{
+	background: red;
+}
+
