@@ -169,7 +169,7 @@
 			</div>
 		</div>
 		</nav>
-		<table class="sec-table table-hover">
+		<table class="table sec-table table-hover">
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
@@ -212,6 +212,57 @@
 			</tbody>
 		</table>
 	</section>
+<dialog>
+    
+    				<h1>급여 수정하기</h1>
+					<hr>
+					
+
+					<form method="dialog">
+						<table class="rank-table">
+						
+							<tr class="rank-tr1">
+								<td>상위코드</td>
+								<td><input type="text" class="rankadd" name="parent_code"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>코드번호</td>
+								<td><input type="text" class="rankadd" name="code_name"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>직급명</td>
+								<td><input type="text" class="rankadd" name="code_value"></td>
+							</tr>
+
+							<tr>
+								<td>메모</td>
+								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+							</tr>
+						</table>
+						
+					
+       				<hr>
+       		<button class="">수정</button>
+       		<button>삭제</button>
+            <button onclick="window.dialog.close();">닫기</button>
+        </form>
+    </dialog>
+<script type="text/javascript">
+const dialog = document.querySelector("dialog");
+$(document).on("click", ".table tbody tr", function () {
+    dialog.showModal();
+    console.log(this);
+});
+
+$(document).on("click",".table tbody tr",function (){
+    $td = $(this).children('td')
+    let str = '';
+    $.each($td,(i,item)=>{
+        str +='값='+ item.innerText +'<br>'
+    })
+    console.log(str)
+})
+</script>
 	<!-- js -->
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
