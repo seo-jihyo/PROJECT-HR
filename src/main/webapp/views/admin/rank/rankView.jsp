@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
@@ -36,7 +37,9 @@
 	height: 200px;
 	border: 1px solid black;
 }
+.seachbtn{
 
+}
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -60,7 +63,7 @@
 				<option>메모</option>
 			</select>
 			<input type="text" class="search searchs">
-			
+			<input type="button" class="seachbtn" value="검 색">
 			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
 				직급 추가하기</label>
 
@@ -73,25 +76,24 @@
 					<hr>
 					
 
-					<form method="get" action="/">
+					<form method="post" action="/rankok.do" id="frm">
 						<table class="rank-table">
 							<tr class="rank-tr1">
 								<td>상위코드</td>
-								<td><input type="text" class="rankadd"></td>
+								<td><input type="text" class="rankadd" name="parent_code"></td>
 							</tr>
 							<tr class="rank-tr1">
 								<td>코드번호</td>
-								<td><input type="text" class="rankadd"></td>
+								<td><input type="text" class="rankadd" name="code_name"></td>
 							</tr>
 							<tr class="rank-tr1">
 								<td>직급명</td>
-								<td><input type="text" class="rankadd"></td>
+								<td><input type="text" class="rankadd" name="code_value"></td>
 							</tr>
 
 							<tr>
 								<td>메모</td>
-								<td><textarea name="" class="rank-area" cols="70" rows="4">
-      						</textarea></td>
+								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
 							</tr>
 						</table>
 					</form>
@@ -99,7 +101,7 @@
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
@@ -126,33 +128,77 @@
 				</tr>
 				</thead>
 				<tbody>
-					<tr>
+				<c:forEach var="rankList" items="${list}">
+				<tr class="asd">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td >${rankList.parent_code}</td>
+						<td>${rankList.code_name}</td>
+						<td>${rankList.code_value}</td>
+						<td>${rankList.remarks}</td>
 					</tr>
-					<tr>
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+				</c:forEach>
+				
+					
+
 				</tbody>
 			</table>
-			</div>
 
+			</div>
+	<div>
+   
+    
+</div>
 
 
 
 
 	
 </section>
+<dialog>
+    
+    				<h1>직급 추가하기</h1>
+					<hr>
+					
+
+					<form method="dialog">
+						<table class="rank-table">
+						
+							<tr class="rank-tr1">
+								<td>상위코드</td>
+								<td><input type="text" class="rankadd" name="parent_code"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>코드번호</td>
+								<td><input type="text" class="rankadd" name="code_name"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<td>직급명</td>
+								<td><input type="text" class="rankadd" name="code_value"></td>
+							</tr>
+
+							<tr>
+								<td>메모</td>
+								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+							</tr>
+						</table>
+						
+					
+       				<hr>
+       		<button class="">수정</button>
+       		<button>삭제</button>
+            <button onclick="window.dialog.close();">닫기</button>
+        </form>
+    </dialog>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
+<script type="text/javascript">
+const dialog = document.querySelector("dialog");
+$(document).on("click","section tbody tr",function (){
+	dialog.showModal();
+	console.log(this);
+ });
+
+</script>
 </body>
 </html>
