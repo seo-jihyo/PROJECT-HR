@@ -26,7 +26,6 @@
 h2{
 	margin-top: 30px;
 }
-
 .workdate{
 	margin-top: 20px;
 	display: inline-block;
@@ -68,7 +67,7 @@ h2{
 
 dialog{
 	width: 500px;
-	height: 500px;
+	height: 555px;
 
 }
 .diatitle{
@@ -116,7 +115,9 @@ dialog{
 	height: 100px;
 	border: 1px solid black;
 }
-
+.workrec-area{
+	border: 1px solid black;
+}
 .twomodal{
 	letter-spacing: 30px;
 	padding: 0px;
@@ -124,8 +125,14 @@ dialog{
 
 .workmodal-table th{
 		text-align: left;
-
-
+}
+.bottom-btn{
+	margin-top:10px;
+}
+.dialogsub{
+	backgroud:black;
+	color: red;
+}
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -270,19 +277,28 @@ dialog{
 
 			<tr class="workrec-tr">
 				<th class="two">날짜</th>
-				<td><input type="date" class="rankadd" name=""></td>
+				<td><input type="date" class="workadd" name=""></td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>출근시간</th>
-				<td><input type="time" class="rankadd" name=""></td>
+				<td><input type="time" class="workadd" name=""></td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>퇴근시간</th>
-				<td><input type="time" class="rankadd" name=""></td>
+				<td><input type="time" class="workadd" name=""></td>
+			</tr>
+			<tr class="workrec-tr">
+				<th>근무일정</th>
+					<td><select class="workadd">
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+					</td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>휴게시간</th>
-				<td>1시간</td>
+				<td style="font-weight:bold;">1시간</td>
 			</tr>
 
 			<tr class="workrec-tr">
@@ -290,12 +306,17 @@ dialog{
 				<td><textarea name="" class="workrec-area" cols="70" rows="4"></textarea></td>
 			</tr>
 		</table>
-
-
 		<hr>
-		<button class="dialogbtn">수정</button>
-		<button class="dialogbtn">삭제</button>
-		<button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
+
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+			</div>
+		</div>
+		
+
 	</form>
 	</dialog>
 
@@ -304,20 +325,15 @@ dialog{
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 <script type="text/javascript">
 
-	 const dialog = document.querySelector("dialog");
-	    $(document).on("click", ".table tbody tr", function () {
-	        dialog.showModal();
-	        console.log(this);
-	    });
+const dialog = document.querySelector("dialog");
+$(document).on("click", ".table tbody tr", function () {
+	dialog.showModal();
+	console.log(this);
+});
 
-	    $(document).on("click",".table tbody tr",function (){
-	        $td = $(this).children('td')
-	        let str = '';
-	        $.each($td,(i,item)=>{
-	            str +='값='+ item.innerText +'<br>'
-	        })
-	        console.log(str)
-	    })
+function dialogClose(){
+	dialog.close();
+}
 	
 </script>
 </body>

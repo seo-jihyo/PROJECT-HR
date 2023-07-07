@@ -17,7 +17,16 @@
     
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
+dialog{
+	width: 500px;
+	height: 410px;
 
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
 .rank-table {
 	padding: 20px 20px;
 	width: 100%;
@@ -34,11 +43,18 @@
 	border: 1px solid black;
 }
 .rank-area{
-	height: 200px;
+	width: 300px;
+	height: 90px;
 	border: 1px solid black;
 }
-.seachbtn{
-
+.rank-table th{
+		text-align: left;
+}
+.two{
+	letter-spacing: 30px;
+}
+.three{
+	letter-spacing: 8px;
 }
 </style>
 <title>휴가관리</title>
@@ -79,20 +95,20 @@
 					<form method="post" action="/rankok.do" id="frm">
 						<table class="rank-table">
 							<tr class="rank-tr1">
-								<td>상위코드</td>
+								<th>상위코드</th>
 								<td><input type="text" class="rankadd" name="parent_code"></td>
 							</tr>
 							<tr class="rank-tr1">
-								<td>코드번호</td>
+								<th>코드번호</th>
 								<td><input type="text" class="rankadd" name="code_name"></td>
 							</tr>
 							<tr class="rank-tr1">
-								<td>직급명</td>
+								<th class="three">직급명</th>
 								<td><input type="text" class="rankadd" name="code_value"></td>
 							</tr>
 
 							<tr>
-								<td>메모</td>
+								<th class="two">메모</th>
 
 								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
 
@@ -159,30 +175,28 @@
 </section>
 	<dialog>
 
-	<h3>직급 추가하기</h3>
+	<h2 class="diatitle">직급 변경하기</h2>
 	<hr>
 	<form method="get" id="frm2">
 		<table class="rank-table">
 
 		</table>
 		<hr>
-		<input type="submit" value="전송">
-		<button class="dialogbtn" type="button" >삭제</button>
-		<button  class="dialogbtn" type="button"  onclick="dialogClose();">닫기</button>
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+			</div>
+		</div>
+
+
 	</form>
 
 	</dialog>
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
-	
-/* 	
-	const dialog = document.querySelector("dialog");
-	$(document).on("click", "section tbody tr", function() {
-		dialog.showModal();
-		console.log(this);
-	});
-	 */
 
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
@@ -202,20 +216,20 @@ $(document).on("click", ".table tbody tr", function () {
 
 	let str = `
 		<tr class="rank-tr1">
-				<td>상위코드</td>
+				<th>상위코드</td>
 				<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
 			</tr>
 			<tr class="rank-tr1">
-				<td>코드번호</td>
+				<th>코드번호</td>
 				<td><input type="text" class="rankadd" name="code_name" value="`+$name+`"></td>
 			</tr>
 			<tr class="rank-tr1">
-				<td>직급명</td>
+				<th class="three">직급명</td>
 				<td><input type="text" class="rankadd" name="code_value" value="`+$value+`"></td>
 			</tr>
 
 			<tr>
-				<td>메모</td>
+				<th class="two">메모</td>
 				<td><textarea name="remarks" class="rank-area" cols="70" rows="4">`+$remarks+`</textarea></td>
 			</tr>
 		`;

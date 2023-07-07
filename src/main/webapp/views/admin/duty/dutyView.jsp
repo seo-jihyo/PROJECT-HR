@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
@@ -16,29 +17,48 @@
     
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
+dialog{
+	width: 500px;
+	height: 410px;
 
-.rank-table {
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.duty-table {
 	padding: 20px 20px;
 	width: 100%;
 }
-.rank-table tr {
+.duty-table tr {
 	margin: 5px;
 }
-.rank-table tr td {
+.duty-table tr td {
 	padding: 7px;
 	font-size: 15px;
 }
-.rankadd{
+.dutyadd{
 	height: 25px;
 	border: 1px solid black;
 }
-.rank-area{
-	height: 200px;
+.duty-area{
+	width: 300px;
+	height: 90px;
 	border: 1px solid black;
 }
-
+.duty-table th{
+		text-align: left;
+}
+.two{
+	letter-spacing: 30px;
+}
+.three{
+	letter-spacing: 8px;
+}
 </style>
-<title>휴가관리</title>
+
+<title>부서관리</title>
 <style type="text/css">
 	
 </style>
@@ -60,7 +80,7 @@
 				<option>메모</option>
 			</select>
 			<input type="text" class="search searchs">
-			
+			<input type="button" class="seachbtn" value="검 색">
 			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
 				부서 추가하기</label>
 
@@ -73,25 +93,26 @@
 					<hr>
 					
 
-					<form method="get" action="/">
-						<table class="rank-table">
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd"></td>
+					<form method="" action="" id="">
+						<table class="duty-table">
+							<tr class="duty-tr1">
+								<th>상위코드</th>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd"></td>
+							<tr class="duty-tr1">
+								<th>코드번호</th>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
-								<td>부서명</td>
-								<td><input type="text" class="rankadd"></td>
+							<tr class="duty-tr1">
+								<th class="three">부서명</th>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
 
 							<tr>
-								<td>메모</td>
-								<td><textarea name="" class="rank-area" cols="70" rows="4">
-      						</textarea></td>
+								<th class="two">메모</th>
+
+								<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
+
 							</tr>
 						</table>
 					</form>
@@ -99,7 +120,7 @@
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
@@ -113,7 +134,7 @@
 		
 		<div class= "tab-scroll">
 
-		<table class="sec-table table-hover">
+		<table class="sec-table table-hover table">
 			<thead class="thead">
 
 				<tr>
@@ -126,33 +147,81 @@
 				</tr>
 				</thead>
 				<tbody>
-					<tr>
+				<tr class="asd">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
+						<td ></td>
 						<td></td>
 						<td></td>
 						<td></td>
 					</tr>
-					<tr>
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+
 				</tbody>
 			</table>
+
 			</div>
-
-
+	<div>
+   
+    
+</div>
 
 
 
 	
 </section>
-<script src="/assets/js/main.js"></script>
-<script type="text/javascript" src="/assets/js/modal.js"></script>
+	<dialog>
+
+	<h2 class="diatitle">부서 변경하기</h2>
+	<hr>
+
+
+	<form method="dialog">
+		<table class="duty-table">
+
+			<tr class="duty-tr1">
+				<th>상위코드</th>
+				<td><input type="text" class="dutyadd" name=""></td>
+			</tr>
+			<tr class="duty-tr1">
+				<th>코드번호</th>
+				<td><input type="text" class="dutyadd" name=""></td>
+			</tr>
+			<tr class="duty-tr1">
+				<th class="three">부서명</th>
+				<td><input type="text" class="dutyadd" name=""></td>
+			</tr>
+
+			<tr>
+				<th class="two">메모</th>
+				<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
+			</tr>
+		</table>
+
+
+		<hr>
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+			</div>
+		</div>
+	</form>
+	</dialog>
+	<script src="/assets/js/main.js"></script>
+	<script type="text/javascript" src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
+
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
+
+	function dialogClose(){
+		dialog.close();
+	}
+	
+</script>
 </body>
 </html>
