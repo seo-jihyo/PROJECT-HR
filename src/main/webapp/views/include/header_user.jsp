@@ -5,6 +5,7 @@
             <a href="">스케줄</a>
             <a href="/views/user/workRecord/workRecordView.jsp">출퇴근기록</a>
             <a href="">요청 내역</a>
+            <a href="">마이페이지</a>
         </nav>
     <nav class="top-nav">
 
