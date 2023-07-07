@@ -66,7 +66,7 @@
   </style>
 </head>
 <body>
-<%@include file="/views/include/header.jsp" %>
+<%@include file="/views/include/header_user.jsp" %>
 <section id="body-pd" class="body-pd">
 <!-- 모달창 -->
 <!-- <nav> -->

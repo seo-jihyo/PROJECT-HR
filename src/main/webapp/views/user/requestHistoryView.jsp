@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-<%@include file="/views/include/header.jsp" %>
+<%@include file="/views/include/header_user.jsp" %>
 <section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>요청 내역</h2>

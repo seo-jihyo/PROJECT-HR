@@ -154,7 +154,6 @@ dialog{
 </style> 
 <body>
   <%@include file="/views/include/header_user.jsp" %>
-
 		<div>
 			<h1 class="title">내 인사정보</h1><br>
 			<hr class="main-hr">
