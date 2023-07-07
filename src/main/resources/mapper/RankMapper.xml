@@ -5,9 +5,9 @@
 
 <mapper namespace="dev">
     <insert id="insertRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
-    	insert into code_table("code_name","code_value","parent_code","remarks") values (#{code_name},#{code_value},#{parent_code},#{remarks})
+    	insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})
     </insert>
 	<select id="selectAllRank" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
-		select * from code_table
+		select * from code_table where parent_code = 'A001' ORDER BY CODE_NAME
 	</select>
 </mapper>

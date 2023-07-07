@@ -62,7 +62,7 @@
                 <ul class="collapse_menu">
                     <a href="/views/admin/employee/employeeView.jsp" class="collapse_sublink">직원</a><br>
                     <a href="/views/admin/duty/dutyView.jsp" class="collapse_sublink">부서</a><br>
-                    <a href="/views/admin/rank/rankView.jsp" class="collapse_sublink">직급</a><br>
+                    <a href="/rank.do" class="collapse_sublink">직급</a><br>
                     <a href="/views/admin/vacationType/vacationTypeView.jsp" class="collapse_sublink">휴가유형</a><br>
                     <a href="/views/admin/manage/workView.jsp" class="collapse_sublink">근로정보</a><br>
                     <a href="/views/admin/manage/workScheduleView.jsp" class="collapse_sublink">근무일정유형</a><br>
