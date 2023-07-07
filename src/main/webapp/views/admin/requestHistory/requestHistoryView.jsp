@@ -10,6 +10,7 @@
 <!-- <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet"> -->
 <!-- CSS -->
 <link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/modal.css">
 <%--jquery--%>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -106,9 +107,12 @@
 						
 					
        				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
+       					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">삭제하기</button>
+            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+						</div>
         </form>
     </dialog>
 <script type="text/javascript">
@@ -129,5 +133,6 @@ $(document).on("click",".table tbody tr",function (){
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>
