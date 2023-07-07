@@ -310,8 +310,8 @@ dialog{
 
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
-				<button type="button"  class="btn_close custom-btn btn-10">삭제하기</button>
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button"  class="custom-btn btn-10">삭제하기</button>
 				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
