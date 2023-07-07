@@ -198,7 +198,6 @@ dialog{
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
 
-
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
 	dialog.showModal();

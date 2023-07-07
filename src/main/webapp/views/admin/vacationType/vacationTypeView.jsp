@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
 dialog{
-	width: 500px;
-	height: 410px;
+	width: 520px;
+	height: 540px;
 
 }
 .diatitle{
@@ -27,36 +27,44 @@ dialog{
 	padding-bottom:20px;
 	padding-left:20px;
 }
-.rank-table {
+.vactype-table {
 	padding: 20px 20px;
 	width: 100%;
 }
-.rank-table tr {
+.vactype-table tr {
 	margin: 5px;
 }
-.rank-table tr td {
+.vactype-table tr td {
 	padding: 7px;
 	font-size: 15px;
 }
-.rankadd{
+.vactypeadd{
 	height: 25px;
 	border: 1px solid black;
 }
-.rank-area{
+.vactype-area{
 	width: 300px;
 	height: 90px;
 	border: 1px solid black;
 }
-.rank-table th{
+.vactype-table th{
 		text-align: left;
 }
 .two{
-	letter-spacing: 30px;
+	letter-spacing: 62px;
 }
 .three{
-	letter-spacing: 8px;
+	letter-spacing: 23px;
+}
+.four{
+	letter-spacing: 10px;
+}
+.modaltwo{
+	letter-spacing: 58px;
+	padding-right: 0px;
 }
 </style>
+
 <title>부서관리</title>
 <style type="text/css">
 	
@@ -69,50 +77,61 @@ dialog{
 
 		<div class="main_title">
 		
-			<h2>휴가 관리</h2>
+			<h2>휴가 유형 관리</h2>
 			<nav class="plusinfo">
 			<select class="searchtype searchs">
 				<option>선택없음</option>
-				<option>이름</option>
+				<option>휴가유형번호</option>
+				<option>휴가명</option>
 				<option>부서</option>
 				<option>직급</option>
 				<option>유급시간</option>
 				<option>차감일수</option>
-				<option>메모</option>
+				<option>휴가사유</option>
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
 			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
-				부서 추가하기</label>
+				휴가 유형 관리</label>
 
 			<div class="modal" style="display: hidden;">
 			
 				<div class="modal-content">
 				
 					<label for="popup">x</label>
-					<h1>부서 추가하기</h1>
+					<h1>휴가 유형 관리</h1>
 					<hr>
 					
 
-					<form method="post" action="/rankok.do" id="frm">
-						<table class="rank-table">
-							<tr class="rank-tr1">
-								<th>상위코드</th>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
+					<form method="" action="" id="">
+						<table class="vactype-table">
+							<tr class="vactype-tr1">
+								<th>휴가유형번호</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
-								<th>코드번호</th>
-								<td><input type="text" class="rankadd" name="code_name"></td>
+							<tr class="vactype-tr1">
+								<th class="three">휴가명</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
-								<th class="three">부서명</th>
-								<td><input type="text" class="rankadd" name="code_value"></td>
+							<tr class="vactype-tr1">
+								<th class="two">부서</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
 							</tr>
-
+							<tr class="vactype-tr1">
+								<th class="two">직급</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="four">유급시간</th>
+								<td><input type="number" class="vactypeadd" value="8" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="four">차감일수</th>
+								<td><input type="number" class="vactypeadd" name=""></td>
+							</tr>
 							<tr>
-								<th class="two">메모</th>
-
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+								<th class="four">휴가사유</th>
+								<td><textarea name="" class="vactype-area" cols="70" rows="4"></textarea></td>
 
 							</tr>
 						</table>
@@ -141,17 +160,21 @@ dialog{
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
 						onclick="allCheckboxes('chk[]', this.checked)"></th>
-					<th>상위코드</th>
-					<th>코드번호</th>
-					<th>부서명</th>
-					<th>메모</th>
+					<th>휴가유형번호</th>
+					<th>휴가명</th>
+					<th>직급</th>
+					<th>유급시간</th>
+					<th>차감일수</th>
+					<th>휴가사유</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr class="asd">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td ></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -177,34 +200,44 @@ dialog{
 
 
 	<form method="dialog">
-		<table class="rank-table">
+	<table class="vactype-table">
+							<tr class="vactype-tr1">
+								<th>휴가유형번호</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="three">휴가명</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="modaltwo">부서</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="modaltwo">직급</th>
+								<td><input type="text" class="vactypeadd" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="four">유급시간</th>
+								<td><input type="number" class="vactypeadd" value="8" name=""></td>
+							</tr>
+							<tr class="vactype-tr1">
+								<th class="four">차감일수</th>
+								<td><input type="number" class="vactypeadd" name=""></td>
+							</tr>
+							<tr>
+								<th class="four">휴가사유</th>
+								<td><textarea name="" class="vactype-area" cols="70" rows="4"></textarea></td>
 
-			<tr class="rank-tr1">
-				<th>상위코드</th>
-				<td><input type="text" class="rankadd" name="parent_code"></td>
-			</tr>
-			<tr class="rank-tr1">
-				<th>코드번호</th>
-				<td><input type="text" class="rankadd" name="code_name"></td>
-			</tr>
-			<tr class="rank-tr1">
-				<th class="three">부서명</th>
-				<td><input type="text" class="rankadd" name="code_value"></td>
-			</tr>
-
-			<tr>
-				<th class="two">메모</th>
-				<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
-			</tr>
-		</table>
-
+							</tr>
+						</table>
 
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
 				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
-				<button type="submit" class="btn_close custom-btn btn-10">삭제하기</button>
-				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+				<button type="button"  class="btn_close custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
 	</form>
@@ -213,20 +246,15 @@ dialog{
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
 
-	 const dialog = document.querySelector("dialog");
-	    $(document).on("click", ".table tbody tr", function () {
-	        dialog.showModal();
-	        console.log(this);
-	    });
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
 
-	    $(document).on("click",".table tbody tr",function (){
-	        $td = $(this).children('td')
-	        let str = '';
-	        $.each($td,(i,item)=>{
-	            str +='값='+ item.innerText +'<br>'
-	        })
-	        console.log(str)
-	    })
+	function dialogClose(){
+		dialog.close();
+	}
 	
 </script>
 </body>

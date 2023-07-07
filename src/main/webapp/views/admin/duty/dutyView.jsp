@@ -27,27 +27,27 @@ dialog{
 	padding-bottom:20px;
 	padding-left:20px;
 }
-.rank-table {
+.duty-table {
 	padding: 20px 20px;
 	width: 100%;
 }
-.rank-table tr {
+.duty-table tr {
 	margin: 5px;
 }
-.rank-table tr td {
+.duty-table tr td {
 	padding: 7px;
 	font-size: 15px;
 }
-.rankadd{
+.dutyadd{
 	height: 25px;
 	border: 1px solid black;
 }
-.rank-area{
+.duty-area{
 	width: 300px;
 	height: 90px;
 	border: 1px solid black;
 }
-.rank-table th{
+.duty-table th{
 		text-align: left;
 }
 .two{
@@ -57,6 +57,7 @@ dialog{
 	letter-spacing: 8px;
 }
 </style>
+
 <title>부서관리</title>
 <style type="text/css">
 	
@@ -92,25 +93,25 @@ dialog{
 					<hr>
 					
 
-					<form method="post" action="/rankok.do" id="frm">
-						<table class="rank-table">
-							<tr class="rank-tr1">
+					<form method="" action="" id="">
+						<table class="duty-table">
+							<tr class="duty-tr1">
 								<th>상위코드</th>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
+							<tr class="duty-tr1">
 								<th>코드번호</th>
-								<td><input type="text" class="rankadd" name="code_name"></td>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
-							<tr class="rank-tr1">
+							<tr class="duty-tr1">
 								<th class="three">부서명</th>
-								<td><input type="text" class="rankadd" name="code_value"></td>
+								<td><input type="text" class="dutyadd" name=""></td>
 							</tr>
 
 							<tr>
 								<th class="two">메모</th>
 
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+								<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
 
 							</tr>
 						</table>
@@ -175,24 +176,24 @@ dialog{
 
 
 	<form method="dialog">
-		<table class="rank-table">
+		<table class="duty-table">
 
-			<tr class="rank-tr1">
+			<tr class="duty-tr1">
 				<th>상위코드</th>
-				<td><input type="text" class="rankadd" name="parent_code"></td>
+				<td><input type="text" class="dutyadd" name=""></td>
 			</tr>
-			<tr class="rank-tr1">
+			<tr class="duty-tr1">
 				<th>코드번호</th>
-				<td><input type="text" class="rankadd" name="code_name"></td>
+				<td><input type="text" class="dutyadd" name=""></td>
 			</tr>
-			<tr class="rank-tr1">
+			<tr class="duty-tr1">
 				<th class="three">부서명</th>
-				<td><input type="text" class="rankadd" name="code_value"></td>
+				<td><input type="text" class="dutyadd" name=""></td>
 			</tr>
 
 			<tr>
 				<th class="two">메모</th>
-				<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+				<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
 			</tr>
 		</table>
 
@@ -201,8 +202,8 @@ dialog{
 		<div class="bottom-btn">
 			<div class="right-btn">
 				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
-				<button type="submit" class="btn_close custom-btn btn-10">삭제하기</button>
-				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+				<button type="button"  class="btn_close custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
 	</form>
@@ -211,20 +212,15 @@ dialog{
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
 
-	 const dialog = document.querySelector("dialog");
-	    $(document).on("click", ".table tbody tr", function () {
-	        dialog.showModal();
-	        console.log(this);
-	    });
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
 
-	    $(document).on("click",".table tbody tr",function (){
-	        $td = $(this).children('td')
-	        let str = '';
-	        $.each($td,(i,item)=>{
-	            str +='값='+ item.innerText +'<br>'
-	        })
-	        console.log(str)
-	    })
+	function dialogClose(){
+		dialog.close();
+	}
 	
 </script>
 </body>

@@ -26,7 +26,6 @@
 h2{
 	margin-top: 30px;
 }
-
 .workdate{
 	margin-top: 20px;
 	display: inline-block;
@@ -312,8 +311,8 @@ dialog{
 		<div class="bottom-btn">
 			<div class="right-btn">
 				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
-				<button type="submit" class="btn_close custom-btn btn-10">삭제하기</button>
-				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+				<button type="button"  class="btn_close custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
 		
@@ -326,20 +325,15 @@ dialog{
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 <script type="text/javascript">
 
-	 const dialog = document.querySelector("dialog");
-	    $(document).on("click", ".table tbody tr", function () {
-	        dialog.showModal();
-	        console.log(this);
-	    });
+const dialog = document.querySelector("dialog");
+$(document).on("click", ".table tbody tr", function () {
+	dialog.showModal();
+	console.log(this);
+});
 
-	    $(document).on("click",".table tbody tr",function (){
-	        $td = $(this).children('td')
-	        let str = '';
-	        $.each($td,(i,item)=>{
-	            str +='값='+ item.innerText +'<br>'
-	        })
-	        console.log(str)
-	    })
+function dialogClose(){
+	dialog.close();
+}
 	
 </script>
 </body>
