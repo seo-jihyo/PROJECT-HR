@@ -20,6 +20,16 @@
 <section id="body-pd" class="body-pd">
   <div class="main_title">
     <h2>휴가 발생규칙</h2>
+    <nav class="plusinfo">
+      <select class="searchtype searchs">
+        <option>선택없음</option>
+        <option>상위코드</option>
+        <option>코드번호</option>
+        <option>직급명</option>
+        <option>메모</option>
+      </select>
+      <input type="text" class="search searchs">
+      <input type="button" class="seachbtn" value="검 색">
     <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
     휴가 발생규칙 추가하기</label>
     <div class="modal">
@@ -109,14 +119,18 @@
             </form>
           </div>
           <hr>
-          <button type="button" class="btn_close" onclick="btnClose();">닫기</button>
-          <input type="button" onclick="testfn(this.form)" form="기본정보" value="추가하기">
+        <div class="bottom-btn">
+          <div class="right-btn">
+            <button class="custom-btn btn-10" form="frm">추가하기</button>
+            <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+          </div>
+        </div>
       </div>
       <label for="popup"></label>
     </div>
 
   </div>
-
+  </nav>
   <table class="sec-table table-hover">
     <thead>
     <tr>
@@ -145,6 +159,39 @@
     </tbody>
   </table>
 </section>
+
+<dialog>
+  <h3>근로정보</h3>
+  <hr>
+  <form method="post">
+    <table class="rank-table">
+      <tr class="rank-tr1">
+        <td>상위코드</td>
+        <td><input type="text" class="rankadd" name="parent_code"></td>
+      </tr>
+      <tr class="rank-tr1">
+        <td>코드번호</td>
+        <td><input type="text" class="rankadd" name="code_name"></td>
+      </tr>
+      <tr class="rank-tr1">
+        <td>직급명</td>
+        <td><input type="text" class="rankadd" name="code_value"></td>
+      </tr>
+
+      <tr>
+        <td>메모</td>
+        <td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+      </tr>
+    </table>
+
+
+    <hr>
+    <button class="dialogbtn">수정</button>
+    <button class="dialogbtn">삭제</button>
+    <button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
+  </form>
+</dialog>
+
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modal.js"></script>
 <script>

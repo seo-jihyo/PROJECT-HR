@@ -20,6 +20,16 @@
 <section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>근무일정 템플릿</h2>
+        <nav class="plusinfo">
+            <select class="searchtype searchs">
+                <option>선택없음</option>
+                <option>상위코드</option>
+                <option>코드번호</option>
+                <option>직급명</option>
+                <option>메모</option>
+            </select>
+            <input type="text" class="search searchs">
+            <input type="button" class="seachbtn" value="검 색">
         <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
         근무일정 템플릿 추가하기</label>
         <div class="modal">
@@ -49,16 +59,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>조직</td>
+                                <td>부서</td>
                                 <td>
                                     <select name="조직" id="조직" multiple required>
                                         <option value="인사팀" selected>인사팀</option>
+
                                         <option value="개발팀" selected>개발팀</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td>직무</td>
+                                <td>직급</td>
                                 <td>
                                     <select name="직무" id="직무" multiple required>
                                         <option value="인사팀" selected>인사팀</option>
@@ -80,7 +91,7 @@
             <label for="popup"></label>
         </div>
     </div>
-
+    </nav>
     <table class="sec-table table-hover">
         <thead>
         <tr>
