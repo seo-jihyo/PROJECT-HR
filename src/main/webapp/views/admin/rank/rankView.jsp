@@ -222,7 +222,6 @@ $(document).on("click", ".table tbody tr", function () {
 
 	$('dialog table').html(str)
 })
-	
 </script>
 </body>
 </html>

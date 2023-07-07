@@ -19,6 +19,7 @@
     <mappers>
         <mapper resource="mapper/TestMapper.xml" />
         <mapper resource="mapper/RankMapper.xml" />
+        <mapper resource="mapper/EmpMapper.xml" />
     </mappers>
 </configuration>
 

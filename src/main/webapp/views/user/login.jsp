@@ -113,10 +113,10 @@ body{
     <div class="login form">
       <header>Login</header>
       
-      <form action="#">
+      <form action="/loginok.do">
       
-        <input type="text" placeholder="아이디를 입력하세요. ">
-        <input type="password" placeholder="비밀번호를 입력하세요.">
+        <input type="email" name="email" placeholder="아이디를 입력하세요. ">
+        <input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">
  		
         <input type="submit" class="button" value="Login">
       </form>
