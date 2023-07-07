@@ -4,6 +4,7 @@
     <c:redirect url="/login.do"/>
 </c:if>
 
+
 <header>
     <h1 class="company">MAIN</h1>
 
@@ -16,7 +17,7 @@
         </div>
 
         <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
-        <button class="mode-btn">관리자 모드</button>
+        <button class="mode-btn" onclick="location.href='/views/user/userScheduleView.jsp'">직원 모드</button>
     </nav>
 </header>
 <div class="navbar_1 expander" id="navbar">
