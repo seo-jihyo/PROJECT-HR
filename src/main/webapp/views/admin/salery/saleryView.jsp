@@ -81,7 +81,7 @@
 				<option>실수령액</option>
 			</select>
 			<input type="text" class="search searchs">
-			
+			<input type="button" class="seachbtn" value="검 색">
 			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
 				급여명세서</label>
 			<div class="modal">
@@ -244,27 +244,22 @@
        				<hr>
        					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">수정하기</button>
 							<button type="button" class="custom-btn btn-10">삭제하기</button>
-            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
 						</div>
         </form>
     </dialog>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
-    dialog.showModal();
-    console.log(this);
+	dialog.showModal();
+	console.log(this);
 });
 
-$(document).on("click",".table tbody tr",function (){
-    $td = $(this).children('td')
-    let str = '';
-    $.each($td,(i,item)=>{
-        str +='값='+ item.innerText +'<br>'
-    })
-    console.log(str)
-})
+function dialogClose(){
+	dialog.close();
+}
 </script>
 	<!-- js -->
 <script src="/assets/js/main.js"></script>
