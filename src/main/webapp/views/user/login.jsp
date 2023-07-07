@@ -108,53 +108,72 @@ body{
 }
 </style>
 <body>
-  <div class="container">
-    
-    <input type="text" id="check">
-    
-    <div class="login form">
-      <header>Login</header>
-      
-      <form name="frm">
-      
-        <input type="email" name="email" placeholder="아이디를 입력하세요. ">
-        <input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">
- 		
-        <input type="button" class="button" value="Login" onclick="loginCheck()">
-      </form>
-      
-      <div class="signup"> 
- 		  <div class="column">      
-        	<input type="button" value="회원가입" class="signup" onClick="location.href='/views/user/registration.jsp'">
-        	<input type="button" value="ID/비밀번호 찾기" class="searchpwd" onclick="">
-          </div>
-      </div>
-    </div>
+	<div class="container">
 
-  </div>
+		<input type="text" id="check">
 
-  <script>
-    function loginCheck(){
-      const $frm = $('form[name="frm"]').serialize();
-      console.log($frm)
-      $.ajax({
-        url: "/loginok.do",
-        type: "post",
-        data: $frm,
-        dataType: "json",
-        success:sucFuncJson,
-        error:errFunc
-      });
-      function sucFuncJson(data){
-        console.log(data.email)
-        console.log(data.emp_name)
-      }
+		<div class="login form">
+			<header>Login</header>
 
-      function errFunc(e){
-        alert("실패"+e.status)
-      }
-    }
+			<form name="frm" onsubmit="return checkIt();">
 
-  </script>
+				<input type="email" name="email" placeholder="아이디를 입력하세요. ">
+				<input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">
+
+				<input type="button" class="button" value="Login"
+					onclick="return loginCheck();">
+			</form>
+
+			<div class="signup">
+				<div class="column">
+					<input type="button" value="ID/비밀번호 찾기" class="searchpwd"
+						onclick="">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		function loginCheck() {
+			var email = document.querySelector("input[name='email']").value;
+			var emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			var pwd = document.querySelector("input[name='pwd']").value;
+			var pwdLength = pwd.length;
+			
+			if (emailRegex.test(email) == false) {
+				alert('아이디는 이메일 형식에 맞게 입력하세요.');
+				document.querySelector("input[name='email']").focus();
+				return false;
+			}
+			if(pwdLength < 4 || pwdLength > 12) {
+				alert("비밀번호는 4~12자리 이내로 설정해주세요.");
+				document.querySelector("input[name='pwd']").focus();
+				return false;
+			}
+			
+			const $frm = $('form[name="frm"]').serialize();
+			console.log($frm)
+			$.ajax({
+				url : "/loginok.do",
+				type : "post",
+				data : $frm,
+				dataType : "json",
+				success : sucFuncJson,
+				error : errFunc
+			});
+			function sucFuncJson(data) {
+				if (data.email == null) {
+					alert(data.errMsg);
+				} else if (data.email != null) {
+					window.location.href = "/index.jsp";
+				}
+			}
+
+			function errFunc(e) {
+				alert("실패" + e.status)
+			}
+		}
+	</script>
 </body>
 </html>

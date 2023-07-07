@@ -15,7 +15,7 @@ public class EmpDAO {
         SqlSession session =  factory.openSession();
 
         EmpDTO dto = session.selectOne("selectByEmail",map);
-
+        session.close();
         return dto;
     }
 
