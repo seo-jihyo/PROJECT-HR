@@ -4,12 +4,13 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -35,8 +36,12 @@ public class loginOkService implements Action {
 
 
         JSONObject json = new JSONObject();
-        json.put("email", dto.getEmail());
-        json.put("emp_name", dto.getEmp_name());
+        if(dto == null) {
+        	json.put("errMsg", "아이디또는 비밀번호가 틀렸습니다. 다시 입력해주세요.");
+        } else {
+        	json.put("email", dto.getEmail());
+        	json.put("emp_name", dto.getEmp_name());
+        }
 
 
         try {
