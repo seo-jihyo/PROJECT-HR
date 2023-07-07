@@ -30,7 +30,7 @@ public class EmpDTO {
     private double annual_num;         // 연차 수
     private String address;         // 주소
     private String detail_address;  // 상세주소
-    private char emp_sort;          // 직원 구분(관리자 or 사용자)
+    private int permisson_type;          // 직원 구분(관리자 or 사용자)
     private Date hire_date;         // 입사일
     private Date departure_date;    // 퇴사일
 }

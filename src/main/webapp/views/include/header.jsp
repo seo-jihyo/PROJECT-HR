@@ -1,10 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${login == null}">
+    <c:redirect url="/login.do"/>
+</c:if>
+
 <header>
     <h1 class="company">MAIN</h1>
 
     <nav class="top-nav">
 
         <div class="container">
+            ${login.emp_name}님 환영합니다.
             <input type="checkbox" class="toggle" id="rounded">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>
         </div>
@@ -67,7 +73,7 @@
         </div>
 
 
-        <a href="#" class="nav_link">
+        <a href="/logoutok.do" class="nav_link">
             <i class='nav_icon bx bx-log-out' id="log_out"></i>
             <span class="nav_name">Log Out</span>
         </a>
