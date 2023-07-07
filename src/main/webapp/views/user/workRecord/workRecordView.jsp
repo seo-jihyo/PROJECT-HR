@@ -68,7 +68,7 @@ h2{
 
 dialog{
 	width: 500px;
-	height: 500px;
+	height: 555px;
 
 }
 .diatitle{
@@ -116,7 +116,9 @@ dialog{
 	height: 100px;
 	border: 1px solid black;
 }
-
+.workrec-area{
+	border: 1px solid black;
+}
 .twomodal{
 	letter-spacing: 30px;
 	padding: 0px;
@@ -124,8 +126,14 @@ dialog{
 
 .workmodal-table th{
 		text-align: left;
-
-
+}
+.bottom-btn{
+	margin-top:10px;
+}
+.dialogsub{
+	backgroud:black;
+	color: red;
+}
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -270,15 +278,24 @@ dialog{
 
 			<tr class="workrec-tr">
 				<th class="two">날짜</th>
-				<td><input type="date" class="rankadd" name=""></td>
+				<td><input type="date" class="workadd" name=""></td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>출근시간</th>
-				<td><input type="time" class="rankadd" name=""></td>
+				<td><input type="time" class="workadd" name=""></td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>퇴근시간</th>
-				<td><input type="time" class="rankadd" name=""></td>
+				<td><input type="time" class="workadd" name=""></td>
+			</tr>
+			<tr class="workrec-tr">
+				<th>근무일정</th>
+					<td><select class="workadd">
+						<option></option>
+						<option></option>
+						<option></option>
+					</select>
+					</td>
 			</tr>
 			<tr class="workrec-tr">
 				<th>휴게시간</th>
@@ -290,12 +307,17 @@ dialog{
 				<td><textarea name="" class="workrec-area" cols="70" rows="4"></textarea></td>
 			</tr>
 		</table>
-
-
 		<hr>
-		<button class="dialogbtn">수정</button>
-		<button class="dialogbtn">삭제</button>
-		<button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
+
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
+				<button type="submit" class="btn_close custom-btn btn-10">삭제하기</button>
+				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+			</div>
+		</div>
+		
+
 	</form>
 	</dialog>
 

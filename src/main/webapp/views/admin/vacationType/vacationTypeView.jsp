@@ -1,88 +1,233 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
-  <link rel="stylesheet" href="/assets/css/view_jy.css">
-  
-  <title>ÈŞ°¡À¯Çü°ü¸®</title>
+    <%--jquery--%>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <link rel="stylesheet" href="/assets/css/modal.css">
+<style type="text/css">
+dialog{
+	width: 500px;
+	height: 410px;
+
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.rank-table {
+	padding: 20px 20px;
+	width: 100%;
+}
+.rank-table tr {
+	margin: 5px;
+}
+.rank-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.rankadd{
+	height: 25px;
+	border: 1px solid black;
+}
+.rank-area{
+	width: 300px;
+	height: 90px;
+	border: 1px solid black;
+}
+.rank-table th{
+		text-align: left;
+}
+.two{
+	letter-spacing: 30px;
+}
+.three{
+	letter-spacing: 8px;
+}
+</style>
+<title>ë¶€ì„œê´€ë¦¬</title>
+<style type="text/css">
+	
+</style>
 </head>
-<body id="body-pd">
+<body>
+	<%@include file="/views/include/header.jsp"%>
+
+	<section id="body-pd" class="body-pd">
+
+		<div class="main_title">
+		
+			<h2>íœ´ê°€ ê´€ë¦¬</h2>
+			<nav class="plusinfo">
+			<select class="searchtype searchs">
+				<option>ì„ íƒì—†ìŒ</option>
+				<option>ì´ë¦„</option>
+				<option>ë¶€ì„œ</option>
+				<option>ì§ê¸‰</option>
+				<option>ìœ ê¸‰ì‹œê°„</option>
+				<option>ì°¨ê°ì¼ìˆ˜</option>
+				<option>ë©”ëª¨</option>
+			</select>
+			<input type="text" class="search searchs">
+			<input type="button" class="seachbtn" value="ê²€ ìƒ‰">
+			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
+				ë¶€ì„œ ì¶”ê°€í•˜ê¸°</label>
+
+			<div class="modal" style="display: hidden;">
+			
+				<div class="modal-content">
+				
+					<label for="popup">x</label>
+					<h1>ë¶€ì„œ ì¶”ê°€í•˜ê¸°</h1>
+					<hr>
+					
+
+					<form method="post" action="/rankok.do" id="frm">
+						<table class="rank-table">
+							<tr class="rank-tr1">
+								<th>ìƒìœ„ì½”ë“œ</th>
+								<td><input type="text" class="rankadd" name="parent_code"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<th>ì½”ë“œë²ˆí˜¸</th>
+								<td><input type="text" class="rankadd" name="code_name"></td>
+							</tr>
+							<tr class="rank-tr1">
+								<th class="three">ë¶€ì„œëª…</th>
+								<td><input type="text" class="rankadd" name="code_value"></td>
+							</tr>
+
+							<tr>
+								<th class="two">ë©”ëª¨</th>
+
+								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+
+							</tr>
+						</table>
+					</form>
+
+					<hr>
+					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10" form="frm">ì¶”ê°€í•˜ê¸°</button>
+							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">ë‹«ê¸°</button>
+						</div>
+					</div>
+				</div>
+				<label for="popup"></label>
+			</div>
+		</div>
+		</nav>
 
 
-<div class="main">
+		
+		<div class= "tab-scroll">
 
-  <div class="main_title">
-    <h2>ÈŞ°¡ À¯Çü °ü¸®</h2>
-    <button><a href="/views/admin/vacationType/vacationTypeModal.jsp">ÈŞ°¡ À¯Çü Ãß°¡ÇÏ±â</a></button>
-  </div>
+		<table class="sec-table table-hover table">
+			<thead class="thead">
 
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-      <th><input type="text" placeholder="°Ë»ö.."></th>
-    </tr>
-    <tr>
-      <th style="width:30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
-      <th>ÈŞ°¡À¯Çü</th>
-      <th>Á¶Á÷</th>
-      <th>Á÷¹«</th>
-      <th>½Ã°£¿É¼Ç</th>
-      <th>À¯±Ş½Ã°£</th>
-      <th>Â÷°¨ÀÏ¼ö</th>
-      <th>½Ã°£ °íÁ¤ ¿©ºÎ</th>
-      <th>»çÀ¯ Ç¥½Ã</th>
-      <th>¸Ş¸ğ</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <th><input type='checkbox' name = 'chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th><input type='checkbox' name = 'chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+				<tr>
+					<th style="width: 30px"><input type='checkbox' id="chkAll"
+						onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th>ìƒìœ„ì½”ë“œ</th>
+					<th>ì½”ë“œë²ˆí˜¸</th>
+					<th>ë¶€ì„œëª…</th>
+					<th>ë©”ëª¨</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="asd">
+						<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
+						<td ></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 
-    </tr>
-    </tbody>
-  </table>
+				</tbody>
+			</table>
+
+			</div>
+	<div>
+   
+    
 </div>
 
-<script src="/assets/js/selectAll.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
+
+
+	
+</section>
+	<dialog>
+
+	<h2 class="diatitle">ë¶€ì„œ ë³€ê²½í•˜ê¸°</h2>
+	<hr>
+
+
+	<form method="dialog">
+		<table class="rank-table">
+
+			<tr class="rank-tr1">
+				<th>ìƒìœ„ì½”ë“œ</th>
+				<td><input type="text" class="rankadd" name="parent_code"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th>ì½”ë“œë²ˆí˜¸</th>
+				<td><input type="text" class="rankadd" name="code_name"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th class="three">ë¶€ì„œëª…</th>
+				<td><input type="text" class="rankadd" name="code_value"></td>
+			</tr>
+
+			<tr>
+				<th class="two">ë©”ëª¨</th>
+				<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+			</tr>
+		</table>
+
+
+		<hr>
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="btn_close custom-btn btn-10">ìˆ˜ì •í•˜ê¸°</button>
+				<button type="submit" class="btn_close custom-btn btn-10">ì‚­ì œí•˜ê¸°</button>
+				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">ë‹«ê¸°</button>
+			</div>
+		</div>
+	</form>
+	</dialog>
+	<script src="/assets/js/main.js"></script>
+	<script type="text/javascript" src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
+
+	 const dialog = document.querySelector("dialog");
+	    $(document).on("click", ".table tbody tr", function () {
+	        dialog.showModal();
+	        console.log(this);
+	    });
+
+	    $(document).on("click",".table tbody tr",function (){
+	        $td = $(this).children('td')
+	        let str = '';
+	        $.each($td,(i,item)=>{
+	            str +='ê°’='+ item.innerText +'<br>'
+	        })
+	        console.log(str)
+	    })
+	
+</script>
 </body>
 </html>
