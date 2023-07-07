@@ -2,10 +2,10 @@
 <header>
     <h1 class="company">MAIN</h1>
         <nav class="link-menu">
-            <a href="">스케줄</a>
+            <a href="/views/user/userScheduleView.jsp">스케줄</a>
             <a href="/views/user/workRecord/workRecordView.jsp">출퇴근기록</a>
-            <a href="">요청 내역</a>
-            <a href="">마이페이지</a>
+            <a href="/views/user/requestHistoryView.jsp">요청 내역</a>
+            <a href="/views/user/myPage.jsp">마이페이지</a>
         </nav>
     <nav class="top-nav">
 
@@ -15,7 +15,7 @@
         </div>
 
         <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
-        <button class="logout">로그아웃</button>
+        <button class="logout" onClick='/logoutok.do'>로그아웃</button>
         <button class="mode-btn">관리자 모드</button>
     </nav>
 </header>
