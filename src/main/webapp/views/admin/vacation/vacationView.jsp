@@ -77,6 +77,7 @@
 				<option>사유</option>
 			</select>
 			<input type="text" class="search searchs">
+			<input type="button" class="seachbtn" value="검 색">
 			<input type="checkbox" id="popup"><label class="labelBtn" for="popup">+
 				휴가 관리하기</label>
 			<div class="modal" style="display: hidden;">
@@ -175,10 +176,10 @@
 							<tr class="vacation-tr1">
 								<td>직원</td>
 								<td><select name="" class="selectBox">
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
+										<option value="lee">이재경</option>
+										<option value="song">송기석</option>
+										<option value="k">권지연</option>
+										<option value="seo">서지효</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -205,9 +206,9 @@
 						</table>
 						<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">수정하기</button>
 							<button type="button" class="custom-btn btn-10">삭제하기</button>
-            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
 						</div>
 					</div>
 					</form>
@@ -215,18 +216,13 @@
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
-    dialog.showModal();
-    console.log(this);
+	dialog.showModal();
+	console.log(this);
 });
 
-$(document).on("click",".table tbody tr",function (){
-    $td = $(this).children('td')
-    let str = '';
-    $.each($td,(i,item)=>{
-        str +='값='+ item.innerText +'<br>'
-    })
-    console.log(str)
-})
+function dialogClose(){
+	dialog.close();
+}
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
