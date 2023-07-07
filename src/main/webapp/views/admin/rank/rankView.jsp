@@ -147,10 +147,14 @@ dialog{
 				</thead>
 				<tbody>
 				<c:forEach var="rankList" items="${list}">
-				<tr class="asd">
+				<tr class="asd"
+					data-code="${rankList.parent_code}"
+					data-name="${rankList.code_name}"
+					data-value="${rankList.code_value}"
+					data-remarks="${rankList.remarks}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td >${rankList.parent_code}</td>
+						<td>${rankList.parent_code}</td>
 						<td>${rankList.code_name}</td>
 						<td>${rankList.code_value}</td>
 						<td>${rankList.remarks}</td>
@@ -173,59 +177,66 @@ dialog{
 
 	<h2 class="diatitle">직급 변경하기</h2>
 	<hr>
-
-
-	<form method="dialog">
+	<form method="get" id="frm2">
 		<table class="rank-table">
 
-			<tr class="rank-tr1">
-				<th>상위코드</th>
-				<td><input type="text" class="rankadd" name="parent_code"></td>
-			</tr>
-			<tr class="rank-tr1">
-				<th>코드번호</th>
-				<td><input type="text" class="rankadd" name="code_name"></td>
-			</tr>
-			<tr class="rank-tr1">
-				<th class="three">직급명</th>
-				<td><input type="text" class="rankadd" name="code_value"></td>
-			</tr>
-
-			<tr>
-				<th class="two">메모</th>
-				<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
-			</tr>
 		</table>
-
-
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
 				<button type="submit" class="btn_close custom-btn btn-10">수정하기</button>
-				<button type="submit" class="btn_close custom-btn btn-10">삭제하기</button>
-				<button class="btn_close custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+				<button type="button"  class="btn_close custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
+
+
 	</form>
+
 	</dialog>
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
 
-	 const dialog = document.querySelector("dialog");
-	    $(document).on("click", ".table tbody tr", function () {
-	        dialog.showModal();
-	        console.log(this);
-	    });
 
-	    $(document).on("click",".table tbody tr",function (){
-	        $td = $(this).children('td')
-	        let str = '';
-	        $.each($td,(i,item)=>{
-	            str +='값='+ item.innerText +'<br>'
-	        })
-	        console.log(str)
-	    })
+const dialog = document.querySelector("dialog");
+$(document).on("click", ".table tbody tr", function () {
+	dialog.showModal();
+	console.log(this);
+});
+
+function dialogClose(){
+	dialog.close();
+}
+
+$(document).on("click", ".table tbody tr", function () {
+	$code = $(this).data("code")
+	$name = $(this).data("name")
+	$value = $(this).data("value")
+	$remarks = $(this).data("remarks")
+
+	let str = `
+		<tr class="rank-tr1">
+				<th>상위코드</td>
+				<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th>코드번호</td>
+				<td><input type="text" class="rankadd" name="code_name" value="`+$name+`"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th class="three">직급명</td>
+				<td><input type="text" class="rankadd" name="code_value" value="`+$value+`"></td>
+			</tr>
+
+			<tr>
+				<th class="two">메모</td>
+				<td><textarea name="remarks" class="rank-area" cols="70" rows="4">`+$remarks+`</textarea></td>
+			</tr>
+		`;
+
+	$('dialog table').html(str)
+})
 	
 </script>
 </body>

@@ -299,7 +299,7 @@ dialog{
 			</tr>
 			<tr class="workrec-tr">
 				<th>휴게시간</th>
-				<td>1시간</td>
+				<td style="font-weight:bold;">1시간</td>
 			</tr>
 
 			<tr class="workrec-tr">
