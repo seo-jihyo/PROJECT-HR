@@ -218,7 +218,7 @@
 					<hr>
 					
 
-					<form method="dialog">
+					<form method="post">
 						<table class="rank-table">
 						
 							<tr class="rank-tr1">
@@ -242,9 +242,12 @@
 						
 					
        				<hr>
-       		<button class="">수정</button>
-       		<button>삭제</button>
-            <button onclick="window.dialog.close();">닫기</button>
+       					<div class="bottom-btn">
+						<div class="right-btn">
+							<button class="custom-btn btn-10">수정하기</button>
+							<button type="button" class="custom-btn btn-10">삭제하기</button>
+            				<button class="custom-btn btn-10" onclick="window.dialog.close();">닫기</button>
+						</div>
         </form>
     </dialog>
 <script type="text/javascript">
