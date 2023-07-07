@@ -474,7 +474,7 @@ dialog{
 	    });
 	    function dialogClose(){
 	    	dialog.close();
-	    }  
+	    }
 </script>
 </body>	
 </html>

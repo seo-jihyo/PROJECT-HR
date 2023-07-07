@@ -35,7 +35,6 @@ public class FrontRegisterController extends HttpServlet {
         Action action = null;
         ActionForward forward = null;
 
-
         if (urlcommand.equals("/login.do")) {
             //UI 제공 (서비스 객체가 필요없다)
             forward = new ActionForward(); // 서비스가 필요없으니 ActionForward객체를 직접 생성해서 사용
@@ -54,6 +53,11 @@ public class FrontRegisterController extends HttpServlet {
             forward = new ActionForward();
             forward.setRedirect(true);
             forward.setPath("/login.do");
+
+        } else if (urlcommand.equals("/check-attendance.do")){
+            // 출퇴근 체크 요청
+            action = new AttendanceOkService();
+            action.execute(request, response);
 
         } else if (urlcommand.equals("/rankok.do")) {
         	// 추가하는 서비스

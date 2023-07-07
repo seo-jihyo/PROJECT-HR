@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>LoginForm</title>
+  <%--jquery--%>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -113,12 +115,12 @@ body{
     <div class="login form">
       <header>Login</header>
       
-      <form action="/loginok.do">
+      <form name="frm">
       
         <input type="email" name="email" placeholder="아이디를 입력하세요. ">
         <input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">
  		
-        <input type="submit" class="button" value="Login">
+        <input type="button" class="button" value="Login" onclick="loginCheck()">
       </form>
       
       <div class="signup"> 
@@ -130,5 +132,29 @@ body{
     </div>
 
   </div>
+
+  <script>
+    function loginCheck(){
+      const $frm = $('form[name="frm"]').serialize();
+      console.log($frm)
+      $.ajax({
+        url: "/loginok.do",
+        type: "post",
+        data: $frm,
+        dataType: "json",
+        success:sucFuncJson,
+        error:errFunc
+      });
+      function sucFuncJson(data){
+        console.log(data.email)
+        console.log(data.emp_name)
+      }
+
+      function errFunc(e){
+        alert("실패"+e.status)
+      }
+    }
+
+  </script>
 </body>
 </html>

@@ -4,10 +4,14 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,10 +33,20 @@ public class loginOkService implements Action {
         HttpSession session = request.getSession();
         session.setAttribute("login", dto);
 
-        ActionForward forward = new ActionForward();
-        forward.setRedirect(true);
-        forward.setPath("/index.jsp");
 
-        return forward;
+        JSONObject json = new JSONObject();
+        json.put("email", dto.getEmail());
+        json.put("emp_name", dto.getEmp_name());
+
+
+        try {
+            response.setCharacterEncoding("utf-8");
+            response.getWriter().print(json);
+            System.out.println(json);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
     }
 }
