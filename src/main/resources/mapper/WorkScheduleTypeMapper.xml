@@ -4,16 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-	<select id="selectAllWorkScheduleType" resultType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
+	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 		select * from work_schedule_type
 	</select>
 	<insert id="insertWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 
 	</insert>
-	<update id="insertWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
+	<update id="updateWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 
 	</update>
-	<delete id="insertWorkScheduleType" parameterType="Integer">
+	<delete id="deleteWorkScheduleType" parameterType="Integer">
 
 	</delete>
 </mapper>
+
