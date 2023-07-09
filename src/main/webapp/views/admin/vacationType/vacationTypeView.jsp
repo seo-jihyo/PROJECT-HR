@@ -150,26 +150,22 @@ dialog{
 		</div>
 		</nav>
 
-
-		
-		<div class= "tab-scroll">
-
-		<table class="sec-table table-hover table">
-			<thead class="thead">
-
-				<tr>
-					<th style="width: 30px"><input type='checkbox' id="chkAll"
-						onclick="allCheckboxes('chk[]', this.checked)"></th>
-					<th>휴가유형번호</th>
-					<th>휴가명</th>
-					<th>직급</th>
-					<th>유급시간</th>
-					<th>차감일수</th>
-					<th>휴가사유</th>
-				</tr>
+		<div class="tab-scroll">
+			<table class="sec-table table-hover table">
+				<thead class="thead">
+					<tr>
+						<th style="width: 30px"><input type='checkbox' id="chkAll"
+							onclick="allCheckboxes('chk[]', this.checked)"></th>
+						<th>휴가유형번호</th>
+						<th>휴가명</th>
+						<th>직급</th>
+						<th>유급시간</th>
+						<th>차감일수</th>
+						<th>휴가사유</th>
+					</tr>
 				</thead>
 				<tbody>
-				<tr class="asd">
+					<tr class="asd">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td></td>
@@ -179,23 +175,14 @@ dialog{
 						<td></td>
 						<td></td>
 					</tr>
-
 				</tbody>
 			</table>
-
-			</div>
-	<div>
-   
-    
-</div>
-
-
-
+		</div>
+	</section>
 	
-</section>
+	<!-- 수정 dialog -->
 	<dialog>
-
-	<h2 class="diatitle">부서 변경하기</h2>
+	<h2 class="diatitle">휴가 변경하기</h2>
 	<hr>
 
 
@@ -219,7 +206,7 @@ dialog{
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">유급시간</th>
-								<td><input type="number" class="vactypeadd" value="8" name=""></td>
+								<td><input type="number" class="vactypeadd" value="" name=""></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">차감일수</th>
