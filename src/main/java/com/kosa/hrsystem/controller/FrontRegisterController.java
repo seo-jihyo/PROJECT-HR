@@ -37,6 +37,7 @@ public class FrontRegisterController extends HttpServlet {
 
         if (urlcommand.equals("/login.do")) {
             //UI 제공 (서비스 객체가 필요없다)
+            action = new loginOkService();
             forward = new ActionForward(); // 서비스가 필요없으니 ActionForward객체를 직접 생성해서 사용
             forward.setRedirect(false);
             forward.setPath("/views/user/login.jsp");

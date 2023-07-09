@@ -15,4 +15,9 @@ insert into code_table(parent_code,code_name,code_value,remarks) VALUES ('B001',
 insert into code_table(parent_code,code_name,code_value,remarks) VALUES ('B001','B00102','프론트팀','');
 insert into code_table(parent_code,code_name,code_value,remarks) VALUES ('B001','B00103','백엔드팀','');
 
+-- 휴가 유형 테이블
+insert into vacation_type values(1,'연차','개발팀','대리',8,1);
+insert into vacation_type values(2,'반차','개발팀','대리',4,0.5);
+insert into vacation_type values(3,'병가','개발팀','대리',8,0);
+
 commit;

@@ -12,4 +12,8 @@ public class AttendanceDAO {
         SqlSession session = factory.openSession(true);
         int result = session.insert("insertAttendance",dto);
     }
+
+    
+
+
 }

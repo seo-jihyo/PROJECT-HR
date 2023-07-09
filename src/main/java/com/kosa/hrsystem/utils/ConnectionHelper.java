@@ -23,6 +23,11 @@ public class ConnectionHelper {
 
 	}
 
+	public static void main(String[] args) {
+		ConnectionHelper.getConnection();
+		System.out.println("왜됨");
+	}
+
 	 public static void close(Connection conn) {
 
 			if(conn != null) {

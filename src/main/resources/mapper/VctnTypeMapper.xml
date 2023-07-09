@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+    <select id="selectAll" resultType="com.kosa.hrsystem.dto.VacationTypeDTO">
+		SELECT
+			vctn_type_num,
+			vctn_name,
+			d.code_value dept,
+			d.code_name dept_code,
+			r.code_value rank,
+			r.code_name rank_code,
+			vctn_time,
+			deduction_day
+		FROM
+			vacation_type v
+				JOIN code_table d ON v.dept = d.code_name
+				JOIN code_table r ON v.rank = r.code_name;
+	</select>
+	<insert id="insertVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
+
+	</insert>
+	<update id="updateVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
+
+	</update>
+	<delete id="deleteVctnType" parameterType="Integer">
+
+	</delete>
+</mapper>

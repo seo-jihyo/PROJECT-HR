@@ -10,8 +10,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class VacationDTO {
+	private int vctn_num; // 휴가 시퀀스 번호
 	private int emp_num; // 사원번호
-	private int bsns_num; // 사업자번호
 	private String vctn_status; // 휴가구분
 	private String vctn_reason; // 휴가사유
 	private char vctn_approval; // 승인여부
