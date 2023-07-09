@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeTableDTO {
+public class CodeTableDTO { // 부서(dept), 직급(rank)
 	private String parent_code;
 	private String code_name; // 코드명
 	private String code_value; // 값

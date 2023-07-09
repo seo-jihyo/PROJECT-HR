@@ -20,6 +20,8 @@
         <mapper resource="mapper/TestMapper.xml" />
         <mapper resource="mapper/RankMapper.xml" />
         <mapper resource="mapper/EmpMapper.xml" />
+        <mapper resource="mapper/DeptMapper.xml" />
+        <!-- <mapper resource="mapper/WorkScheduleMapper.xml" /> -->
     </mappers>
 </configuration>
 

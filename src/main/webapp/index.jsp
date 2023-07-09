@@ -18,11 +18,11 @@
 <body>
 
 <c:choose>
-    <c:when test="${login.permisson_type == 1}">
+    <c:when test="${login.permission_type == 1}">
         <c:redirect url="views/user/dashboard.jsp"></c:redirect>
 
     </c:when>
-    <c:when test="${login.permisson_type == 0}">
+    <c:when test="${login.permission_type == 0}">
         <c:redirect url="views/user/userScheduleView.jsp"></c:redirect>
     </c:when>
     <c:otherwise>

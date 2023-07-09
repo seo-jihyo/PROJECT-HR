@@ -93,25 +93,25 @@ dialog{
 					<hr>
 					
 
-					<form method="" action="" id="">
+					<form method="post" action="/deptok.do" id="frm">
 						<table class="duty-table">
 							<tr class="duty-tr1">
 								<th>상위코드</th>
-								<td><input type="text" class="dutyadd" name=""></td>
+								<td><input type="text" class="dutyadd" name="parent_code"></td>
 							</tr>
 							<tr class="duty-tr1">
 								<th>코드번호</th>
-								<td><input type="text" class="dutyadd" name=""></td>
+								<td><input type="text" class="dutyadd" name="code_name"></td>
 							</tr>
 							<tr class="duty-tr1">
 								<th class="three">부서명</th>
-								<td><input type="text" class="dutyadd" name=""></td>
+								<td><input type="text" class="dutyadd" name="code_value"></td>
 							</tr>
 
 							<tr>
 								<th class="two">메모</th>
 
-								<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
+								<td><textarea name="remarks" class="duty-area" cols="70" rows="4"></textarea></td>
 
 							</tr>
 						</table>
@@ -147,15 +147,20 @@ dialog{
 				</tr>
 				</thead>
 				<tbody>
-				<tr class="asd">
+				<c:forEach var="deptList" items="${list}">
+					<tr class="asd"
+						data-code="${deptList.parent_code}"
+						data-name="${deptList.code_name}"
+						data-value="${deptList.code_value}"
+						data-remarks="${deptList.remarks}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td ></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${deptList.parent_code}</td>
+						<td>${deptList.code_name}</td>
+						<td>${deptList.code_value}</td>
+						<td>${deptList.remarks}</td>
 					</tr>
-
+				</c:forEach>
 				</tbody>
 			</table>
 
@@ -174,30 +179,10 @@ dialog{
 	<h2 class="diatitle">부서 변경하기</h2>
 	<hr>
 
-
-	<form method="dialog">
+	<form method="get" id="frm2">
 		<table class="duty-table">
 
-			<tr class="duty-tr1">
-				<th>상위코드</th>
-				<td><input type="text" class="dutyadd" name=""></td>
-			</tr>
-			<tr class="duty-tr1">
-				<th>코드번호</th>
-				<td><input type="text" class="dutyadd" name=""></td>
-			</tr>
-			<tr class="duty-tr1">
-				<th class="three">부서명</th>
-				<td><input type="text" class="dutyadd" name=""></td>
-			</tr>
-
-			<tr>
-				<th class="two">메모</th>
-				<td><textarea name="" class="duty-area" cols="70" rows="4"></textarea></td>
-			</tr>
 		</table>
-
-
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
@@ -208,6 +193,7 @@ dialog{
 		</div>
 	</form>
 	</dialog>
+	
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
@@ -221,6 +207,35 @@ dialog{
 	function dialogClose(){
 		dialog.close();
 	}
+	
+	$(document).on("click", ".table tbody tr", function () {
+		$code = $(this).data("code")
+		$name = $(this).data("name")
+		$value = $(this).data("value")
+		$remarks = $(this).data("remarks")
+
+		let str = `
+			<tr class="rank-tr1">
+					<th>상위코드</td>
+					<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
+				</tr>
+				<tr class="rank-tr1">
+					<th>코드번호</td>
+					<td><input type="text" class="rankadd" name="code_name" value="`+$name+`"></td>
+				</tr>
+				<tr class="rank-tr1">
+					<th class="three">직급명</td>
+					<td><input type="text" class="rankadd" name="code_value" value="`+$value+`"></td>
+				</tr>
+
+				<tr>
+					<th class="two">메모</td>
+					<td><textarea name="remarks" class="rank-area" cols="70" rows="4">`+$remarks+`</textarea></td>
+				</tr>
+			`;
+
+		$('dialog table').html(str)
+	})
 	
 </script>
 </body>
