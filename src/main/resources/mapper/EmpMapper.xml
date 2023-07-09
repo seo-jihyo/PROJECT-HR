@@ -10,7 +10,13 @@
 	<select id="selectAllEmp" resultType="com.kosa.hrsystem.dto.EmpDTO">
 		SELECT * FROM EMP
 	</select>
-	<!-- <insert id="insertEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
-		insert into emp values(#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},)
-	</insert> -->
+	<insert id="insertEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
+		<!-- insert into emp values(#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},) -->
+	</insert>
+	<update id="updateEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
+
+	</update>
+	<delete id="deleteEmp" parameterType="Integer">
+		delete * from EMP where emp_num = #{emp_num}
+	</delete>
 </mapper>

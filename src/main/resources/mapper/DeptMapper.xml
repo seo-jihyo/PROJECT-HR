@@ -11,4 +11,10 @@
     <insert id="insertDept" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
     	insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})
     </insert>
+	<update id="updateDept" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+		<!-- update code_table set code_name = #{code_name} -->
+	</update>
+    <delete id="deleteDept" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+    	delete * from code_table where code_name = #{code_name}
+    </delete>
 </mapper>
