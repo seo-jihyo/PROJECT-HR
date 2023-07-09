@@ -30,4 +30,20 @@ public class RankDAO {
 		sqlSession.close();
 		return list;
 	}
+	
+	public int update(CodeTableDTO dto) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.update("updateRank", dto);
+		System.out.println(result);
+		sqlSession.close();
+		return result;
+	}
+	
+	public int delete(CodeTableDTO dto) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("deleteRank",dto);
+		System.out.println(result);
+		sqlSession.close();
+		return result;
+	}
 }

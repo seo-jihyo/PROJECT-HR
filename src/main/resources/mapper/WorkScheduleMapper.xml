@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+    <insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
+		insert into work_schedule() values (#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{},#{remarks})
+	</insert>
+	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.dto.WorkScheduleDTO">
+		select * from work_schedule
+	</select>
+</mapper>

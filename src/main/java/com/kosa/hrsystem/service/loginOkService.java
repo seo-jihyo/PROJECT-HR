@@ -26,11 +26,11 @@ public class loginOkService implements Action {
         map.put("email", email);
         map.put("pwd", pwd);
         // 암호화 적용
+        System.out.println(map);
 
         // DB에 있는지 확인
         EmpDAO dao = new EmpDAO();
         EmpDTO dto = dao.selectByEmail(map);
-
         HttpSession session = request.getSession();
         session.setAttribute("login", dto);
 

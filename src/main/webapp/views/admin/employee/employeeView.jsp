@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -236,46 +237,44 @@
 							onclick="allCheckboxes('chk[]', this.checked)"></th>
 						<th>사원번호</th>
 						<th>이름</th>
-						<th>입사일</th>
+						<th>권한타입</th>
 						<th>부서</th>
-						<th>직위</th>
-						<th>직책</th>
 						<th>직급</th>
 						<th>근로정보명</th>
-						<th>시급</th>
+						<th>입사일</th>
+						<th>연차</th>
 						<th>메모</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<c:forEach var="empList" items="${list}">
+					<tr class="asd"
+						data-empNum="${empList.emp_num}"
+						data-name="${empList.emp_name}"
+						data-registNum="${empList.regist_num}"
+						data-permissionType="${empList.permission_type}"
+						data-dept="${empList.dept}"
+						data-rank="${empList.rank}"
+						data-workNum="${empList.work_num}"
+						data-hireDate="${empList.hire_date}"
+						data-phone="${empList.phone}"
+						data-directNum="${empList.direct_num}"
+						data-postCode="${empList.post_code}"
+						data-address="${empList.address}"
+						data-detailAddress="${empList.detail_address}"
+						data-annualNum="${empList.annual_num}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${empList.emp_num}</td>
+						<td>${empList.emp_name}</td>
+						<td>${empList.permission_type}</td>
+						<td>${empList.dept}</td>
+						<td>${empList.rank}</td>
+						<td>${empList.work_num}</td>
+						<td><fmt:formatDate value="${empList.hire_date}" pattern="yyyy-MM-dd"/> </td>
+						<td>${empList.annual_num}</td>
 					</tr>
-					<tr>
-
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -290,6 +289,109 @@
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script>
+
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
+
+	function dialogClose(){
+		dialog.close();
+	}
+
+	$(document).on("click", ".table tbody tr", function () {
+		$empNum = $(this).data("empNum")
+		$name = $(this).data("name")
+		$dept = $(this).data("dept")
+		$registNum = $(this).data("registNum")
+		$rank = $(this).data("rank")
+		$phone = $(this).data("phone")
+		$permissionType = $(this).data("permissionType")
+		$directNum = $(this).data("directNum")
+		$postCode = $(this).data("postCode")
+		$address = $(this).data("address")
+		$detailAddress = $(this).data("detailAddress")
+		$hireDate = $(this).data("hireDate")
+		//$annualNum = $(this).data("annualNum")
+		//$remarks = $(this).data("remarks")
+
+		let str = `
+			<tr>
+			<th>사원번호</th>
+			<td><input type="text" class="profile-text" value="`+$empNum+`"></td>
+			<th class="two rights">이름</th>
+			<td><input type="text" class="profile-text" value="`+$name+`"> </td>
+		</tr>
+		<tr>
+			<th class="two">부서</th>
+			<td><input type="text" class="profile-text" value="`+$dept+`"></td>
+			<th class="rights">주민번호</th>
+			<td><input type="text" class="profile-text" value="`+$registNum+`"></td>
+		</tr>
+		<tr>
+			<th class="two">직급</th>
+			<td><input type="text" class="profile-text" value="`+$rank+`"></td>	
+			<th class="rights">휴대전화</th>
+			<td><input type="tel" class="profile-text" value="`+$phone+`"></td>
+		</tr>
+		<tr>
+			<th>권한타입</th>
+			<td>
+			<select class="profiletype">
+				<option value="`+$permissionType+`">최고관리자</option>
+				<option value="`+$permissionType+`">직원</option>
+			</select>
+			</td>
+			<th class="rights">직통번호</th>
+			<td><input type="tel" class="profile-text" value="`+$directNum+`"></td>
+		</tr>
+		<tr>
+
+		</tr>
+
+
+		<tr>
+			<th class="two">주소</th>
+			<td><input type="text" id="sample6_postcode" class="profile-text" placeholder="우편번호" value="`+$postCode+`"> </td>
+			<td><input type="button" class="postbtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+
+		</tr>
+		<tr>
+			<th></th>
+			<td colspan='2'><input type="text" id="sample6_address" class="profile-text addrtext" placeholder="주소" value="`+$address+`"></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td colspan='2'><input type="text" id="sample6_detailAddress" class="profile-text addrtext" placeholder="상세주소" value="`+$detailAddress+`"> </td>
+
+		</tr>
+		<tr>
+			<th></th>
+			<td colspan='2'><input type="text" id="sample6_extraAddress" class="profile-text addrtext" placeholder="참고항목"></td>
+		</tr>
+		<tr>
+			<th class="three">입사일</th>
+			<td><input type="date" class="profile-text profiledate" value="`+$hireDate+`"></td>
+			<th class="three right"><label><input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/> 퇴사일</label></th>
+			<td><input type="date" id="empdate" class="profile-text profiledate"></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td></td>
+			
+			<th class="rights" id="emptext" >퇴사사유</th>
+			<td><textarea class="emptext" id="emptext" ></textarea>
+			
+		<tr>
+			<th class="two">메모</th>
+			<td colspan='3'><textarea class="empmemo" value="`+$remarks+`"></textarea>
+		</tr>
+			`;
+
+		$('dialog table').html(str)
+	})
+	
 	function toggleTextbox(checkbox) {
 		  
 		  // 1. 텍스트 박스 element 찾기

@@ -115,7 +115,7 @@ body{
 		<div class="login form">
 			<header>Login</header>
 
-			<form name="frm" onsubmit="return checkIt();">
+			<form name="frm">
 
 				<input type="email" name="email" placeholder="아이디를 입력하세요. ">
 				<input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">

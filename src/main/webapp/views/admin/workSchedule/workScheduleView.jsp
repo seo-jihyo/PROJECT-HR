@@ -136,8 +136,7 @@
 							</tr>
 							<tr class="modal-tr">
 								<td>일정노트</td>
-								<td><textarea name="ws_area" id="ws-area" cols="65" rows="4">
-    							</textarea></td>
+								<td><textarea name="ws_area" id="ws-area" cols="65" rows="4"></textarea></td>
 							</tr>
 						</table>
 					</form>
@@ -282,6 +281,48 @@
 						
 					
     </dialog>
+    
+<script type="text/javascript">
+
+const dialog = document.querySelector("dialog");
+$(document).on("click", ".table tbody tr", function () {
+	dialog.showModal();
+	console.log(this);
+});
+
+function dialogClose(){
+	dialog.close();
+}
+
+$(document).on("click", ".table tbody tr", function () {
+	$code = $(this).data("code")
+	$name = $(this).data("name")
+	$value = $(this).data("value")
+	$remarks = $(this).data("remarks")
+
+	let str = `
+		<tr class="rank-tr1">
+				<th>상위코드</td>
+				<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th>코드번호</td>
+				<td><input type="text" class="rankadd" name="code_name" value="`+$name+`"></td>
+			</tr>
+			<tr class="rank-tr1">
+				<th class="three">직급명</td>
+				<td><input type="text" class="rankadd" name="code_value" value="`+$value+`"></td>
+			</tr>
+
+			<tr>
+				<th class="two">메모</td>
+				<td><textarea name="remarks" class="rank-area" cols="70" rows="4">`+$remarks+`</textarea></td>
+			</tr>
+		`;
+
+	$('dialog table').html(str)
+})
+</script>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
