@@ -8,13 +8,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class WorkDTO {
-	private int work_num;
-	private int emp_num;
-	private int bsns_num;
-	private String work_name;
-	private int pay;
-	private int weekly_holiday;
-	private String remarks;
+	private int work_num; // 근로 일련번호
+	private String work_name; // 근로정보명
+	private int pay; // 시급
+	private int weekly_holiday; // 주휴요일
+	private String remarks; // 비고
 	private char mon;
 	private char tue;
 	private char wed;

@@ -138,12 +138,12 @@ CREATE TABLE WORK_SCHEDULE (
 DROP TABLE VACATION_TYPE;
 
 CREATE TABLE VACATION_TYPE (
-	vctn_status	varchar2(100)	NOT NULL,
-	vctn_name	varchar2(100)	NOT NULL,
-	dept	varchar2(20)	NULL,
-	rank	varchar2(20)	NULL,
-	vctn_time	number	NULL,
-	DEDUCTION_DAY	number	NULL
+                               vctn_type_num	varchar2(100)	NOT NULL,
+                               vctn_name	varchar2(100)	NOT NULL,
+                               dept	varchar2(20)	NULL,
+                               rank	varchar2(20)	NULL,
+                               vctn_time	number	NULL,
+                               deduction_day	number	NULL
 );
 
 ALTER TABLE EMP ADD CONSTRAINT PK_EMP PRIMARY KEY (
@@ -192,6 +192,6 @@ ALTER TABLE WORK_SCHEDULE ADD CONSTRAINT PK_WORK_SCHEDULE PRIMARY KEY (
 );
 
 ALTER TABLE VACATION_TYPE ADD CONSTRAINT PK_VACATION_TYPE PRIMARY KEY (
-	vctn_status
+   vctn_type_num
 );
 
