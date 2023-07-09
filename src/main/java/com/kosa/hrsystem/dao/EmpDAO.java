@@ -1,6 +1,5 @@
 package com.kosa.hrsystem.dao;
 
-import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import org.apache.ibatis.session.SqlSession;
