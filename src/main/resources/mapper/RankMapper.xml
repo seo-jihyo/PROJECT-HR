@@ -10,7 +10,7 @@
 	<select id="selectAllRank" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
 		select * from code_table where parent_code = 'A001' ORDER BY CODE_NAME
 	</select>
-	<update id="updateRank" parameterMap="com.kosa.hrsystem.dto.CodeTableDTO">
+	<update id="updateRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
 	
 	</update>
 	<delete id="deleteRank" parameterType="Integer">
