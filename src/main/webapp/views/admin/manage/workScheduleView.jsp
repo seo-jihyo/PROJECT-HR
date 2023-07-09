@@ -14,6 +14,45 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
+<style type="text/css">
+dialog{
+	width: 520px;
+	height: 410px;
+
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.schedule-table {
+	padding: 20px 20px;
+	width: 100%;
+}
+.schedule-table tr {
+	margin: 5px;
+}
+.schedule-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.scheduleadd{
+	height: 25px;
+	border: 1px solid black;
+}
+.schedule-area{
+	width: 300px;
+	height: 90px;
+	border: 1px solid black;
+}
+.schedule-table th{
+		text-align: left;
+}
+.modaltwo{
+	letter-spacing: 58px;
+	padding-right: 0px;
+}
+</style>
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
@@ -30,8 +69,7 @@
             </select>
             <input type="text" class="search searchs">
             <input type="button" class="seachbtn" value="검 색">
-        <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
-        근무일정 유형 추가하기</label>
+        <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+ 근무일정 유형 추가하기</label>
         <div class="modal">
             <div>
                 <h3>근무일정 유형 추가하기</h3>
@@ -118,7 +156,54 @@
         </tbody>
     </table>
 </section>
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/modal.js"></script>
+
+	<!-- 수정 dialog -->
+	<dialog>
+	<h2 class="diatitle">근무일정 유형</h2>
+	<hr>
+	<form method="dialog">
+	<table class="schedule-table">
+							<tr class="schedule-tr1">
+								<th>근로일정 유형명</th>
+								<td><input type="text" class="scheduleadd" name=""></td>
+							</tr>
+							<tr class="schedule-tr1">
+								<th class="modaltwo">부서</th>
+								<td><input type="text" class="scheduleadd" name=""></td>
+							</tr>
+							<tr class="schedule-tr1">
+								<th class="modaltwo">직급</th>
+								<td><input type="text" class="scheduleadd" name=""></td>
+							</tr>
+							<tr class="schedule-tr1">
+								<th class="modaltwo">메모</th>
+								<td><input type="text" class="schedule-area" value="" name=""></td>
+							</tr>
+						</table>
+		<hr>
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button" class="custom-btn btn-10">삭제하기</button>
+				<button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+			</div>
+		</div>
+	</form>
+	</dialog>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
+
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".sec-table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
+
+	function dialogClose(){
+		dialog.close();
+	}
+	
+</script>
 </body>
 </html>
