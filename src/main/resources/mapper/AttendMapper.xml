@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+    <insert id="insertAttendance" parameterType="com.kosa.hrsystem.dto.AttendanceDTO">
+		insert into attendance(att_num,emp_num,att_status,go_work) values (attSeq.nextval,#{emp_num},#{att_status},sysdate);
+	</insert>
+
+	<update id="updateAttendance" parameterType="com.kosa.hrsystem.dto.AttendanceDTO">
+		update attendance set att_status=#{att_status}, leave_date=sysdate where emp_num=#{emp_num} and leave_date is null
+	</update>
+</mapper>
