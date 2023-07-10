@@ -103,31 +103,27 @@ dialog{
 					<hr>
 					
 
-					<form method="post" action="/vacationtype.do" id="frm">
+					<form method="post" action="/vacationtypeok.do" id="frm">
 						<table class="vactype-table ">
 							<tr class="vactype-tr1">
-								<th>휴가유형번호</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
 								<th class="three">휴가명</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
+								<td><input type="text" class="vactypeadd" name="vctn_name"></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="two">부서</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
+								<td><input type="text" class="vactypeadd" name="dept"></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="two">직급</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
+								<td><input type="text" class="vactypeadd" name="rank"></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">유급시간</th>
-								<td><input type="number" class="vactypeadd" value="8" name=""></td>
+								<td><input type="number" class="vactypeadd" value="8" name="vctn_time"></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">차감일수</th>
-								<td><input type="number" class="vactypeadd" name=""></td>
+								<td><input type="number" class="vactypeadd" name="deduction_day"></td>
 							</tr>
 
 						</table>
@@ -172,7 +168,7 @@ dialog{
 					>
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td>${vacationTypeList.vctn_type_num}</td>
+ 						<td>${vacationTypeList.vctn_type_num}</td>
 						<td>${vacationTypeList.vctn_name}</td>
 						<td>${vacationTypeList.dept}</td>
 						<td>${vacationTypeList.rank}</td>
@@ -199,8 +195,8 @@ dialog{
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" class="custom-btn btn-10">수정하기</button>
-				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
 				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
@@ -230,27 +226,28 @@ dialog{
 		let str = `
 		<tr class="vactype-tr1">
 			<th>휴가유형번호</th>
-			<td><input type="text" class="vactypeadd" value="`+$vctnTypeNum+`"></td>
+			<td><input type="text" class="vactypeadd" name="vctn_type_num" value="`+$vctnTypeNum+`" readonly></td>
 		</tr>
+
 		<tr class="vactype-tr1">
 			<th class="three">휴가명</th>
-			<td><input type="text" class="vactypeadd" value="`+$vctnName+`"></td>
+			<td><input type="text" class="vactypeadd" name="vctn_name" value="`+$vctnName+`"></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="modaltwo">부서</th>
-			<td><input type="text" class="vactypeadd" value="`+$dept+`"></td>
+			<td><input type="text" class="vactypeadd" name="dept" value="`+$dept+`"></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="modaltwo">직급</th>
-			<td><input type="text" class="vactypeadd" value="`+$rank+`"></td>
+			<td><input type="text" class="vactypeadd" name="rank" value="`+$rank+`"></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="four">유급시간</th>
-			<td><input type="number" class="vactypeadd" value="`+$vctnTime+`"></td>
+			<td><input type="number" class="vactypeadd" name="vctn_time" value="`+$vctnTime+`"></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="four">차감일수</th>
-			<td><input type="number" class="vactypeadd" value="`+$deductionDay+`"></td>
+			<td><input type="number" class="vactypeadd" name="deduction_day" value="`+$deductionDay+`"></td>
 		</tr> 
 			`;
 
@@ -260,6 +257,17 @@ dialog{
 	function resetForm() {
 		  $('#frm')[0].reset();
 	}
+	  const $form = $('#frm2');
+	  $(document).on('click','#updateBtn',function (){
+	     $form.attr('action','/vacationTypeUpdate.do')
+	     $form.attr('method','post')
+	     $form.submit()
+	  })
+	  $(document).on('click','#deleteBtn',function (){
+	     $form.attr('action','/vacationTypeDelete.do')
+	     $form.attr('method','post')
+	     $form.submit()
+	  })
 	
 </script>
 </body>
