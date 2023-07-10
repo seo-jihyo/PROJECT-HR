@@ -48,9 +48,9 @@ public class EmpDAO {
     }
     
     // 직원 삭제하기
-    public int deleteEmp(EmpDTO dto) throws Exception {
+    public int deleteEmp(int emp_num) throws Exception {
     	SqlSession sqlSession = factory.openSession(true);
-    	int result = sqlSession.delete("deleteEmp", dto);
+    	int result = sqlSession.delete("deleteEmp", emp_num);
     	sqlSession.close();
     	System.out.println(result);
     	return result;
