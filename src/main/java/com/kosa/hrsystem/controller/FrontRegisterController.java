@@ -71,6 +71,11 @@ public class FrontRegisterController extends HttpServlet {
         	// 추가하는 서비스
         	action = new DeptOkService();
         	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/vacationtypeok.do")) {
+        	// 휴가 유형 추가하는 서비스
+        	action = new VacationTypeOkService();
+        	forward = action.execute(request, response);
+        	
         } else if (urlcommand.equals("/rank.do")) {
         	action = new RankService();
         	forward = action.execute(request, response);
@@ -80,13 +85,31 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/dept.do")) {
         	action = new DeptService();
         	forward = action.execute(request, response);
+
         } else if (urlcommand.equals("/empupdate.do")) {
         	action = new EmpUpdateService();
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
         	action = new EmpDeleteService();
         	forward = action.execute(request, response);
-        } 
+        
+
+        } else if (urlcommand.equals("/vacationtype.do")) {
+        	action = new VacationTypeService();
+        	forward = action.execute(request, response);
+        }
+
+        else if (urlcommand.equals("/vacationTypeUpdate.do")) {
+        	// 휴가 유형 업데이트
+        	action = new VacationTypeUpdateService();
+        	forward = action.execute(request, response);
+        }
+        
+        else if (urlcommand.equals("/vacationTypeDelete.do")) {
+        	// 휴가 유형 삭제
+        	action = new VacationTypeDeleteService();
+        	forward = action.execute(request, response);
+        }
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"

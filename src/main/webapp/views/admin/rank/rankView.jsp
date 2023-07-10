@@ -177,6 +177,7 @@ dialog{
 
 	<h2 class="diatitle">직급 변경하기</h2>
 	<hr>
+
 	<form method="get" id="frm2">
 		<table class="rank-table">
 
