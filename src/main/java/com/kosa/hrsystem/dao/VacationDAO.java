@@ -22,7 +22,8 @@ public class VacationDAO {
     public int insertVctnType(VacationTypeDTO dto){
         SqlSession session = factory.openSession();
         int result = session.insert("insertVctnType",dto);
-
+        System.out.println(result);
+        
         session.close();
         return result;
     }

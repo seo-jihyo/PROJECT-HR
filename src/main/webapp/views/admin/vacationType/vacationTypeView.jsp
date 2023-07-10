@@ -103,8 +103,8 @@ dialog{
 					<hr>
 					
 
-					<form method="" action="" id="frm">
-						<table class="vactype-table">
+					<form method="post" action="/vacationtype.do" id="frm">
+						<table class="vactype-table ">
 							<tr class="vactype-tr1">
 								<th>휴가유형번호</th>
 								<td><input type="text" class="vactypeadd" name=""></td>
@@ -129,11 +129,7 @@ dialog{
 								<th class="four">차감일수</th>
 								<td><input type="number" class="vactypeadd" name=""></td>
 							</tr>
-							<tr>
-								<th class="four">휴가사유</th>
-								<td><textarea name="" class="vactype-area" cols="70" rows="4"></textarea></td>
 
-							</tr>
 						</table>
 					</form>
 
@@ -158,23 +154,32 @@ dialog{
 							onclick="allCheckboxes('chk[]', this.checked)"></th>
 						<th>휴가유형번호</th>
 						<th>휴가명</th>
+						<th>부서</th>
 						<th>직급</th>
 						<th>유급시간</th>
 						<th>차감일수</th>
-						<th>휴가사유</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="asd">
+				<c:forEach var="vacationTypeList" items="${list}"> 
+					<tr class="asd"
+						data-vctn-type-num="${vacationTypeList.vctn_type_num}"
+						data-vctn-name="${vacationTypeList.vctn_name}"
+						data-dept="${vacationTypeList.dept}"
+						data-rank="${vacationTypeList.rank}"
+						data-vctn-time="${vacationTypeList.vctn_time}"
+						data-deduction-day="${vacationTypeList.deduction_day}"
+					>
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${vacationTypeList.vctn_type_num}</td>
+						<td>${vacationTypeList.vctn_name}</td>
+						<td>${vacationTypeList.dept}</td>
+						<td>${vacationTypeList.rank}</td>
+						<td>${vacationTypeList.vctn_time}</td>
+						<td>${vacationTypeList.deduction_day}</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -186,38 +191,10 @@ dialog{
 	<hr>
 
 
-	<form method="dialog">
-	<table class="vactype-table">
-							<tr class="vactype-tr1">
-								<th>휴가유형번호</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="three">휴가명</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="modaltwo">부서</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="modaltwo">직급</th>
-								<td><input type="text" class="vactypeadd" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="four">유급시간</th>
-								<td><input type="number" class="vactypeadd" value="" name=""></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="four">차감일수</th>
-								<td><input type="number" class="vactypeadd" name=""></td>
-							</tr>
-							<tr>
-								<th class="four">휴가사유</th>
-								<td><textarea name="" class="vactype-area" cols="70" rows="4"></textarea></td>
+	<form method="get" id="frm2">
+			<table class="vactype-table">
 
-							</tr>
-						</table>
+			</table>
 
 		<hr>
 		<div class="bottom-btn">
@@ -232,7 +209,6 @@ dialog{
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
-
 	const dialog = document.querySelector("dialog");
 	$(document).on("click", ".table tbody tr", function () {
 		dialog.showModal();
@@ -242,9 +218,49 @@ dialog{
 	function dialogClose(){
 		dialog.close();
 	}
+
+	$(document).on("click", ".table tbody tr", function () {
+ 		$vctnTypeNum = $(this).data("vctn-type-num")
+		$vctnName= $(this).data("vctn-name")
+		$dept= $(this).data("dept")
+		$rank= $(this).data("rank")
+		$vctnTime= $(this).data("vctn-time")
+		$deductionDay= $(this).data("deduction-day")
+
+		let str = `
+		<tr class="vactype-tr1">
+			<th>휴가유형번호</th>
+			<td><input type="text" class="vactypeadd" value="`+$vctnTypeNum+`"></td>
+		</tr>
+		<tr class="vactype-tr1">
+			<th class="three">휴가명</th>
+			<td><input type="text" class="vactypeadd" value="`+$vctnName+`"></td>
+		</tr>
+		<tr class="vactype-tr1">
+			<th class="modaltwo">부서</th>
+			<td><input type="text" class="vactypeadd" value="`+$dept+`"></td>
+		</tr>
+		<tr class="vactype-tr1">
+			<th class="modaltwo">직급</th>
+			<td><input type="text" class="vactypeadd" value="`+$rank+`"></td>
+		</tr>
+		<tr class="vactype-tr1">
+			<th class="four">유급시간</th>
+			<td><input type="number" class="vactypeadd" value="`+$vctnTime+`"></td>
+		</tr>
+		<tr class="vactype-tr1">
+			<th class="four">차감일수</th>
+			<td><input type="number" class="vactypeadd" value="`+$deductionDay+`"></td>
+		</tr> 
+			`;
+
+		$('dialog table').html(str)
+	})
+
 	function resetForm() {
 		  $('#frm')[0].reset();
-	  }
+	}
+	
 </script>
 </body>
 </html>
