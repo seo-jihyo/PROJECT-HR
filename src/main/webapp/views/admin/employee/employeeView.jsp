@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
+
 .profile {
 	padding: 20px 20px;
 	width: 100%;
@@ -85,7 +86,14 @@
 	cursor : pointer;
 
 }
-
+.custom{
+	border : 1px solid black;
+	height: 25px;
+	width: 150px; 
+}
+.modal{
+	width:100%;
+}
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -128,8 +136,7 @@
 						<form method="get" action="/">
 							<div class="tabs">
 								<a data-tab="tab-1">기본정보</a> 
-								<a data-tab="tab-2">로그인 정보</a> 
-								<a data-tab="tab-3">직원 커스텀 필드</a> 
+								<a data-tab="tab-2">직원 커스텀 필드</a> 
 							</div>
 							<hr>
 							<div class="modal_nav" id="tab-1" style="display: block;">
@@ -213,6 +220,64 @@
 
 								</form>
 							</div>
+							<div class="modal_nav" id="tab-2" style="display: none;">
+								<form action="" id="직원 커스텀 필드">
+								<h4>학력</h4>
+								<label for="edu_num">학력번호</label>
+								<label for="school_name">학교명</label>
+								<label for="school_dept">학과명</label>
+								<label for="addmissions_day">입학년월</label>
+								<label for="graduation_day">졸업년월</label>
+								<label for="graduation_status">졸업상태</label>
+								<label for="remarks">비고</label>
+								<br>
+								<input type="text" class="custom" id="edu_num">
+								<input type="text" class="custom" id="school_name">
+								<input type="text" class="custom" id="school_dept">
+								<input type="date" class="custom" id="addmissions_day">
+								<input type="date" class="custom" id="graduation_day">
+								<select class="custom" id="graduation_status">
+									<option></option>
+									<option></option>
+									<option></option>
+									<option></option>
+								</select>
+								<input type="text" class="custom" id="remarks">
+								<br>
+								
+								<h4>경력</h4>
+								<label>경력번호</label>
+								<label>회사명</label>
+								<label>부서명</label>
+								<label>직급</label>
+								<label>주요업무</label>
+								<label>입사년월</label>
+								<label>퇴사년월</label>								
+								<label>비고</label>
+								<br>
+								<input type="text" class="custom">
+								<input type="text" class="custom">
+								<input type="text" class="custom">
+								<input type="text" class="custom">
+								<input type="text" class="custom">								
+								<input type="date" class="custom">
+								<input type="date" class="custom">								
+								<input type="text" class="custom">
+								<br>
+								<h4>자격증</h4>
+								<label>자격증번호</label>
+								<label>자격증명</label>
+								<label>발행처</label>
+								<label>취득년월</label>
+								<label>비고</label>
+								<br>
+								<input type="text" class="custom">
+								<input type="text" class="custom">
+								<input type="text" class="custom">
+								<input type="date" class="custom">
+								<input type="text" class="custom">
+								</form>
+							</div>
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
@@ -229,7 +294,7 @@
 
 
 		<div class="tab-scroll">
-			<table class="sec-table table-hover">
+			<table class="sec-table table-hover table">
 				<thead class="thead">
 
 					<tr>
@@ -279,12 +344,25 @@
 			</table>
 		</div>
 
-
-
-
-
-
 	</section>
+	<dialog>
+	<h2 class="diatitle">직급 변경하기</h2>
+	<hr>
+	<form method="get" id="frm2">
+		<table class="employee-table">
+
+		</table>
+		<hr>
+		<div class="bottom-btn">
+			<div class="right-btn">
+				<button type="submit" class="custom-btn btn-10">수정하기</button>
+				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+			</div>
+		</div>
+	</form>
+
+	</dialog>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
