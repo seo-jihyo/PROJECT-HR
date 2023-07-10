@@ -1,4 +1,4 @@
-package com.kosa.hrsystem.controller;
+/*package com.kosa.hrsystem.controller;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -9,4 +9,4 @@ public class UserController {
         super();
 
     }
-}
+}*/
