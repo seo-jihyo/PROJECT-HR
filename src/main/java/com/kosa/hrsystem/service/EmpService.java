@@ -20,14 +20,13 @@ public class EmpService implements Action {
 		List<EmpDTO> list = dao.selectAllEmp();
 		
 		request.setAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/views/admin/employee/employeeView.jsp");
 		return forward;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }
