@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
+import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 
 public class WorkScheduleDAO {
@@ -26,4 +27,37 @@ public class WorkScheduleDAO {
 		sqlSession.close();
 		return list;
 	}
+
+	//WorkScheduleType - read
+	  public List<WorkScheduleTypeDTO> selectAllWorkType() throws Exception {
+	  SqlSession sqlSession = factory.openSession(true); List<WorkScheduleTypeDTO>
+	  list = null; list = sqlSession.selectList("selectAllWorkType");
+	  sqlSession.close(); return list; 
+	  
+	  }
+	// WorkScheduleType - insert
+		public int insertWorkScheduleType(WorkScheduleTypeDTO dto) throws Exception {
+			SqlSession sqlSession = factory.openSession(true); // 자동커밋
+			int result = sqlSession.insert("insertWorkScheduleType", dto);
+			System.out.println(result);
+
+			// sqlSession.commit(); 수동커밋인 경우
+			sqlSession.close();
+			return result;
+		}
+	// WorkScheduleType - update
+		public int updateWorkScheduleType(WorkScheduleTypeDTO dto) throws Exception{
+			SqlSession sqlSession = factory.openSession(true);
+			int result = sqlSession.update("updateWorkScheduleType", dto);
+			sqlSession.close();
+			return result;
+		}
+		// WorkScheduleType - delete
+		public int deleteWorkScheduleType(int work_sch_type_num) throws Exception{
+			SqlSession sqlSession = factory.openSession(true);
+			int result = sqlSession.delete("deleteWorkScheduleType", work_sch_type_num);
+			sqlSession.close();
+			System.out.println(result);
+			return result;
+		}
 }

@@ -43,7 +43,7 @@
             <li><a href="/views/admin/vacationType/vacationTypeView.jsp">휴가유형</a></li>
             <li><a href="/views/admin/manage/workView.jsp">근로정보</a></li>
             <li><a href="/views/admin/manage/workScheduleView.jsp">근무일정유형</a></li>
-            <li><a href="/views/admin/manage/workSchedulTempView.jsp">근무일정템플릿</a></li>
+            <li><a href="/views/admin/manage/workScheduleTempView.jsp">근무일정템플릿</a></li>
             <li><a href="/views/admin/manage/vacationRulesView.jsp">휴가발생규칙</a></li>
         </ul>
     </li>

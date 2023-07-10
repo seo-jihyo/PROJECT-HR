@@ -16,6 +16,48 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
 
+<style type="text/css">
+dialog{
+	width: 560px;
+	height: 500px;
+
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.work-table {
+	padding: 20px 20px;
+	width: 100%;
+}
+.work-table tr {
+	margin: 5px;
+}
+.work-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.workadd{
+	height: 25px;
+	border: 1px solid black;
+}
+.work-area{
+	width: 300px;
+	height: 90px;
+	border: 1px solid black;
+}
+.work-table th{
+		text-align: left;
+}
+.modaltwo{
+	letter-spacing: 58px;
+	padding-right: 0px;
+}
+.four{
+	letter-spacing: 10px;
+}
+</style> 
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
@@ -128,7 +170,7 @@
         </tbody>
     </table>
 </section>
-
+<!-- 수정 dialog -->
 <dialog>
     <h3>근로정보</h3>
     <hr>
@@ -142,12 +184,13 @@
         <button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
     </form>
 </dialog>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
 
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/modal.js"></script>
-<script>
     const dialog = document.querySelector("dialog");
-    $(document).on("click", ".table tbody tr", function () {
+    // dialogPolyfill.registerDialog(dialog);
+    $(document).on("click", ".sec-table tbody tr", function () {
         dialog.showModal();
         console.log(this);
 

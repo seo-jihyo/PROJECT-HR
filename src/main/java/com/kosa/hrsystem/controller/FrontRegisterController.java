@@ -1,6 +1,5 @@
 package com.kosa.hrsystem.controller;
 
-
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
@@ -68,9 +67,15 @@ public class FrontRegisterController extends HttpServlet {
             action = new RankOkService();
             forward = action.execute(request, response);
         } else if (urlcommand.equals("/deptok.do")) {
-            // 추가하는 서비스
-            action = new DeptOkService();
-            forward = action.execute(request, response);
+
+        	// 추가하는 서비스
+        	action = new DeptOkService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/vacationtypeok.do")) {
+        	// 휴가 유형 추가하는 서비스
+        	action = new VacationTypeOkService();
+        	forward = action.execute(request, response);
+        	
         } else if (urlcommand.equals("/rank.do")) {
             action = new RankService();
             forward = action.execute(request, response);
@@ -84,8 +89,40 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/work.do")) {
             action = new WorkService();
             forward = action.execute(request, response);
+        } else if (urlcommand.equals("/empupdate.do")) {
+        	action = new EmpUpdateService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/empdelete.do")) {
+        	action = new EmpDeleteService();
+        } else if (urlcommand.equals("/worktype.do")) {
+        	action = new WorkScheduleTypeService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeok.do")) {
+        	action = new WorkScheduleTypeOkService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeupdate.do")) {
+        	action = new WorkScheduleTypeUpdateService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypedelete.do")) {
+        	action = new WorkScheduleTypeDeleteService();
+        	forward = action.execute(request, response);
+
+        } else if (urlcommand.equals("/vacationtype.do")) {
+        	action = new VacationTypeService();
+        	forward = action.execute(request, response);
         }
 
+        else if (urlcommand.equals("/vacationTypeUpdate.do")) {
+        	// 휴가 유형 업데이트
+        	action = new VacationTypeUpdateService();
+        	forward = action.execute(request, response);
+        }
+        
+        else if (urlcommand.equals("/vacationTypeDelete.do")) {
+        	// 휴가 유형 삭제
+        	action = new VacationTypeDeleteService();
+        	forward = action.execute(request, response);
+        }
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +19,7 @@
 <style type="text/css">
 dialog{
 	width: 520px;
-	height: 410px;
+	height: 310px;
 
 }
 .diatitle{
@@ -65,7 +67,7 @@ dialog{
                 <option>유형명</option>
                 <option>부서명</option>
                 <option>직급명</option>
-                <option>메모</option>
+               <!--  <option>메모</option> -->
             </select>
             <input type="text" class="search searchs">
             <input type="button" class="seachbtn" value="검 색">
@@ -76,10 +78,10 @@ dialog{
                 <label for="popup">X</label>
                 <hr>
                 <div class="modal_nav">
-                    <form action="">
+                    <form method="post" action="/worktypeok.do" id="frm">
                         <table>
                             <tr>
-                                <td>근무일정 유형 명</td>
+                                <td>근무일정 유형명</td>
                                 <td><input type="text" id="work_name" name="work_name"></td>
                             </tr>
                             <tr>
@@ -102,19 +104,14 @@ dialog{
                                     </select>
                                 </td>
                             </tr>
-                            <tr>
+                          <!--   <tr>
                                 <td>메모</td>
                                 <td>
                                     <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </table>
                         <hr>
-<%--                        <input type="checkbox" name="출근가능여부" id="출근가능여부"> 출근가능여부 <br>--%>
-<%--                        <input type="checkbox" name="연장근무일정 여부" id="연장근무일정 여부"> 연장근무일정 여부 <br>--%>
-<%--                        <input type="checkbox" name="휴일근무 미적용 여부" id="휴일근무 미적용 여부"> 휴일근무 미적용 여부 <br>--%>
-<%--                        <input type="checkbox" name="간주근로 여부" id="간주근로 여부"> 간주근로 여부 <br>--%>
-<%--                        <input type="checkbox" name="출근 전 확인사항" id="출근 전 확인사항"> 출근 전 확인사항 <br>--%>
                         <div class="bottom-btn">
                             <div class="right-btn">
                                 <button class="custom-btn btn-10" form="frm">추가하기</button>
@@ -131,29 +128,26 @@ dialog{
     <table class="sec-table table-hover">
         <thead>
         <tr>
-            <th><input type="checkbox"></th>
+            <th><input type="checkbox" onclick="allCheckboxes('chk[]', this.checked)"></th>
             <th>근로일정 유형명</th>
             <th>부서</th>
             <th>직급</th>
-            <th>메모</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>외근</td>
-            <td>프론트팀</td>
-            <td>모든직급</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>재택근무</td>
-            <td>백엔드팁</td>
-            <td>모든직급</td>
-            <td></td>
-        </tr>
-        </tbody>
+				<c:forEach var="WSTList" items="${list}">
+					<tr data-num="${WSTList.work_sch_type_num}"
+						data-name="${WSTList.work_name}" 
+						data-dept="${WSTList.dept}"
+						data-rank="${WSTList.rank}">
+						<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
+						<td>${WSTList.work_name}</td>
+						<td>${WSTList.dept}</td>
+						<td>${WSTList.rank}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
     </table>
 </section>
 
@@ -161,30 +155,15 @@ dialog{
 	<dialog>
 	<h2 class="diatitle">근무일정 유형</h2>
 	<hr>
-	<form method="dialog">
+	<form method="get" id="frm2">
 	<table class="schedule-table">
-							<tr class="schedule-tr1">
-								<th>근로일정 유형명</th>
-								<td><input type="text" class="scheduleadd" name=""></td>
-							</tr>
-							<tr class="schedule-tr1">
-								<th class="modaltwo">부서</th>
-								<td><input type="text" class="scheduleadd" name=""></td>
-							</tr>
-							<tr class="schedule-tr1">
-								<th class="modaltwo">직급</th>
-								<td><input type="text" class="scheduleadd" name=""></td>
-							</tr>
-							<tr class="schedule-tr1">
-								<th class="modaltwo">메모</th>
-								<td><input type="text" class="schedule-area" value="" name=""></td>
-							</tr>
+		
 						</table>
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" class="custom-btn btn-10">수정하기</button>
-				<button type="button" class="custom-btn btn-10">삭제하기</button>
+				<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
 				<button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
@@ -204,6 +183,49 @@ dialog{
 		dialog.close();
 	}
 	
+	$(document).on("click", ".sec-table tbody tr", function () {
+		$num = $(this).data("num")
+		$name = $(this).data("name")
+		$dept = $(this).data("dept")
+		$rank = $(this).data("rank")
+
+		let str = `
+			<tr class="rank-tr1">
+		
+				<tr class="rank-tr1">
+					
+					<th>근로일정유형명</td>
+					
+					<td><input type="hidden" value="`+ $num + `" name="work_sch_type_num">
+						<input type="text" class="rankadd" name="name" value="`+$name+`"></td>
+				</tr>
+				<tr class="rank-tr1">
+					<th class="three">부서</td>
+					<td><input type="text" class="rankadd" name="dept" value="`+$dept+`"></td>
+				</tr>
+				<tr class="rank-tr1">
+					<th class="three">직급</td>
+					<td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td>
+				</tr>
+			`;
+
+		$('dialog table').html(str) 
+	})
+function resetForm() {
+	  $('#frm')[0].reset();
+}
+	const $form = $('#frm2');
+	
+	$(document).on('click', '#updateBtn', function() {
+		$form.attr('action','worktypeupdate.do')
+		$form.attr('method','post')
+		$form.submit()
+	})
+	$(document).on('click', '#deleteBtn', function() {
+		$form.attr('action','worktypedelete.do')
+		$form.attr('method','post')
+		$form.submit()
+	})
 </script>
 </body>
 </html>

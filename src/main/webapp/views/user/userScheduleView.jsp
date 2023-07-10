@@ -58,19 +58,23 @@
 	}
  	.labelBtn {
 	float: right;
-	margin-right: 90px;
+	margin-right: 6%;
 	} 
 	.btn {
 	float: center;
+	}
+	.title{
+	margin: auto;
+	margin-top: 20px;
+	width: 90%;
 	}
   </style>
 </head>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
-<section id="body-pd" class="body-pd">
 <!-- 모달창 -->
 <!-- <nav> -->
-<h2>근무일정</h2>
+<h1 class="title">근무일정</h1>
 <nav>
 <input type="checkbox" id="popup"> <label class="labelBtn" for="popup"> 근무일정 추가하기</label>
 
@@ -161,7 +165,7 @@
         var calendarEl = $('#calendar')[0];
         // full-calendar 생성하기
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          height: '700px', // calendar 높이 설정
+          height: '630px', // calendar 높이 설정
           expandRows: true, // 화면에 맞게 높이 재설정
           slotMinTime: '08:00', // Day 캘린더에서 시작 시간
           slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
@@ -263,7 +267,6 @@
       });
     })();
   </script>
-</section>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>

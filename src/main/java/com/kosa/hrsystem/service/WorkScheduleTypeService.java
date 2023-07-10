@@ -7,25 +7,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.dao.VacationDAO;
-import com.kosa.hrsystem.dto.VacationTypeDTO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
+import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 
-public class VacationTypeService implements Action {
+public class WorkScheduleTypeService implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		VacationDAO dao = new VacationDAO();
-		try {
-			List<VacationTypeDTO> list = dao.selectAll();
+		WorkScheduleDAO dao = new WorkScheduleDAO();
 
+		try {
+			List<WorkScheduleTypeDTO> list = dao.selectAllWorkType();
 			request.setAttribute("list", list);
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/views/admin/vacationType/vacationTypeView.jsp");
+			forward.setPath("/views/admin/manage/workScheduleView.jsp");
 			return forward;
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException();
 		}
 	}
-
 }
