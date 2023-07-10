@@ -123,7 +123,7 @@ dialog{
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">차감일수</th>
-								<td><input type="number" class="vactypeadd" name="deduction_day"></td>
+								<td><input type="text" class="vactypeadd" name="deduction_day"></td>
 							</tr>
 
 						</table>
@@ -247,7 +247,7 @@ dialog{
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="four">차감일수</th>
-			<td><input type="number" class="vactypeadd" name="deduction_day" value="`+$deductionDay+`"></td>
+			<td><input type="text" class="vactypeadd" name="deduction_day" value="`+$deductionDay+`"></td>
 		</tr> 
 			`;
 
