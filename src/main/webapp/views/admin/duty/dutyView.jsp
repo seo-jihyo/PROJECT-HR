@@ -217,7 +217,7 @@ dialog{
 		let str = `
 			<tr class="rank-tr1">
 					<th>상위코드</td>
-					<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
+					<td><input type="t	ext" class="rankadd" name="parent_code" value="`+$code+`"></td>
 				</tr>
 				<tr class="rank-tr1">
 					<th>코드번호</td>

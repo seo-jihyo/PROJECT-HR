@@ -59,6 +59,10 @@ public class FrontRegisterController extends HttpServlet {
             action = new AttendanceOkService();
             action.execute(request, response);
 
+        } else if (urlcommand.equals("/empok.do")) {
+        	// 직원 추가하기
+        	action = new EmpOkService();
+        	forward = action.execute(request, response);
         } else if (urlcommand.equals("/rankok.do")) {
         	// 추가하는 서비스
         	action = new RankOkService();
@@ -75,6 +79,12 @@ public class FrontRegisterController extends HttpServlet {
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/dept.do")) {
         	action = new DeptService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/empupdate.do")) {
+        	action = new EmpUpdateService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/empdelete.do")) {
+        	action = new EmpDeleteService();
         	forward = action.execute(request, response);
         } 
 

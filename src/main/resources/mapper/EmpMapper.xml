@@ -10,13 +10,27 @@
 	<select id="selectAllEmp" resultType="com.kosa.hrsystem.dto.EmpDTO">
 		SELECT * FROM EMP
 	</select>
-	<insert id="insertEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
-		<!-- insert into emp values(#{},#{},#{},#{},#{},#{},#{},#{},#{},#{},) -->
+	<insert id="insertEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO" >
+		insert into EMP(emp_num,emp_name,email,pwd,hire_date,departure_date,reason,direct_num,phone,regist_num,annual_num,post_code,address,detail_address,permission_type,dept,rank) values(
+			#{emp_num},#{emp_name},#{email},#{pwd},#{hire_date},#{departure_date, jdbcType=DATE},#{reason},#{direct_num},#{phone},#{regist_num},12.0,#{post_code},#{address},#{detail_address},#{permission_type},#{dept},#{rank})
 	</insert>
 	<update id="updateEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
-
+		update EMP set emp_name = #{emp_name},
+					 dept = #{dept},
+					 rank = #{rank},
+					 phone = #{phone},
+					 permission_type = #{permission_type},
+					 direct_num = #{direct_num},
+					 post_code = #{post_code},
+					 address = #{address},
+					 detail_address = #{detail_address},
+					 reason = #{reason, jdbcType=VARCHAR},
+					 remarks = #{remarks, jdbcType=VARCHAR},
+					 hire_date = #{hire_date},
+					 departure_date = #{departure_date, jdbcType=DATE}
+					 where emp_num = #{emp_num}	
 	</update>
 	<delete id="deleteEmp" parameterType="Integer">
-		delete * from EMP where emp_num = #{emp_num}
+		delete from EMP where emp_num = #{emp_num}
 	</delete>
 </mapper>
