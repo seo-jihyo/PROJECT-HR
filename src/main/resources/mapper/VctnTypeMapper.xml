@@ -18,15 +18,15 @@
 			vacation_type v
 				JOIN code_table d ON v.dept = d.code_name
 				JOIN code_table r ON v.rank = r.code_name; -->
-		select * from vacation_types
+		select * from vacation_type order by vctn_type_num
 	</select>
 	<insert id="insertVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
-		insert into vacation_type(vctn_type_num,vctn_name,dept,rank,vctn_time,deduction_day) values (#{vctn_type_num},#{vctn_name},#{dept},#{rank},#{vctn_time},#{deduction_day})  
+		insert into vacation_type(vctn_type_num,vctn_name,dept,rank,vctn_time,deduction_day) values (vacation_type_seq.nextval,#{vctn_name},#{dept},#{rank},#{vctn_time},#{deduction_day})  
 	</insert>
 	<update id="updateVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
-
+		update vacation_type set vctn_name = #{vctn_name}, dept=#{dept}, rank=#{rank},vctn_time=#{vctn_time}, deduction_day=#{deduction_day} where vctn_type_num = #{vctn_type_num}
 	</update>
 	<delete id="deleteVctnType" parameterType="Integer">
-
+		delete from vacation_type where vctn_type_num = #{num}
 	</delete>
 </mapper>

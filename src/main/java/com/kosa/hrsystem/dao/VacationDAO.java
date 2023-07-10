@@ -20,7 +20,7 @@ public class VacationDAO {
     }
     //휴가 일정 유형 삽입
     public int insertVctnType(VacationTypeDTO dto){
-        SqlSession session = factory.openSession();
+        SqlSession session = factory.openSession(true);
         int result = session.insert("insertVctnType",dto);
         System.out.println(result);
         
@@ -29,7 +29,7 @@ public class VacationDAO {
     }
     //휴가 일정 유형 수정
     public int updateVctnType(VacationTypeDTO dto){
-        SqlSession session = factory.openSession();
+        SqlSession session = factory.openSession(true);
         int result = session.insert("updateVctnType",dto);
 
         session.close();
@@ -37,7 +37,7 @@ public class VacationDAO {
     }
     //휴가 일정 유형 삭제
     public int deleteVctnType(int num){
-        SqlSession session = factory.openSession();
+        SqlSession session = factory.openSession(true);
         int result = session.insert("deleteVctnType",num);
 
         session.close();
