@@ -91,7 +91,7 @@ dialog{
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
+			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs" for="popup">+
 				휴가 유형 관리</label>
 
 			<div class="modal" style="display: hidden;">
@@ -103,7 +103,7 @@ dialog{
 					<hr>
 					
 
-					<form method="" action="" id="">
+					<form method="" action="" id="frm">
 						<table class="vactype-table">
 							<tr class="vactype-tr1">
 								<th>휴가유형번호</th>
@@ -242,7 +242,9 @@ dialog{
 	function dialogClose(){
 		dialog.close();
 	}
-	
+	function resetForm() {
+		  $('#frm')[0].reset();
+	  }
 </script>
 </body>
 </html>

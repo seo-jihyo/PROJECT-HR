@@ -78,7 +78,7 @@
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup"><label class="labelBtn" for="popup">+
+			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn" for="popup">+
 				휴가 관리하기</label>
 			<div class="modal" style="display: hidden;">
 				<div class="modal-content">
@@ -86,7 +86,7 @@
 					<h1>휴가관리하기</h1>
 					<hr>
 
-					<form method="get" action="/">
+					<form method="get" action="/" id="frm">
 						<table class="vacation-table">
 							<tr class="vacation-tr1">
 								<td>직원</td>
@@ -222,6 +222,9 @@ $(document).on("click", ".table tbody tr", function () {
 
 function dialogClose(){
 	dialog.close();
+}
+function resetForm() {
+	  $('#frm')[0].reset();
 }
 </script>
 <!-- js -->

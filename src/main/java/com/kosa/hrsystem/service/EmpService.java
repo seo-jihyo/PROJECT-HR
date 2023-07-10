@@ -25,8 +25,9 @@ public class EmpService implements Action {
 		forward.setPath("/views/admin/employee/employeeView.jsp");
 		return forward;
 		} catch (Exception e) {
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 }
