@@ -1,28 +1,20 @@
 package com.kosa.hrsystem.controller;
 
-
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.service.*;
+import com.kosa.hrsystem.service.AttendanceOkService;
+import com.kosa.hrsystem.service.loginOkService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("*.do")
-public class FrontRegisterController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    public FrontRegisterController() {
-        super();
-
-    }
-
+public class CommonController {
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
@@ -59,33 +51,7 @@ public class FrontRegisterController extends HttpServlet {
             action = new AttendanceOkService();
             action.execute(request, response);
 
-        } else if (urlcommand.equals("/empok.do")) {
-        	// 직원 추가하기
-        	action = new EmpOkService();
-        	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/rankok.do")) {
-            // 추가하는 서비스
-            action = new RankOkService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/deptok.do")) {
-            // 추가하는 서비스
-            action = new DeptOkService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/rank.do")) {
-            action = new RankService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/emp.do")) {
-            action = new EmpService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/dept.do")) {
-
-            action = new DeptService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/work.do")) {
-            action = new WorkService();
-            forward = action.execute(request, response);
         }
-
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
@@ -98,14 +64,4 @@ public class FrontRegisterController extends HttpServlet {
             }
         }
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doProcess(request, response);
-    }
-
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doProcess(request, response);
-    }
-
 }
