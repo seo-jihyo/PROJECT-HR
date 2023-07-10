@@ -73,7 +73,7 @@
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
+			<input type="checkbox" id="popup" onclick="resetForm()"> <label class="labelBtn" for="popup">+
 				근무일정 추가하기</label>
 			<div class="modal">
 				<div>
@@ -332,6 +332,9 @@ $(document).on("click", ".table tbody tr", function () {
 
 function dialogClose(){
 	dialog.close();
+}
+function resetForm() {
+	  $('#frm')[0].reset();
 }
 </script>
 <script>

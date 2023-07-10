@@ -65,7 +65,7 @@
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
+			<input type="checkbox" id="popup" onclick="resetForm()"> <label class="labelBtn" for="popup">+
 				출퇴근기록 추가하기</label>
 			<div class="modal">
 				<div>
@@ -73,7 +73,7 @@
 					<h1>출퇴근기록 추가하기</h1>
 					<hr>
 
-					<form method="get" action="/">
+					<form method="get" action="/" id="frm">
 						<table class="attend-table">
 							<tr>
 								<td>날짜
@@ -293,6 +293,9 @@ $(document).on("click", ".table tbody tr", function () {
 
 function dialogClose(){
 	dialog.close();
+}
+function resetForm() {
+	  $('#frm')[0].reset();
 }
 </script>
 <!-- js -->

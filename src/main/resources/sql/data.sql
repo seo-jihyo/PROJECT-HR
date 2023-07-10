@@ -1,7 +1,7 @@
 -- 직원
 insert into emp(emp_num,emp_name,pwd,email,address,permission_type) values(1000,'아무개','qwer','q1@qwe.qwe','증산','1');
 insert into emp(emp_num,emp_name,pwd,email,address,permission_type) values(1001,'아무개','qwer','q2@qwe.qwe','증산','0');
-
+insert into emp values(1002,'김철수','qwer','q3@qwe.qwe',sysdate,'','','02-123-1234','010-1212-3232','900000-1000000','3','03012','서울시','종로구 121-121','1','개발부','대리');
 -- 직급 기본 데이터
 select * from code_table order by code_name;
 insert into code_table(parent_code,code_name,code_value,remarks) VALUES ('','A001','직급','직급관련테이블');

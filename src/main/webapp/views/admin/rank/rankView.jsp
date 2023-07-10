@@ -80,7 +80,7 @@ dialog{
 			</select>
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
+			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs" for="popup">+
 				직급 추가하기</label>
 
 			<div class="modal" style="display: hidden;">
@@ -236,6 +236,10 @@ $(document).on("click", ".table tbody tr", function () {
 
 	$('dialog table').html(str)
 })
+
+function resetForm() {
+	  $('#frm')[0].reset();
+}
 </script>
 </body>
 </html>

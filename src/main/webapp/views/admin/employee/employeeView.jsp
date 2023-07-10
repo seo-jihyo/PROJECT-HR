@@ -122,7 +122,7 @@
 					<option value="pay">시급</option>
 					<option value="memo">메모</option>
 				</select> <input type="text" class="search searchs"> <input
-					type="checkbox" id="popup"><label class="labelBtn searchs"
+					type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs"
 					for="popup">+ 직원 추가하기</label>
 				
 				<div class="modal" style="display: hidden;">
@@ -133,14 +133,14 @@
 						<h1>직원 추가하기</h1>
 						<hr>
 
-						<form method="get" action="/">
+						<form method="get" action="/" id="frm">
 							<div class="tabs">
 								<a data-tab="tab-1">기본정보</a> 
 								<a data-tab="tab-2">직원 커스텀 필드</a> 
 							</div>
 							<hr>
 							<div class="modal_nav" id="tab-1" style="display: block;">
-								<form action="" id="기본정보">
+								<form method="get" action="/empok.do" id="기본정보">
 									<table class="profile">
 
 										<tr>
@@ -179,22 +179,22 @@
 
 										<tr>
 											<th class="two">주소</th>
-											<td><input type="text" id="sample6_postcode" class="profile-text" placeholder="우편번호"> </td>
-											<td><input type="button" class="postbtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+											<td><input type="text" id="origin-modal_postcode" class="profile-text" placeholder="우편번호"> </td>
+											<td><input type="button" class="postbtn" data-post-search="origin-modal" value="우편번호 찾기"></td>
 
 										</tr>
 										<tr>
 											<th></th>
-											<td colspan='2'><input type="text" id="sample6_address" class="profile-text addrtext" placeholder="주소"></td>
+											<td colspan='2'><input type="text" id="origin-modal_address" class="profile-text addrtext" placeholder="주소"></td>
 										</tr>
 										<tr>
 											<th></th>
-											<td colspan='2'><input type="text" id="sample6_detailAddress" class="profile-text addrtext" placeholder="상세주소"> </td>
+											<td colspan='2'><input type="text" id="origin-modal_detailAddress" class="profile-text addrtext" placeholder="상세주소"> </td>
 
 										</tr>
 										<tr>
 											<th></th>
-											<td colspan='2'><input type="text" id="sample6_extraAddress" class="profile-text addrtext" placeholder="참고항목"></td>
+											<td colspan='2'><input type="text" id="origin-modal_extraAddress" class="profile-text addrtext" placeholder="참고항목"></td>
 										</tr>
 										<tr>
 											<th class="three">입사일</th>
@@ -314,20 +314,20 @@
 				<tbody>
 					<c:forEach var="empList" items="${list}">
 					<tr class="asd"
-						data-empNum="${empList.emp_num}"
+						data-emp-num="${empList.emp_num}"
 						data-name="${empList.emp_name}"
-						data-registNum="${empList.regist_num}"
-						data-permissionType="${empList.permission_type}"
+						data-regist-num="${empList.regist_num}"
+						data-permission-type="${empList.permission_type}"
 						data-dept="${empList.dept}"
 						data-rank="${empList.rank}"
-						data-workNum="${empList.work_num}"
-						data-hireDate="${empList.hire_date}"
+						data-work-num="${empList.work_num}"
+						data-hire-date="<fmt:formatDate value="${empList.hire_date}" pattern="yyyy-MM-dd"/>"
 						data-phone="${empList.phone}"
-						data-directNum="${empList.direct_num}"
-						data-postCode="${empList.post_code}"
+						data-direct-num="${empList.direct_num}"
+						data-post-code="${empList.post_code}"
 						data-address="${empList.address}"
-						data-detailAddress="${empList.detail_address}"
-						data-annualNum="${empList.annual_num}">
+						data-detail-address="${empList.detail_address}"
+						data-annual-num="${empList.annual_num}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${empList.emp_num}</td>
@@ -338,6 +338,7 @@
 						<td>${empList.work_num}</td>
 						<td><fmt:formatDate value="${empList.hire_date}" pattern="yyyy-MM-dd"/> </td>
 						<td>${empList.annual_num}</td>
+						<td>${empList.remarks}</td>
 					</tr>
 					</c:forEach>
 				</tbody>
@@ -379,93 +380,92 @@
 	}
 
 	$(document).on("click", ".table tbody tr", function () {
-		$empNum = $(this).data("empNum")
+		$empNum = $(this).data("emp-num")
 		$name = $(this).data("name")
 		$dept = $(this).data("dept")
-		$registNum = $(this).data("registNum")
+		$registNum = $(this).data("regist-num")
 		$rank = $(this).data("rank")
 		$phone = $(this).data("phone")
-		$permissionType = $(this).data("permissionType")
-		$directNum = $(this).data("directNum")
+		$permissionType = $(this).data("permission-type")
+		$directNum = $(this).data("direct-num")
 		$postCode = $(this).data("postCode")
 		$address = $(this).data("address")
-		$detailAddress = $(this).data("detailAddress")
-		$hireDate = $(this).data("hireDate")
-		//$annualNum = $(this).data("annualNum")
-		//$remarks = $(this).data("remarks")
-
+		$detailAddress = $(this).data("detail-address")
+		$hireDate = $(this).data("hire-date")
+		//$annualNum = $(this).data("annual-num")
+		$remarks = $(this).data("remarks")
 		let str = `
 			<tr>
-			<th>사원번호</th>
-			<td><input type="text" class="profile-text" value="`+$empNum+`"></td>
-			<th class="two rights">이름</th>
-			<td><input type="text" class="profile-text" value="`+$name+`"> </td>
-		</tr>
-		<tr>
-			<th class="two">부서</th>
-			<td><input type="text" class="profile-text" value="`+$dept+`"></td>
-			<th class="rights">주민번호</th>
-			<td><input type="text" class="profile-text" value="`+$registNum+`"></td>
-		</tr>
-		<tr>
-			<th class="two">직급</th>
-			<td><input type="text" class="profile-text" value="`+$rank+`"></td>	
-			<th class="rights">휴대전화</th>
-			<td><input type="tel" class="profile-text" value="`+$phone+`"></td>
-		</tr>
-		<tr>
-			<th>권한타입</th>
-			<td>
-			<select class="profiletype">
-				<option value="`+$permissionType+`">최고관리자</option>
-				<option value="`+$permissionType+`">직원</option>
-			</select>
-			</td>
-			<th class="rights">직통번호</th>
-			<td><input type="tel" class="profile-text" value="`+$directNum+`"></td>
-		</tr>
-		<tr>
+				<th>사원번호</th>
+				<td><input type="text" class="profile-text" value="`+$empNum+`"></td>
+				<th class="two rights">이름</th>
+				<td><input type="text" class="profile-text" value="`+$name+`"> </td>
+			</tr>
+			<tr>
+				<th class="two">부서</th>
+				<td><input type="text" class="profile-text" value="`+$dept+`"></td>
+				<th class="rights">주민번호</th>
+				<td><input type="text" class="profile-text" value="`+$registNum+`"></td>
+			</tr>
+			<tr>
+				<th class="two">직급</th>
+				<td><input type="text" class="profile-text" value="`+$rank+`"></td>	
+				<th class="rights">휴대전화</th>
+				<td><input type="tel" class="profile-text" value="`+$phone+`"></td>
+			</tr>
+			<tr>
+				<th>권한타입</th>
+				<td>
+				<select class="profiletype">
+					<option value="`+$permissionType+`">최고관리자</option>
+					<option value="`+$permissionType+`">직원</option>
+				</select>
+				</td>
+				<th class="rights">직통번호</th>
+				<td><input type="tel" class="profile-text" value="`+$directNum+`"></td>
+			</tr>
+			<tr>
+	
+			</tr>
 
-		</tr>
 
-
-		<tr>
-			<th class="two">주소</th>
-			<td><input type="text" id="sample6_postcode" class="profile-text" placeholder="우편번호" value="`+$postCode+`"> </td>
-			<td><input type="button" class="postbtn" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-
-		</tr>
-		<tr>
-			<th></th>
-			<td colspan='2'><input type="text" id="sample6_address" class="profile-text addrtext" placeholder="주소" value="`+$address+`"></td>
-		</tr>
-		<tr>
-			<th></th>
-			<td colspan='2'><input type="text" id="sample6_detailAddress" class="profile-text addrtext" placeholder="상세주소" value="`+$detailAddress+`"> </td>
-
-		</tr>
-		<tr>
-			<th></th>
-			<td colspan='2'><input type="text" id="sample6_extraAddress" class="profile-text addrtext" placeholder="참고항목"></td>
-		</tr>
-		<tr>
-			<th class="three">입사일</th>
-			<td><input type="date" class="profile-text profiledate" value="`+$hireDate+`"></td>
-			<th class="three right"><label><input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/> 퇴사일</label></th>
-			<td><input type="date" id="empdate" class="profile-text profiledate"></td>
-		</tr>
-		<tr>
-			<th></th>
-			<td></td>
-			
-			<th class="rights" id="emptext" >퇴사사유</th>
-			<td><textarea class="emptext" id="emptext" ></textarea>
-			
-		<tr>
-			<th class="two">메모</th>
-			<td colspan='3'><textarea class="empmemo" value="`+$remarks+`"></textarea>
-		</tr>
-			`;
+			<tr>
+				<th class="two">주소</th>
+				<td><input type="text" id="modal_postcode" class="profile-text" placeholder="우편번호" value="`+$postCode+`"> </td>
+				<td><input type="button" class="postbtn" data-post-search="modal" value="우편번호 찾기"></td>
+	
+			</tr>
+			<tr>
+				<th></th>
+				<td colspan='2'><input type="text" id="modal_address" class="profile-text addrtext" placeholder="주소" value="`+$address+`"></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td colspan='2'><input type="text" id="modal_detailAddress" class="profile-text addrtext" placeholder="상세주소" value="`+$detailAddress+`"> </td>
+	
+			</tr>
+			<tr>
+				<th></th>
+				<td colspan='2'><input type="text" id="modal_extraAddress" class="profile-text addrtext" placeholder="참고항목"></td>
+			</tr>
+			<tr>
+				<th class="three">입사일</th>
+				<td><input type="date" class="profile-text profiledate" value="`+$hireDate+`"></td>
+				<th class="three right"><label><input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/> 퇴사일</label></th>
+				<td><input type="date" id="empdate" class="profile-text profiledate"></td>
+			</tr>
+			<tr>
+				<th></th>
+				<td></td>
+				
+				<th class="rights" id="emptext" >퇴사사유</th>
+				<td><textarea class="emptext" id="emptext" ></textarea>
+				
+			<tr>
+				<th class="two">메모</th>
+				<td colspan='3'><textarea class="empmemo" value="`+$remarks+`"></textarea>
+			</tr>
+		`;
 
 		$('dialog table').html(str)
 	})
@@ -509,7 +509,12 @@
   
 /*   다음 주소 API */
 
-      function sample6_execDaumPostcode() {
+$(document).on('click','.postbtn',function(){
+	execDaumPostcode($(this).data('post-search'));
+})
+		
+		// 고칠거!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      function execDaumPostcode(input) {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -542,21 +547,25 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                    document.getElementById(input+"_extraAddress").value = extraAddr;
                 
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    document.getElementById(input+"_extraAddress").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                
+                document.getElementById(input+"_postcode").value = data.zonecode;
+                document.getElementById(input+"_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById(input+"_detailAddress").focus();
             }
         }).open();
     }
 
+  function resetForm() {
+	  $('#frm')[0].reset();
+  }
 
 </script>
 </body>
