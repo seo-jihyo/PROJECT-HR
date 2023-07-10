@@ -182,8 +182,11 @@
 										</tr>
 										<tr>
 				
-										</tr>
 
+										<tr>
+											<th class="three">이메일</th>
+											<td><input type="email" class="profile-text" value=""></td>
+										</tr>
 
 										<tr>
 											<th class="two">주소</th>
@@ -436,7 +439,8 @@
 				<td><input type="tel" class="profile-text" value="`+$directNum+`"></td>
 			</tr>
 			<tr>
-	
+				<th class="three">이메일</th>
+				<td><input type="email" class="profile-text" value=""></td>
 			</tr>
 
 
