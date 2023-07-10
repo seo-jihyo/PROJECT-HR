@@ -179,15 +179,15 @@ dialog{
 	<h2 class="diatitle">부서 변경하기</h2>
 	<hr>
 
-	<form method="get" id="frm2">
+	<form method="post" id="frm2">
 		<table class="duty-table">
 
 		</table>
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" class="custom-btn btn-10">수정하기</button>
-				<button type="button"  class="custom-btn btn-10">삭제하기</button>
+				<button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+				<button type="button" id="deleteBtn" class="custom-btn btn-10" >삭제하기</button>
 				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
@@ -197,6 +197,19 @@ dialog{
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
+
+	const $form = $('#frm2');
+	$(document).on('click','#updateBtn',function (){
+		$form.attr('action','/deptupdate.do')
+		$form.attr('method','post')
+		$form.submit()
+	})
+	$(document).on('click','#deleteBtn',function (){
+		$form.attr('action','/deptdelete.do')
+		$form.attr('method','post')
+		$form.submit()
+	})
+
 
 	const dialog = document.querySelector("dialog");
 	$(document).on("click", ".table tbody tr", function () {

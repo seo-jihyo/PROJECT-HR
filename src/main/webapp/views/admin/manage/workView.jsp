@@ -139,9 +139,9 @@ dialog{
     </div>
     </nav>
 
-    <table class="sec-table table-hover">
+    <table class="table sec-table table-hover">
         <thead>
-        <tr>
+        <tr >
             <th><input type="checkbox"></th>
             <th>근로정보명</th>
             <th>시급</th>
@@ -151,29 +151,22 @@ dialog{
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>일반근무</td>
-            <td><fmt:formatNumber type="currency" value="${12000}"/></td>
-            <td>월,화,수,목,금</td>
-            <td>일</td>
-		</tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>최저시급</td>
-            <td><fmt:formatNumber type="currency" value="${10000}"/></td>
-            <td>월,화,수,목,금</td>
-            <td>일</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"></td>
-            <td>일반근무2</td>
-            <td><fmt:formatNumber type="currency" value="${15000}"/></td>
-            <td>월,화,수,목,금</td>
-            <td>일</td>
-            <td></td>
-        </tr>
+        <c:forEach var="list" items="${list}">
+            <tr
+                    data-
+                    data-work-name="${list.work_name}"
+                    data-pay="${list.pay}"
+                    data-weekly-holiday="${list.weekly_holiday}"
+                    data-remarks="${list.remarks}">
+
+                <td><input type="checkbox"></td>
+                <td>${list.work_name}</td>
+                <td><fmt:formatNumber type="currency" value="${list.pay}"/></td>
+                <td>?</td>
+                <td>${list.weekly_holiday}</td>
+                <td>${list.remarks}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </section>
@@ -182,28 +175,8 @@ dialog{
     <h3>근로정보</h3>
     <hr>
     <form method="post">
-        <table class="work-table">
-            <tr class="work-tr1">
-                <th>근로정보명</th>
-                <td><input type="text" class="workadd" name="parent_code"></td>
-            </tr>
-            <tr class="work-tr1">
-                <th class="modaltwo">시급</th>
-                <td><input type="text" class="workadd" name="code_name"></td>
-            </tr>
-            <tr class="work-tr1">
-                <th>소정근로일</th>
-                <td><input type="text" class="workadd" name="code_value"></td>
-            </tr>
-            <tr class="work-tr1">
-                <th class="four">주휴요일</th>
-                <td><input type="text" class="workadd" name="code_value"></td>
-            </tr>
+        <table class="rank-table">
 
-            <tr>
-                <td>메모</td>
-                <td><textarea name="remarks" class="work-area" cols="70" rows="4"></textarea></td>
-            </tr>
         </table>
         <hr>
         <button class="dialogbtn">수정</button>
@@ -214,39 +187,44 @@ dialog{
 	<script src="/assets/js/main.js"></script>
 	<script src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
-    $('#fixedWorkingDay').multiselect({
-        includeSelectAllOption: true,
-        selectAllText: "전체 선택",
-        selectAllNumber: false,
-        nonSelectedText: "선택해주세요.",
-        allSelectedText: "월,화,수,목,금,토,일",
-        numberDisplayed: 7,
-    });
-    $('#weekly_holiday').multiselect({
-        includeSelectAllOption: true,
-        selectAllText: "전체 선택",
-        selectAllNumber: false,
-        nonSelectedText: "선택해주세요.",
-        allSelectedText: "월,화,수,목,금,토,일",
-        numberDisplayed: 7,
-    });
+
     const dialog = document.querySelector("dialog");
-    dialogPolyfill.registerDialog(dialog); 
+    // dialogPolyfill.registerDialog(dialog);
     $(document).on("click", ".sec-table tbody tr", function () {
         dialog.showModal();
         console.log(this);
+
+        $workName = $(this).data("work-name")
+        $pay = $(this).data("pay")
+        $weeklyHoliday = $(this).data("weekly-holiday")
+        $remarks = $(this).data("remarks")
+
+        let str = `
+		<tr class="rank-tr1">
+                <td>근로정보명</td>
+                <td><input type="text" class="rankadd" name="parent_code" value="` + $workName + `"></td>
+            </tr>
+            <tr class="rank-tr1">
+                <td>시급</td>
+                <td><input type="text" class="rankadd" name="code_name" value="` + $pay + `"></td>
+            </tr>
+            <tr class="rank-tr1">
+                <td>소정근로요일</td>
+                <td><input type="text" class="rankadd" name="code_value" value="` + $weeklyHoliday + `"></td>
+            </tr>
+            <tr class="rank-tr1">
+                <td>주휴요일</td>
+                <td><input type="text" class="rankadd" name="code_value" value="` + $weeklyHoliday + `"></td>
+            </tr>
+
+            <tr>
+                <td>메모</td>
+                <td><textarea name="remarks" class="rank-area" cols="70" rows="4">` + $remarks + `</textarea></td>
+            </tr>
+		`;
+
+        $('dialog table').html(str)
     });
-    $(document).on("click", ".sec-table tbody tr", function () {
-        $td = $(this).children('td')
-        let str = '';
-        $.each($td, (i, item) => {
-            str += '값=' + item.innerText + '<br>'
-        })
-        console.log(str)
-    })
-    function dialogClose(){
-		dialog.close();
-	}
 </script>
 </body>
 </html>

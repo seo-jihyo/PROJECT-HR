@@ -45,7 +45,7 @@ public class FrontRegisterController extends HttpServlet {
             action = new loginOkService(); // 서비스가 필요하니 서비스를 처리해주는 TestAction이라는 서비스 클래스를 생성해서 사용
             forward = action.execute(request, response); //request 클라이언트가 요청한 페이지당 1개씩 만들어지는 request객체
 
-        } else if (urlcommand.equals("/logoutok.do")){
+        } else if (urlcommand.equals("/logoutok.do")) {
 
             HttpSession session = request.getSession();
             session.invalidate();
@@ -53,7 +53,7 @@ public class FrontRegisterController extends HttpServlet {
             forward.setRedirect(true);
             forward.setPath("/login.do");
 
-        } else if (urlcommand.equals("/check-attendance.do")){
+        } else if (urlcommand.equals("/check-attendance.do")) {
             // 출퇴근 체크 요청
             action = new AttendanceOkService();
             action.execute(request, response);
@@ -63,28 +63,38 @@ public class FrontRegisterController extends HttpServlet {
         	action = new EmpOkService();
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/rankok.do")) {
-        	// 추가하는 서비스
-        	action = new RankOkService();
-        	forward = action.execute(request, response);
+            // 추가하는 서비스
+            action = new RankOkService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/deptok.do")) {
+
         	// 추가하는 서비스
         	action = new DeptOkService();
         	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/vacationtypeok.do")) {
+        } else if (urlcommand.equals("/deptupdate.do")){
+            action = new DeptUpdateService();
+            forward = action.execute(request,response);
+        } else if (urlcommand.equals("/deptdelete.do")){
+            action = new DeptDeleteService();
+            forward = action.execute(request,response);
+        }else if (urlcommand.equals("/vacationtypeok.do")) {
         	// 휴가 유형 추가하는 서비스
         	action = new VacationTypeOkService();
         	forward = action.execute(request, response);
         	
         } else if (urlcommand.equals("/rank.do")) {
-        	action = new RankService();
-        	forward = action.execute(request, response);
+            action = new RankService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/emp.do")) {
-        	action = new EmpService();
-        	forward = action.execute(request, response);
+            action = new EmpService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/dept.do")) {
-        	action = new DeptService();
-        	forward = action.execute(request, response);
 
+            action = new DeptService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/work.do")) {
+            action = new WorkService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/empupdate.do")) {
         	action = new EmpUpdateService();
         	forward = action.execute(request, response);
@@ -102,7 +112,6 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
         	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
-        
 
         } else if (urlcommand.equals("/vacationtype.do")) {
         	action = new VacationTypeService();

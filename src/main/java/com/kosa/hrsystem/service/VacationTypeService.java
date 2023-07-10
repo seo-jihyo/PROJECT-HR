@@ -17,7 +17,7 @@ public class VacationTypeService implements Action {
 		VacationDAO dao = new VacationDAO();
 		try {
 			List<VacationTypeDTO> list = dao.selectAll();
-			
+
 			request.setAttribute("list", list);
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
@@ -25,7 +25,7 @@ public class VacationTypeService implements Action {
 			return forward;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		}	
+		}
 	}
 
 }
