@@ -1,9 +1,7 @@
 package com.kosa.hrsystem.controller;
 
 
-import com.kosa.hrsystem.action.Action;
-import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.service.*;
+import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+
+import com.kosa.hrsystem.action.Action;
+import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.service.AttendanceOkService;
+import com.kosa.hrsystem.service.DeptOkService;
+import com.kosa.hrsystem.service.DeptService;
+import com.kosa.hrsystem.service.EmpDeleteService;
+import com.kosa.hrsystem.service.EmpOkService;
+import com.kosa.hrsystem.service.EmpService;
+import com.kosa.hrsystem.service.EmpUpdateService;
+import com.kosa.hrsystem.service.RankOkService;
+import com.kosa.hrsystem.service.RankService;
+import com.kosa.hrsystem.service.WorkScheduleTypeDeleteService;
+import com.kosa.hrsystem.service.WorkScheduleTypeOkService;
+import com.kosa.hrsystem.service.WorkScheduleTypeService;
+import com.kosa.hrsystem.service.WorkScheduleTypeUpdateService;
+import com.kosa.hrsystem.service.loginOkService;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -85,6 +99,17 @@ public class FrontRegisterController extends HttpServlet {
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
         	action = new EmpDeleteService();
+        } else if (urlcommand.equals("/worktype.do")) {
+        	action = new WorkScheduleTypeService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeok.do")) {
+        	action = new WorkScheduleTypeOkService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeupdate.do")) {
+        	action = new WorkScheduleTypeUpdateService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypedelete.do")) {
+        	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
         } 
 

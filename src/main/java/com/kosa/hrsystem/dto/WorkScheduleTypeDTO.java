@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkScheduleTypeDTO {
 	private int work_sch_type_num;
-	private Date work_name;
+	private String work_name;
 	private String dept;
 	private String rank;
 }
