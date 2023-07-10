@@ -71,7 +71,13 @@ public class FrontRegisterController extends HttpServlet {
         	// 추가하는 서비스
         	action = new DeptOkService();
         	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/vacationtypeok.do")) {
+        } else if (urlcommand.equals("/deptupdate.do")){
+            action = new DeptUpdateService();
+            forward = action.execute(request,response);
+        } else if (urlcommand.equals("/deptdelete.do")){
+            action = new DeptDeleteService();
+            forward = action.execute(request,response);
+        }else if (urlcommand.equals("/vacationtypeok.do")) {
         	// 휴가 유형 추가하는 서비스
         	action = new VacationTypeOkService();
         	forward = action.execute(request, response);
