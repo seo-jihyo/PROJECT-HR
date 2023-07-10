@@ -12,10 +12,10 @@ CREATE TABLE EMP (
 	phone	varchar2(50)	NOT NULL,
 	regist_num	varchar2(50)	NOT NULL,
 	annual_num	number	NOT NULL,
-	post_code	number	NULL,
+	post_code	varchar2(50)	NULL,
 	address	varchar2(500)	NOT NULL,
 	detail_address	varchar2(100)	NULL,
-	permisson_type	char(1) DEFAULT '0'	,
+	permission_type	char(1) DEFAULT '0'	,
 	dept	varchar2(20)	NULL,
 	rank	varchar2(20)	NULL
 );
