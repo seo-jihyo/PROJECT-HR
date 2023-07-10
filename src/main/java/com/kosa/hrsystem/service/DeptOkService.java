@@ -18,14 +18,22 @@ public class DeptOkService implements Action {
 		String codeValue = request.getParameter("code_value");
 		String remarks = request.getParameter("remarks");
 		
-		CodeTableDTO dto = new CodeTableDTO(parentCode, codeName, codeValue, 0, remarks);
+		CodeTableDTO dto = new CodeTableDTO();
+		dto.setParent_code(parentCode);
+		dto.setCode_name(codeName);
+		dto.setCode_value(codeValue);
+		dto.setRemarks(remarks);
+
 		DeptDAO dao = new DeptDAO();
 		try {
 			dao.insertDept(dto);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return null;
+		ActionForward forward = new ActionForward();
+//		forward.setRedirect(true);
+		forward.setPath("/dept.do");
+		return forward;
 		
 	}
 

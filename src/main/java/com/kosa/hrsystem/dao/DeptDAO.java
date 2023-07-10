@@ -38,9 +38,9 @@ public class DeptDAO {
 	}
 	
 	// 부서 삭제하기
-	public int deleteDept(CodeTableDTO dto) throws Exception {
+	public int deleteDept(String codeName) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.delete("deleteDept", dto);
+		int result = sqlSession.delete("deleteDept", codeName);
 		System.out.println(result);
 		sqlSession.close();
 		return result;
