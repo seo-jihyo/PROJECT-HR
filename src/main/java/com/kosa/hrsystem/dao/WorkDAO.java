@@ -10,10 +10,11 @@ import java.util.List;
 
 public class WorkDAO {
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
+
     //휴가 일정 유형 전체 조회
-    public List<WorkDTO> selectAll(){
+    public List<WorkDTO> selectAllWork(){
         SqlSession session = factory.openSession();
-        List<WorkDTO> list= session.selectList("selectAll");
+        List<WorkDTO> list= session.selectList("selectAllWork");
 
         session.close();
         return list;

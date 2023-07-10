@@ -24,4 +24,7 @@ insert into vacation_type values(1,'연차','개발팀','대리',8,1);
 insert into vacation_type values(2,'반차','개발팀','대리',4,0.5);
 insert into vacation_type values(3,'병가','개발팀','대리',8,0);
 
+-- 근로정보 테이블
+insert into work values(1,'일반근무',12000,'1','1','1','1','1','0','0','1','일요일은 쉬는날 입니다.');
+insert into work values(2,'아르바이트',10000,'1','1','1','1','1','0','0','1','일요일은 쉬는날 입니다.');
 commit;
