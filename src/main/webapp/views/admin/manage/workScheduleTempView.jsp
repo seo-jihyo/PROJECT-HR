@@ -18,7 +18,7 @@
 <style type="text/css">
 dialog{
 	width: 560px;
-	height: 510px;
+	height: 500px;
 
 }
 .diatitle{

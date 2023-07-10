@@ -1,6 +1,5 @@
 package com.kosa.hrsystem.controller;
 
-
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
@@ -91,6 +90,17 @@ public class FrontRegisterController extends HttpServlet {
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
         	action = new EmpDeleteService();
+        } else if (urlcommand.equals("/worktype.do")) {
+        	action = new WorkScheduleTypeService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeok.do")) {
+        	action = new WorkScheduleTypeOkService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypeupdate.do")) {
+        	action = new WorkScheduleTypeUpdateService();
+        	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/worktypedelete.do")) {
+        	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
         
 

@@ -15,11 +15,26 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
+<style>
+	.title{
+	margin: auto;
+	margin-top: 20px;
+	width: 90%;
+	}
+	
+    .sec-table {
+    border-collapse: collapse;
+    width: 80%;
+    height: 10px;
+    text-align: center;
+    margin-top: 75px;
+    margin-left: 10%;
+	}
+</style>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
-<section id="body-pd" class="body-pd">
     <div class="main_title">
-        <h2>요청 내역</h2>
+    <h1 class="title">요청 내역</h1>
     </div>
     <table class="sec-table table-hover">
         <tr>
@@ -69,7 +84,6 @@
         </tr>
         </tbody>
     </table>
-</section>
 <script src="/assets/js/main.js"></script>
 </body>
 </html>

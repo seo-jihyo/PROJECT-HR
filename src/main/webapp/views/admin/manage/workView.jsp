@@ -16,6 +16,48 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
 
+<style type="text/css">
+dialog{
+	width: 560px;
+	height: 500px;
+
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.work-table {
+	padding: 20px 20px;
+	width: 100%;
+}
+.work-table tr {
+	margin: 5px;
+}
+.work-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+.workadd{
+	height: 25px;
+	border: 1px solid black;
+}
+.work-area{
+	width: 300px;
+	height: 90px;
+	border: 1px solid black;
+}
+.work-table th{
+		text-align: left;
+}
+.modaltwo{
+	letter-spacing: 58px;
+	padding-right: 0px;
+}
+.four{
+	letter-spacing: 10px;
+}
+</style> 
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
@@ -115,8 +157,7 @@
             <td><fmt:formatNumber type="currency" value="${12000}"/></td>
             <td>월,화,수,목,금</td>
             <td>일</td>
-            <td></td>
-        </tr>
+		</tr>
         <tr>
             <td><input type="checkbox"></td>
             <td>최저시급</td>
@@ -136,28 +177,32 @@
         </tbody>
     </table>
 </section>
-
+<!-- 수정 dialog -->
 <dialog>
     <h3>근로정보</h3>
     <hr>
     <form method="post">
-        <table class="rank-table">
-            <tr class="rank-tr1">
-                <td>상위코드</td>
-                <td><input type="text" class="rankadd" name="parent_code"></td>
+        <table class="work-table">
+            <tr class="work-tr1">
+                <th>근로정보명</th>
+                <td><input type="text" class="workadd" name="parent_code"></td>
             </tr>
-            <tr class="rank-tr1">
-                <td>코드번호</td>
-                <td><input type="text" class="rankadd" name="code_name"></td>
+            <tr class="work-tr1">
+                <th class="modaltwo">시급</th>
+                <td><input type="text" class="workadd" name="code_name"></td>
             </tr>
-            <tr class="rank-tr1">
-                <td>직급명</td>
-                <td><input type="text" class="rankadd" name="code_value"></td>
+            <tr class="work-tr1">
+                <th>소정근로일</th>
+                <td><input type="text" class="workadd" name="code_value"></td>
+            </tr>
+            <tr class="work-tr1">
+                <th class="four">주휴요일</th>
+                <td><input type="text" class="workadd" name="code_value"></td>
             </tr>
 
             <tr>
                 <td>메모</td>
-                <td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
+                <td><textarea name="remarks" class="work-area" cols="70" rows="4"></textarea></td>
             </tr>
         </table>
         <hr>
@@ -166,10 +211,9 @@
         <button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
     </form>
 </dialog>
-
-<script src="/assets/js/main.js"></script>
-<script src="/assets/js/modal.js"></script>
-<script>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/modal.js"></script>
+	<script type="text/javascript">
     $('#fixedWorkingDay').multiselect({
         includeSelectAllOption: true,
         selectAllText: "전체 선택",
@@ -187,11 +231,12 @@
         numberDisplayed: 7,
     });
     const dialog = document.querySelector("dialog");
-    $(document).on("click", ".table tbody tr", function () {
+    dialogPolyfill.registerDialog(dialog); 
+    $(document).on("click", ".sec-table tbody tr", function () {
         dialog.showModal();
         console.log(this);
     });
-    $(document).on("click", ".table tbody tr", function () {
+    $(document).on("click", ".sec-table tbody tr", function () {
         $td = $(this).children('td')
         let str = '';
         $.each($td, (i, item) => {
@@ -199,6 +244,9 @@
         })
         console.log(str)
     })
+    function dialogClose(){
+		dialog.close();
+	}
 </script>
 </body>
 </html>
