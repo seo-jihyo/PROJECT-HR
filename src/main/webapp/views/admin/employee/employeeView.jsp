@@ -523,7 +523,6 @@
 $(document).on('click','.postbtn',function(){
 	execDaumPostcode($(this).data('post-search'));
 })
-		
 		// 고칠거!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       function execDaumPostcode(input) {
         new daum.Postcode({
