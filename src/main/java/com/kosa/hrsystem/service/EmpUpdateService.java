@@ -59,7 +59,7 @@ public class EmpUpdateService implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 		forward.setPath("/emp.do");
 		return forward;
 	}

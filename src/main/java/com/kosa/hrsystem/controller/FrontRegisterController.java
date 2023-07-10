@@ -1,7 +1,8 @@
 package com.kosa.hrsystem.controller;
 
-
-import java.io.IOException;
+import com.kosa.hrsystem.action.Action;
+import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.service.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,23 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.kosa.hrsystem.action.Action;
-import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.service.AttendanceOkService;
-import com.kosa.hrsystem.service.DeptOkService;
-import com.kosa.hrsystem.service.DeptService;
-import com.kosa.hrsystem.service.EmpDeleteService;
-import com.kosa.hrsystem.service.EmpOkService;
-import com.kosa.hrsystem.service.EmpService;
-import com.kosa.hrsystem.service.EmpUpdateService;
-import com.kosa.hrsystem.service.RankOkService;
-import com.kosa.hrsystem.service.RankService;
-import com.kosa.hrsystem.service.WorkScheduleTypeDeleteService;
-import com.kosa.hrsystem.service.WorkScheduleTypeOkService;
-import com.kosa.hrsystem.service.WorkScheduleTypeService;
-import com.kosa.hrsystem.service.WorkScheduleTypeUpdateService;
-import com.kosa.hrsystem.service.loginOkService;
+import java.io.IOException;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -85,6 +70,11 @@ public class FrontRegisterController extends HttpServlet {
         	// 추가하는 서비스
         	action = new DeptOkService();
         	forward = action.execute(request, response);
+        } else if (urlcommand.equals("/vacationtypeok.do")) {
+        	// 휴가 유형 추가하는 서비스
+        	action = new VacationTypeOkService();
+        	forward = action.execute(request, response);
+        	
         } else if (urlcommand.equals("/rank.do")) {
         	action = new RankService();
         	forward = action.execute(request, response);
@@ -94,6 +84,7 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/dept.do")) {
         	action = new DeptService();
         	forward = action.execute(request, response);
+
         } else if (urlcommand.equals("/empupdate.do")) {
         	action = new EmpUpdateService();
         	forward = action.execute(request, response);
@@ -111,7 +102,24 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
         	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
-        } 
+        
+
+        } else if (urlcommand.equals("/vacationtype.do")) {
+        	action = new VacationTypeService();
+        	forward = action.execute(request, response);
+        }
+
+        else if (urlcommand.equals("/vacationTypeUpdate.do")) {
+        	// 휴가 유형 업데이트
+        	action = new VacationTypeUpdateService();
+        	forward = action.execute(request, response);
+        }
+        
+        else if (urlcommand.equals("/vacationTypeDelete.do")) {
+        	// 휴가 유형 삭제
+        	action = new VacationTypeDeleteService();
+        	forward = action.execute(request, response);
+        }
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
