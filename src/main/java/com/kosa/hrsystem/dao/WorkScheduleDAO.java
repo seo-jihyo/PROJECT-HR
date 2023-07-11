@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
 
 public class WorkScheduleDAO {
 	private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
@@ -20,19 +21,22 @@ public class WorkScheduleDAO {
 		return result;
 	}
 	
-	public List<WorkScheduleDTO> selectAllWorkSchedule() throws Exception {
+	public List<WorkScheduleTypeVO> selectAllWorkSchedule() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		List<WorkScheduleDTO> list = null;
+		List<WorkScheduleTypeVO> list = null;
 		list = sqlSession.selectList("selectAllWorkSchedule");
+		System.out.println(list);
 		sqlSession.close();
 		return list;
 	}
 
-	//WorkScheduleType - read
-	  public List<WorkScheduleTypeDTO> selectAllWorkType() throws Exception {
-	  SqlSession sqlSession = factory.openSession(true); List<WorkScheduleTypeDTO>
-	  list = null; list = sqlSession.selectList("selectAllWorkType");
-	  sqlSession.close(); return list; 
+	// WorkScheduleType - read
+	public List<WorkScheduleTypeVO> selectAllWorkType() throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		List<WorkScheduleTypeVO> list = null;
+		list = sqlSession.selectList("selectAllWorkType");
+		sqlSession.close();
+		return list;
 	  
 	  }
 	// WorkScheduleType - insert
@@ -45,7 +49,7 @@ public class WorkScheduleDAO {
 			sqlSession.close();
 			return result;
 		}
-	// WorkScheduleType - update
+		// WorkScheduleType - update
 		public int updateWorkScheduleType(WorkScheduleTypeDTO dto) throws Exception{
 			SqlSession sqlSession = factory.openSession(true);
 			int result = sqlSession.update("updateWorkScheduleType", dto);
