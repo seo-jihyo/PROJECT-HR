@@ -34,6 +34,7 @@ public class FrontRegisterController extends HttpServlet {
         Action action = null;
         ActionForward forward = null;
 
+        /* 공통 */
         if (urlcommand.equals("/login.do")) {
             //UI 제공 (서비스 객체가 필요없다)
             forward = new ActionForward(); // 서비스가 필요없으니 ActionForward객체를 직접 생성해서 사용
@@ -44,63 +45,86 @@ public class FrontRegisterController extends HttpServlet {
             //UI 제공 + 서비스 필요
             action = new loginOkService(); // 서비스가 필요하니 서비스를 처리해주는 TestAction이라는 서비스 클래스를 생성해서 사용
             forward = action.execute(request, response); //request 클라이언트가 요청한 페이지당 1개씩 만들어지는 request객체
-
         } else if (urlcommand.equals("/logoutok.do")) {
-
             HttpSession session = request.getSession();
             session.invalidate();
             forward = new ActionForward();
             forward.setRedirect(true);
             forward.setPath("/login.do");
-
         } else if (urlcommand.equals("/check-attendance.do")) {
             // 출퇴근 체크 요청
             action = new AttendanceOkService();
             action.execute(request, response);
 
+        }
+        /* 직원 */
+        else if (urlcommand.equals("/emp.do")) {
+            action = new EmpService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/empok.do")) {
         	// 직원 추가하기
         	action = new EmpOkService();
         	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/rankok.do")) {
-            // 추가하는 서비스
-            action = new RankOkService();
+        } else if (urlcommand.equals("/empupdate.do")) {
+            action = new EmpUpdateService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/empdelete.do")) {
+            action = new EmpDeleteService();
+        }
+        /* 부서 */
+        else if (urlcommand.equals("/dept.do")) {
+            action = new DeptService();
             forward = action.execute(request, response);
         } else if (urlcommand.equals("/deptok.do")) {
-
-        	// 추가하는 서비스
-        	action = new DeptOkService();
-        	forward = action.execute(request, response);
+            // 추가하는 서비스
+            action = new DeptOkService();
+            forward = action.execute(request, response);
         } else if (urlcommand.equals("/deptupdate.do")){
             action = new DeptUpdateService();
             forward = action.execute(request,response);
         } else if (urlcommand.equals("/deptdelete.do")){
             action = new DeptDeleteService();
             forward = action.execute(request,response);
-        }else if (urlcommand.equals("/vacationtypeok.do")) {
+        }
+        /* 직급 */
+        else if (urlcommand.equals("/rank.do")) {
+            action = new RankService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/rankok.do")) {
+            // 추가하는 서비스
+            action = new RankOkService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/rankupdate.do")){
+            action = new RankUpdateService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/rankdelete.do")){
+            action = new RankDeleteService();
+            forward = action.execute(request, response);
+        }
+        /* 휴가 유형 */
+        else if (urlcommand.equals("/vacationtype.do")) {
+            action = new VacationTypeService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/vacationtypeok.do")) {
         	// 휴가 유형 추가하는 서비스
         	action = new VacationTypeOkService();
         	forward = action.execute(request, response);
-        	
-        } else if (urlcommand.equals("/rank.do")) {
-            action = new RankService();
+        } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
+            // 휴가 유형 업데이트
+            action = new VacationTypeUpdateService();
             forward = action.execute(request, response);
-        } else if (urlcommand.equals("/emp.do")) {
-            action = new EmpService();
+        } else if (urlcommand.equals("/vacationTypeDelete.do")) {
+            // 휴가 유형 삭제
+            action = new VacationTypeDeleteService();
             forward = action.execute(request, response);
-        } else if (urlcommand.equals("/dept.do")) {
-
-            action = new DeptService();
-            forward = action.execute(request, response);
-        } else if (urlcommand.equals("/work.do")) {
+        }
+        /* 근로정보 */
+        else if (urlcommand.equals("/work.do")) {
             action = new WorkService();
             forward = action.execute(request, response);
-        } else if (urlcommand.equals("/empupdate.do")) {
-        	action = new EmpUpdateService();
-        	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/empdelete.do")) {
-        	action = new EmpDeleteService();
-        } else if (urlcommand.equals("/worktype.do")) {
+        }
+        /* 근로유형 */
+        else if (urlcommand.equals("/worktype.do")) {
         	action = new WorkScheduleTypeService();
         	forward = action.execute(request, response);
         } else if (urlcommand.equals("/worktypeok.do")) {
@@ -112,18 +136,9 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
         	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/vacationtype.do")) {
-        	action = new VacationTypeService();
-        	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
-        	// 휴가 유형 업데이트
-        	action = new VacationTypeUpdateService();
-        	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/vacationTypeDelete.do")) {
-        	// 휴가 유형 삭제
-        	action = new VacationTypeDeleteService();
-        	forward = action.execute(request, response);
-        } else if (urlcommand.equals("/personalInfook.do")) {
+        }
+        /* 직원 커스텀 필드 */
+        else if (urlcommand.equals("/personalInfook.do")) {
 	    	action = new PersonalInfoOkService();
 	    	forward = action.execute(request, response);
 	    }
