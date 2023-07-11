@@ -236,61 +236,67 @@
 								</form>
 							</div>
 							<div class="modal_nav" id="tab-2" style="display: none;">
-								<form action="" id="직원 커스텀 필드">
+								<form action="/personalInfook.do" id="frm3">
 								<h4>학력</h4>
-								<label for="edu_num">학력번호</label>
-								<label for="school_name">학교명</label>
-								<label for="school_dept">학과명</label>
-								<label for="addmissions_day">입학년월</label>
-								<label for="graduation_day">졸업년월</label>
-								<label for="graduation_status">졸업상태</label>
+								
+								<label for="edu_num">학력번호</label>&nbsp;
+								<label for="school_name">학교명</label>&nbsp;
+								<label for="school_dept">학과명</label>&nbsp;
+								<label for="addmissions_day">입학년월</label>&nbsp;
+								<label for="graduation_day">졸업년월</label>&nbsp;
+								<label for="graduation_status">졸업상태</label>&nbsp;
 								<label for="remarks">비고</label>
+								
 								<br>
-								<input type="text" class="custom" id="edu_num">
-								<input type="text" class="custom" id="school_name">
-								<input type="text" class="custom" id="school_dept">
-								<input type="date" class="custom" id="addmissions_day">
-								<input type="date" class="custom" id="graduation_day">
-								<select class="custom" id="graduation_status">
-									<option></option>
-									<option></option>
-									<option></option>
-									<option></option>
-								</select>
-								<input type="text" class="custom" id="remarks">
+								<input type="hidden" class="custom" id="emp_num" name="emp-num">&nbsp;
+								<input type="text" class="custom" id="edu_num" name="edu-num">&nbsp;
+								<input type="text" class="custom" id="school_name" name="school-name">&nbsp;
+								<input type="text" class="custom" id="school_dept" name="school-dept">&nbsp;
+								<input type="date" class="custom" id="addmissions_day" name="addmissions-day">&nbsp;
+								<input type="date" class="custom" id="graduation_day" name="graduation-day">&nbsp;
+								<div>
+									<select class="custom" id="graduation_status" name="graduation-status">
+										<option value="고졸">고졸</option>
+										<option value="학사">학사</option>
+										<option value="석사">석사</option>
+										<option value="박사">박사</option>
+									</select>&nbsp;
+									<input type="text" class="custom" id="remarks" name="edu-remarks">
+								</div>
 								<br>
 								
 								<h4>경력</h4>
-								<label>경력번호</label>
-								<label>회사명</label>
-								<label>부서명</label>
-								<label>직급</label>
-								<label>주요업무</label>
-								<label>입사년월</label>
-								<label>퇴사년월</label>								
+								<label>경력번호</label>&nbsp;
+								<label>회사명</label>&nbsp;
+								<label>부서명</label>&nbsp;
+								<label>직급</label>&nbsp;
+								<label>주요업무</label>&nbsp;
+								<label>입사년월</label>&nbsp;
+								<label>퇴사년월</label>&nbsp;						
 								<label>비고</label>
 								<br>
-								<input type="text" class="custom">
-								<input type="text" class="custom">
-								<input type="text" class="custom">
-								<input type="text" class="custom">
-								<input type="text" class="custom">								
-								<input type="date" class="custom">
-								<input type="date" class="custom">								
-								<input type="text" class="custom">
+								<input type="hidden" class="custom" id="emp_num" name="emp-num">&nbsp;
+								<input type="text" class="custom" name="career-num">&nbsp;
+								<input type="text" class="custom" name="company-name">&nbsp;
+								<input type="text" class="custom" name="dept">&nbsp;
+								<input type="text" class="custom" name="rank">&nbsp;
+								<input type="text" class="custom" name="main-task">&nbsp;						
+								<input type="date" class="custom" name="join-date">&nbsp;
+								<input type="date" class="custom" name="leave-date">&nbsp;								
+								<input type="text" class="custom" name="career-remarks">&nbsp;
 								<br>
-								<h4>자격증</h4>
-								<label>자격증번호</label>
-								<label>자격증명</label>
-								<label>발행처</label>
-								<label>취득년월</label>
-								<label>비고</label>
+								<h4>자격증</h4>&nbsp;
+								<label>자격증번호</label>&nbsp;
+								<label>자격증명</label>&nbsp;
+								<label>발행처</label>&nbsp;
+								<label>취득년월</label>&nbsp;
+								<label>비고</label>&nbsp;
 								<br>
-								<input type="text" class="custom">
-								<input type="text" class="custom">
-								<input type="text" class="custom">
-								<input type="date" class="custom">
-								<input type="text" class="custom">
+								<input type="text" class="custom" name="cert-num">&nbsp;
+								<input type="text" class="custom" name="cert-name">&nbsp;
+								<input type="text" class="custom" name="issuer">&nbsp;
+								<input type="date" class="custom" name="acquisition-date">&nbsp;
+								<input type="text" class="custom" name="cert-remarks">&nbsp;
 								<hr>
 								<div class="bottom-btn">
 									<div class="right-btn">

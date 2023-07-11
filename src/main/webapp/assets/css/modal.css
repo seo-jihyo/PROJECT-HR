@@ -170,3 +170,6 @@ dialog{
 	left: 35%	
 }
 
+#tab-2 {
+	display: flex;
+}

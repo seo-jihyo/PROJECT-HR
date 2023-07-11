@@ -1,4 +1,4 @@
-package com.kosa.hrsystem.controller;
+package com.kosa.hrsystem.service;
 
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
