@@ -37,5 +37,6 @@ public class VacationTypeUpdateService implements Action {
 		forward.setRedirect(true);
 		forward.setPath("/vacationtype.do");
 		return forward;
+		
 	}
 }

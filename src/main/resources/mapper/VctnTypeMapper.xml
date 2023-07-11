@@ -4,21 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-    <select id="selectAll" resultType="com.kosa.hrsystem.dto.VacationTypeDTO">
-<!-- 		SELECT
-			vctn_type_num,
-			vctn_name,
-			d.code_value dept,
-			d.code_name dept_code,
-			r.code_value rank,
-			r.code_name rank_code,
-			vctn_time,
-			deduction_day
-		FROM
-			vacation_type v
-				JOIN code_table d ON v.dept = d.code_name
-				JOIN code_table r ON v.rank = r.code_name; -->
-		select * from vacation_type order by vctn_type_num
+    <select id="selectAll" resultType="com.kosa.hrsystem.vo.VacationTypeVO">
+	SELECT
+		vt.vctn_type_num,
+		vt.vctn_name,
+		dept_table.code_value deptValue,
+		rank_table.code_value rankValue,
+		vt.vctn_time,
+		vt.deduction_day
+	FROM
+		vacation_type vt
+	INNER JOIN
+		code_table rank_table
+	ON vt.rank = rank_table.code_name
+	INNER JOIN
+		code_table dept_table
+	ON vt.dept = dept_table.code_name
+	order by vt.vctn_type_num
+	<!-- 	select * from vacation_type order by vctn_type_num -->
 	</select>
 	<insert id="insertVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
 		insert into vacation_type(vctn_type_num,vctn_name,dept,rank,vctn_time,deduction_day) values (vacation_type_seq.nextval,#{vctn_name},#{dept},#{rank},#{vctn_time},#{deduction_day})  

@@ -39,7 +39,8 @@ dialog{
 	font-size: 15px;
 }
 .vactypeadd{
-	height: 25px;
+	width: 150px;
+	height: 25px; 
 	border: 1px solid black;
 }
 .vactype-area{
@@ -104,18 +105,35 @@ dialog{
 					
 
 					<form method="post" action="/vacationtypeok.do" id="frm">
-						<table class="vactype-table ">
+						<table class="vactype-table">
 							<tr class="vactype-tr1">
 								<th class="three">휴가명</th>
 								<td><input type="text" class="vactypeadd" name="vctn_name"></td>
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="two">부서</th>
-								<td><input type="text" class="vactypeadd" name="dept"></td>
+								 <td><select class="vactypeadd" name="dept">
+                                        <c:forEach var="list" items="${optDept}">
+                                            <option value="${list.code_name}">${list.code_value}</option>
+                                        </c:forEach>
+                                    </select></td>
+								<!-- <td><input type="text" class="vactypeadd" name="dept"></td> -->
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="two">직급</th>
-								<td><input type="text" class="vactypeadd" name="rank"></td>
+								 <td><select class="vactypeadd" name="rank">
+                                        <c:forEach var="list" items="${optRank}">
+                                            <option value="${list.code_name}">${list.code_value}</option>
+                                        </c:forEach>
+                                    </select></td>
+								
+								<!-- <td><input type="text" class="vactypeadd" name="rank"></td>  -->
+<!-- 								<td>
+									<select class="vactypeadd">
+										<option value='A00101' selected>대표</option>
+										<option value='A00102' selected>대표이사</option>
+									</select>
+								</td> -->
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">유급시간</th>
@@ -161,8 +179,8 @@ dialog{
 					<tr class="asd"
 						data-vctn-type-num="${vacationTypeList.vctn_type_num}"
 						data-vctn-name="${vacationTypeList.vctn_name}"
-						data-dept="${vacationTypeList.dept}"
-						data-rank="${vacationTypeList.rank}"
+ 						data-dept="${vacationTypeList.deptValue}"
+						data-rank="${vacationTypeList.rankValue}"
 						data-vctn-time="${vacationTypeList.vctn_time}"
 						data-deduction-day="${vacationTypeList.deduction_day}"
 					>
@@ -170,8 +188,8 @@ dialog{
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
  						<td>${vacationTypeList.vctn_type_num}</td>
 						<td>${vacationTypeList.vctn_name}</td>
-						<td>${vacationTypeList.dept}</td>
-						<td>${vacationTypeList.rank}</td>
+						<td>${vacationTypeList.deptValue}</td>
+						<td>${vacationTypeList.rankValue}</td> 
 						<td>${vacationTypeList.vctn_time}</td>
 						<td>${vacationTypeList.deduction_day}</td>
 					</tr>
@@ -187,7 +205,7 @@ dialog{
 	<hr>
 
 
-	<form method="get" id="frm2">
+		<form method="get" id="frm2">
 			<table class="vactype-table">
 
 			</table>
@@ -202,6 +220,7 @@ dialog{
 		</div>
 	</form>
 	</dialog>
+	
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
@@ -235,11 +254,21 @@ dialog{
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="modaltwo">부서</th>
-			<td><input type="text" class="vactypeadd" name="dept" value="`+$dept+`"></td>
+			<td>
+			<select class="vactypeadd" name="dept">
+           		<c:forEach var="list" items="${optDept}">
+            		<option value="${list.code_name}">${list.code_value}</option>
+        		</c:forEach>
+        	</select></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="modaltwo">직급</th>
-			<td><input type="text" class="vactypeadd" name="rank" value="`+$rank+`"></td>
+			<td>
+			<select class="vactypeadd" name="rank">
+            <c:forEach var="list" items="${optRank}">
+            	<option value="${list.code_name}">${list.code_value}</option>
+       		</c:forEach>
+		</select></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="four">유급시간</th>
@@ -252,7 +281,7 @@ dialog{
 			`;
 
 		$('dialog table').html(str)
-	})
+	}) 
 
 	function resetForm() {
 		  $('#frm')[0].reset();
