@@ -16,12 +16,20 @@
 		ON work_schedule_type.rank = rank_table.code_name
 	INNER JOIN code_table dept_table
 		ON work_schedule_type.dept = dept_table.code_name
+		ORDER BY work_sch_type_num 
+	</select>
+	<select id="">
+	select 
 	</select>
 	<insert id="insertWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 		insert into work_schedule_type(work_sch_type_num, work_name, dept, rank) values (work_schedule_type_seq.nextval,#{work_name},#{dept},#{rank})
 	</insert>
 	<update id="updateWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
-	update work_schedule_type set work_name = #{work_name}, dept = #{dept}, rank = #{rank} where work_sch_type_num = #{work_sch_type_num}
+		update work_schedule_type set 
+			work_name = #{work_name}, 
+			dept = #{dept}, 
+			rank = #{rank} 
+		where work_sch_type_num = #{work_sch_type_num}
 	</update>
 	<delete id="deleteWorkScheduleType" parameterType="Integer">
 	delete from work_schedule_type where work_sch_type_num = #{work_sch_type_num}	

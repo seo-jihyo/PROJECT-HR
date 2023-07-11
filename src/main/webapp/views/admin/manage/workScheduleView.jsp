@@ -87,20 +87,20 @@ dialog{
                             <tr>
                                 <td>부서</td>
                                 <td>
-                                    <select name="dept" id="dept" multiple required>
-                                        <option value="B00101" selected>인사팀</option>
-                                        <option value="B00102" selected>프론트팀</option>
+                                    <select name="dept" id="dept">
+                                         <c:forEach var="list" items="${optDept}">
+                                            <option value="${list.code_name}">${list.code_value}</option>
+                                        </c:forEach>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>직급</td>
                                 <td>
-                                    <select name="rank" id="rank" multiple required>
-                                        <option value="A00101" selected>대표</option>
-                                        <option value="A00102" selected>이사</option>
-                                        <option value="A00103" selected>부장</option>
-                                        <option value="A00104" selected>차장</option>
+                                    <select name="rank" id="rank">
+                                         <c:forEach var="list" items="${optRank}">
+                                            <option value="${list.code_name}">${list.code_value}</option>
+                                        </c:forEach>
                                     </select>
                                 </td>
                             </tr>
@@ -170,93 +170,77 @@ dialog{
       </div>
    </form>
    </dialog>
-   <script src="/assets/js/main.js"></script>
-   <script src="/assets/js/modal.js"></script>
-   <script type="text/javascript">
 
-   const dialog = document.querySelector("dialog");
-   $(document).on("click", ".sec-table tbody tr", function () {
-      dialog.showModal();
-      console.log(this);
-   });
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/modal.js"></script>
 
-   function dialogClose(){
-      dialog.close();
-   }
-   
-   $(document).on("click", ".sec-table tbody tr", function () {
-      $num = $(this).data("num")
-      $name = $(this).data("name")
-      $dept = $(this).data("dept")
-      $rank = $(this).data("rank")
-
-<<<<<<< Updated upstream
-      let str = `
-         <tr class="rank-tr1">
+	<script type="text/javascript">
+     const dialog = document.querySelector("dialog");
+    
+       function dialogClose(){
+          dialog.close();
+       }
       
-            <tr class="rank-tr1">
-               
-               <th>근로일정유형명</td>
-               
-               <td><input type="hidden" value="`+ $num + `" name="work_sch_type_num">
-                  <input type="text" class="rankadd" name="name" value="`+$name+`"></td>
-            </tr>
-            <tr class="rank-tr1">
-               <th class="three">부서</td>
-               <td><input type="text" class="rankadd" name="dept" value="`+$dept+`"></td>
-            </tr>
-            <tr class="rank-tr1">
-               <th class="three">직급</td>
-               <td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td>
-            </tr>
-         `;
-=======
-		let str = `
-			<tr class="rank-tr1">
-		
-				<tr class="rank-tr1">
-					
-					<th>근로일정유형명</td>
-					
-					<td><input type="hidden" value="`+ $num + `" name="work_sch_type_num">
-						<input type="text" class="rankadd" name="name" value="`+$name+`"></td>
-				</tr>
-				<tr class="rank-tr1">
-					<th class="three">부서</td>
-				/* 	<td><input type="select" class="rankadd" name="dept" value="`+$dept+`"></td> */
-					<td><select name="dept" id="dept" multiple required>
-                     <option value="B00101" selected>인사팀</option>
-                     <option value="B00102" selected>프론트팀</option></td>
-                 </select>
-				</tr>
-				<tr class="rank-tr1">
-					<th class="three">직급</td>
-					/* <td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td> */
-					 <select name="dept" id="dept" multiple required>
-                                        <option value="B00101" selected>인사팀</option>
-                                        <option value="B00102" selected>프론트팀</option>
-                     </select>
-				</tr>
-			`;
->>>>>>> Stashed changes
+       $(document).on("click", ".sec-table tbody tr", function () {
+    	   dialog.showModal();
+    	      console.log(this);
+    	  $num = $(this).data("num")
+          $name = $(this).data("name")
+          $dept = $(this).data("dept")
+          $rank = $(this).data("rank")
 
-      $('dialog table').html(str) 
-   })
-function resetForm() {
-     $('#frm')[0].reset();
-}
-   const $form = $('#frm2');
-   
-   $(document).on('click', '#updateBtn', function() {
-      $form.attr('action','worktypeupdate.do')
-      $form.attr('method','post')
-      $form.submit()
-   })
-   $(document).on('click', '#deleteBtn', function() {
-      $form.attr('action','worktypedelete.do')
-      $form.attr('method','post')
-      $form.submit()
-   })
-</script>
+          let str = `
+             <tr class="rank-tr1">
+          
+                <tr class="rank-tr1">
+                   <th>근로일정유형명</td>
+                   <td><input type="hidden" value="`+ $num + `" name="work_sch_type_num">
+                       <input type="text" class="rankadd" name="name" value="`+$name+`"></td>
+                </tr>
+                
+                <tr class="rank-tr1">
+                   <th class="two">부서</td>
+                  	<td><select class="rankadd"/*  id="selectBox" */ name="dept">
+                        <c:forEach var="list" items="${optDept}">
+                            <option value="${list.code_name}">${list.code_value}</option>
+                        </c:forEach>
+    				</select></td>
+    				<th class="rights">
+                </tr>
+                
+                <tr class="rank-tr1">
+                   <th class="two">직급</td>
+                   	<td><select class="rankadd" /* id="selectBox" */ name="rank">
+                        <c:forEach var="list" items="${optRank}">
+                            <option value="${list.code_name}">${list.code_value}</option>
+                        </c:forEach>
+    				</select></td>
+                </tr>
+             `;
+          $('dialog table').html(str) 
+          
+       });
+
+    function resetForm() {
+         $('#frm')[0].reset();
+    }
+       const $form = $('#frm2');
+       
+       $(document).on('click', '#updateBtn', function() {
+          $form.attr('action','worktypeupdate.do')
+          $form.attr('method','post')
+          $form.submit()
+       })
+       $(document).on('click', '#deleteBtn', function() {
+          $form.attr('action','worktypedelete.do')
+          $form.attr('method','post')
+          $form.submit()
+       })
+     
+    
+   </script>
+
+
+
 </body>
 </html>
