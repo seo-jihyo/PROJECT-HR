@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.WorkScheduleDAO;
-import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
+import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
 
 public class WorkScheduleTypeService implements Action {
 
@@ -17,7 +17,7 @@ public class WorkScheduleTypeService implements Action {
 		WorkScheduleDAO dao = new WorkScheduleDAO();
 
 		try {
-			List<WorkScheduleTypeDTO> list = dao.selectAllWorkType();
+			List<WorkScheduleTypeVO> list = dao.selectAllWorkType();
 			request.setAttribute("list", list);
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
