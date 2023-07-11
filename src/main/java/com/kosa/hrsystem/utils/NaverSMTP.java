@@ -1,5 +1,6 @@
 package com.kosa.hrsystem.utils;
 
+import java.io.Reader;
 import java.util.Map;
 import java.util.Properties;
 
@@ -11,6 +12,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.apache.ibatis.io.Resources;
+
 
 public class NaverSMTP {
 	
@@ -28,10 +32,20 @@ public class NaverSMTP {
 		serverInfo.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		serverInfo.put("mail.smtp.socketFactory.fallback", "false");
 		serverInfo.put("mail.smtp.ssl.protocols", "TLSv1.2");
+		String resource = "email.properties";
+		Properties props = new Properties();
+		try {
+			Reader reader = Resources.getResourceAsReader(resource);
+			props.load(reader);
+			System.out.println(props.getProperty("id")+ " , " + props.getProperty("pw"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		auth = new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("jkl02138@naver.com", "jieun8157??!!");
+				
+				return new PasswordAuthentication(props.getProperty("id"), props.getProperty("pw"));
 			}
 		};
 	}
