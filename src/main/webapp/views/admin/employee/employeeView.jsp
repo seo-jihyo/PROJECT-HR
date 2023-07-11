@@ -142,6 +142,7 @@
 
                 <div class="modal-content">
 
+
                     <label for="popup">x</label>
                     <h1>직원 추가하기</h1>
                     <hr>
@@ -199,8 +200,6 @@
                                     <th class="rights">직통번호</th>
                                     <td><input type="tel" class="profile-text" name="emp-direct-num"></td>
                                 </tr>
-                                <tr>
-
 
                                 <tr>
                                     <th class="three">이메일</th>
@@ -247,7 +246,6 @@
                                 </tr>
 
                             </table>
-
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
