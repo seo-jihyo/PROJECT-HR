@@ -70,6 +70,7 @@ public class FrontRegisterController extends HttpServlet {
             forward = action.execute(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
             action = new EmpDeleteService();
+            forward = action.execute(request, response);
         }
         /* 부서 */
         else if (urlcommand.equals("/dept.do")) {
