@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+    <select id="checkEmail" parameterType="String" resultType="Integer">
+    	select count(*) from EMP where email = #{email}
+    </select>
     <select id="selectByEmail" parameterType="HashMap" resultType="com.kosa.hrsystem.dto.EmpDTO">
 		select email, emp_num, emp_name, permission_type from EMP where email=#{email} AND pwd = #{pwd}
 	</select>
