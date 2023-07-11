@@ -1,20 +1,21 @@
 package com.kosa.hrsystem.dao;
 
-import com.kosa.hrsystem.dto.VacationDTO;
-import com.kosa.hrsystem.dto.VacationTypeDTO;
-import com.kosa.hrsystem.utils.SqlMapConfig;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import java.util.List;
+import com.kosa.hrsystem.dto.VacationTypeDTO;
+import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.VacationTypeVO;
 
 public class VacationDAO {
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
     //휴가 일정 유형 전체 조회
-    public List<VacationTypeDTO> selectAll(){
+    public List<VacationTypeVO> selectAll(){
         SqlSession session = factory.openSession();
-        List<VacationTypeDTO> list= session.selectList("selectAll");
-
+        List<VacationTypeVO> list= session.selectList("selectAll");
+        System.out.println(list);
         session.close();
         return list;
     }
