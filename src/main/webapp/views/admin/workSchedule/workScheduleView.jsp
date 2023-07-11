@@ -207,10 +207,10 @@
 
 	</section>
 <dialog>
-    
+
     				<h1>근무일정 수정하기</h1>
 					<hr>
-					
+
 
 					<form method="post">
 						<table class="ws-table">
@@ -278,10 +278,10 @@
 						</div>
 					</div>
 				</form>
-						
-					
+
+
     </dialog>
-    
+
 <script type="text/javascript">
 
 const dialog = document.querySelector("dialog");
