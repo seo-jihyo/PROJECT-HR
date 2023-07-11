@@ -17,6 +17,7 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
 
@@ -25,7 +26,6 @@ public class EmpOkService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		EmpDAO dao = new EmpDAO(); 
-		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		RandomPwd rp = new RandomPwd();
@@ -55,14 +55,17 @@ public class EmpOkService implements Action {
         	json.put("status", "false");
         } else {
         	json.put("status", "true");
-        	emailSend(emp_email,emp_pwd);
+        	
+        	Encrypt en = new Encrypt();
+			String encryptPwd = en.getEncrypt(emp_pwd); //암호화
+        	emailSend(emp_email,emp_pwd); // 메일 전송
         	
     		try {
     			EmpDTO dto = new EmpDTO();
     			dto.setEmp_num(emp_num);
     			dto.setEmp_name(emp_name);
     			dto.setEmail(emp_email);
-    			dto.setPwd(emp_pwd);
+    			dto.setPwd(encryptPwd);
     			dto.setDept(emp_dept);
     			dto.setRegist_num(emp_regist_num);
     			dto.setRank(emp_rank);

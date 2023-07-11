@@ -4,6 +4,7 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import com.kosa.hrsystem.utils.Encrypt;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +22,10 @@ public class loginOkService implements Action {
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String pwd = request.getParameter("pwd");
-
+        Encrypt en = new Encrypt();
         HashMap<String, String> map = new HashMap<>();
         map.put("email", email);
-        map.put("pwd", pwd);
+        map.put("pwd", en.getEncrypt(pwd));
         // 암호화 적용
         System.out.println(map);
 
