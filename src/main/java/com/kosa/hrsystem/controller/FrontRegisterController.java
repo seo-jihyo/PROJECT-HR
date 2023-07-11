@@ -66,7 +66,13 @@ public class FrontRegisterController extends HttpServlet {
             // 추가하는 서비스
             action = new RankOkService();
             forward = action.execute(request, response);
-        } else if (urlcommand.equals("/deptok.do")) {
+        } else if (urlcommand.equals("/rankupdate.do")){
+            action = new RankUpdateService();
+            forward = action.execute(request, response);
+        } else if (urlcommand.equals("/rankdelete.do")){
+            action = new RankDeleteService();
+            forward = action.execute(request, response);
+        }else if (urlcommand.equals("/deptok.do")) {
 
         	// 추가하는 서비스
         	action = new DeptOkService();
@@ -81,7 +87,6 @@ public class FrontRegisterController extends HttpServlet {
         	// 휴가 유형 추가하는 서비스
         	action = new VacationTypeOkService();
         	forward = action.execute(request, response);
-        	
         } else if (urlcommand.equals("/rank.do")) {
             action = new RankService();
             forward = action.execute(request, response);
@@ -89,7 +94,6 @@ public class FrontRegisterController extends HttpServlet {
             action = new EmpService();
             forward = action.execute(request, response);
         } else if (urlcommand.equals("/dept.do")) {
-
             action = new DeptService();
             forward = action.execute(request, response);
         } else if (urlcommand.equals("/work.do")) {
@@ -112,7 +116,6 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
         	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
-
         } else if (urlcommand.equals("/vacationtype.do")) {
         	action = new VacationTypeService();
         	forward = action.execute(request, response);
@@ -123,7 +126,7 @@ public class FrontRegisterController extends HttpServlet {
         	action = new VacationTypeUpdateService();
         	forward = action.execute(request, response);
         }
-        
+
         else if (urlcommand.equals("/vacationTypeDelete.do")) {
         	// 휴가 유형 삭제
         	action = new VacationTypeDeleteService();

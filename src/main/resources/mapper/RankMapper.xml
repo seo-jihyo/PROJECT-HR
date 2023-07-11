@@ -11,9 +11,9 @@
 		select * from code_table where parent_code = 'A001' ORDER BY CODE_NAME
 	</select>
 	<update id="updateRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
-	
+		update code_table set code_value = #{code_value} ,remarks = #{remarks} where code_name = #{code_name}
 	</update>
-	<delete id="deleteRank" parameterType="Integer">
-		delete * from code_table where code_name = "#{code_name}"
+	<delete id="deleteRank" parameterType="String">
+		delete from code_table where code_name = #{codeName}
 	</delete>
 </mapper>

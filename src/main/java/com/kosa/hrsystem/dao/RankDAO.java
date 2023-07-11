@@ -15,17 +15,13 @@ public class RankDAO {
 	public int insertRank(CodeTableDTO dto) throws Exception {
 		SqlSession sqlSession = factory.openSession(true); // 자동커밋
 		int result = sqlSession.insert("insertRank",dto);
-		System.out.println(result);
-		
-		//sqlSession.commit(); 수동커밋인 경우
 		sqlSession.close();
 		return result;
 	}
 	
 	public List<CodeTableDTO> selectAllRank() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		List<CodeTableDTO> list = null;
-		list = sqlSession.selectList("selectAllRank");
+		List<CodeTableDTO> list = sqlSession.selectList("selectAllRank");
 		sqlSession.close();
 		return list;
 	}
@@ -33,16 +29,15 @@ public class RankDAO {
 	public int update(CodeTableDTO dto) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.update("updateRank", dto);
-		System.out.println(result);
 		sqlSession.close();
 		return result;
 	}
 	
-	public int delete(CodeTableDTO dto) throws Exception {
+	public int delete(String codeName) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.delete("deleteRank",dto);
-		System.out.println(result);
+		int result = sqlSession.delete("deleteRank",codeName);
 		sqlSession.close();
 		return result;
 	}
+
 }
