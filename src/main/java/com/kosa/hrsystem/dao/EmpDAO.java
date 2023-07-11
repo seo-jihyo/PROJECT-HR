@@ -12,6 +12,14 @@ public class EmpDAO {
 
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
 
+    public int checkEmail(String email) {
+        SqlSession sqlSession =  factory.openSession();
+        
+        int result = sqlSession.selectOne("checkEmail",email);
+        sqlSession.close();
+        return result;
+    }
+    
     // DB에 아이디가 존재하는지 체크
     public EmpDTO selectByEmail(HashMap<String, String> map) {
         SqlSession sqlSession =  factory.openSession();

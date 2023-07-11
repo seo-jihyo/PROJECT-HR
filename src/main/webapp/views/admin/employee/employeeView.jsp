@@ -142,6 +142,7 @@
 
                 <div class="modal-content">
 
+
                     <label for="popup">x</label>
                     <h1>직원 추가하기</h1>
                     <hr>
@@ -199,8 +200,6 @@
                                     <th class="rights">직통번호</th>
                                     <td><input type="tel" class="profile-text" name="emp-direct-num"></td>
                                 </tr>
-                                <tr>
-
 
                                 <tr>
                                     <th class="three">이메일</th>
@@ -247,7 +246,6 @@
                                 </tr>
 
                             </table>
-
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
@@ -499,7 +497,7 @@
 				<th class="two">부서</th>
 				<td><select class="profiletype" name="emp-dept">
                     <c:forEach var="list" items="${optDept}">
-                        <option value="${list.code_name}">${code_value}</option>
+                        <option value="${list.code_name}">${list.code_value}</option>
                     </c:forEach>
 				</select></td>
 				<th class="rights">주민번호</th>
@@ -509,7 +507,7 @@
 				<th class="two">직급</th>
 					<td><select class="profiletype" name="emp-rank">
                     <c:forEach var="list" items="${optRank}">
-                        <option value="${list.code_name}">${code_value}</option>
+                        <option value="${list.code_name}">${list.code_value}</option>
                     </c:forEach>
 					</select></td>
 				<th class="rights">휴대전화</th>
@@ -589,13 +587,6 @@
             emptext_elem.show();
         }
     }
-
-    // 버튼 눌렀을때 해당하는 form 의 ajax 통신
-    function testfn() {
-
-        // console.log()
-    }
-
 
     $('.tabs a').click(function () {
         let $tabId = $(this).data('tab')
