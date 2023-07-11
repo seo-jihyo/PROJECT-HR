@@ -28,14 +28,14 @@ public class RankDAO {
 	
 	public int update(CodeTableDTO dto) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.update("updateRank", dto);
+		int result = sqlSession.update("updateCodeTable", dto);
 		sqlSession.close();
 		return result;
 	}
 	
 	public int delete(String codeName) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.delete("deleteRank",codeName);
+		int result = sqlSession.delete("deleteCodeTable",codeName);
 		sqlSession.close();
 		return result;
 	}

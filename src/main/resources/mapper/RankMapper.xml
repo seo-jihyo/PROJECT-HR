@@ -8,7 +8,7 @@
     	insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})
     </insert>
 	<select id="selectAllRank" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
-		select * from code_table where parent_code = 'A001' ORDER BY CODE_NAME
+		select * from code_table where parent_code = 'R001' ORDER BY CODE_NAME
 	</select>
 	<update id="updateRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
 		update code_table set code_value = #{code_value} ,remarks = #{remarks} where code_name = #{code_name}

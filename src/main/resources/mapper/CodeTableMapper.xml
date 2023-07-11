@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+    <!-- 부서 -->
+    <select id="selectAllDept" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
+        select * from code_table where parent_code = 'D001' ORDER BY CODE_NAME
+    </select>
+    <insert id="insertDept" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+        insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})
+    </insert>
+    <!-- 직급 -->
+    <select id="selectAllRank" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
+        select * from code_table where parent_code = 'R001' ORDER BY CODE_NAME
+    </select>
+    <insert id="insertRank" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+        insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})
+    </insert>
+
+    <!-- 공통-->
+    <update id="updateCodeTable" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
+        update code_table set code_value = #{code_value} ,remarks = #{remarks} where code_name = #{code_name}
+    </update>
+    <delete id="deleteCodeTable" parameterType="String">
+        delete from code_table where code_name = #{codeName}
+    </delete>
+</mapper>

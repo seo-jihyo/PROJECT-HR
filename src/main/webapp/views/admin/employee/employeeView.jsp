@@ -48,7 +48,7 @@
 .profile th{
 	text-align: left;
 }
-.addrtext{	
+.addrtext{
 	width:342px;
 }
 .profiledate{
@@ -78,7 +78,7 @@
 	height: 70px;
 }
 .postbtn{
-	width: 160px; 
+	width: 160px;
 	height: 25px;
 	color: white;
 	background-color: #116fab;
@@ -89,7 +89,7 @@
 .custom{
 	border : 1px solid black;
 	height: 25px;
-	width: 150px; 
+	width: 150px;
 }
 .modal{
 	width:100%;
@@ -108,7 +108,7 @@
 
 			<h2>직원 관리</h2>
 			<nav class="plusinfo">
-			
+
 				<select class="searchtype searchs">
 					<option value="none">선택없음</option>
 					<option value="groupname">사원번호</option>
@@ -124,7 +124,7 @@
 				</select> <input type="text" class="search searchs"> <input
 					type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs"
 					for="popup">+ 직원 추가하기</label>
-				
+
 				<div class="modal" style="display: hidden;">
 
 					<div class="modal-content">
@@ -135,8 +135,8 @@
 
 					<!-- 	<form method="get" action="/" id="frm"> -->
 							<div class="tabs">
-								<a data-tab="tab-1">기본정보</a> 
-								<a data-tab="tab-2">직원 커스텀 필드</a> 
+								<a data-tab="tab-1">기본정보</a>
+								<a data-tab="tab-2">직원 커스텀 필드</a>
 							</div>
 							<hr>
 							<div class="modal_nav" id="tab-1" style="display: block;">
@@ -152,11 +152,12 @@
 										<tr>
 											<th class="two">부서</th>
 											<td><select class="profiletype" name="emp-dept">
-													<option value="개발팀">개발팀</option>
-													<option value="영업팀">영업팀</option>
-													<option value="인사팀">인사팀</option>													
+
+												<c:forEach var="list" items="${optDept}">
+													<option value="${list.code_name}">${list.code_value}</option>
+												</c:forEach>
 												</select></td>
-												
+
 											<th class="rights">주민번호</th>
 											<td><input type="text" class="profile-text" name="emp-regist-num"></td>
 										</tr>
@@ -164,9 +165,9 @@
 											<th class="two">직급</th>
 
 											<td><select class="profiletype" name="emp-rank">
-													<option value="부장">부장</option>
-													<option value="대리">대리</option>
-													<option value="사원">사원</option>													
+												<c:forEach var="list" items="${optRank}">
+													<option value="${list.code_name}">${list.code_value}</option>
+												</c:forEach>
 												</select></td>
 
 											<th class="rights">휴대전화</th>
@@ -184,7 +185,7 @@
 											<td><input type="tel" class="profile-text" name="emp-direct-num"></td>
 										</tr>
 										<tr>
-				
+
 
 										<tr>
 											<th class="three">이메일</th>
@@ -214,15 +215,15 @@
 										<tr>
 											<th></th>
 											<td></td>
-											
+
 											<th class="rights" id="emptext" >퇴사사유</th>
 											<td><textarea name="emp-reason" class="emptext" id="emptext" ></textarea>
-											
+
 										<tr>
 											<th class="two">메모</th>
 											<td colspan='3'><textarea name="remarks" class="empmemo"></textarea>
 										</tr>
-										
+
 									</table>
 
 									<hr>
@@ -238,7 +239,7 @@
 							<div class="modal_nav" id="tab-2" style="display: none;">
 								<form action="/personalInfook.do" id="frm3">
 								<h4>학력</h4>
-								
+
 								<label for="edu_num">학력번호</label>&nbsp;
 								<label for="school_name">학교명</label>&nbsp;
 								<label for="school_dept">학과명</label>&nbsp;
@@ -246,7 +247,7 @@
 								<label for="graduation_day">졸업년월</label>&nbsp;
 								<label for="graduation_status">졸업상태</label>&nbsp;
 								<label for="remarks">비고</label>
-								
+
 								<br>
 								<input type="hidden" class="custom" id="emp_num" name="emp-num">&nbsp;
 								<input type="text" class="custom" id="edu_num" name="edu-num">&nbsp;
@@ -264,7 +265,7 @@
 									<input type="text" class="custom" id="remarks" name="edu-remarks">
 								</div>
 								<br>
-								
+
 								<h4>경력</h4>
 								<label>경력번호</label>&nbsp;
 								<label>회사명</label>&nbsp;
@@ -272,7 +273,7 @@
 								<label>직급</label>&nbsp;
 								<label>주요업무</label>&nbsp;
 								<label>입사년월</label>&nbsp;
-								<label>퇴사년월</label>&nbsp;						
+								<label>퇴사년월</label>&nbsp;
 								<label>비고</label>
 								<br>
 								<input type="hidden" class="custom" id="emp_num" name="emp-num">&nbsp;
@@ -280,9 +281,9 @@
 								<input type="text" class="custom" name="company-name">&nbsp;
 								<input type="text" class="custom" name="dept">&nbsp;
 								<input type="text" class="custom" name="rank">&nbsp;
-								<input type="text" class="custom" name="main-task">&nbsp;						
+								<input type="text" class="custom" name="main-task">&nbsp;
 								<input type="date" class="custom" name="join-date">&nbsp;
-								<input type="date" class="custom" name="leave-date">&nbsp;								
+								<input type="date" class="custom" name="leave-date">&nbsp;
 								<input type="text" class="custom" name="career-remarks">&nbsp;
 								<br>
 								<h4>자격증</h4>&nbsp;
@@ -306,7 +307,7 @@
 								</div>
 								</form>
 							</div>
-					
+
 				</div>
 				<label for="popup"></label>
 			</div>
@@ -431,7 +432,7 @@
 				<td><select class="profiletype" name="emp-dept">
 					<option value="`+$dept+`">개발팀</option>
 					<option value="`+$dept+`">영업팀</option>
-					<option value="`+$dept+`">인사팀</option>													
+					<option value="`+$dept+`">인사팀</option>
 				</select></td>
 				<th class="rights">주민번호</th>
 				<td><input type="text" name="emp-regist-num" class="profile-text" value="`+$registNum+`"></td>
@@ -441,7 +442,7 @@
 					<td><select class="profiletype" name="emp-rank">
 							<option value="`+$rank+`">부장</option>
 							<option value="`+$rank+`">대리</option>
-							<option value="`+$rank+`">사원</option>													
+							<option value="`+$rank+`">사원</option>
 					</select></td>
 				<th class="rights">휴대전화</th>
 				<td><input type="tel" name="emp-phone" class="profile-text" value="`+$phone+`"></td>
@@ -499,16 +500,16 @@
 
 		$('dialog table').html(str)
 	})
-	
+
 	function toggleTextbox(checkbox) {
-		  
+
 		  // 1. 텍스트 박스 element 찾기
 		  const empdate_elem = document.getElementById('empdate');
 		  const emptext_elem = document.getElementById('emptext')
 		  // 2-1. 체크박스 선택여부 체크
 		  // 2-2. 체크박스 선택여부에 따라 텍스트박스 활성화/비활성화
 		  empdate_elem.disabled = checkbox.checked ? false : true;
-		  
+
 		  // 3. 텍스트박스 활성화/비활성화 여부에 따라
 		  // - 텍스트박스가 비활성화 된 경우 : 텍스트박스 초기화
 		  // - 텍스트박스가 활성화 된 경우 : 포커스 이동
@@ -536,7 +537,7 @@
     $('#'+$tabId).show()
     $('input[type="submit"]').attr('form',$('#'+$tabId).children('form').attr("id"))
   })
-  
+
 /*   다음 주소 API */
 
 $(document).on('click','.postbtn',function(){
@@ -561,7 +562,7 @@ $(document).on('click','.postbtn',function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                
+
                 document.getElementById(input+"_postcode").value = data.zonecode;
                 document.getElementById(input+"_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
@@ -573,7 +574,7 @@ $(document).on('click','.postbtn',function(){
   function resetForm() {
 	  $('#frm')[0].reset();
   }
-  
+
   const $form = $('#frm2');
   $(document).on('click','#updateBtn',function (){
      $form.attr('action','/empupdate.do')
