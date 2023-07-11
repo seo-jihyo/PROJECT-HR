@@ -136,7 +136,9 @@
 					<!-- 	<form method="get" action="/" id="frm"> -->
 							<div class="tabs">
 								<a data-tab="tab-1">기본정보</a> 
-								<a data-tab="tab-2">직원 커스텀 필드</a> 
+								<a data-tab="tab-2">학력</a> 
+								<a data-tab="tab-3">경력</a> 
+								<a data-tab="tab-4">자격증</a> 
 							</div>
 							<hr>
 							<div class="modal_nav" id="tab-1" style="display: block;">
@@ -263,7 +265,17 @@
 									</select>&nbsp;
 									<input type="text" class="custom" id="remarks" name="edu-remarks">
 								</div>
-								<br>
+								<hr>
+									<div class="bottom-btn">
+										<div class="right-btn">
+											<button class="custom-btn btn-10" form="학력">추가하기</button>
+											<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="modal_nav" id="tab-3" style="display: none;">
+								<form action="/" id="">
 								
 								<h4>경력</h4>
 								<label>경력번호</label>&nbsp;
@@ -284,7 +296,17 @@
 								<input type="date" class="custom" name="join-date">&nbsp;
 								<input type="date" class="custom" name="leave-date">&nbsp;								
 								<input type="text" class="custom" name="career-remarks">&nbsp;
-								<br>
+								<hr>
+									<div class="bottom-btn">
+										<div class="right-btn">
+											<button class="custom-btn btn-10" form="경력">추가하기</button>
+											<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
+										</div>
+									</div>
+								</form>
+							</div>
+								<div class="modal_nav" id="tab-4" style="display: none;">
+								<form action="/" id="">
 								<h4>자격증</h4>&nbsp;
 								<label>자격증번호</label>&nbsp;
 								<label>자격증명</label>&nbsp;
@@ -300,7 +322,7 @@
 								<hr>
 								<div class="bottom-btn">
 									<div class="right-btn">
-										<button class="custom-btn btn-10">추가하기</button>
+										<button class="custom-btn btn-10" form="자격증">추가하기</button>
 										<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 									</div>
 								</div>
