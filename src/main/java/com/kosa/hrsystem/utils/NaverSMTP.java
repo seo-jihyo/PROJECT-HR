@@ -21,6 +21,7 @@ public class NaverSMTP {
 	private final Properties serverInfo; // 서버정보
 	private final Authenticator auth; 	 // 인증정보
 	private static Properties props;
+
 	
 	public NaverSMTP() {
 		serverInfo = new Properties();
@@ -38,14 +39,12 @@ public class NaverSMTP {
 		try {
 			Reader reader = Resources.getResourceAsReader(resource);
 			props.load(reader);
-			System.out.println(props.getProperty("id")+ " , " + props.getProperty("pw"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		auth = new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				
 				return new PasswordAuthentication(props.getProperty("id"), props.getProperty("pw"));
 			}
 		};
