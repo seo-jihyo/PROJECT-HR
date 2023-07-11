@@ -134,9 +134,11 @@
                 <option value="worktype">근로정보명</option>
                 <option value="pay">시급</option>
                 <option value="memo">메모</option>
-            </select> <input type="text" class="search searchs"> <input
-                type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs"
-                                                                        for="popup">+ 직원 추가하기</label>
+            </select> 
+            <input type="text" class="search searchs"> 
+            <input type="button" class="seachbtn" value="검 색"> 
+            <input type="checkbox" id="popup" onclick="resetForm()">
+            <label class="labelBtn searchs" for="popup">+ 직원 추가하기</label>
 
             <div class="modal" style="display: hidden;">
 
