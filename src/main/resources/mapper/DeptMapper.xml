@@ -6,7 +6,7 @@
 <mapper namespace="dev">
     
 	<select id="selectAllDept" resultType="com.kosa.hrsystem.dto.CodeTableDTO">
-    		select * from code_table where parent_code = 'B001' ORDER BY CODE_NAME
+    		select * from code_table where parent_code = 'D001' ORDER BY CODE_NAME
     </select>
     <insert id="insertDept" parameterType="com.kosa.hrsystem.dto.CodeTableDTO">
     	insert into code_table(code_name,code_value,parent_code,remarks) values (#{code_name},#{code_value},#{parent_code},#{remarks})

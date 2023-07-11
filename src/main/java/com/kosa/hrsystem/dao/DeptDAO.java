@@ -31,8 +31,7 @@ public class DeptDAO {
 	// 부서 수정하기
 	public int updateDept(CodeTableDTO dto) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.update("updateDept", dto);
-		System.out.println(result);
+		int result = sqlSession.update("updateCodeTable", dto);
 		sqlSession.close();
 		return result;
 	}
@@ -40,8 +39,7 @@ public class DeptDAO {
 	// 부서 삭제하기
 	public int deleteDept(String codeName) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		int result = sqlSession.delete("deleteDept", codeName);
-		System.out.println(result);
+		int result = sqlSession.delete("deleteCodeTable", codeName);
 		sqlSession.close();
 		return result;
 	}
