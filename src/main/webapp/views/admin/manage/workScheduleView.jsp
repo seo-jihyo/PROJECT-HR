@@ -18,41 +18,41 @@
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
 dialog{
-	width: 520px;
-	height: 310px;
+   width: 520px;
+   height: 310px;
 
 }
 .diatitle{
-	padding-top:20px;
-	padding-bottom:20px;
-	padding-left:20px;
+   padding-top:20px;
+   padding-bottom:20px;
+   padding-left:20px;
 }
 .schedule-table {
-	padding: 20px 20px;
-	width: 100%;
+   padding: 20px 20px;
+   width: 100%;
 }
 .schedule-table tr {
-	margin: 5px;
+   margin: 5px;
 }
 .schedule-table tr td {
-	padding: 7px;
-	font-size: 15px;
+   padding: 7px;
+   font-size: 15px;
 }
 .scheduleadd{
-	height: 25px;
-	border: 1px solid black;
+   height: 25px;
+   border: 1px solid black;
 }
 .schedule-area{
-	width: 300px;
-	height: 90px;
-	border: 1px solid black;
+   width: 300px;
+   height: 90px;
+   border: 1px solid black;
 }
 .schedule-table th{
-		text-align: left;
+      text-align: left;
 }
 .modaltwo{
-	letter-spacing: 58px;
-	padding-right: 0px;
+   letter-spacing: 58px;
+   padding-right: 0px;
 }
 </style>
 </head>
@@ -135,60 +135,82 @@ dialog{
         </tr>
         </thead>
         <tbody>
+
 				<c:forEach var="WSTList" items="${list}">
 					<tr data-num="${WSTList.work_sch_type_num}"
 						data-name="${WSTList.work_name}" 
-						data-dept="${WSTList.dept}"
-						data-rank="${WSTList.rank}">
+						data-dept="${WSTList.deptValue}"
+						data-rank="${WSTList.rankValue}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${WSTList.work_name}</td>
-						<td>${WSTList.dept}</td>
-						<td>${WSTList.rank}</td>
+						<td>${WSTList.deptValue}</td>
+						<td>${WSTList.rankValue}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
     </table>
 </section>
 
-	<!-- 수정 dialog -->
-	<dialog>
-	<h2 class="diatitle">근무일정 유형</h2>
-	<hr>
-	<form method="get" id="frm2">
-	<table class="schedule-table">
-		
-						</table>
-		<hr>
-		<div class="bottom-btn">
-			<div class="right-btn">
-				<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
-				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
-				<button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
-			</div>
-		</div>
-	</form>
-	</dialog>
-	<script src="/assets/js/main.js"></script>
-	<script src="/assets/js/modal.js"></script>
-	<script type="text/javascript">
+   <!-- 수정 dialog -->
+   <dialog>
+   <h2 class="diatitle">근무일정 유형</h2>
+   <hr>
+   <form method="get" id="frm2">
+   <table class="schedule-table">
+      
+                  </table>
+      <hr>
+      <div class="bottom-btn">
+         <div class="right-btn">
+            <button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+            <button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
+            <button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+         </div>
+      </div>
+   </form>
+   </dialog>
+   <script src="/assets/js/main.js"></script>
+   <script src="/assets/js/modal.js"></script>
+   <script type="text/javascript">
 
-	const dialog = document.querySelector("dialog");
-	$(document).on("click", ".sec-table tbody tr", function () {
-		dialog.showModal();
-		console.log(this);
-	});
+   const dialog = document.querySelector("dialog");
+   $(document).on("click", ".sec-table tbody tr", function () {
+      dialog.showModal();
+      console.log(this);
+   });
 
-	function dialogClose(){
-		dialog.close();
-	}
-	
-	$(document).on("click", ".sec-table tbody tr", function () {
-		$num = $(this).data("num")
-		$name = $(this).data("name")
-		$dept = $(this).data("dept")
-		$rank = $(this).data("rank")
+   function dialogClose(){
+      dialog.close();
+   }
+   
+   $(document).on("click", ".sec-table tbody tr", function () {
+      $num = $(this).data("num")
+      $name = $(this).data("name")
+      $dept = $(this).data("dept")
+      $rank = $(this).data("rank")
 
+<<<<<<< Updated upstream
+      let str = `
+         <tr class="rank-tr1">
+      
+            <tr class="rank-tr1">
+               
+               <th>근로일정유형명</td>
+               
+               <td><input type="hidden" value="`+ $num + `" name="work_sch_type_num">
+                  <input type="text" class="rankadd" name="name" value="`+$name+`"></td>
+            </tr>
+            <tr class="rank-tr1">
+               <th class="three">부서</td>
+               <td><input type="text" class="rankadd" name="dept" value="`+$dept+`"></td>
+            </tr>
+            <tr class="rank-tr1">
+               <th class="three">직급</td>
+               <td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td>
+            </tr>
+         `;
+=======
 		let str = `
 			<tr class="rank-tr1">
 		
@@ -201,31 +223,40 @@ dialog{
 				</tr>
 				<tr class="rank-tr1">
 					<th class="three">부서</td>
-					<td><input type="text" class="rankadd" name="dept" value="`+$dept+`"></td>
+				/* 	<td><input type="select" class="rankadd" name="dept" value="`+$dept+`"></td> */
+					<td><select name="dept" id="dept" multiple required>
+                     <option value="B00101" selected>인사팀</option>
+                     <option value="B00102" selected>프론트팀</option></td>
+                 </select>
 				</tr>
 				<tr class="rank-tr1">
 					<th class="three">직급</td>
-					<td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td>
+					/* <td><input type="text" class="rankadd" name="rank" value="`+$rank+`"></td> */
+					 <select name="dept" id="dept" multiple required>
+                                        <option value="B00101" selected>인사팀</option>
+                                        <option value="B00102" selected>프론트팀</option>
+                     </select>
 				</tr>
 			`;
+>>>>>>> Stashed changes
 
-		$('dialog table').html(str) 
-	})
+      $('dialog table').html(str) 
+   })
 function resetForm() {
-	  $('#frm')[0].reset();
+     $('#frm')[0].reset();
 }
-	const $form = $('#frm2');
-	
-	$(document).on('click', '#updateBtn', function() {
-		$form.attr('action','worktypeupdate.do')
-		$form.attr('method','post')
-		$form.submit()
-	})
-	$(document).on('click', '#deleteBtn', function() {
-		$form.attr('action','worktypedelete.do')
-		$form.attr('method','post')
-		$form.submit()
-	})
+   const $form = $('#frm2');
+   
+   $(document).on('click', '#updateBtn', function() {
+      $form.attr('action','worktypeupdate.do')
+      $form.attr('method','post')
+      $form.submit()
+   })
+   $(document).on('click', '#deleteBtn', function() {
+      $form.attr('action','worktypedelete.do')
+      $form.attr('method','post')
+      $form.submit()
+   })
 </script>
 </body>
 </html>

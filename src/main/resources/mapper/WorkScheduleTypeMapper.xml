@@ -4,8 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-	<select id="selectAllWorkType" resultType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
-		select * from work_schedule_type
+	<select id="selectAllWorkType" resultType="com.kosa.hrsystem.vo.WorkScheduleTypeVO">
+	<!-- 	select * from work_schedule_type -->
+	SELECT 
+		work_sch_type_num, 
+		work_name, 
+		rank_table.code_value rankValue, 
+		dept_table.code_value deptValue
+	FROM work_schedule_type
+	INNER JOIN code_table rank_table
+		ON work_schedule_type.rank = rank_table.code_name
+	INNER JOIN code_table dept_table
+		ON work_schedule_type.dept = dept_table.code_name
 	</select>
 	<insert id="insertWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 		insert into work_schedule_type(work_sch_type_num, work_name, dept, rank) values (work_schedule_type_seq.nextval,#{work_name},#{dept},#{rank})
