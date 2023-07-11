@@ -112,23 +112,21 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
         	action = new WorkScheduleTypeDeleteService();
         	forward = action.execute(request, response);
-
         } else if (urlcommand.equals("/vacationtype.do")) {
         	action = new VacationTypeService();
         	forward = action.execute(request, response);
-        }
-
-        else if (urlcommand.equals("/vacationTypeUpdate.do")) {
+        } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
         	// 휴가 유형 업데이트
         	action = new VacationTypeUpdateService();
         	forward = action.execute(request, response);
-        }
-        
-        else if (urlcommand.equals("/vacationTypeDelete.do")) {
+        } else if (urlcommand.equals("/vacationTypeDelete.do")) {
         	// 휴가 유형 삭제
         	action = new VacationTypeDeleteService();
         	forward = action.execute(request, response);
-        }
+        } else if (urlcommand.equals("/personalInfook.do")) {
+	    	action = new PersonalInfoOkService();
+	    	forward = action.execute(request, response);
+	    }
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"

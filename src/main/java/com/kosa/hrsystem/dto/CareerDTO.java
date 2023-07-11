@@ -15,11 +15,11 @@ import lombok.ToString;
 
 public class CareerDTO {
 	
+	private int career_num;
 	private int emp_num;
-	private int bsns_num;
 	private String company_name;
 	private String dept;
-	private int rank;
+	private String rank;
 	private String main_tesk;
 	private Date join_date;
 	private Date leave_date;
