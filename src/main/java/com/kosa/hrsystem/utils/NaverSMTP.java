@@ -20,6 +20,7 @@ public class NaverSMTP {
 	
 	private final Properties serverInfo; // 서버정보
 	private final Authenticator auth; 	 // 인증정보
+	private static Properties props = new Properties();
 	
 	public NaverSMTP() {
 		serverInfo = new Properties();
@@ -33,18 +34,16 @@ public class NaverSMTP {
 		serverInfo.put("mail.smtp.socketFactory.fallback", "false");
 		serverInfo.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		String resource = "email.properties";
-		Properties props = new Properties();
+
 		try {
 			Reader reader = Resources.getResourceAsReader(resource);
 			props.load(reader);
-			System.out.println(props.getProperty("id")+ " , " + props.getProperty("pw"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		auth = new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				
 				return new PasswordAuthentication(props.getProperty("id"), props.getProperty("pw"));
 			}
 		};
@@ -58,7 +57,7 @@ public class NaverSMTP {
 		
 		// 2. 메시지 작성
 		MimeMessage msg = new MimeMessage(session); 
-		msg.setFrom(new InternetAddress(mailInfo.get("from"))); // 보내는 사람
+		msg.setFrom(new InternetAddress(props.getProperty("id"))); // 보내는 사람
 		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(mailInfo.get("to"))); // 받는 사람
 		msg.setSubject(mailInfo.get("subject")); // 제목
 		msg.setContent(mailInfo.get("content"),mailInfo.get("format")); // 내용
