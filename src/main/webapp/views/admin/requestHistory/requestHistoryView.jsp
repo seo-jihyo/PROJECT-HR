@@ -95,54 +95,9 @@
 			</tbody>
 		</table>
 	</section>
-<dialog>
-    
-    				<h1>승인하기</h1>
-					<hr>
-					
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
-							</tr>
-
-							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
-							</tr>
-						</table>
-						
-					
-       				<hr>
-       					<div class="bottom-btn">
-						<div class="right-btn">
-							<button type="button" class="custom-btn btn-10">수정하기</button>
-							<button type="button" class="custom-btn btn-10">삭제하기</button>
-            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
-						</div>
-        </form>
-    </dialog>
 <script type="text/javascript">
-const dialog = document.querySelector("dialog");
-$(document).on("click", ".table tbody tr", function () {
-	dialog.showModal();
-	console.log(this);
-});
 
-function dialogClose(){
-	dialog.close();
-}
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>

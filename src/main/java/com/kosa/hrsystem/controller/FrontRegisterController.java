@@ -12,23 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.service.AttendanceService;
-import com.kosa.hrsystem.service.AttendanceServiceImp;
-import com.kosa.hrsystem.service.CodeTableService;
-import com.kosa.hrsystem.service.DeptServiceImp;
-import com.kosa.hrsystem.service.EmpService;
-import com.kosa.hrsystem.service.EmpServiceImp;
-import com.kosa.hrsystem.service.PersonalInfoOkService;
-import com.kosa.hrsystem.service.RankServiceImp;
-import com.kosa.hrsystem.service.RequestHistoryService;
-import com.kosa.hrsystem.service.RequestHistoryServiceImp;
-import com.kosa.hrsystem.service.VacationService;
-import com.kosa.hrsystem.service.VacationServiceImp;
-import com.kosa.hrsystem.service.WorkScheduleService;
-import com.kosa.hrsystem.service.WorkScheduleServiceImp;
-import com.kosa.hrsystem.service.WorkService;
-import com.kosa.hrsystem.service.WorkServiceImp;
-import com.kosa.hrsystem.service.loginOkService;
+import com.kosa.hrsystem.service.*;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
