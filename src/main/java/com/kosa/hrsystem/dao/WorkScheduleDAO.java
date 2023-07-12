@@ -26,7 +26,6 @@ public class WorkScheduleDAO {
 		SqlSession sqlSession = factory.openSession(true);
 		List<WorkScheduleVO> list = null;
 		list = sqlSession.selectList("selectAllWorkSchedule");
-		System.out.println("왜안나옴"+list);
 		sqlSession.close();
 		return list;
 	}
