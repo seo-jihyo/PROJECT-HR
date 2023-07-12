@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="dev">
+	<select id="selectAllRecord" resultType="com.kosa.hrsystem.vo.CommuteRecordVO">
+	SELECT
+	a.emp_num,
+	e.emp_name,
+	a.go_work,
+	a.leave_work,
+	a.break_time,
+	TRUNC((a.leave_work - a.go_work) * 24 - a.break_time) work_time
+	FROM attendance a
+	JOIN emp e ON a.emp_num = e.emp_num
+	</select>
+</mapper>
