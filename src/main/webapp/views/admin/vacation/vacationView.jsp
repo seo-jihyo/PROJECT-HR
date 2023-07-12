@@ -70,7 +70,6 @@
 				<option>사원번호</option>
 				<option>직원</option>
 				<option>휴가시간</option>
-				<option>휴가그룹</option>
 				<option>휴가유형</option>
 				<option>유급시간</option>
 				<option>차감일수</option>
@@ -142,7 +141,6 @@
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>휴가시간</th>
-					<th>휴가그룹</th>
 					<th>휴가 유형</th>
 					<th>유급 시간</th>
 					<th>차감일수</th>
@@ -156,7 +154,6 @@
 					<td>001</td>
 					<td>이재경</td>
 					<td>7월 3일 (월) 09:00 - 18:00</td>
-					<td>연차휴가</td>
 					<td>연차</td>
 					<td>8h</td>
 					<td>1일</td>
