@@ -7,6 +7,7 @@ import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,32 +20,44 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     /* 근무 일정 */
     @Override
     public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        WorkScheduleDAO dao = new WorkScheduleDAO();
+        try {
+            List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
+            
+            request.setAttribute("list", list);
+
+            ActionForward forward = new ActionForward();
+            forward.setRedirect(false);
+            forward.setPath("/views/admin/workSchedule/workScheduleView.jsp");
+            return forward;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
-            Date ws_date = sdf.parse(request.getParameter("ws_date"));
+            Date ws_date = sdf.parse(request.getParameter("ws-date"));
             Date startTime = sdf.parse(request.getParameter("startTime"));
             Date endTime = sdf.parse(request.getParameter("endTime"));
-            String workType = request.getParameter("workType");
-            String group = request.getParameter("group");
-            String job = request.getParameter("job");
-            String empName = request.getParameter("empName");
-            String remarks = request.getParameter("ws_area");
+            String workType = request.getParameter("ws-type");
+            String group = request.getParameter("ws-dept");
+            String job = request.getParameter("ws-rank");
+            String empName = request.getParameter("emp-name");
+            String remarks = request.getParameter("ws-area");
 
             WorkScheduleDTO dto = new WorkScheduleDTO();
             // 관리에 DB값이 저장 되었을 떄 하기로...
-//			dto.setSchedule(ws_date);
-//			dto.setGo_work(startTime);
-//			dto.setLeave_work(endTime);
-//			dto.setDept(group);
-//			dto.setRank(job);
-//			dto.setEmp_num(0);
-//			dto.setRemarks(remarks);
+			dto.setSchedule(ws_date);
+			dto.setGo_work(startTime);
+			dto.setLeave_work(endTime);
+			dto.setDept(group);
+			dto.setRank(job);
+			dto.setEmp_num(0);
+			dto.setRemarks(remarks);
             WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.insertWorkSchedule(dto);
 
@@ -53,7 +66,10 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(true);
+        forward.setPath("/workschedule.do");
+        return forward;
     }
 
     @Override

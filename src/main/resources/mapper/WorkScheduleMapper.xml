@@ -5,9 +5,36 @@
 
 <mapper namespace="dev">
     <insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
-		insert into work_schedule() values (#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{},#{remarks})
+		insert into work_schedule() values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{remarks})
 	</insert>
-	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.dto.WorkScheduleDTO">
-		select * from work_schedule
+	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
+		SELECT
+            e.emp_num,
+            e.emp_name,
+            w.schedule,
+            w.go_work,
+            w.leave_work,
+            t.work_name,
+            d.code_value dept,
+            r.code_value rank,
+            w.remarks,
+            round(
+                (TO_DATE(to_char(
+                    leave_work, 'HH24:MI'
+                ), 'HH24:MI') - TO_DATE(to_char(
+                    go_work, 'HH24:MI'
+                ), 'HH24:MI')) * 24, 2
+            )            totaltime
+        FROM
+            (
+                (
+                    work_schedule w
+                    INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
+                )
+                INNER JOIN emp                e ON e.emp_num = w.emp_num
+            )
+            INNER JOIN code_table         d ON d.code_name = e.dept
+            INNER JOIN code_table         r ON r.code_name = e.rank
 	</select>
 </mapper>
+
