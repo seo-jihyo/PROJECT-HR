@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AttendanceOkService implements Action {
+public class AttendanceServiceImp implements AttendanceService {
     @Override
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+    public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
+        return null;
+    }
+
+    @Override
+    public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         EmpDTO sessiondata = (EmpDTO) session.getAttribute("login");
 
@@ -29,8 +34,16 @@ public class AttendanceOkService implements Action {
             // 퇴근 상태가 0이고 db상태가 1일때 퇴근가능
             dao.updateAttend(dto);
         }
+        return null;
+    }
 
+    @Override
+    public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
+        return null;
+    }
 
+    @Override
+    public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
         return null;
     }
 }
