@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="dev">
+	<select id="selectAllRequest" resultType="com.kosa.hrsystem.dto.RequestHistoryDTO">
+		select request_history.* from request_history
+		INNER JOIN
+			emp
+		on request_history.emp_num = emp.emp_num
+		ORDER BY rqst_hstry_num
+	</select>
+</mapper>

@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -47,10 +50,11 @@
 		<table class="table sec-table table-hover">
 			<thead>
 				<tr>
+					<th>요청내역번호</th>
 					<th>사원번호</th>
 					<th>요청 종류</th>
+					<th>부서</th>
 					<th>요청 보낸 사람</th>
-					<th>본조직</th>
 					<th>요청사항</th>
 					<th>요청 사유</th>
 					<th>상태</th>
@@ -60,72 +64,40 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>001</td>
-					<td>휴가요청</td>
-					<td>이재경</td>
-					<td>개발부서</td>
-					<td>휴가승인부탁드려요</td>
-					<td>기본전환</td>
-					<td>승인대기</td>
-					<td></td>
-					<td>7/1</td>
+			<c:forEach var="requestList" items="${list}">
+				<tr
+				data-rqstNum="${requestList.rqst_hstry_num}"
+				data-empNum="${requestList.emp_num}"
+				data-requestType ="${requestList.request_type}"
+				data-dept ="${requestList.dept}"
+				data-requestSender ="${requestList.request_sender}"
+				data-requestTerm ="${requestList.request_term}"
+				data-requestReasons ="${requestList.request_reasons}"
+				data-state ="${requestList.state}"
+				data-appNote ="${requestList.approver_note}"
+				data-appDate ="${requestList.application_date}">
+					<td>${requestList.rqst_hstry_num}</td>
+					<td>${requestList.emp_num}</td>
+					<td>${requestList.request_type}</td>
+					<td>${requestList.dept}</td>
+					<td>${requestList.request_sender}</td>
+					<td>${requestList.request_term}</td>
+					<td>${requestList.request_reasons}</td>
+					<td>${requestList.state}</td>
+					<td>${requestList.approver_note}</td>
+					<td>${requestList.application_date}</td>
 					<td>
 						<button type="button" class="approve">승인</button>&nbsp;
 						<button type="button" class="reject">거절</button>
 					</td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</section>
-<dialog>
-    
-    				<h1>승인하기</h1>
-					<hr>
-					
 
-					<form method="dialog">
-						<table class="rank-table">
-						
-							<tr class="rank-tr1">
-								<td>상위코드</td>
-								<td><input type="text" class="rankadd" name="parent_code"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>코드번호</td>
-								<td><input type="text" class="rankadd" name="code_name"></td>
-							</tr>
-							<tr class="rank-tr1">
-								<td>직급명</td>
-								<td><input type="text" class="rankadd" name="code_value"></td>
-							</tr>
-
-							<tr>
-								<td>메모</td>
-								<td><textarea name="remarks" class="rank-area" cols="70" rows="4"></textarea></td>
-							</tr>
-						</table>
-						
-					
-       				<hr>
-       					<div class="bottom-btn">
-						<div class="right-btn">
-							<button type="button" class="custom-btn btn-10">수정하기</button>
-							<button type="button" class="custom-btn btn-10">삭제하기</button>
-            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
-						</div>
-        </form>
-    </dialog>
 <script type="text/javascript">
-const dialog = document.querySelector("dialog");
-$(document).on("click", ".table tbody tr", function () {
-	dialog.showModal();
-	console.log(this);
-});
 
-function dialogClose(){
-	dialog.close();
-}
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>

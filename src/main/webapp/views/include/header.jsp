@@ -76,7 +76,7 @@
                 <i class='nav_icon bx bxs-plane-alt'></i></i>
                 <span class="nav_name">휴   가</span>
             </a>
-            <a href="/views/admin/requestHistory/requestHistoryView.jsp" class="nav_link">
+            <a href="/requesthistory.do" class="nav_link">
                 <i class='nav_icon bx bxs-paper-plane'></i>
                 <span class="nav_name">요청내역</span>
             </a>

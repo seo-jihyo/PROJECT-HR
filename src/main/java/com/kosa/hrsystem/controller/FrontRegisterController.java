@@ -1,8 +1,6 @@
 package com.kosa.hrsystem.controller;
 
-import com.kosa.hrsystem.action.Action;
-import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.service.*;
+import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+
+import com.kosa.hrsystem.action.Action;
+import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.service.*;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -39,6 +40,7 @@ public class FrontRegisterController extends HttpServlet {
         WorkService workService = new WorkServiceImp();
         WorkScheduleService workScheduleService = new WorkScheduleServiceImp();
         AttendanceService attendanceService = new AttendanceServiceImp();
+        RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
 
 
         ActionForward forward = null;
@@ -133,6 +135,10 @@ public class FrontRegisterController extends HttpServlet {
 	    	forward = action.execute(request, response);
 	    }
 
+        /* 관리자 요청 내역 */
+        else if (urlcommand.equals("/requesthistory.do")) {
+        	forward = requestHistoryService.selectAllRequest(request, response);
+        }
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
                 response.sendRedirect(forward.getPath());
