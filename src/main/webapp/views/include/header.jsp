@@ -64,7 +64,7 @@
                 <i class='nav_icon bx bx-home'></i>
                 <span class="nav_name">메인</span>
             </a>
-            <a href="/views/admin/workSchedule/workScheduleView.jsp" class="nav_link">
+            <a href="/workschedule.do" class="nav_link">
                 <i class='nav_icon bx bx-calendar'></i>
                 <span class="nav_name">근무일정</span>
             </a>

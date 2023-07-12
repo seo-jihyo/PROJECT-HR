@@ -9,6 +9,7 @@ import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleDAO {
 	private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
@@ -21,11 +22,11 @@ public class WorkScheduleDAO {
 		return result;
 	}
 	
-	public List<WorkScheduleTypeVO> selectAllWorkSchedule() throws Exception {
+	public List<WorkScheduleVO> selectAllWorkSchedule() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		List<WorkScheduleTypeVO> list = null;
+		List<WorkScheduleVO> list = null;
 		list = sqlSession.selectList("selectAllWorkSchedule");
-		System.out.println(list);
+		System.out.println("왜안나옴"+list);
 		sqlSession.close();
 		return list;
 	}
