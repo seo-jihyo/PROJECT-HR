@@ -62,9 +62,17 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/login.do");
         } else if (urlcommand.equals("/check-attendance.do")) {
             // 출퇴근 체크 요청
-            attendanceService.insert(request, response);
-        } 
-        
+            // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
+            boolean attStatus = attendanceService.checkedAtt(request, response);
+            if(attStatus){// 출근시
+                System.out.println("출근"+attStatus);
+                attendanceService.update(request, response);
+            } else {
+                System.out.println("퇴근"+attStatus);
+                attendanceService.insert(request, response);
+            }
+        }
+
         /* 직원 */
         else if (urlcommand.equals("/emp.do")) {
             forward = empService.selectAll(request, response);
@@ -76,7 +84,6 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/empdelete.do")) {
             forward = empService.delete(request, response);
         }
-
 
         /* 부서 */
         else if (urlcommand.equals("/dept.do")) {

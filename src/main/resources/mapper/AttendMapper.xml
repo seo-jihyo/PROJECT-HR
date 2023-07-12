@@ -4,11 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectByEmpNum" parameterType="Integer" resultType="com.kosa.hrsystem.dto.AttendanceDTO">
+		SELECT * FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM} AND ROWNUM=1 ORDER BY GO_WORK DESC
+	</select>
     <insert id="insertAttendance" parameterType="com.kosa.hrsystem.dto.AttendanceDTO">
-		insert into attendance(att_num,emp_num,att_status,go_work) values (attSeq.nextval,#{emp_num},#{att_status},sysdate);
+		INSERT INTO ATTENDANCE(ATT_NUM,EMP_NUM,ATT_STATUS,GO_WORK) VALUES (ATTSEQ.NEXTVAL,#{EMP_NUM},#{ATT_STATUS},SYSDATE);
 	</insert>
 
 	<update id="updateAttendance" parameterType="com.kosa.hrsystem.dto.AttendanceDTO">
-		update attendance set att_status=#{att_status}, leave_date=sysdate where emp_num=#{emp_num} and leave_date is null
+		UPDATE ATTENDANCE
+		SET ATT_STATUS=0, LEAVE_WORK=SYSDATE
+		WHERE EMP_NUM=#{empNum}
+		  AND ATT_NUM=(SELECT ATT_NUM FROM ATTENDANCE WHERE EMP_NUM=#{empNum} ORDER BY GO_WORK DESC FETCH FIRST 1 ROW ONLY)
 	</update>
 </mapper>

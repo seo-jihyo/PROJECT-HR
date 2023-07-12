@@ -12,12 +12,27 @@ import javax.servlet.http.HttpSession;
 
 public class AttendanceServiceImp implements AttendanceService {
     @Override
-    public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public boolean checkedAtt(HttpServletRequest request, HttpServletResponse response) {
+        boolean flag = false;
+        AttendanceDAO dao = new AttendanceDAO();
+        HttpSession session = request.getSession();
+        EmpDTO dto = (EmpDTO) session.getAttribute("login");
+
+        // 값이 있고 근무 상태가 1일때 true || 값이 없거나 근무 상태가 0일때 false
+        AttendanceDTO attDTO = dao.checkedAtt(dto.getEmp_num());
+
+        if(attDTO != null && attDTO.getAtt_status() == 1){ // 출근중
+            flag = true;
+            session.setAttribute("attStatus",attDTO.getAtt_status());
+        } else if(attDTO == null || attDTO.getAtt_status() == 0){ // 퇴근중
+            flag = false;
+            session.removeAttribute("attStatus");
+        }
+        return flag;
     }
 
     @Override
-    public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
+    public void insert(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         EmpDTO sessiondata = (EmpDTO) session.getAttribute("login");
 
@@ -34,16 +49,14 @@ public class AttendanceServiceImp implements AttendanceService {
             // 퇴근 상태가 0이고 db상태가 1일때 퇴근가능
             dao.updateAttend(dto);
         }
-        return null;
     }
 
     @Override
-    public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public void update(HttpServletRequest request, HttpServletResponse response) {
     }
 
     @Override
-    public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public void delete(HttpServletRequest request, HttpServletResponse response) {
+
     }
 }
