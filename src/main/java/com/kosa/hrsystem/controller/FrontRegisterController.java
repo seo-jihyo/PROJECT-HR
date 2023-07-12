@@ -102,16 +102,16 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 휴가 유형 */
         else if (urlcommand.equals("/vacationtype.do")) {
-            forward = vacationService.selectAll(request, response);
+            forward = vacationService.selectAllType(request, response);
         } else if (urlcommand.equals("/vacationtypeok.do")) {
         	// 휴가 유형 추가하는 서비스
-        	forward = vacationService.insert(request, response);
+        	forward = vacationService.insertType(request, response);
         } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
             // 휴가 유형 업데이트
-            forward = vacationService.update(request, response);
+            forward = vacationService.updateType(request, response);
         } else if (urlcommand.equals("/vacationTypeDelete.do")) {
             // 휴가 유형 삭제
-            forward = vacationService.delete(request, response);
+            forward = vacationService.deleteType(request, response);
         }
         /* 근로정보 */
         else if (urlcommand.equals("/work.do")) {
