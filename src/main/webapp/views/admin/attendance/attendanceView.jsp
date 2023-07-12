@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -53,12 +55,8 @@
 				<option>사원번호</option>
 				<option>직원</option>
 				<option>날짜</option>
-				<option>근무시간</option>
 				<option>근무일정</option>
-				<option>조직</option>
-				<option>직무</option>
-				<option>출근장소</option>
-				<option>퇴근장소</option>
+				<option>근무시간</option>
 				<option>총 시간</option>
 				<option>출근시간</option>
 				<option>퇴근시간</option>
@@ -162,42 +160,40 @@
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>날짜</th>
-					<th>근무시간</th>
-					<th>근무일정</th>
-					<th>조직</th>
-					<th>직무</th>
-					<th>출근 장소</th>
-					<th>퇴근 장소</th>
-					<th>근무노트</th>
+					<th>출근시간</th>
+					<th>퇴근시간</th>
+					<!--<th>근무일정</th>
+	 			<th>부서</th>
+					<th>직급</th> -->
 					<th>휴게시간</th>
-					<th>총 시간</th>
-					<th>근무일정 오차범위</th>
-					<th>출근시간 오차범위</th>
-					<th>퇴근시간 오차범위</th>
-					<th>급여</th>
+					<th>근무시간합계</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+			
+			
+			
+			  <c:forEach var="CMTList" items="${list}">
+				<tr data-num="${CMTList.emp_num}"
+					data-name="${CMTList.emp_name}"
+					data-date="${CMTList.go_work}"
+					data-go-time="<fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/>"
+					data-leave-time="<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>"
+				<%-- 	data-status="${CMTList.att_status}" --%>
+					data-break="${CMTList.break_time}"
+					data-total="${CMTList.work_time}" >
 					<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<td>001</td>
-					<td>이재경</td>
-					<td>7/1</td>
-					<td>09:00 - 18:00</td>
-					<td>무일정근무</td>
-					<td>조직없음</td>
-					<td>직무없음</td>
-					<td>서울지점</td>
-					<td>서울지점</td>
-					<td></td>
-					<td>60분</td>
-					<td>8시간</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>￦ 100,000</td>
+					<td>${CMTList.emp_num}</td>
+					<td>${CMTList.emp_name}</td>
+					<td>${CMTList.go_work}</td>
+					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/></td>
+					<td><fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/></td>
+					<%-- <td>${CMTList.att_status}</td> --%>
+					<td>${CMTList.break_time}</td>
+					<td>${CMTList.work_time}</td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</section>

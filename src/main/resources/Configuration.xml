@@ -25,5 +25,6 @@
         <mapper resource="mapper/EducationMapper.xml" />
         <mapper resource="mapper/CareerMapper.xml" />
         <mapper resource="mapper/CertificateMapper.xml" />
+        <mapper resource="mapper/CommuteRecordMapper.xml" />
     </mappers>
 </configuration>
