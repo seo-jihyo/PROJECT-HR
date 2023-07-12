@@ -18,6 +18,26 @@ public class VacationServiceImp implements VacationService {
 
 	@Override
 	public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+	}
+
+	@Override
+	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+	}
+
+	@Override
+	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+	}
+
+	@Override
+	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
+		return null;
+	}
+
+	@Override
+	public ActionForward selectAllType(HttpServletRequest request, HttpServletResponse response) {
 		VacationDAO dao = new VacationDAO();
 		try {
 			List<VacationTypeVO> list = dao.selectAll();
@@ -37,7 +57,7 @@ public class VacationServiceImp implements VacationService {
 	}
 
 	@Override
-	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward insertType(HttpServletRequest request, HttpServletResponse response) {
 		String vctnName = request.getParameter("vctn_name");
 		String dept = request.getParameter("dept");
 		String rank = request.getParameter("rank");
@@ -64,7 +84,7 @@ public class VacationServiceImp implements VacationService {
 	}
 
 	@Override
-	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward updateType(HttpServletRequest request, HttpServletResponse response) {
 		int vctnNum = Integer.parseInt(request.getParameter("vctn_type_num"));
 		String vctnName = request.getParameter("vctn_name");
 		String dept = request.getParameter("dept");
@@ -93,7 +113,7 @@ public class VacationServiceImp implements VacationService {
 	}
 
 	@Override
-	public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward deleteType(HttpServletRequest request, HttpServletResponse response) {
 		int vctn_type_num = Integer.parseInt(request.getParameter("vctn_type_num"));
 
 		VacationDAO dao = new VacationDAO();

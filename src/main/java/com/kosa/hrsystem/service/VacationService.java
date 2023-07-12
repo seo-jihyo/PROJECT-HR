@@ -11,4 +11,8 @@ public interface VacationService {
     public ActionForward insert(HttpServletRequest request , HttpServletResponse response);
     public ActionForward update(HttpServletRequest request, HttpServletResponse response);
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
+    public ActionForward selectAllType(HttpServletRequest request , HttpServletResponse response);
+    public ActionForward insertType(HttpServletRequest request , HttpServletResponse response);
+    public ActionForward updateType(HttpServletRequest request, HttpServletResponse response);
+    public ActionForward deleteType(HttpServletRequest request, HttpServletResponse response);
 }

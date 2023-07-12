@@ -21,10 +21,12 @@
         <mapper resource="mapper/CodeTableMapper.xml" /> <!-- 부서/직급-->
         <mapper resource="mapper/VctnTypeMapper.xml" />
         <mapper resource="mapper/WorkMapper.xml" />
+        <mapper resource="mapper/WorkScheduleMapper.xml" />
         <mapper resource="mapper/WorkScheduleTypeMapper.xml" />
         <mapper resource="mapper/EducationMapper.xml" />
         <mapper resource="mapper/CareerMapper.xml" />
         <mapper resource="mapper/CertificateMapper.xml" />
         <mapper resource="mapper/CommuteRecordMapper.xml" />
+        <mapper resource="mapper/RequestHistoryMapper.xml" />
     </mappers>
 </configuration>

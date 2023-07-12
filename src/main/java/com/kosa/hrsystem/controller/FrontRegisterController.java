@@ -14,7 +14,6 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
 
-
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -42,6 +41,7 @@ public class FrontRegisterController extends HttpServlet {
         WorkScheduleService workScheduleService = new WorkScheduleServiceImp();
         AttendanceService attendanceService = new AttendanceServiceImp();
         CommuteRecordService commuteRecordService = new CommuteRecordServiceImp();
+        RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
 
         ActionForward forward = null;
 
@@ -104,23 +104,27 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 휴가 유형 */
         else if (urlcommand.equals("/vacationtype.do")) {
-            forward = vacationService.selectAll(request, response);
+            forward = vacationService.selectAllType(request, response);
         } else if (urlcommand.equals("/vacationtypeok.do")) {
         	// 휴가 유형 추가하는 서비스
-        	forward = vacationService.insert(request, response);
+        	forward = vacationService.insertType(request, response);
         } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
             // 휴가 유형 업데이트
-            forward = vacationService.update(request, response);
+            forward = vacationService.updateType(request, response);
         } else if (urlcommand.equals("/vacationTypeDelete.do")) {
             // 휴가 유형 삭제
-            forward = vacationService.delete(request, response);
+            forward = vacationService.deleteType(request, response);
         }
         /* 근로정보 */
         else if (urlcommand.equals("/work.do")) {
             forward = workService.selectAll(request, response);
         }
-        /* 근로유형 */
-        else if (urlcommand.equals("/worktype.do")) {
+        /* 근무일정 / 유형 */
+        else if (urlcommand.equals("/workschedule.do")) {
+        	forward = workScheduleService.selectAll(request, response);
+        } else if (urlcommand.equals("/workscheduleok.do")) {
+        	forward = workScheduleService.insert(request, response);
+        } else if (urlcommand.equals("/worktype.do")) {
         	forward = workScheduleService.selectAllType(request, response);
         } else if (urlcommand.equals("/worktypeok.do")) {
         	forward = workScheduleService.insertType(request, response);
@@ -149,6 +153,10 @@ public class FrontRegisterController extends HttpServlet {
 	    	forward = action.execute(request, response);
 	    }
 
+        /* 관리자 요청 내역 */
+        else if (urlcommand.equals("/requesthistory.do")) {
+        	forward = requestHistoryService.selectAllRequest(request, response);
+        }
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
                 response.sendRedirect(forward.getPath());
