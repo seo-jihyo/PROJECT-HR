@@ -40,8 +40,8 @@ public class FrontRegisterController extends HttpServlet {
         WorkService workService = new WorkServiceImp();
         WorkScheduleService workScheduleService = new WorkScheduleServiceImp();
         AttendanceService attendanceService = new AttendanceServiceImp();
+        CommuteRecordService commuteRecordService = new CommuteRecordServiceImp();
         RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
-
 
         ActionForward forward = null;
 
@@ -129,10 +129,24 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypeok.do")) {
         	forward = workScheduleService.insertType(request, response);
         } else if (urlcommand.equals("/worktypeupdate.do")) {
-        	forward = workScheduleService.insertType(request, response);
+        	forward = workScheduleService.updateType(request, response);
         } else if (urlcommand.equals("/worktypedelete.do")) {
-        	forward = workScheduleService.insertType(request, response);
+        	forward = workScheduleService.deleteType(request, response);
         }
+        /* 출퇴근기록 */
+        else if (urlcommand.equals("/cmtrecord.do")) {
+        	forward = commuteRecordService.selectAll(request, response);
+        } else if (urlcommand.equals("/cmtrecordok.do")) {
+        	// 출퇴근 기록 추가
+        	forward = commuteRecordService.insert(request, response);
+        } else if (urlcommand.equals("/cmtrecordupdate.do")) {
+        	// 출퇴근 기록 수정
+        	forward = commuteRecordService.update(request, response);
+        } else if (urlcommand.equals("/cmtrecorddelete.do")) {
+        	// 출퇴근 기록 삭제
+        	forward = commuteRecordService.delete(request, response);
+        }
+        
         /* 직원 커스텀 필드 */
         else if (urlcommand.equals("/personalInfook.do")) {
 	    	action = new PersonalInfoOkService();

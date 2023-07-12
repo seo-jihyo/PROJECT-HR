@@ -18,4 +18,5 @@ public class AttendanceDTO {
 	private char apr_work; // 승인상태
 	private Date go_work; // 출근시간
 	private Date leave_work; // 퇴근시간
+	private int break_time; // 휴게시간
 }

@@ -68,7 +68,7 @@
                 <i class='nav_icon bx bx-calendar'></i>
                 <span class="nav_name">근무일정</span>
             </a>
-            <a href="/views/admin/attendance/attendanceView.jsp" class="nav_link">
+            <a href="/cmtrecord.do" class="nav_link">
                 <i class='nav_icon bx bx-time'></i>
                 <span class="nav_name">출퇴근 기록</span>
             </a>
