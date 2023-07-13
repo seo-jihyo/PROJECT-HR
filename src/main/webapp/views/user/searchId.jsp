@@ -137,7 +137,7 @@ body{
 	$("#searchBtn").click(function(){
 		$frm = $("form[name='frm']").serialize();
 		$.ajax({
-			url : "/searchId.do",
+			url : "/searchIdok.do",
 			type : "post",
 			data : $frm,
 			dataType : "text",
