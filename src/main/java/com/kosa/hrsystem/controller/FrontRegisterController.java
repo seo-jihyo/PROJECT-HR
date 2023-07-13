@@ -63,9 +63,7 @@ public class FrontRegisterController extends HttpServlet {
             forward.setRedirect(true);
             forward.setPath("/login.do");
         } else if (urlcommand.equals("/check-attendance.do")) {
-<<<<<<< Updated upstream
             attendanceService.toggleAtt(request, response);
-=======
             // 출퇴근 체크 요청
             // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
             boolean attStatus = attendanceService.checkedAtt(request, response);
@@ -80,7 +78,6 @@ public class FrontRegisterController extends HttpServlet {
         	forward = empService.searchId(request, response);
         } else if(urlcommand.equals("/searchPwd.do")) {
         	forward = empService.searchPwd(request, response);
->>>>>>> Stashed changes
         }
 
         /* 직원 */
