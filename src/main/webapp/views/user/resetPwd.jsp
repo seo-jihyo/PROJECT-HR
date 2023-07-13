@@ -113,56 +113,41 @@ body{
 		<input type="text" id="check">
 
 		<div class="login form">
-			<header>아이디 찾기</header>
+			<header>비밀번호 재설정</header>
 
-			<form name="frm">
+			<form method="post" action="/updatePwdok.do" name="frm">
+				<input type="hidden" value="${param.email}" name="email">
+				<input type="password" class="pwd" name="pwd" placeholder="비밀번호">
+				<input type="password" class="pwd-again" name="pwd-again" placeholder="비밀번호 재입력">
 
-				<input type="text" class="name" name="name" placeholder="이름을 입력하세요. ">
-				<input type="text" name="regist-num" placeholder="주민등록번호를 입력하세요.">
-
-				<input type="button" id="searchBtn" class="button" value="Search">
+				<input type="button" id="searchBtn" class="button" value="Verify" onclick="send(this.form)">
 			</form>
-
-			<div class="signup">
-				<div class="column">
-					<input type="button" value="비밀번호 찾기" class="searchpwd"
-						onclick="location.href='/views/user/searchPwd.jsp'">
-					<input type="button" value="로그인페이지로 돌아가기" onclick="location.href='/views/user/login.jsp'">
-				</div>
-			</div>
 		</div>
 
 	</div>
 <script type="text/javascript">
-	$("#searchBtn").click(function(){
-		$frm = $("form[name='frm']").serialize();
-		$.ajax({
-			url : "/searchIdok.do",
-			type : "post",
-			data : $frm,
-			success : sucFuncJson,
-			error : errFunc
-		});
-		function sucFuncJson(data) {
-			console.log(data);
-			
-			if (data != "없어용") {
-				alert("찾은 아이디는" + data + " 입니다.");
-				if(confirm("로그인 페이지로 돌아가시겠습니까?")){
-					window.location.href = "/views/user/login.jsp";
-				} else {
-					window.location.href = "/views/user/searchId.jsp";
-				}
-			} else {
-				alert("찾는 아이디가 존재하지 않습니다. 다시 입력하세요.");
-				window.location.href = "/views/user/searchId.jsp";
-			}
+	function send(input) {
+		var pwd = document.querySelector(".pwd");
+		var pwdAgain = document.querySelector(".pwd-again");
+		var pwdLength = pwd.length;
+		
+		if(pwdLength < 4 || pwdLength > 12) {
+			alert("....");
+			alert("비밀번호는 4~12자리 이내로 설정해주세요.");
+			document.querySelector("input[name='pwd']").focus();
+			return false;
 		}
-	
-		function errFunc(e) {
-			alert("실패" + e.status)
+		if(pwd.value == pwdAgain.value) {
+			alert("비밀번호가 재설정되었습니다.");
+			input.submit();
+		} else {
+			alert("비밀번호가 일치하지 않습니다.");
+			pwd.value = "";
+			pwdAgain.value = "";
+			pwd.focus();
 		}
-	})
+	}
+
 </script>
 </body>
 </html>
