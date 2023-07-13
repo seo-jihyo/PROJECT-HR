@@ -6,11 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.VacationDAO;
-import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
-import com.kosa.hrsystem.vo.VacationTypeVO;
 import com.kosa.hrsystem.vo.VacationVO;
 
 public class VacationServiceImp implements VacationService {
