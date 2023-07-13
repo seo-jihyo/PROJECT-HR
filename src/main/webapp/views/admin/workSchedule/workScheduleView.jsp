@@ -97,42 +97,38 @@
 							<table class="ws-table">
 								<tr class="modal-tr">
 									<td>날짜</td>
-									<td><input type="hidden" name="emp-name" value="">
-										<input type="date" name="ws-date" class="ws-date"></td>
+									<td><input type="date" name="ws-date" class="ws-date"></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>근무일정 유형</td>
-									<td><select name="workType" id="workType">
-											<option value="none">(없음)</option>
-											<option value="out_work">외근(간주근로 9h)</option>
-											<option value="home_work">재택근무(간주근로)</option>
+									<td><select name="work-type" id="workType">
+										<c:forEach var="list" items="${tlist}">
+											<option value="${list.work_sch_type_num}">${list.work_name}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
-									<td>조직</td>
+									<td>부서</td>
 									<td><select name="ws-dept" id="group">
-											<option value="none_group">조직없음</option>
-											<option value="strategy_dept">전략부서</option>
-											<option value="development_dept">개발부서</option>
-											<option value="hr_dept">인사부서</option>
+										<c:forEach var="list" items="${optDept}">
+											<option value="${list.code_name}">${list.code_value}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>직급</td>
 									<td><select name="ws-rank" id="job">
-											<option value="none_job">직급없음</option>
-											<option value="hr_job">사장</option>
-											<option value="development_job">부장</option>
+										<c:forEach var="list" items="${optRank}">
+											<option value="${list.code_name}">${list.code_value}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>직원</td>
 									<td><select name="empName" id="emp-name">
-											<option value="none_emp">직원없음</option>
-											<option value="emp1">이재경</option>
-											<option value="emp2">송기석</option>
-											<option value="emp3">권지연</option>
-											<option value="emp4">서지효</option>
+										<c:forEach var="list" items="${elist}">
+											<option value="${list.emp_num}">${list.emp_name}</option>
+										</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
@@ -146,7 +142,7 @@
 								<tr class="modal-tr">
 									<td>일정노트</td>
 									<td><textarea name="ws-area" id="ws-area" cols="65"
-											rows="4"></textarea></td>
+											rows="4" style="resize: none;"></textarea></td>
 								</tr>
 							</table>
 						</form>
@@ -175,15 +171,24 @@
 					<th>일정시간</th>
 					<th>근무일정 유형</th>
 					<th>휴게시간</th>
-					<th>직무</th>
-					<th>일정노트</th>
+					<th>직급</th>
 					<th>일정노트</th>
 					<th>총 시간</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="wsList" items="${list}">
-					<tr>
+					<tr class="asd"
+						data-emp-num="${wsList.emp_num}"
+						data-emp-name="${wsList.emp_name}"
+						data-schedule="${wsList.schedule}"
+						data-go-work="${wsList.go_work}"
+						data-leave-work="${wsList.leave_work}"
+						data-work-name="${wsList.work_name}"
+						data-restTime="${wsList.totalTime/4}"
+						data-rank="${wsList.rank}"
+						data-remarks="${wsList.remarks}"
+						data-totalTime="${wsList.totalTime}">
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${wsList.emp_num}</td>
@@ -195,7 +200,6 @@
 						<td>${wsList.work_name}</td>
 						<td>${wsList.totalTime/4}시간</td>
 						<td>${wsList.rank}</td>
-						<td>${wsList.remarks}</td>
 						<td>${wsList.remarks}</td>
 					<td>${wsList.totalTime}시간</td>
 					</tr>
@@ -294,14 +298,20 @@ function dialogClose(){
 }
 
 $(document).on("click", ".table tbody tr", function () {
-	$code = $(this).data("code")
-	$name = $(this).data("name")
-	$value = $(this).data("value")
+	$empNum = $(this).data("emp-num")
+	$empName = $(this).data("emp-name")
+	$schedule = $(this).data("schedule")
+	$goWork = $(this).data("go-work")
+	$leaveWork = $(this).data("leave-work")
+	$workName = $(this).data("work-name")
+	$restTime = $(this).data("restTime")
+	$rank = $(this).data("rank")
 	$remarks = $(this).data("remarks")
+	$totalTime = $(this).data("totalTime")
 
 	let str = `
 		<tr class="rank-tr1">
-				<th>상위코드</td>
+				<th>사원번호</td>
 				<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
 			</tr>
 			<tr class="rank-tr1">

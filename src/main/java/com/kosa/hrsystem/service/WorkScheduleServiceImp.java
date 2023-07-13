@@ -2,8 +2,10 @@ package com.kosa.hrsystem.service;
 
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CodeTableDAO;
+import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.CodeTableDTO;
+import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
@@ -11,6 +13,8 @@ import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,9 +26,17 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
         WorkScheduleDAO dao = new WorkScheduleDAO();
         try {
-            List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
+            //List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
+           // List<WorkScheduleTypeVO> tlist = dao.selectAllWorkType();
+            List<CodeTableDTO> optDept = new CodeTableDAO().selectAllByParent("D001");
+            List<CodeTableDTO> optRank = new CodeTableDAO().selectAllByParent("R001");
+            List<EmpDTO> elist = new EmpDAO().selectAllEmp();
             
-            request.setAttribute("list", list);
+            //request.setAttribute("list", list);
+            //request.setAttribute("tlist", tlist);
+            request.setAttribute("optDept", optDept);
+            request.setAttribute("optRank", optRank);
+            request.setAttribute("elist", elist);
 
             ActionForward forward = new ActionForward();
             forward.setRedirect(false);
@@ -38,14 +50,15 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     @Override
     public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+        SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
         try {
             Date ws_date = sdf.parse(request.getParameter("ws-date"));
-            Date startTime = sdf.parse(request.getParameter("startTime"));
-            Date endTime = sdf.parse(request.getParameter("endTime"));
             String workType = request.getParameter("ws-type");
-            String group = request.getParameter("ws-dept");
-            String job = request.getParameter("ws-rank");
+            String dept = request.getParameter("ws-dept");
+            String rank = request.getParameter("ws-rank");
+            Date startTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("startTime"));
+            Date endTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("endTime"));
             String empName = request.getParameter("emp-name");
             String remarks = request.getParameter("ws-area");
 
@@ -54,9 +67,8 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
 			dto.setSchedule(ws_date);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
-			dto.setDept(group);
-			dto.setRank(job);
-			dto.setEmp_num(0);
+			dto.setDept(dept);
+			dto.setRank(rank);
 			dto.setRemarks(remarks);
             WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.insertWorkSchedule(dto);
@@ -113,8 +125,8 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
 
         WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
         dto.setWork_name(workname);
-        dto.setDept(dept);
-        dto.setRank(rank);
+        //dto.setDept(dept);
+        //dto.setRank(rank);
         WorkScheduleDAO dao = new WorkScheduleDAO();
         try {
             dao.insertWorkScheduleType(dto);
@@ -139,8 +151,8 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
             WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
             dto.setWork_sch_type_num(work_sch_type_num);
             dto.setWork_name(work_name);
-            dto.setDept(dept);
-            dto.setRank(rank);
+            //dto.setDept(dept);
+            //dto.setRank(rank);
 
             WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.updateWorkScheduleType(dto);

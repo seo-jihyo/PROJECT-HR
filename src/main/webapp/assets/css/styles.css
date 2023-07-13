@@ -419,3 +419,8 @@ transition: all .5s ease-out;
   color: black;
   cursor:pointer;
 }
+
+textarea {
+	width: 100%;
+    resize: none !important;
+}

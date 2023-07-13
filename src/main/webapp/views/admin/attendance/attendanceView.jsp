@@ -135,7 +135,7 @@
 							<tr>
 								<td>근무노트
 								<br></td>
-								<td><textarea name="" id="attend-area" cols="30" rows="4">
+								<td><textarea name="" id="attend-area" cols="30" rows="4" style="resize: none;">
     	</textarea></td>
 							</tr>
 						</table>

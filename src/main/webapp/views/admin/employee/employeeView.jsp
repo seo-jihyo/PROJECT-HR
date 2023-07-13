@@ -529,7 +529,7 @@
                     </c:forEach>
 				</select></td>
 				<th class="rights">주민번호</th>
-				<td><input type="text" name="emp-regist-num" class="profile-text" value="` + $registNum + `"></td>
+				<td><input type="text" name="emp-regist-num" class="profile-text" value="` + $registNum + `" readonly></td>
 			</tr>
 			<tr>
 				<th class="two">직급</th>
@@ -554,7 +554,7 @@
 			</tr>
 			<tr>
 				<th class="three">이메일</th>
-				<td><input type="email" name="emp-num" class="profile-text" value="` + $email + `"></td>
+				<td><input type="email" name="emp-num" class="profile-text" value="` + $email + `" readonly></td>
 			</tr>
 
 

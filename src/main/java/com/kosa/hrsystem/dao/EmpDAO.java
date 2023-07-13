@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmpDAO {
 
@@ -28,6 +29,24 @@ public class EmpDAO {
         sqlSession.close();
         return dto;
     }
+    
+    // 아이디(이메일) 찾기
+    public String searchId(HashMap<String, String> map) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	
+    	String email = sqlSession.selectOne("searchId",map); 
+    	sqlSession.close();
+    	return email;
+	}
+    
+    // 패스워드 찾기
+    public String searchPwd(HashMap<String, String> map) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	
+    	String pwd = sqlSession.selectOne("searchPwd",map); 
+    	sqlSession.close();
+    	return pwd;
+	}
     
     // 직원 리스트 목록 출력하기
     public List<EmpDTO> selectAllEmp() throws Exception{
@@ -63,5 +82,7 @@ public class EmpDAO {
     	System.out.println(result);
     	return result;
     }
+
+	
 
 }

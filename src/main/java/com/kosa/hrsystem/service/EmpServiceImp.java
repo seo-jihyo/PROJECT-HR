@@ -3,6 +3,7 @@ package com.kosa.hrsystem.service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +17,13 @@ import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
+import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
+
 import org.json.simple.JSONObject;
 
 public class EmpServiceImp implements EmpService {
@@ -36,6 +41,7 @@ public class EmpServiceImp implements EmpService {
 		request.setAttribute("list", list);
 		request.setAttribute("optDept",optDept);
 		request.setAttribute("optRank",optRank);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -209,6 +215,54 @@ public class EmpServiceImp implements EmpService {
 			System.out.println("이메일 전송 실패");
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ActionForward searchId(HttpServletRequest request, HttpServletResponse response) {
+		String name = request.getParameter("name");
+		String registNum = request.getParameter("regist-num");
+		System.out.println(name + " , " + registNum);
+		HashMap<String, String> map = new HashMap<>();
+		map.put("emp_name", name);
+		map.put("regist_num", registNum);
+		
+		EmpDAO dao = new EmpDAO();
+		String email = dao.searchId(map);
+		
+		try {
+			if(email != null) {
+				response.getOutputStream().write(email.getBytes());
+			} else {
+				response.getOutputStream().write("없어용".getBytes());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public ActionForward searchPwd(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String registNum = request.getParameter("regist-num");
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("regist_num", registNum);
+		
+		EmpDAO dao = new EmpDAO();
+		String pwd = dao.searchPwd(map);
+		
+		try {
+			if(pwd != null) {
+				response.getOutputStream().write(pwd.getBytes());
+			} else {
+				response.getOutputStream().write("없어용".getBytes());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

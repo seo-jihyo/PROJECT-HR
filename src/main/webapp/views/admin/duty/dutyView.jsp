@@ -120,7 +120,7 @@
                             <tr>
                                 <th class="two">메모</th>
 
-                                <td><textarea name="remarks" class="duty-area" cols="70" rows="4"></textarea></td>
+                                <td><textarea name="remarks" class="duty-area" cols="70" rows="4" style="resize: none;"></textarea></td>
 
                             </tr>
                         </table>

@@ -64,6 +64,20 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/login.do");
         } else if (urlcommand.equals("/check-attendance.do")) {
             attendanceService.toggleAtt(request, response);
+            // 출퇴근 체크 요청
+            // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
+            boolean attStatus = attendanceService.checkedAtt(request, response);
+            if(attStatus){// 출근시
+                System.out.println("출근"+attStatus);
+                attendanceService.update(request, response);
+            } else {
+                System.out.println("퇴근"+attStatus);
+                attendanceService.insert(request, response);
+            }
+        } else if(urlcommand.equals("/searchId.do")) {
+        	forward = empService.searchId(request, response);
+        } else if(urlcommand.equals("/searchPwd.do")) {
+        	forward = empService.searchPwd(request, response);
         }
 
         /* 직원 */

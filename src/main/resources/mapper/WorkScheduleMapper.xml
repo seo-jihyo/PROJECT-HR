@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-    <insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
-		insert into work_schedule() values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{remarks})
-	</insert>
-	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
+    <!-- <insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
+		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{remarks})
+	</insert> -->
+	<!-- <select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
             e.emp_num,
             e.emp_name,
@@ -35,6 +35,6 @@
             )
             INNER JOIN code_table         d ON d.code_name = e.dept
             INNER JOIN code_table         r ON r.code_name = e.rank
-	</select>
+	</select> -->
 </mapper>
 
