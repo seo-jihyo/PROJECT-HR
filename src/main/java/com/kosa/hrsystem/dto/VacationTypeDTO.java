@@ -10,8 +10,6 @@ import lombok.ToString;
 public class VacationTypeDTO {
     private int vctn_type_num;
     private String vctn_name;
-    private String dept;
-    private String rank;
     private int vctn_time;
     private double deduction_day;
 }
