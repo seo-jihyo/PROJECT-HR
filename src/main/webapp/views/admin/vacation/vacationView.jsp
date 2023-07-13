@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -148,17 +150,19 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="vacationList" items="${list}">
 				<tr>
 					<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<td>001</td>
-					<td>이재경</td>
-					<td>7월 3일 (월) 09:00 - 18:00</td>
-					<td>연차</td>
-					<td>8h</td>
-					<td>1일</td>
-					<td>사유 주저리주저리</td>
+					<td>${vacationList.emp_num}</td>
+					<td>${vacationList.emp_name}</td>
+					<td>${vacationList.startdate} ~ ${vacationList.enddate}</td>
+					<td>${vacationList.vctn_name}</td>
+					<td>${vacationList.totaltime}</td>
+					<td>${vacationList.totalday}</td>
+					<td>${vacationList.vctn_reason}</td>
 				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 	</section>
