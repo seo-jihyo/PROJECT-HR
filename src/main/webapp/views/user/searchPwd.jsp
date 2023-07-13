@@ -148,12 +148,12 @@ body{
 			console.log(data);
 			
 			if (data != "없어용") {
-				alert("찾은 패스워드는 " + data + " 입니다.");
-				if(confirm("로그인 페이지로 돌아가시겠습니까?")){
+				alert("이메일로 임시 비밀번호를 보냈습니다.");
+				/* if(confirm("로그인 페이지로 돌아가시겠습니까?")){
 					window.location.href = "/views/user/login.jsp";
 				} else {
 					window.location.href = "/views/user/searchPwd.jsp";
-				}
+				} */
 			} else {
 				alert("아이디 또는 주민등록번호를 잘못 입력하셨습니다. 다시 입력하세요.");
 				window.location.href = "/views/user/searchPwd.jsp";

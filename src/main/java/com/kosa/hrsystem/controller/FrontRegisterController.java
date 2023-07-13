@@ -81,6 +81,11 @@ public class FrontRegisterController extends HttpServlet {
         	forward = empService.searchId(request, response);
         } else if(urlcommand.equals("/searchPwd.do")) {
         	forward = empService.searchPwd(request, response);
+        } else if(urlcommand.equals("/resetPwd.do")) {
+        	forward = new ActionForward();
+            forward.setPath("/views/user/resetPwd.jsp");
+        } else if(urlcommand.equals("/updatePwdok.do")) {
+        	forward = empService.updatePwd(request, response);
         }
 
         /* 직원 */

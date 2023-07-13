@@ -1,6 +1,7 @@
 package com.kosa.hrsystem.service;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -252,7 +253,7 @@ public class EmpServiceImp implements EmpService {
 		
 		EmpDAO dao = new EmpDAO();
 		String pwd = dao.searchPwd(map);
-		
+		resetPassword(email);
 		try {
 			if(pwd != null) {
 				response.getOutputStream().write(pwd.getBytes());
@@ -263,6 +264,46 @@ public class EmpServiceImp implements EmpService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void resetPassword(String email) {
+		EmpDAO dao = new EmpDAO();
+		Map<String, String> emailInfo = new HashMap<>();
+		emailInfo.put("from", "jkl02138@naver.com");
+		emailInfo.put("to", email);
+		emailInfo.put("subject", "아이디,비밀번호를 전달합니다.");
+
+		// 내용은 메일 포맷에 따라 다르게 처리
+		String content = "<input type=\"button\" value=\"비밀번호 재설정\" onclick='location.href=\"http://localhost:8080/resetPwd.do?email="+email+"\"'>";
+		emailInfo.put("content", content);
+		emailInfo.put("format", "text/plain;charset=UTF-8");
+
+		try {
+			NaverSMTP smtpServer = new NaverSMTP();
+			smtpServer.emailSending(emailInfo);
+			System.out.println("이메일 전송 성공");
+		} catch (MessagingException e) {
+			System.out.println("이메일 전송 실패");
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ActionForward updatePwd(HttpServletRequest request, HttpServletResponse response) {
+		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
+		
+		HashMap<String,String> map = new HashMap<>();
+		
+		map.put("email", email);
+		map.put("pwd", Encrypt.getEncrypt(pwd));
+		
+		EmpDAO dao = new EmpDAO();
+		dao.updatePwd(map);
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/login.do");
+		return forward;
 	}
 
 }

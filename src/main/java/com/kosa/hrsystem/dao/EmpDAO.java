@@ -48,6 +48,15 @@ public class EmpDAO {
     	return pwd;
 	}
     
+    // 패스워드 재설정
+    public int updatePwd(HashMap<String,String> map) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	
+    	int result = sqlSession.update("updatePwd",map); 
+    	sqlSession.close();
+    	return result;
+	}
+    
     // 직원 리스트 목록 출력하기
     public List<EmpDTO> selectAllEmp() throws Exception{
     	SqlSession sqlSession = factory.openSession(true);
