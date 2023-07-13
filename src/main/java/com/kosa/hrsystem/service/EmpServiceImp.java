@@ -22,7 +22,6 @@ import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
-import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 import org.json.simple.JSONObject;

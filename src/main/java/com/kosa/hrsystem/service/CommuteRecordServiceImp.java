@@ -76,7 +76,10 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 			vo.setEmp_name(work_name);
 			vo.setGo_work(null);
 //			vo.set
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
