@@ -72,8 +72,8 @@
                 <i class='nav_icon bx bx-time'></i>
                 <span class="nav_name">출퇴근 기록</span>
             </a>
-            <a href="/views/admin/vacation/vacationView.jsp" class="nav_link">
-                <i class='nav_icon bx bxs-plane-alt'></i></i>
+            <a href="/vacation.do" class="nav_link">
+                <i class='nav_icon bx bxs-plane-alt'></i>
                 <span class="nav_name">휴   가</span>
             </a>
             <a href="/requesthistory.do" class="nav_link">

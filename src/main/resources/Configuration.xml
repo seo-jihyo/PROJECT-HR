@@ -20,6 +20,7 @@
         <mapper resource="mapper/EmpMapper.xml" />
         <mapper resource="mapper/CodeTableMapper.xml" /> <!-- 부서/직급-->
         <mapper resource="mapper/VctnTypeMapper.xml" />
+        <mapper resource="mapper/VacationMapper.xml" />
         <mapper resource="mapper/WorkMapper.xml" />
         <mapper resource="mapper/WorkScheduleMapper.xml" />
         <mapper resource="mapper/WorkScheduleTypeMapper.xml" />

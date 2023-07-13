@@ -109,6 +109,11 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/rankdelete.do")){
             forward = rankService.delete(request, response);
         }
+        /* 휴가(관리자) */
+        else if (urlcommand.equals("/vacation.do")) {
+            forward = vacationService.selectAllVacation(request, response);
+        }
+        
         /* 휴가 유형 */
         else if (urlcommand.equals("/vacationtype.do")) {
             forward = vacationService.selectAllType(request, response);

@@ -5,20 +5,30 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CodeTableDAO;
-import com.kosa.hrsystem.dao.RankDAO;
 import com.kosa.hrsystem.dao.VacationDAO;
 import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.vo.VacationTypeVO;
+import com.kosa.hrsystem.vo.VacationVO;
 
 public class VacationServiceImp implements VacationService {
 
 	@Override
-	public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
-		return null;
+	public ActionForward selectAllVacation(HttpServletRequest request, HttpServletResponse response) {
+		VacationDAO dao = new VacationDAO();
+		try {
+			List<VacationVO> list = dao.selectAllVacation();
+			
+			request.setAttribute("list", list);
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/views/admin/vacation/vacationView.jsp");
+			return forward;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override

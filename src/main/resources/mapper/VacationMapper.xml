@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+
+	<select id="selectAllVacation" resultType="com.kosa.hrsystem.vo.VacationVO">
+	select v.vctn_num, 
+        v.emp_num, 
+        e.emp_name, 
+        to_char(v.vctn_start_date, 'yyyy-mm-dd HH24:MI') as startdate, 
+        to_char(v.vctn_end_date,  'yyyy-mm-dd HH24:MI') as enddate,
+        v.vctn_type_num,
+        vt.vctn_name,
+        vt.vctn_time,
+        vt.deduction_day,
+        v.vctn_reason,
+        vt.vctn_time*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totaltime, -- 총 유급시간
+        vt.deduction_day*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totalday -- 총 차감일수
+    from vacation v
+    inner join 
+        emp e
+    on v.emp_num = e.emp_num
+    inner join
+        vacation_type vt
+    on v.vctn_type_num = vt.vctn_type_num
+	order by v.vctn_num
+	
+	</select> 
+</mapper>

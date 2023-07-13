@@ -8,14 +8,24 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.VacationTypeVO;
+import com.kosa.hrsystem.vo.VacationVO;
 
 public class VacationDAO {
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
+    // 휴가 관리자 조회
+    public List<VacationVO> selectAllVacation(){
+        SqlSession session = factory.openSession(true);
+        List<VacationVO> list= session.selectList("selectAllVacation");
+        
+        session.close();
+        return list;
+    }
+    
     //휴가 일정 유형 전체 조회
     public List<VacationTypeVO> selectAll(){
-        SqlSession session = factory.openSession();
+        SqlSession session = factory.openSession(true);
         List<VacationTypeVO> list= session.selectList("selectAll");
-        System.out.println(list);
+
         session.close();
         return list;
     }
