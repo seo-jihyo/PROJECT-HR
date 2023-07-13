@@ -1,3 +1,39 @@
+/* 출퇴근 버튼 토글 및 ajax */
+let storageAttState = localStorage.getItem('attendanceState');
+if(storageAttState!=null && storageAttState == 1){
+    document.getElementById("rounded").checked = true;
+}
+
+let attState = document.getElementById('rounded')
+$('#rounded').click(function () {
+
+    const state = this.checked ? 1 : 0;
+
+    $.ajax({
+        url: "/check-attendance.do",
+        type: "post",
+        data: {"attState": state},
+        dataType: "json",
+        success: sucFuncJson,
+        error: errFunc
+    });
+
+    function sucFuncJson(data) {
+        const status = data.status;
+        if (status == "true") {
+            localStorage.setItem('attendanceState', state);
+
+        } else if (status == "false") {
+            alert("에러발생: <br>" + data.error)
+        }
+    }
+
+    function errFunc(e) {
+        alert("실패" + e.status)
+    }
+
+})
+
 const showMenu = (toggleId, navbarId, sectionId)=>{
   const toggle = document.getElementById(toggleId),
       navbar = document.getElementById(navbarId),

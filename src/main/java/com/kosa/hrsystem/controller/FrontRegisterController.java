@@ -63,24 +63,15 @@ public class FrontRegisterController extends HttpServlet {
             forward.setRedirect(true);
             forward.setPath("/login.do");
         } else if (urlcommand.equals("/check-attendance.do")) {
-            // 출퇴근 체크 요청
-            // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
-            boolean attStatus = attendanceService.checkedAtt(request, response);
-            if(attStatus){// 출근시
-                System.out.println("출근"+attStatus);
-                attendanceService.update(request, response);
-            } else {
-                System.out.println("퇴근"+attStatus);
-                attendanceService.insert(request, response);
-            }
+            attendanceService.toggleAtt(request, response);
         }
 
         /* 직원 */
         else if (urlcommand.equals("/emp.do")) {
             forward = empService.selectAll(request, response);
         } else if (urlcommand.equals("/empok.do")) {
-        	// 직원 추가하기
-        	forward = empService.insert(request, response);
+            // 직원 추가하기
+            forward = empService.insert(request, response);
         } else if (urlcommand.equals("/empupdate.do")) {
             forward = empService.update(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
@@ -93,10 +84,10 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/deptok.do")) {
             // 추가하는 서비스
             forward = deptService.insert(request, response);
-        } else if (urlcommand.equals("/deptupdate.do")){
-            forward = deptService.update(request,response);
-        } else if (urlcommand.equals("/deptdelete.do")){
-            forward = deptService.delete(request,response);
+        } else if (urlcommand.equals("/deptupdate.do")) {
+            forward = deptService.update(request, response);
+        } else if (urlcommand.equals("/deptdelete.do")) {
+            forward = deptService.delete(request, response);
         }
         /* 직급 */
         else if (urlcommand.equals("/rank.do")) {
@@ -104,22 +95,22 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/rankok.do")) {
             // 추가하는 서비스
             forward = rankService.insert(request, response);
-        } else if (urlcommand.equals("/rankupdate.do")){
+        } else if (urlcommand.equals("/rankupdate.do")) {
             forward = rankService.update(request, response);
-        } else if (urlcommand.equals("/rankdelete.do")){
+        } else if (urlcommand.equals("/rankdelete.do")) {
             forward = rankService.delete(request, response);
         }
         /* 휴가(관리자) */
         else if (urlcommand.equals("/vacation.do")) {
             forward = vacationService.selectAllVacation(request, response);
         }
-        
+
         /* 휴가 유형 */
         else if (urlcommand.equals("/vacationtype.do")) {
             forward = vacationService.selectAllType(request, response);
         } else if (urlcommand.equals("/vacationtypeok.do")) {
-        	// 휴가 유형 추가하는 서비스
-        	forward = vacationService.insertType(request, response);
+            // 휴가 유형 추가하는 서비스
+            forward = vacationService.insertType(request, response);
         } else if (urlcommand.equals("/vacationTypeUpdate.do")) {
             // 휴가 유형 업데이트
             forward = vacationService.updateType(request, response);
@@ -133,41 +124,41 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 근무일정 / 유형 */
         else if (urlcommand.equals("/workschedule.do")) {
-        	forward = workScheduleService.selectAll(request, response);
+            forward = workScheduleService.selectAll(request, response);
         } else if (urlcommand.equals("/workscheduleok.do")) {
-        	forward = workScheduleService.insert(request, response);
+            forward = workScheduleService.insert(request, response);
         } else if (urlcommand.equals("/worktype.do")) {
-        	forward = workScheduleService.selectAllType(request, response);
+            forward = workScheduleService.selectAllType(request, response);
         } else if (urlcommand.equals("/worktypeok.do")) {
-        	forward = workScheduleService.insertType(request, response);
+            forward = workScheduleService.insertType(request, response);
         } else if (urlcommand.equals("/worktypeupdate.do")) {
-        	forward = workScheduleService.updateType(request, response);
+            forward = workScheduleService.updateType(request, response);
         } else if (urlcommand.equals("/worktypedelete.do")) {
-        	forward = workScheduleService.deleteType(request, response);
+            forward = workScheduleService.deleteType(request, response);
         }
         /* 출퇴근기록 */
         else if (urlcommand.equals("/cmtrecord.do")) {
-        	forward = commuteRecordService.selectAll(request, response);
+            forward = commuteRecordService.selectAll(request, response);
         } else if (urlcommand.equals("/cmtrecordok.do")) {
-        	// 출퇴근 기록 추가
-        	forward = commuteRecordService.insert(request, response);
+            // 출퇴근 기록 추가
+            forward = commuteRecordService.insert(request, response);
         } else if (urlcommand.equals("/cmtrecordupdate.do")) {
-        	// 출퇴근 기록 수정
-        	forward = commuteRecordService.update(request, response);
+            // 출퇴근 기록 수정
+            forward = commuteRecordService.update(request, response);
         } else if (urlcommand.equals("/cmtrecorddelete.do")) {
-        	// 출퇴근 기록 삭제
-        	forward = commuteRecordService.delete(request, response);
+            // 출퇴근 기록 삭제
+            forward = commuteRecordService.delete(request, response);
         }
-        
+
         /* 직원 커스텀 필드 */
         else if (urlcommand.equals("/personalInfook.do")) {
-	    	action = new PersonalInfoOkService();
-	    	forward = action.execute(request, response);
-	    }
+            action = new PersonalInfoOkService();
+            forward = action.execute(request, response);
+        }
 
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
-        	forward = requestHistoryService.selectAllRequest(request, response);
+            forward = requestHistoryService.selectAllRequest(request, response);
         }
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"

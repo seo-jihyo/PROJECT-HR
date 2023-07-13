@@ -16,37 +16,6 @@
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>
         </div>
 
-        <script>
-            let attState = document.getElementById('rounded')
-            $('#rounded').click(function (){
-
-                const state = this.checked ? 1:0;
-
-                $.ajax({
-                    url: "/check-attendance.do",
-                    type: "post",
-                    data: {"attState" : state},
-                    dataType: "json",
-                    success:sucFuncJson,
-                    error:errFunc
-                });
-
-
-                function sucFuncJson(data){
-
-                }
-
-                function errFunc(e){
-                    alert("실패"+e.status)
-                }
-
-            })
-
-
-
-
-        </script>
-
         <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
         <button class="mode-btn" onclick="location.href='/views/user/userScheduleView.jsp'">직원 모드</button>
     </nav>
