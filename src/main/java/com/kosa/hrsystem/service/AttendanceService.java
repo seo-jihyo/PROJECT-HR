@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface AttendanceService {
 
     // 출퇴근 기능
+    public void toggleAtt(HttpServletRequest request, HttpServletResponse response);
     public boolean checkedAtt(HttpServletRequest request , HttpServletResponse response);
     public void insert(HttpServletRequest request , HttpServletResponse response);
     public void update(HttpServletRequest request, HttpServletResponse response);

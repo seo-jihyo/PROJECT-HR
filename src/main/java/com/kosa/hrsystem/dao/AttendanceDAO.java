@@ -14,15 +14,18 @@ public class AttendanceDAO {
         session.close();
         return dto;
     }
-    public void insertAttend(AttendanceDTO dto) {
+
+    public int insertAttend(AttendanceDTO dto) {
         SqlSession session = factory.openSession(true);
         int result = session.insert("insertAttendance",dto);
         session.close();
+        return result;
     }
-    public void updateAttend(AttendanceDTO dto) {
+    public int updateAttend(AttendanceDTO dto) {
         SqlSession session = factory.openSession(true);
         int result = session.update("updateAttendance",dto);
         session.close();
+        return result;
     }
 
 

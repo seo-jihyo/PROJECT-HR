@@ -2,13 +2,13 @@ package com.kosa.hrsystem.dto;
 
 import java.sql.Date;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class AttendanceDTO {
 	private int att_num; // 근태일련번호
 	private int emp_num; // 사원번호
