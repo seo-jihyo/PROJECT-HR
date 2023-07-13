@@ -11,5 +11,6 @@ public interface EmpService {
     public ActionForward insert(HttpServletRequest request , HttpServletResponse response);
     public ActionForward update(HttpServletRequest request, HttpServletResponse response);
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
-
+    public ActionForward searchId(HttpServletRequest request, HttpServletResponse response);
+    public ActionForward searchPwd(HttpServletRequest request, HttpServletResponse response);
 }

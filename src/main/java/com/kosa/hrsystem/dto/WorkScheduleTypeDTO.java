@@ -10,8 +10,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WorkScheduleTypeDTO {
-	private int work_sch_type_num;
-	private String work_name;
-	private String dept;
-	private String rank;
+	   private int work_sch_type_num;
+	   private String work_name;
+	   private Date work_start;
+	   private Date work_end;
 }

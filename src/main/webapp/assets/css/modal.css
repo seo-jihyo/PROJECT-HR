@@ -173,3 +173,8 @@ dialog{
 #tab-2 {
 	display: flex;
 }
+
+textarea {
+	width: 100%;
+    resize: none !important;
+}
