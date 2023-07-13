@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
-import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleDAO {
@@ -31,9 +30,9 @@ public class WorkScheduleDAO {
 	}
 
 	// WorkScheduleType - read
-	public List<WorkScheduleTypeVO> selectAllWorkType() throws Exception {
+	public List<WorkScheduleTypeDTO> selectAllWorkType() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
-		List<WorkScheduleTypeVO> list = null;
+		List<WorkScheduleTypeDTO> list = null;
 		list = sqlSession.selectList("selectAllWorkType");
 		sqlSession.close();
 		return list;
@@ -45,7 +44,7 @@ public class WorkScheduleDAO {
 			int result = sqlSession.insert("insertWorkScheduleType", dto);
 			System.out.println(result);
 
-			// sqlSession.commit(); 수동커밋인 경우
+			sqlSession.commit(); //수동커밋인 경우
 			sqlSession.close();
 			return result;
 		}

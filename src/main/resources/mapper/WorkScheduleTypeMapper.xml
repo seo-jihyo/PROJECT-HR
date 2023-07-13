@@ -4,35 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-	<select id="selectAllWorkType" resultType="com.kosa.hrsystem.vo.WorkScheduleTypeVO">
-	<!-- 	select * from work_schedule_type -->
-	SELECT 
-		work_sch_type_num, 
-		work_name, 
-		rank_table.code_value rankValue, 
-		dept_table.code_value deptValue
-	FROM work_schedule_type
-	INNER JOIN code_table rank_table
-		ON work_schedule_type.rank = rank_table.code_name
-	INNER JOIN code_table dept_table
-		ON work_schedule_type.dept = dept_table.code_name
-		ORDER BY work_sch_type_num 
+	<select id="selectAllWorkType" resultType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
+	  select 
+	  	work_sch_type_num, 
+	  	work_name,
+        work_start, 
+        work_end
+      from WORK_SCHEDULE_TYPE
+	
 	</select>
-	<select id="">
-	select 
-	</select>
+
 	<insert id="insertWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
-		insert into work_schedule_type(work_sch_type_num, work_name, dept, rank) values (work_schedule_type_seq.nextval,#{work_name},#{dept},#{rank})
+    	insert into WORK_SCHEDULE_TYPE (work_sch_type_num, work_name, work_start, work_end) 
+    	values (work_sch_type_num_seq.nextval, #{work_name}, #{work_start}, #{work_end})
 	</insert>
+	
 	<update id="updateWorkScheduleType" parameterType="com.kosa.hrsystem.dto.WorkScheduleTypeDTO">
 		update work_schedule_type set 
 			work_name = #{work_name}, 
-			dept = #{dept}, 
-			rank = #{rank} 
+			work_start = #{work_start}, 
+			work_end = #{work_end}
 		where work_sch_type_num = #{work_sch_type_num}
 	</update>
+	
 	<delete id="deleteWorkScheduleType" parameterType="Integer">
-	delete from work_schedule_type where work_sch_type_num = #{work_sch_type_num}	
-	</delete>
+		delete from work_schedule_type where work_sch_type_num = #{work_sch_type_num}	
+	</delete> 
+
 </mapper>
 

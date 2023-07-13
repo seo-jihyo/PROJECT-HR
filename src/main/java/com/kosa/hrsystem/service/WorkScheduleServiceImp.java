@@ -1,5 +1,13 @@
 package com.kosa.hrsystem.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
@@ -8,17 +16,6 @@ import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
-import com.kosa.hrsystem.vo.WorkScheduleTypeVO;
-import com.kosa.hrsystem.vo.WorkScheduleVO;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 public class WorkScheduleServiceImp implements WorkScheduleService{
     /* 근무 일정 */
@@ -98,41 +95,44 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     /* 근무 일정 유형 */
     @Override
     public ActionForward selectAllType(HttpServletRequest request, HttpServletResponse response) {
-        WorkScheduleDAO dao = new WorkScheduleDAO();
-        try {
-            List<WorkScheduleTypeVO> list = dao.selectAllWorkType();
-            List<CodeTableDTO> optDept = new CodeTableDAO().selectAllByParent("D001");
-            List<CodeTableDTO> optRank = new CodeTableDAO().selectAllByParent("R001");
-
-            request.setAttribute("list", list);
-            request.setAttribute("optDept", optDept);
-            request.setAttribute("optRank", optRank);
-
-            ActionForward forward = new ActionForward();
-            forward.setRedirect(false);
-            forward.setPath("/views/admin/manage/workScheduleView.jsp");
-            return forward;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    	WorkScheduleDAO dao = new WorkScheduleDAO();
+    	try {
+    		List<WorkScheduleTypeDTO> list = dao.selectAllWorkType();
+    		request.setAttribute("list", list);
+    		
+    		ActionForward forward = new ActionForward();
+    		forward.setRedirect(false);
+    		forward.setPath("/views/admin/manage/workScheduleView.jsp");
+    		return forward;
+    	} catch (Exception e) {
+    		throw new RuntimeException(e);
+    	}
     }
 
     @Override
     public ActionForward insertType(HttpServletRequest request, HttpServletResponse response) {
-        String workname = request.getParameter("work_name");
-        String dept = request.getParameter("dept");
-        String rank = request.getParameter("rank");
+    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    	
+    	try {
+    		int work_sch_type_num = Integer.parseInt(request.getParameter("work_sch_type_num"));
+    		String work_name = request.getParameter("work_name");
+        	Date work_start = sdf.parse(request.getParameter("work_start"));
+        	Date work_end = sdf.parse(request.getParameter("work_end"));
 
-        WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
-        dto.setWork_name(workname);
-        //dto.setDept(dept);
-        //dto.setRank(rank);
-        WorkScheduleDAO dao = new WorkScheduleDAO();
-        try {
+
+        	WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
+        	dto.setWork_sch_type_num(work_sch_type_num);
+        	dto.setWork_name(work_name);
+        	dto.setWork_start(work_start);
+        	dto.setWork_end(work_end);
+        	
+        	WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.insertWorkScheduleType(dto);
+            
+		} catch (ParseException e) {
+			e.printStackTrace();
         } catch (Exception e) {
             throw new RuntimeException(e);
-
         }//뷰페이지설정
         ActionForward forward = new ActionForward();
         forward.setRedirect(true);
@@ -142,27 +142,32 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
 
     @Override
     public ActionForward updateType(HttpServletRequest request, HttpServletResponse response) {
-        int work_sch_type_num = Integer.parseInt(request.getParameter("work_sch_type_num"));
-        String work_name = request.getParameter("name");
-        String dept = request.getParameter("dept");
-        String rank = request.getParameter("rank");
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    	
+    	try {
+    		int work_sch_type_num = Integer.parseInt(request.getParameter("work_sch_type_num"));
+    		String work_name = request.getParameter("name");
+        	Date work_start = sdf.parse("1999-09-03 "+request.getParameter("start"));
+        	Date work_end = sdf.parse("1999-09-03 "+request.getParameter("end"));
 
-        try {
-            WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
-            dto.setWork_sch_type_num(work_sch_type_num);
-            dto.setWork_name(work_name);
-            //dto.setDept(dept);
-            //dto.setRank(rank);
 
-            WorkScheduleDAO dao = new WorkScheduleDAO();
+        	WorkScheduleTypeDTO dto = new WorkScheduleTypeDTO();
+        	dto.setWork_sch_type_num(work_sch_type_num);
+        	dto.setWork_name(work_name);
+        	dto.setWork_start(work_start);
+        	dto.setWork_end(work_end);
+        	
+        	WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.updateWorkScheduleType(dto);
+            
+		} catch (ParseException e) {
+			e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
+            throw new RuntimeException(e);
+        }//뷰페이지설정
         ActionForward forward = new ActionForward();
         forward.setRedirect(true);
         forward.setPath("/worktype.do");
-
         return forward;
     }
 
