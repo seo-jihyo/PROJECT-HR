@@ -197,15 +197,11 @@
 			</tbody>
 		</table>
 	</section>
-<dialog>
-    
-    				<h1>출퇴근 기록 수정하기</h1>
-					<hr>
-					
-
-					<form method="get">
-						<table class="attend-table">
-							<tr>
+	<dialog>
+    	<h1>출퇴근 기록 수정하기</h1><hr>
+			<form method="get" id="frm2">
+				<table class="attend-table">
+						<!-- 	<tr>
 								<td>날짜
 								<br></td>
 								<td><input type="date" class="attend-date"></td>
@@ -268,17 +264,17 @@
 								<td>근무노트
 								<br></td>
 								<td><textarea name="" id="attend-area" cols="30" rows="4"></textarea></td>
-							</tr>
+							</tr> -->
 						</table>
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button type="button" class="custom-btn btn-10">수정하기</button>
-							<button type="button" class="custom-btn btn-10">삭제하기</button>
-            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
+							<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+							<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
+            				<button type="button" class="dialogbtn custom-btn btn-10" onclick="dialogClose();">닫기</button>
 						</div>
 					</div>
-				</form>
+			</form>
     </dialog>
 <script type="text/javascript">
 const dialog = document.querySelector("dialog");
@@ -293,6 +289,91 @@ function dialogClose(){
 function resetForm() {
 	  $('#frm')[0].reset();
 }
+/* 여기부터 */
+     $(document).on("click", ".sec-table tbody tr", function () {
+	     dialog.showModal();
+	     console.log(this);
+	     $num = $(this).data("num")
+	     $name = $(this).data("name")
+	     $date = $(this).data("date")
+	     $go_time = $(this).data("go_time")
+	     $leave_time = $(this).data("leave_time")
+	     $break = $(this).data("break")
+	     $total = $(this).data("total")
+
+     let str = `
+          <tr class="rank-tr1">
+
+             <tr class="rank-tr1">
+                <th>사원번호</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>직원</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>날짜</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>출근시간</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>퇴근시간</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>휴게시간</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>근무시간합계</td>
+                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
+                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+             </tr>
+
+         /*     <tr class="rank-tr1">
+                <th class="two">부서</td>
+               	<td><select class="rankadd"  id="selectBox" name="dept">
+                     <c:forEach var="list" items="${optDept}">
+                         <option value="${list.code_name}">${list.code_value}</option>
+                     </c:forEach>
+ 				</select></td>
+ 				<th class="rights">
+             </tr>
+
+             <tr class="rank-tr1">
+                <th class="two">직급</td>
+                	<td><select class="rankadd"  id="selectBox" name="rank">
+                     <c:forEach var="list" items="${optRank}">
+                         <option value="${list.code_name}">${list.code_value}</option>
+                     </c:forEach>
+ 				</select></td>
+             </tr> */
+          `;
+     $('dialog table').html(str)
+
+ });
+	const $form = $('#frm2');
+	
+	$(document).on('click', '#updateBtn', function () {
+	    $form.attr('action', 'worktypeupdate.do')
+	    $form.attr('method', 'post')
+	    $form.submit()
+	})
+	$(document).on('click', '#deleteBtn', function () {
+	    $form.attr('action', 'worktypedelete.do')
+	    $form.attr('method', 'post')
+	    $form.submit()
+	})
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
