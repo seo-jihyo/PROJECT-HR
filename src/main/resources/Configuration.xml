@@ -13,6 +13,13 @@
                 <property name="url" value="${url}" />
                 <property name="username" value="${username}" />
                 <property name="password" value="${password}" />
+                <property name="poolMaximumActiveConnections" value="20"/>
+                <property name="poolMaximumIdleConnections" value="20"/>
+                <property name="poolMaximumCheckoutTime" value="20000"/>
+                <property name="poolPingEnabled" value="true"/>
+                <property name="poolPingQuery" value="SELECT 1 FROM DUAL"/>
+                <property name="poolPingConnectionsNotUsedFor" value="10000"/>
+                <property name="poolTimeToWait" value="15000"/>
             </dataSource>
         </environment>
     </environments>
