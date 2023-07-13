@@ -127,7 +127,7 @@ body{
 			<div class="signup">
 				<div class="column">
 					<input type="button" value="ID/비밀번호 찾기" class="searchpwd"
-						onclick="location.href='/views/user/searchId.jsp'">
+						onclick="location.href='/searchId.do'">
 				</div>
 			</div>
 		</div>

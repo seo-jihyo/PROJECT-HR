@@ -74,7 +74,10 @@ public class FrontRegisterController extends HttpServlet {
                 System.out.println("퇴근"+attStatus);
                 attendanceService.insert(request, response);
             }
-        } else if(urlcommand.equals("/searchId.do")) {
+        } else if (urlcommand.equals("/searchId.do")) {
+            forward = new ActionForward();
+            forward.setPath("/views/user/searchId.jsp");
+        } else if(urlcommand.equals("/searchIdok.do")) {
         	forward = empService.searchId(request, response);
         } else if(urlcommand.equals("/searchPwd.do")) {
         	forward = empService.searchPwd(request, response);
