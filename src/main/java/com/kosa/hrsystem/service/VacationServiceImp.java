@@ -50,13 +50,9 @@ public class VacationServiceImp implements VacationService {
 	public ActionForward selectAllType(HttpServletRequest request, HttpServletResponse response) {
 		VacationDAO dao = new VacationDAO();
 		try {
-			List<VacationTypeVO> list = dao.selectAll();
-			List<CodeTableDTO> optDept= new CodeTableDAO().selectAllByParent("D001");
-			List<CodeTableDTO> optRank= new CodeTableDAO().selectAllByParent("R001");
+			List<VacationTypeDTO> list = dao.selectAll();
 
 			request.setAttribute("list", list);
-			request.setAttribute("optDept",optDept);
-			request.setAttribute("optRank",optRank);
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/views/admin/vacationType/vacationTypeView.jsp");
@@ -69,15 +65,11 @@ public class VacationServiceImp implements VacationService {
 	@Override
 	public ActionForward insertType(HttpServletRequest request, HttpServletResponse response) {
 		String vctnName = request.getParameter("vctn_name");
-		String dept = request.getParameter("dept");
-		String rank = request.getParameter("rank");
 		int vctnTime = Integer.parseInt(request.getParameter("vctn_time"));
 		double deductionDay = Double.parseDouble(request.getParameter("deduction_day"));
 
 		VacationTypeDTO dto = new VacationTypeDTO();
 		dto.setVctn_name(vctnName);
-		dto.setDept(dept);
-		dto.setRank(rank);
 		dto.setVctn_time(vctnTime);
 		dto.setDeduction_day(deductionDay);
 
@@ -97,16 +89,12 @@ public class VacationServiceImp implements VacationService {
 	public ActionForward updateType(HttpServletRequest request, HttpServletResponse response) {
 		int vctnNum = Integer.parseInt(request.getParameter("vctn_type_num"));
 		String vctnName = request.getParameter("vctn_name");
-		String dept = request.getParameter("dept");
-		String rank = request.getParameter("rank");
 		int vctnTime = Integer.parseInt(request.getParameter("vctn_time"));
 		double deductionDay = Double.parseDouble(request.getParameter("deduction_day"));
 
 		VacationTypeDTO dto = new VacationTypeDTO();
 		dto.setVctn_type_num(vctnNum);
 		dto.setVctn_name(vctnName);
-		dto.setDept(dept);
-		dto.setRank(rank);
 		dto.setVctn_time(vctnTime);
 		dto.setDeduction_day(deductionDay);
 

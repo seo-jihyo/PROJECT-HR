@@ -84,8 +84,6 @@ dialog{
 				<option>선택없음</option>
 				<option>휴가유형번호</option>
 				<option>휴가명</option>
-				<option>부서</option>
-				<option>직급</option>
 				<option>유급시간</option>
 				<option>차감일수</option>
 				<option>휴가사유</option>
@@ -109,31 +107,6 @@ dialog{
 							<tr class="vactype-tr1">
 								<th class="three">휴가명</th>
 								<td><input type="text" class="vactypeadd" name="vctn_name"></td>
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="two">부서</th>
-								 <td><select class="vactypeadd" name="dept">
-                                        <c:forEach var="list" items="${optDept}">
-                                            <option value="${list.code_name}">${list.code_value}</option>
-                                        </c:forEach>
-                                    </select></td>
-								<!-- <td><input type="text" class="vactypeadd" name="dept"></td> -->
-							</tr>
-							<tr class="vactype-tr1">
-								<th class="two">직급</th>
-								 <td><select class="vactypeadd" name="rank">
-                                        <c:forEach var="list" items="${optRank}">
-                                            <option value="${list.code_name}">${list.code_value}</option>
-                                        </c:forEach>
-                                    </select></td>
-								
-								<!-- <td><input type="text" class="vactypeadd" name="rank"></td>  -->
-<!-- 								<td>
-									<select class="vactypeadd">
-										<option value='A00101' selected>대표</option>
-										<option value='A00102' selected>대표이사</option>
-									</select>
-								</td> -->
 							</tr>
 							<tr class="vactype-tr1">
 								<th class="four">유급시간</th>
@@ -168,8 +141,6 @@ dialog{
 							onclick="allCheckboxes('chk[]', this.checked)"></th>
 						<th>휴가유형번호</th>
 						<th>휴가명</th>
-						<th>부서</th>
-						<th>직급</th>
 						<th>유급시간</th>
 						<th>차감일수</th>
 					</tr>
@@ -179,8 +150,6 @@ dialog{
 					<tr class="asd"
 						data-vctn-type-num="${vacationTypeList.vctn_type_num}"
 						data-vctn-name="${vacationTypeList.vctn_name}"
- 						data-dept="${vacationTypeList.deptValue}"
-						data-rank="${vacationTypeList.rankValue}"
 						data-vctn-time="${vacationTypeList.vctn_time}"
 						data-deduction-day="${vacationTypeList.deduction_day}"
 					>
@@ -188,8 +157,6 @@ dialog{
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
  						<td>${vacationTypeList.vctn_type_num}</td>
 						<td>${vacationTypeList.vctn_name}</td>
-						<td>${vacationTypeList.deptValue}</td>
-						<td>${vacationTypeList.rankValue}</td> 
 						<td>${vacationTypeList.vctn_time}</td>
 						<td>${vacationTypeList.deduction_day}</td>
 					</tr>
@@ -237,8 +204,6 @@ dialog{
 	$(document).on("click", ".table tbody tr", function () {
  		$vctnTypeNum = $(this).data("vctn-type-num")
 		$vctnName= $(this).data("vctn-name")
-		$dept= $(this).data("dept")
-		$rank= $(this).data("rank")
 		$vctnTime= $(this).data("vctn-time")
 		$deductionDay= $(this).data("deduction-day")
 
@@ -251,24 +216,6 @@ dialog{
 		<tr class="vactype-tr1">
 			<th class="three">휴가명</th>
 			<td><input type="text" class="vactypeadd" name="vctn_name" value="`+$vctnName+`"></td>
-		</tr>
-		<tr class="vactype-tr1">
-			<th class="modaltwo">부서</th>
-			<td>
-			<select class="vactypeadd" name="dept">
-           		<c:forEach var="list" items="${optDept}">
-            		<option value="${list.code_name}">${list.code_value}</option>
-        		</c:forEach>
-        	</select></td>
-		</tr>
-		<tr class="vactype-tr1">
-			<th class="modaltwo">직급</th>
-			<td>
-			<select class="vactypeadd" name="rank">
-            <c:forEach var="list" items="${optRank}">
-            	<option value="${list.code_name}">${list.code_value}</option>
-       		</c:forEach>
-		</select></td>
 		</tr>
 		<tr class="vactype-tr1">
 			<th class="four">유급시간</th>
