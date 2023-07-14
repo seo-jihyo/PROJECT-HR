@@ -16,7 +16,23 @@ public class WorkScheduleDAO {
 	public int insertWorkSchedule(WorkScheduleDTO dto) {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.insert("insertWorkSchedule",dto);
-		System.out.println(result);
+		System.out.println("insert" + result);
+		sqlSession.close();
+		return result;
+	}
+	
+	public int updateWorkSchedule(WorkScheduleDTO dto) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.update("updateWorkSchedule",dto);
+		System.out.println("update" + result);
+		sqlSession.close();
+		return result;
+	}
+	
+	public int deleteWorkSchedule(int work_sch_num) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("deleteWorkSchedule",work_sch_num);
+		System.out.println("delete" + result);
 		sqlSession.close();
 		return result;
 	}
@@ -25,6 +41,7 @@ public class WorkScheduleDAO {
 		SqlSession sqlSession = factory.openSession(true);
 		List<WorkScheduleVO> list = null;
 		list = sqlSession.selectList("selectAllWorkSchedule");
+		System.out.println(list);
 		sqlSession.close();
 		return list;
 	}
