@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="insertVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
-		insert into vacation_type(vctn_type_num,vctn_name,vctn_time,deduction_day) values (vacation_type_seq.nextval,#{vctn_name},#{vctn_time},#{deduction_day})  
+		insert into vacation_type(vctn_type_num,vctn_name,vctn_time,deduction_day) values (vctn_type_num_seq.nextval,#{vctn_name},#{vctn_time},#{deduction_day})  
 	</insert>
 	<update id="updateVctnType" parameterType="com.kosa.hrsystem.dto.VacationTypeDTO">
 		update vacation_type set vctn_name = #{vctn_name},vctn_time=#{vctn_time}, deduction_day=#{deduction_day} where vctn_type_num = #{vctn_type_num}

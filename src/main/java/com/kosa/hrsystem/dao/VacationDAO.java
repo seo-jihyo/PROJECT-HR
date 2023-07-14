@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.VacationVO;
@@ -19,6 +20,33 @@ public class VacationDAO {
         session.close();
         return list;
     }
+    //휴가 관리자 삽입
+    public int insertVacation(VacationDTO dto) throws Exception {
+        SqlSession session = factory.openSession(true);
+        int result = session.insert("insertVacation",dto);
+        System.out.println(result);
+        
+        session.close();
+        return result;
+    }
+    
+    //휴가 관리자 수정
+    public int updateVacation(VacationDTO dto) throws Exception {
+        SqlSession session = factory.openSession(true);
+        int result = session.update("updateVacation",dto);
+
+        session.close();
+        return result;
+    }
+    
+    // 휴가 관리자 삭제
+    public int deleteVacation(int num) throws Exception {
+    	SqlSession session = factory.openSession(true);
+        int result = session.delete("deleteVacation",num);
+
+        session.close();
+        return result;
+    }
     
     //휴가 일정 유형 전체 조회
     public List<VacationTypeDTO> selectAll(){
@@ -29,7 +57,7 @@ public class VacationDAO {
         return list;
     }
     //휴가 일정 유형 삽입
-    public int insertVctnType(VacationTypeDTO dto){
+    public int insertVctnType(VacationTypeDTO dto) throws Exception {
         SqlSession session = factory.openSession(true);
         int result = session.insert("insertVctnType",dto);
         System.out.println(result);
@@ -38,17 +66,17 @@ public class VacationDAO {
         return result;
     }
     //휴가 일정 유형 수정
-    public int updateVctnType(VacationTypeDTO dto){
+    public int updateVctnType(VacationTypeDTO dto) throws Exception {
         SqlSession session = factory.openSession(true);
-        int result = session.insert("updateVctnType",dto);
+        int result = session.update("updateVctnType",dto);
 
         session.close();
         return result;
     }
     //휴가 일정 유형 삭제
-    public int deleteVctnType(int num){
+    public int deleteVctnType(int num) throws Exception {
         SqlSession session = factory.openSession(true);
-        int result = session.insert("deleteVctnType",num);
+        int result = session.delete("deleteVctnType",num);
 
         session.close();
         return result;
