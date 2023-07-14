@@ -16,8 +16,7 @@
         vt.vctn_time,
         vt.deduction_day,
         v.vctn_reason,
-        vt.vctn_time*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totaltime, -- 총 유급시간
-        vt.deduction_day*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totalday -- 총 차감일수
+        floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI'))  as countday
     from vacation v
     inner join 
         emp e
@@ -27,5 +26,37 @@
     on v.vctn_type_num = vt.vctn_type_num
 	order by v.vctn_num
 	
+<!-- 	select v.vctn_num, 
+        v.emp_num, 
+        e.emp_name, 
+        to_char(v.vctn_start_date, 'yyyy-mm-dd HH24:MI') as startdate, 
+        to_char(v.vctn_end_date,  'yyyy-mm-dd HH24:MI') as enddate,
+        v.vctn_type_num,
+        vt.vctn_name,
+        vt.vctn_time,
+        vt.deduction_day,
+        v.vctn_reason,
+        vt.vctn_time*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totaltime, 
+        vt.deduction_day*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totalday 
+    from vacation v
+    inner join 
+        emp e
+    on v.emp_num = e.emp_num
+    inner join
+        vacation_type vt
+    on v.vctn_type_num = vt.vctn_type_num
+	order by v.vctn_num -->
 	</select> 
+	
+	<insert id="insertVacation" parameterType="com.kosa.hrsystem.dto.VacationDTO">
+		insert into vacation(vctn_num, emp_num, vctn_type_num, vctn_start_date, vctn_end_date, vctn_application_date, vctn_reason, vctn_approval) values (vctn_num_seq.nextval,#{emp_num}, #{vctn_type_num}, #{vctn_start_date}, #{vctn_end_date}, to_date(sysdate,'yyyy-mm-dd hh24:mi') , #{vctn_reason}, #{vctn_approval}) 
+	</insert>
+	
+	<update id="updateVacation" parameterType="com.kosa.hrsystem.dto.VacationDTO">
+		update vacation set vctn_type_num= #{vctn_type_num}, vctn_start_date= #{vctn_start_date},vctn_end_date=#{vctn_end_date}, vctn_reason=#{vctn_reason} where vctn_num = #{vctn_num}
+	</update>
+	
+	<delete id="deleteVacation" parameterType="Integer">
+		delete from vacation where vctn_num = #{num}
+	</delete>
 </mapper>

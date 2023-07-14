@@ -48,8 +48,15 @@
     height: 30px;
     border: 1px solid black;
 }
+.vacation-date{
+	width: 200px;
+    height: 30px;
+    border: 1px solid black;
+}
 .vacation-area {
 	border: 1px solid black;
+	width: 250px;
+ 	resize: none; 
 }
 </style>
 <title>휴가관리</title>
@@ -87,38 +94,49 @@
 					<h1>휴가관리하기</h1>
 					<hr>
 
-					<form method="get" action="/" id="frm">
+					<form method="post" action="/vacationok.do" id="frm">
 						<table class="vacation-table">
 							<tr class="vacation-tr1">
-								<td>직원</td>
-								<td><select name="" class="selectBox">
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
-								</select></td>
+							<th>직원명</th>
+							<td><select class="vacation-type" id="selectBox" name="emp_num">
+    						 <c:forEach var="emplist" items="${empList}">
+         						<option value="${emplist.emp_num}">${emplist.emp_name}</option>
+     						</c:forEach>
+							</select></td>
 							</tr>
+								<tr>
+									<th>휴가 시작일</th>
+									<td><input type="datetime-local" class="vacation-date" name="vctn_start_date">
+								</tr>
+								<tr>
+									<th>휴가 종료일</th>
+									<td><input type="datetime-local" class="vacation-date" name="vctn_end_date">
+								</tr>
+								<!-- 달력 템플릿						
 							<tr>
 								<td colspan="2">
-									<!-- calendar 태그 -->
+									calendar 태그
 									<div id='calendar-container'>
 										<div id='calendar'></div>
 									</div>
 								</td>
-							</tr>
+							</tr> 
+							-->
 							<tr>
-								<td>휴가 유형</td>
-								<td><select name="" class="vacation-type">
-										<option value="">선택안됨</option>
-										<option value="">연차(8h, 1일)</option>
-										<option value="">반차(4h, 0.5일)</option>
-										<option value="">병가(8h, 1일)</option>
-								</select></td>
-							</tr>
+							<th>휴가 유형</th>
+							<td><select class="vacation-type" id="selectBox" name="vctn_type_num">
+     						<c:forEach var="vctnlist" items="${vctnTypeList}">
+         						<option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
+     						</c:forEach>
+							</select></td>
+							</tr> 
 							<tr>
-								<td>사유</td>
-								<td><textarea name="" class="vacation-area" cols="70" rows="4">
-      </textarea></td>
+								<th>사유</th>
+								<td><textarea name="vctn_reason" class="vacation-area" cols="70" rows="4"></textarea></td>
+							</tr>
+							<tr hidden>
+								<th>승인여부</th>
+								<td><input type="number" name="vctn_approval" value="1"></td>
 							</tr>
 						</table>
 					</form>
@@ -126,7 +144,7 @@
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
@@ -151,15 +169,46 @@
 			</thead>
 			<tbody>
 			<c:forEach var="vacationList" items="${list}">
-				<tr>
+				<tr
+					data-vctn-num="${vacationList.vctn_num}"
+					data-emp-num="${vacationList.emp_num}"
+					data-emp-name="${vacationList.emp_name}"
+					data-startdate="${vacationList.startdate}"
+					data-enddate="${vacationList.enddate}"
+					data-vctn-type-num="${vacationList.vctn_type_num}"
+					data-vctn-name="${vacationList.vctn_name}"
+					data-vctn-time="${vacationList.vctn_time}"
+					data-deduction-day="${vacationList.deduction_day}"
+					data-vctn-reason="${vacationList.vctn_reason}"
+					data-countday="${vacationList.countday}"
+					>
+				
 					<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>${vacationList.emp_num}</td>
 					<td>${vacationList.emp_name}</td>
 					<td>${vacationList.startdate} ~ ${vacationList.enddate}</td>
 					<td>${vacationList.vctn_name}</td>
-					<td>${vacationList.totaltime}</td>
-					<td>${vacationList.totalday}</td>
+					<td>
+					<c:choose>
+						<c:when test="${vacationList.countday > 0 }">
+							${ vacationList.vctn_time * (vacationList.countday+1) }					
+						</c:when>
+						<c:otherwise> 
+							${vacationList.vctn_time}
+						</c:otherwise>
+					</c:choose>
+					</td>
+					<td>
+					<c:choose>
+						<c:when test="${vacationList.countday > 0 }">
+							${ vacationList.deduction_day * (vacationList.countday+1) }					
+						</c:when>
+						<c:otherwise>
+							${vacationList.deduction_day}
+						</c:otherwise>
+					</c:choose>
+					</td>
 					<td>${vacationList.vctn_reason}</td>
 				</tr>
 			</c:forEach>
@@ -172,43 +221,14 @@
 					<hr>
 					
 
-					<form method="get">
+					<form method="get" id="frm2">
 						<table class="vacation-table">
-							<tr class="vacation-tr1">
-								<td>직원</td>
-								<td><select name="" class="selectBox">
-										<option value="lee">이재경</option>
-										<option value="song">송기석</option>
-										<option value="k">권지연</option>
-										<option value="seo">서지효</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<!-- calendar 태그 -->
-									<div id='calendar-container'>
-										<div id='calendar'></div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>휴가 유형</td>
-								<td><select name="" class="vacation-type">
-										<option value="">선택안됨</option>
-										<option value="">연차(8h, 1일)</option>
-										<option value="">반차(4h, 0.5일)</option>
-										<option value="">병가(8h, 1일)</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>사유</td>
-								<td><textarea name="" class="vacation-area" cols="70" rows="4"></textarea></td>
-							</tr>
+
 						</table>
 						<div class="bottom-btn">
 						<div class="right-btn">
-							<button type="button" class="custom-btn btn-10">수정하기</button>
-							<button type="button" class="custom-btn btn-10">삭제하기</button>
+							<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+							<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
             				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
 						</div>
 					</div>
@@ -224,9 +244,71 @@ $(document).on("click", ".table tbody tr", function () {
 function dialogClose(){
 	dialog.close();
 }
+
+$(document).on("click", ".table tbody tr", function () {
+ 	$vctnNum = $(this).data("vctn-num")
+ 	$EmpNum = $(this).data("emp-num")
+ 	$EmpName = $(this).data("emp-name")
+ 	$startDate = $(this).data("startdate")
+ 	$endDate = $(this).data("enddate")
+ 	$vctnReason = $(this).data("vctn-reason")
+
+
+	let str = `
+	<tr hidden>
+		<td>휴가일렬번호</td>
+		<td><input type="text" name="vctn_num" value="`+$vctnNum+`"></td>
+	</tr> 	
+	<tr>
+    <th>직원명</th>
+    	<td>`+$EmpName+`</td>
+ 	</tr> 
+ 	<tr>
+	<th>휴가 유형</th>
+	<td><select class="vacation-type" id="selectBox" name="vctn_type_num">
+     <c:forEach var="vctnlist" items="${vctnTypeList}">
+         <option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
+     </c:forEach>
+	</select></td>
+	</tr> 
+
+	<tr>
+		<th>휴가 시작일</th>
+		<td><input type="datetime-local" class="vacation-date" name="vctn_start_date" value="`+$startDate+`">
+	</tr>
+	<tr>
+		<th>휴가 종료일</th>
+		<td><input type="datetime-local" class="vacation-date" name="vctn_end_date" value="`+$endDate+`">
+	</tr>
+	<tr>
+		<th>사유</th>
+		<td><textarea class="vacation-area" name="vctn_reason" cols="30" rows="4">`+$vctnReason+`</textarea></td>
+	</tr>
+	<tr hidden>
+		<th>승인상태</th>
+		<td><input type="text" name="vctn_approval" value="1" readonly></td>
+	<tr>
+		`;
+
+	$('dialog table').html(str)
+}) 
+
+
 function resetForm() {
 	  $('#frm')[0].reset();
 }
+
+const $form = $('#frm2');
+$(document).on('click','#updateBtn',function (){
+   $form.attr('action','/vacationUpdate.do')
+   $form.attr('method','post')
+   $form.submit()
+})
+$(document).on('click','#deleteBtn',function (){
+   $form.attr('action','/vacationDelete.do')
+   $form.attr('method','post')
+   $form.submit()
+})
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
