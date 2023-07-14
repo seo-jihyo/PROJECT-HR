@@ -19,7 +19,8 @@ public class CommuteRecordDAO {
 		return list;
 	}
 
-	public void updateRecord(CommuteRecordVO vo) {
+
+	public void insertRecord(CommuteRecordVO vo) {
 		// TODO Auto-generated method stub
 		
 	}

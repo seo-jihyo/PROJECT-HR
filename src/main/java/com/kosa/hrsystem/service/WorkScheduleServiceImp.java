@@ -108,7 +108,8 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     		throw new RuntimeException(e);
     	}
     }
-
+    
+    //추가
     @Override
     public ActionForward insertType(HttpServletRequest request, HttpServletResponse response) {
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");

@@ -61,10 +61,12 @@
 				<option>출근시간</option>
 				<option>퇴근시간</option>
 			</select>
+			
+			<!-- 추가하기 -->
 			<input type="text" class="search searchs">
 			<input type="button" class="seachbtn" value="검 색">
-			<input type="checkbox" id="popup" onclick="resetForm()"> <label class="labelBtn" for="popup">+
-				출퇴근기록 추가하기</label>
+			<input type="checkbox" id="popup" onclick="resetForm()"> 
+			<label class="labelBtn" for="popup">+ 출퇴근기록 추가하기</label>
 			<div class="modal">
 				<div>
 					<label for="popup">X</label>
@@ -176,7 +178,7 @@
 			  <c:forEach var="CMTList" items="${list}">
 				<tr data-num="${CMTList.emp_num}"
 					data-name="${CMTList.emp_name}"
-					data-date="${CMTList.go_work}"
+					data-date="<fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/>"
 					data-go-time="<fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/>"
 					data-leave-time="<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>"
 				<%-- 	data-status="${CMTList.att_status}" --%>
@@ -186,12 +188,32 @@
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 					<td>${CMTList.emp_num}</td>
 					<td>${CMTList.emp_name}</td>
-					<td>${CMTList.go_work}</td>
+					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/></td>
 					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/></td>
 					<td><fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/></td>
 					<%-- <td>${CMTList.att_status}</td> --%>
-					<td>${CMTList.break_time}</td>
-					<td>${CMTList.work_time}</td>
+					
+					<td><!-- 근무시간 7시간 초과 시 휴게시간 1, 8시간 미만일 때 휴게시간 0 -->
+					<c:choose>
+						<c:when test="${CMTList.work_time > 7 }">
+							${CMTList.break_time} 
+						</c:when>
+						<c:otherwise>
+							${CMTList.break_time -1}
+						</c:otherwise>
+					</c:choose>
+					</td>
+					
+					<td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
+					<c:choose>
+						<c:when test="${CMTList.work_time > 7}">
+							${CMTList.work_time -1}
+						</c:when>
+						<c:otherwise>
+							${CMTList.work_time}
+						</c:otherwise>
+					</c:choose>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
