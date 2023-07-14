@@ -554,7 +554,7 @@
 			</tr>
 			<tr>
 				<th class="three">이메일</th>
-				<td><input type="email" name="emp-num" class="profile-text" value="` + $email + `" readonly></td>
+				<td><input type="email" name="emp-email" class="profile-text" value="` + $email + `" readonly></td>
 			</tr>
 
 

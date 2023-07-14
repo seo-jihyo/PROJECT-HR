@@ -16,6 +16,7 @@ import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleServiceImp implements WorkScheduleService{
     /* 근무 일정 */
@@ -23,14 +24,14 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
     public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
         WorkScheduleDAO dao = new WorkScheduleDAO();
         try {
-            //List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
-           // List<WorkScheduleTypeVO> tlist = dao.selectAllWorkType();
+            List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
+            List<WorkScheduleTypeDTO> tlist = dao.selectAllWorkType();
             List<CodeTableDTO> optDept = new CodeTableDAO().selectAllByParent("D001");
             List<CodeTableDTO> optRank = new CodeTableDAO().selectAllByParent("R001");
             List<EmpDTO> elist = new EmpDAO().selectAllEmp();
             
-            //request.setAttribute("list", list);
-            //request.setAttribute("tlist", tlist);
+            request.setAttribute("list", list);
+            request.setAttribute("tlist", tlist);
             request.setAttribute("optDept", optDept);
             request.setAttribute("optRank", optRank);
             request.setAttribute("elist", elist);
@@ -51,21 +52,23 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
         
         try {
             Date ws_date = sdf.parse(request.getParameter("ws-date"));
-            String workType = request.getParameter("ws-type");
+            int workType = Integer.parseInt(request.getParameter("ws-type"));
             String dept = request.getParameter("ws-dept");
             String rank = request.getParameter("ws-rank");
             Date startTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("startTime"));
             Date endTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("endTime"));
-            String empName = request.getParameter("emp-name");
+            int empNum = Integer.parseInt(request.getParameter("emp-name"));
             String remarks = request.getParameter("ws-area");
-
+            
             WorkScheduleDTO dto = new WorkScheduleDTO();
             // 관리에 DB값이 저장 되었을 떄 하기로...
 			dto.setSchedule(ws_date);
+			dto.setWork_sch_type_num(workType);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
 			dto.setDept(dept);
 			dto.setRank(rank);
+			dto.setEmp_num(empNum);
 			dto.setRemarks(remarks);
             WorkScheduleDAO dao = new WorkScheduleDAO();
             dao.insertWorkSchedule(dto);
@@ -83,12 +86,56 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
 
     @Override
     public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        try {
+        	int workScheduleNum = Integer.parseInt(request.getParameter("ws-num"));
+            Date ws_date = sdf.parse(request.getParameter("ws-date"));
+            int workType = Integer.parseInt(request.getParameter("ws-type"));
+            String dept = request.getParameter("ws-dept");
+            String rank = request.getParameter("ws-rank");
+            Date startTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("startTime"));
+            Date endTime = sdfTime.parse(request.getParameter("ws-date") +" "+request.getParameter("endTime"));
+            int empNum = Integer.parseInt(request.getParameter("emp-name"));
+            String remarks = request.getParameter("ws-area");
+            
+            WorkScheduleDTO dto = new WorkScheduleDTO();
+            // 관리에 DB값이 저장 되었을 떄 하기로...
+			dto.setWork_sch_num(workScheduleNum);
+            dto.setSchedule(ws_date);
+			dto.setWork_sch_type_num(workType);
+			dto.setGo_work(startTime);
+			dto.setLeave_work(endTime);
+			dto.setDept(dept);
+			dto.setRank(rank);
+			dto.setEmp_num(empNum);
+			dto.setRemarks(remarks);
+            WorkScheduleDAO dao = new WorkScheduleDAO();
+            dao.updateWorkSchedule(dto);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(true);
+        forward.setPath("/workschedule.do");
+        return forward;
     }
 
     @Override
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        int workScheduleNum = Integer.parseInt(request.getParameter("ws-num"));
+        System.out.println(workScheduleNum);
+        WorkScheduleDAO dao = new WorkScheduleDAO();
+        dao.deleteWorkSchedule(workScheduleNum);
+        
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(true);
+        forward.setPath("/workschedule.do");
+    	return forward;
     }
 
 
@@ -143,7 +190,7 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
 
     @Override
     public ActionForward updateType(HttpServletRequest request, HttpServletResponse response) {
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     	
     	try {
     		int work_sch_type_num = Integer.parseInt(request.getParameter("work_sch_type_num"));
