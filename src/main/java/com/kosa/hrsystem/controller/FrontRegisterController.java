@@ -143,6 +143,8 @@ public class FrontRegisterController extends HttpServlet {
         /* 근로정보 */
         else if (urlcommand.equals("/work.do")) {
             forward = workService.selectAll(request, response);
+        } else if (urlcommand.equals("/addwork.do")) {
+            forward = workService.insert(request, response);
         }
         /* 근무일정 / 유형 */
         else if (urlcommand.equals("/workschedule.do")) {

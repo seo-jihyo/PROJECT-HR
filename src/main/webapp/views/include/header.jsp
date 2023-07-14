@@ -64,7 +64,7 @@
                     <a href="/dept.do" class="collapse_sublink">부서</a><br>
                     <a href="/rank.do" class="collapse_sublink">직급</a><br>
                     <a href="/vacationtype.do" class="collapse_sublink">휴가유형</a><br>
-                    <a href="/views/admin/manage/workView.jsp" class="collapse_sublink">근로정보</a><br>
+                    <a href="/work.do" class="collapse_sublink">근로정보</a><br>
                     <a href="/worktype.do" class="collapse_sublink">근무일정유형</a><br>
 
                     <!--  <a href="/views/admin/manage/workSchedulTempView.jsp" class="collapse_sublink">근무일정템플릿</a><br>
