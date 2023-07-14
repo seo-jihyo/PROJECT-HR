@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 public interface VacationService {
 
     public ActionForward selectAllVacation(HttpServletRequest request , HttpServletResponse response);
-    public ActionForward insert(HttpServletRequest request , HttpServletResponse response);
-    public ActionForward update(HttpServletRequest request, HttpServletResponse response);
-    public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
+    public ActionForward insertVacation(HttpServletRequest request , HttpServletResponse response);
+    public ActionForward updateVacation(HttpServletRequest request, HttpServletResponse response);
+    public ActionForward deleteVacation(HttpServletRequest request, HttpServletResponse response);
     
     public ActionForward selectAllType(HttpServletRequest request , HttpServletResponse response);
     public ActionForward insertType(HttpServletRequest request , HttpServletResponse response);

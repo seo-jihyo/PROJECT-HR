@@ -18,6 +18,5 @@ public class VacationVO {
 	private int vctn_time;
 	private double deduction_day;
 	private String vctn_reason;
-	private double totaltime;
-	private double totalday;	
+	private int countday;
 }
