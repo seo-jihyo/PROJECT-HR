@@ -1,5 +1,7 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,7 +47,17 @@ public class WorkScheduleDAO {
 		sqlSession.close();
 		return list;
 	}
-
+	
+	public List<WorkScheduleVO> searchByDate(HashMap<String, Date> map) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		List<WorkScheduleVO> list = null;
+		list = sqlSession.selectList("searchByDate", map);
+		System.out.println(list);
+		sqlSession.close();
+		return list;
+	}
+	
+	
 	// WorkScheduleType - read
 	public List<WorkScheduleTypeDTO> selectAllWorkType() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);

@@ -3,10 +3,14 @@ package com.kosa.hrsystem.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CodeTableDAO;
@@ -19,7 +23,41 @@ import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleServiceImp implements WorkScheduleService{
-    /* 근무 일정 */
+    
+	/* 날짜 검색 */
+	@Override
+	public ActionForward searchByDate(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String startDate = request.getParameter("datepicker1");
+		String endDate = request.getParameter("datepicker2");
+		
+		try {
+			HashMap<String, Date> map = new HashMap<>();
+			map.put("startDate", sdf.parse(startDate));
+			map.put("endDate", sdf.parse(endDate));
+			
+			WorkScheduleDAO dao = new WorkScheduleDAO();
+			List<WorkScheduleVO> list = dao.searchByDate(map);
+
+			JSONObject json = new JSONObject();
+			JSONArray jsonArr = new JSONArray();
+			
+			json.put("list", list);
+			jsonArr.add(json);
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(jsonArr);
+			System.out.println(jsonArr);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/* 근무 일정 */
     @Override
     public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
         WorkScheduleDAO dao = new WorkScheduleDAO();
@@ -233,4 +271,6 @@ public class WorkScheduleServiceImp implements WorkScheduleService{
         forward.setPath("/worktype.do");
         return forward;
     }
+    
+    
 }

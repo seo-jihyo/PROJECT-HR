@@ -66,11 +66,49 @@
 
 </head>
 <body>
+<script defer>
+
+	$(document).on('blur', '.dp', function(){
+		let datepicker1 = document.querySelector('#datepicker1');
+		let datepicker2 = document.querySelector('#datepicker2');
+		console.log(datepicker1.value);
+		console.log(datepicker2.value);
+		$.ajax({
+			type:"post",
+			data: {
+				"datepicker1" : datepicker1.value,
+				"datepicker2" : datepicker2.value,
+			},
+			url:"/searchByDate.do",
+			dataType:"json",
+			success : sucFuncJson,
+			error : errFunc
+		});
+		function sucFuncJson(data) {
+			data.list.foreach(value => {
+				console.log(value);
+			})
+			if (data) {
+				if(data.result == true){
+					alert("검색 성공");
+				}
+			} else {
+				alert("검색 실패");
+			}
+		}
+		function errFunc(e) {
+			alert("실패" + e.status)
+		}
+	})
+		
+	
+</script>
+
 	<%@include file="/views/include/header.jsp"%>
 	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>근무일정</h2>
-			<input type="text" id="datepicker1"> - <input type="text" id="datepicker2">
+			<input type="text" class="dp" id="datepicker1" name="a"> - <input type="text" class="dp" id="datepicker2" name='b'> <!-- - > $(#datepicker1).val() -->
 			<nav class="plusinfo">
 				<select class="searchtype searchs">
 					<option>전체</option>
