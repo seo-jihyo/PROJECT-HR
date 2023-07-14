@@ -11,7 +11,7 @@
 	a.go_work,
 	a.leave_work,
 	a.break_time,
-	TRUNC((a.leave_work - a.go_work) * 24 - a.break_time) work_time
+	TRUNC((a.leave_work - a.go_work) * 24) work_time
 	FROM attendance a
 	JOIN emp e ON a.emp_num = e.emp_num
 	</select>
