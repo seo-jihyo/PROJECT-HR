@@ -57,6 +57,11 @@
 	justify-content: flex-start;
 	padding: 7px 300px 10px 5px;
 }
+.asd .remarks {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
 
 </head>
@@ -65,8 +70,7 @@
 	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>근무일정</h2>
-			<input type="text" id="datepicker1"> - <input type="text"
-				id="datepicker2">
+			<input type="text" id="datepicker1"> - <input type="text" id="datepicker2">
 			<nav class="plusinfo">
 				<select class="searchtype searchs">
 					<option>전체</option>
@@ -101,7 +105,7 @@
 								</tr>
 								<tr class="modal-tr">
 									<td>근무일정 유형</td>
-									<td><select name="work-type" id="workType">
+									<td><select name="ws-type" id="workType">
 										<c:forEach var="list" items="${tlist}">
 											<option value="${list.work_sch_type_num}">${list.work_name}</option>
 										</c:forEach>
@@ -125,7 +129,7 @@
 								</tr>
 								<tr class="modal-tr">
 									<td>직원</td>
-									<td><select name="empName" id="emp-name">
+									<td><select name="emp-name" id="emp-name">
 										<c:forEach var="list" items="${elist}">
 											<option value="${list.emp_num}">${list.emp_name}</option>
 										</c:forEach>
@@ -160,7 +164,7 @@
 				</div>
 		</div>
 		</nav>
-		<table class="table sec-table table-hover">
+		<table class="table sec-table table-hover" style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
@@ -179,29 +183,32 @@
 			<tbody>
 				<c:forEach var="wsList" items="${list}">
 					<tr class="asd"
+						data-work-sch-num="${wsList.work_sch_num}"
+						data-work-sch-type-num="${wsList.work_sch_type_num}"
 						data-emp-num="${wsList.emp_num}"
 						data-emp-name="${wsList.emp_name}"
-						data-schedule="${wsList.schedule}"
-						data-go-work="${wsList.go_work}"
-						data-leave-work="${wsList.leave_work}"
+						data-schedule='<fmt:formatDate value="${wsList.schedule}" pattern="yyyy-MM-dd" />'
+						data-go-work='<fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />'
+						data-leave-work='<fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" />'
 						data-work-name="${wsList.work_name}"
 						data-restTime="${wsList.totalTime/4}"
+						data-dept="${wsList.dept}"
+						data-dept-code="${wsList.dept_code}"
 						data-rank="${wsList.rank}"
+						data-rank-code="${wsList.rank_code}"
 						data-remarks="${wsList.remarks}"
 						data-totalTime="${wsList.totalTime}">
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
+						
+						<th><input type='checkbox' name='chk[]'onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${wsList.emp_num}</td>
 						<td>${wsList.emp_name}</td>
-						<td><fmt:formatDate value="${wsList.schedule}"
-								pattern="yyyy-MM-dd" /></td>
-						<td><fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />~<fmt:formatDate
-								value="${wsList.leave_work}" pattern="HH:mm" /></td>
+						<td><fmt:formatDate value="${wsList.schedule}" pattern="yyyy-MM-dd" /></td>
+						<td><fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" /> ~ <fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" /></td>
 						<td>${wsList.work_name}</td>
 						<td>${wsList.totalTime/4}시간</td>
 						<td>${wsList.rank}</td>
-						<td>${wsList.remarks}</td>
-					<td>${wsList.totalTime}시간</td>
+						<td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${wsList.remarks}</td>
+						<td>${wsList.totalTime}시간</td>
 					</tr>
 				</c:forEach>
 
@@ -215,69 +222,17 @@
 	<hr>
 
 
-	<form method="post">
+	<form method="get" id="frm2">
 		<table class="ws-table">
-			<tr class="modal-tr">
-				<td>날짜</td>
-				<td><input type="date" name="ws_date" class="ws-date">
-				</td>
-			</tr>
-			<tr class="modal-tr">
-				<td>근무일정 유형</td>
-				<td><select name="workType" id="workType">
-						<option value="none">(없음)</option>
-						<option value="out_work">외근(간주근로 9h)</option>
-						<option value="home_work">재택근무(간주근로)</option>
-				</select></td>
-			</tr>
-			<tr class="modal-tr">
-				<td>조직</td>
-				<td><select name="group" id="group">
-						<option value="none_group">조직없음</option>
-						<option value="strategy_dept">전략부서</option>
-						<option value="development_dept">개발부서</option>
-						<option value="hr_dept">인사부서</option>
-				</select></td>
-			</tr>
-			<tr class="modal-tr">
-				<td>직급</td>
-				<td><select name="job" id="job">
-						<option value="none_job">직급없음</option>
-						<option value="hr_job">사장</option>
-						<option value="development_job">부장</option>
-				</select></td>
-			</tr>
-			<tr class="modal-tr">
-				<td>직원</td>
-				<td><select name="empName" id="emp-name">
-						<option value="none_emp">직원없음</option>
-						<option value="emp1">이재경</option>
-						<option value="emp2">송기석</option>
-						<option value="emp3">권지연</option>
-						<option value="emp4">서지효</option>
-				</select></td>
-			</tr>
-			<tr class="modal-tr">
-				<td>시간</td>
-				<td><input type="time" name="startTime" class="startTime"
-					onKeyup="inputTimeColon(this);" placeholder="출근시간" maxlength="5" />&nbsp;&nbsp;-&nbsp;
-					<input type="time" name="endTime" class="endTime"
-					onKeyup="inputTimeColon(this);" placeholder="퇴근시간" maxlength="5" /></td>
-			</tr>
-			<tr class="modal-tr">
-				<td>일정노트</td>
-				<td><textarea name="ws_area" id="ws-area" cols="65" rows="4">
-    							</textarea></td>
-			</tr>
+			
 		</table>
 
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="button" class="custom-btn btn-10">수정하기</button>
-				<button type="button" class="custom-btn btn-10">삭제하기</button>
-				<button class="dialogbtn custom-btn btn-10" type="button"
-					onclick="dialogClose();">닫기</button>
+				<button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
+				<button type="button" class="dialogbtn custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
 	</form>
@@ -285,66 +240,128 @@
 
 	</dialog>
 
-	<script type="text/javascript">
-
-const dialog = document.querySelector("dialog");
-$(document).on("click", ".table tbody tr", function () {
-	dialog.showModal();
-	console.log(this);
-});
-
-function dialogClose(){
-	dialog.close();
-}
-
-$(document).on("click", ".table tbody tr", function () {
-	$empNum = $(this).data("emp-num")
-	$empName = $(this).data("emp-name")
-	$schedule = $(this).data("schedule")
-	$goWork = $(this).data("go-work")
-	$leaveWork = $(this).data("leave-work")
-	$workName = $(this).data("work-name")
-	$restTime = $(this).data("restTime")
-	$rank = $(this).data("rank")
-	$remarks = $(this).data("remarks")
-	$totalTime = $(this).data("totalTime")
-
-	let str = `
-		<tr class="rank-tr1">
-				<th>사원번호</td>
-				<td><input type="text" class="rankadd" name="parent_code" value="`+$code+`"></td>
+<script type="text/javascript">
+	
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
+	
+	function dialogClose(){
+		dialog.close();
+	}
+	
+	$(document).on("click", ".table tbody tr", function () {
+		$workScheduleNum = $(this).data("work-sch-num")
+		$empNum = $(this).data("emp-num")
+		$empName = $(this).data("emp-name")
+		$schedule = $(this).data("schedule")
+		$goWork = $(this).data("go-work")
+		$leaveWork = $(this).data("leave-work")
+		$workName = $(this).data("work-name")
+		$restTime = $(this).data("restTime")
+		$dept = $(this).data("dept")
+		$deptCode = $(this).data("dept-code")
+		$rank = $(this).data("rank")
+		$rankCode = $(this).data("rank-code")
+		$remarks = $(this).data("remarks")
+		$workScheduleTypeNum = $(this).data("work-sch-type-num");
+		let str = `
+			<input type="hidden" name="ws-num" value="` + $workScheduleNum + `">
+			<tr class="modal-tr">
+				<td>날짜</td>
+				<td><input type="date" name="ws-date" class="ws-date" value="` + $schedule + `"></td>
 			</tr>
-			<tr class="rank-tr1">
-				<th>코드번호</td>
-				<td><input type="text" class="rankadd" name="code_name" value="`+$name+`"></td>
+			
+			<tr class="modal-tr">
+				<td>근무일정 유형</td>
+				<td>
+					<select name="ws-type" id="workType">
+					<c:forEach var="list" items="${tlist}">
+						<option value="${list.work_sch_type_num}">${list.work_name}</option>
+					</c:forEach>
+					</select>
+				</td>
 			</tr>
-			<tr class="rank-tr1">
-				<th class="three">직급명</td>
-				<td><input type="text" class="rankadd" name="code_value" value="`+$value+`"></td>
+			<tr class="modal-tr">
+				<td>부서</td>
+				<td>
+					<input type="hidden" name="ws-dept" id="group" value="`+$deptCode+`" readonly>
+					`+$dept+`
+				</td>
 			</tr>
-
-			<tr>
-				<th class="two">메모</td>
-				<td><textarea name="remarks" class="rank-area" cols="70" rows="4">`+$remarks+`</textarea></td>
+			<tr class="modal-tr">
+				<td>직급</td>
+				<td>
+					<input type="hidden" name="ws-rank" id="job" value="`+$deptCode+`" readonly>
+					`+$rank+`
+				</td>
+			</tr>
+			<tr class="modal-tr">
+				<td>직원</td>
+				<td>
+					<input type="hidden" name="emp-name" id="emp-name" value="`+$empNum+`" readonly>
+					`+$empName+`
+				</td>
+			</tr>
+			<tr class="modal-tr">
+				<td>시간</td>
+				<td>
+					<input type="time" name="startTime" class="startTime" value="` + $goWork + `"
+					onKeyup="inputTimeColon(this);" placeholder="출근시간" maxlength="5" />&nbsp;&nbsp;-&nbsp;
+					<input type="time" name="endTime" class="endTime" value="` + $leaveWork + `"
+					onKeyup="inputTimeColon(this);" placeholder="퇴근시간" maxlength="5" />
+				</td>
+			</tr>
+			<tr class="modal-tr">
+			<td>일정노트</td>
+			<td><textarea name="ws-area" id="ws-area" cols="65" rows="4" style="resize: none;">` + $remarks + `</textarea></td>
 			</tr>
 		`;
-
-	$('dialog table').html(str)
-})
+	
+		$('dialog table').html(str)
+		/* $("select[name='ws-dept']").val($deptCode).prop("selected", true);
+		$("select[name='ws-rank']").val($rankCode).prop("selected", true);
+		$("#emp-name option[value='" + $empNum + "']").prop("selected", true); */
+		$("select[name='ws-type']").val($workScheduleTypeNum).prop("selected", true);
+	})
 </script>
-	<script type="text/javascript">
-const dialog = document.querySelector("dialog");
-$(document).on("click", ".table tbody tr", function () {
-	dialog.showModal();
-	console.log(this);
-});
 
-function dialogClose(){
-	dialog.close();
-}
+<script type="text/javascript">
+
 function resetForm() {
 	  $('#frm')[0].reset();
+} 
+console.log("....");
+const $form = $('#frm2');
+$(document).on('click', '#updateBtn', function () {
+	console.log("....");
+    $form.attr('action', '/workscheduleupdate.do')
+    $form.attr('method', 'post')
+    $form.submit()
+})
+$(document).on('click', '#deleteBtn', function () {
+    console.log("qweqweq");
+	$form.attr('action', '/workscheduledelete.do')
+    $form.attr('method', 'post')
+    $form.submit()
+})
+
+function textLengthOverCut(txt, len, lastTxt) {
+	if (len == "" || len == null) { // 기본값
+	    len = 10;
+	}
+	if (lastTxt == "" || lastTxt == null) { // 기본값
+	    lastTxt = "...";
+	}
+	if (txt.length > len) {
+	    txt = txt.substr(0, len) + lastTxt;
+	}
+	return txt;
 }
+
+
 </script>
 	<script>
     /* 오늘 날짜 출력 js */

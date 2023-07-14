@@ -23,7 +23,7 @@ public class EmpDAO {
     
     // DB에 아이디가 존재하는지 체크
     public EmpDTO selectByEmail(HashMap<String, String> map) {
-        SqlSession sqlSession =  factory.openSession();
+        SqlSession sqlSession =  factory.openSession(true);
         
         EmpDTO dto = sqlSession.selectOne("selectByEmail",map);
         sqlSession.close();
