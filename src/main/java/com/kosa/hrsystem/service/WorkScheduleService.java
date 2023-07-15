@@ -16,7 +16,7 @@ public interface WorkScheduleService {
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
     
     /* 날짜 검색 */
-    public ActionForward searchByDate(HttpServletRequest request, HttpServletResponse response);
+    public void searchByDate(HttpServletRequest request, HttpServletResponse response);
     
     /* 근무 일정 유형 */
     public ActionForward selectAllType(HttpServletRequest request, HttpServletResponse response);

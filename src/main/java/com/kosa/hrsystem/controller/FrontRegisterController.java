@@ -175,7 +175,7 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 날짜로 검색 */
         else if (urlcommand.equals("/searchByDate.do")) {
-            forward = workScheduleService.searchByDate(request, response);
+            workScheduleService.searchByDate(request, response);
         }
         
         /* 출퇴근기록 */

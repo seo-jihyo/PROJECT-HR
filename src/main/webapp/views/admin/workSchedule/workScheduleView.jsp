@@ -57,6 +57,7 @@
 	justify-content: flex-start;
 	padding: 7px 300px 10px 5px;
 }
+
 .asd .remarks {
 	white-space: nowrap;
 	overflow: hidden;
@@ -66,7 +67,7 @@
 
 </head>
 <body>
-<script defer>
+	<script defer>
 
 	$(document).on('blur', '.dp', function(){
 		let datepicker1 = document.querySelector('#datepicker1');
@@ -85,9 +86,8 @@
 			error : errFunc
 		});
 		function sucFuncJson(data) {
-			data.list.foreach(value => {
-				console.log(value);
-			})
+			console.log(data);
+		    $('#mainTable tbody').html(htmlStr(data));
 			if (data) {
 				if(data.result == true){
 					alert("검색 성공");
@@ -96,19 +96,66 @@
 				alert("검색 실패");
 			}
 		}
-		function errFunc(e) {
+		function errFunc(e) {	
+			console.log(e)
 			alert("실패" + e.status)
 		}
+
+
+		function htmlStr(data){
+
+			let html='';
+			data.forEach(value => {
+                const schedule = moment(value.schedule, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
+                const goWork = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+                const leaveWork = moment(value.leave_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+
+                html += `
+               <tr 
+                    data-work-sch-num="`+value.work_sch_num+`"
+                    data-work-sch-type-num="`+value.work_sch_type_num+`"
+                    data-emp-num="`+value.emp_num+`"
+                    data-emp-name="`+value.emp_name+`"
+                    data-schedule="`+schedule+`"
+                    data-go-work="`+goWork+`"
+                    data-leave-work="`+leaveWork+`"
+                    data-work-name="`+value.work_name+`"
+                    data-restTime="`+value.totalTime/4+`" data-dept="`+value.dept+`"
+                    data-dept-code="`+value.dept_code+`" data-rank="`+value.rank+`"
+                    data-rank-code="`+value.rank_code+`"
+                    data-remarks="`+value.remarks+`"
+                    data-totalTime="`+value.totalTime+`">
+
+                    <th><input type='checkbox' name='chk[]'
+                        onclick="isAllCheck(this.name, 'chkAll');"></th>
+                    <td>`+value.emp_num+`</td>
+                    <td>`+value.emp_name+`</td>
+                    <td>`+schedule+`</td>
+                    <td>`+goWork+`~`+leaveWork+`</td>
+                    <td>`+value.work_name+`</td>
+                    <td>`+value.totalTime/4+`시간</td>
+                    <td>`+value.rank+`</td>
+                    <td
+                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">`+value.remarks+`</td>
+                    <td>`+value.totalTime+`시간</td>
+                </tr>
+                `;
+            })
+
+            return html;
+		}
 	})
-		
-	
+
+
 </script>
 
 	<%@include file="/views/include/header.jsp"%>
 	<section id="body-pd" class="body-pd">
 		<div class="main_title">
 			<h2>근무일정</h2>
-			<input type="text" class="dp" id="datepicker1" name="a"> - <input type="text" class="dp" id="datepicker2" name='b'> <!-- - > $(#datepicker1).val() -->
+			<input type="text" class="dp" id="datepicker1" name="a"> - <input
+				type="text" class="dp" id="datepicker2" name='b'>
+			<!-- - > $(#datepicker1).val() -->
 			<nav class="plusinfo">
 				<select class="searchtype searchs">
 					<option>전체</option>
@@ -144,33 +191,33 @@
 								<tr class="modal-tr">
 									<td>근무일정 유형</td>
 									<td><select name="ws-type" id="workType">
-										<c:forEach var="list" items="${tlist}">
-											<option value="${list.work_sch_type_num}">${list.work_name}</option>
-										</c:forEach>
+											<c:forEach var="list" items="${tlist}">
+												<option value="${list.work_sch_type_num}">${list.work_name}</option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>부서</td>
 									<td><select name="ws-dept" id="group">
-										<c:forEach var="list" items="${optDept}">
-											<option value="${list.code_name}">${list.code_value}</option>
-										</c:forEach>
+											<c:forEach var="list" items="${optDept}">
+												<option value="${list.code_name}">${list.code_value}</option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>직급</td>
 									<td><select name="ws-rank" id="job">
-										<c:forEach var="list" items="${optRank}">
-											<option value="${list.code_name}">${list.code_value}</option>
-										</c:forEach>
+											<c:forEach var="list" items="${optRank}">
+												<option value="${list.code_name}">${list.code_value}</option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>직원</td>
 									<td><select name="emp-name" id="emp-name">
-										<c:forEach var="list" items="${elist}">
-											<option value="${list.emp_num}">${list.emp_name}</option>
-										</c:forEach>
+											<c:forEach var="list" items="${elist}">
+												<option value="${list.emp_num}">${list.emp_name}</option>
+											</c:forEach>
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
@@ -202,7 +249,8 @@
 				</div>
 		</div>
 		</nav>
-		<table class="table sec-table table-hover" style="table-layout: fixed;">
+		<table class="table sec-table table-hover" id="mainTable"
+			style="table-layout: fixed;">
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
@@ -220,8 +268,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="wsList" items="${list}">
-					<tr class="asd"
-						data-work-sch-num="${wsList.work_sch_num}"
+					<tr class="asd" data-work-sch-num="${wsList.work_sch_num}"
 						data-work-sch-type-num="${wsList.work_sch_type_num}"
 						data-emp-num="${wsList.emp_num}"
 						data-emp-name="${wsList.emp_name}"
@@ -229,23 +276,25 @@
 						data-go-work='<fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />'
 						data-leave-work='<fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" />'
 						data-work-name="${wsList.work_name}"
-						data-restTime="${wsList.totalTime/4}"
-						data-dept="${wsList.dept}"
-						data-dept-code="${wsList.dept_code}"
-						data-rank="${wsList.rank}"
+						data-restTime="${wsList.totalTime/4}" data-dept="${wsList.dept}"
+						data-dept-code="${wsList.dept_code}" data-rank="${wsList.rank}"
 						data-rank-code="${wsList.rank_code}"
 						data-remarks="${wsList.remarks}"
 						data-totalTime="${wsList.totalTime}">
-						
-						<th><input type='checkbox' name='chk[]'onclick="isAllCheck(this.name, 'chkAll');"></th>
+
+						<th><input type='checkbox' name='chk[]'
+							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${wsList.emp_num}</td>
 						<td>${wsList.emp_name}</td>
-						<td><fmt:formatDate value="${wsList.schedule}" pattern="yyyy-MM-dd" /></td>
-						<td><fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" /> ~ <fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" /></td>
+						<td><fmt:formatDate value="${wsList.schedule}"
+								pattern="yyyy-MM-dd" /></td>
+						<td><fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />
+							~ <fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" /></td>
 						<td>${wsList.work_name}</td>
 						<td>${wsList.totalTime/4}시간</td>
 						<td>${wsList.rank}</td>
-						<td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${wsList.remarks}</td>
+						<td
+							style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${wsList.remarks}</td>
 						<td>${wsList.totalTime}시간</td>
 					</tr>
 				</c:forEach>
@@ -262,7 +311,7 @@
 
 	<form method="get" id="frm2">
 		<table class="ws-table">
-			
+
 		</table>
 
 		<hr>
@@ -270,7 +319,8 @@
 			<div class="right-btn">
 				<button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
 				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
-				<button type="button" class="dialogbtn custom-btn btn-10" onclick="dialogClose();">닫기</button>
+				<button type="button" class="dialogbtn custom-btn btn-10"
+					onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
 	</form>
@@ -278,7 +328,7 @@
 
 	</dialog>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	
 	const dialog = document.querySelector("dialog");
 	$(document).on("click", ".table tbody tr", function () {
@@ -366,7 +416,7 @@
 	})
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 function resetForm() {
 	  $('#frm')[0].reset();
@@ -415,5 +465,6 @@ function textLengthOverCut(txt, len, lastTxt) {
 	<!-- js -->
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
+	<script type="text/javascript" src="/assets/js/moment.js"></script>
 </body>
 </html>
