@@ -23,7 +23,33 @@ import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleServiceImp implements WorkScheduleService {
-
+	
+	/* 통합 검색 */
+	@Override
+	public void searchTotal(HttpServletRequest request, HttpServletResponse response) {
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		System.out.println(searchType); System.out.println(searchWord);
+		try {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchWord", searchWord);
+			
+			WorkScheduleDAO dao = new WorkScheduleDAO();
+			List<WorkScheduleVO> list = dao.searchTotal(map);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/* 날짜 검색 */
 	@Override
 	public void searchByDate(HttpServletRequest request, HttpServletResponse response) {

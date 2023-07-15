@@ -100,9 +100,41 @@
 			console.log(e)
 			alert("실패" + e.status)
 		}
-
-
-		function htmlStr(data){
+		
+	})
+	
+	$(document).on('click','.searchbtn',function(){
+		let searchType = document.querySelector(".searchtype");
+		let searchWord = document.querySelector(".search");
+		$.ajax({
+			type: "post",
+			data: {
+				"searchType" : searchType.value,
+				"searchWord" : searchWord.value,
+			},
+			url: "/searchTotal.do",
+			dataType: "json",
+			success : sucFuncJson,
+			error : errFunc
+		})
+		function sucFuncJson(data) {
+			console.log(data);
+		    $('#mainTable tbody').html(htmlStr(data));
+			if (data) {
+				if(data.result == true){
+					alert("검색 성공");
+				}
+			} else {
+				alert("검색 실패");
+			}
+		}
+		function errFunc(e) {	
+			console.log(e)
+			alert("실패" + e.status)
+		}
+	})
+	
+	function htmlStr(data){
 
 			let html='';
 			data.forEach(value => {
@@ -144,9 +176,7 @@
 
             return html;
 		}
-	})
-
-
+	
 </script>
 
 	<%@include file="/views/include/header.jsp"%>
@@ -157,19 +187,14 @@
 				type="text" class="dp" id="datepicker2" name='b'>
 			<!-- - > $(#datepicker1).val() -->
 			<nav class="plusinfo">
-				<select class="searchtype searchs">
-					<option>전체</option>
-					<option>사원번호</option>
-					<option>직원</option>
-					<option>날짜</option>
-					<option>일정시간</option>
-					<option>근무일정유형</option>
-					<option>조직</option>
-					<option>직무</option>
-					<option>휴게시간</option>
-					<option>총 시간</option>
+				<select class="searchtype searchs" name="searchType">
+					<option value="total">전체</option>
+					<option value="empNum">사원번호</option>
+					<option value="empName">직원</option>
+					<option value="workType">근무일정유형</option>
+					<option value="rank">직급</option>
 				</select> <input type="text" class="search searchs"> <input
-					type="button" class="seachbtn" value="검 색"> <input
+					type="button" class="searchbtn" value="검 색"> <input
 					type="checkbox" id="popup" onclick="resetForm()"> <label
 					class="labelBtn" for="popup">+ 근무일정 추가하기</label>
 				<div class="modal">
