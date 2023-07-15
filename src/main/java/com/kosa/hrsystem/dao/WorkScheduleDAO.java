@@ -45,6 +45,15 @@ public class WorkScheduleDAO {
 		return list;
 	}
 	
+	// 통합 검색
+	public List<WorkScheduleVO> searchTotal(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<WorkScheduleVO> list = sqlSession.selectList("searchTotal",map);
+		System.out.println("통합검색 : " + list);
+		sqlSession.close();
+		return list;
+	}
+	
 	public List<WorkScheduleVO> searchByDate(HashMap<String, Date> map) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
 		List<WorkScheduleVO> list = null;
@@ -89,4 +98,6 @@ public class WorkScheduleDAO {
 			System.out.println(result);
 			return result;
 		}
+
+		
 }
