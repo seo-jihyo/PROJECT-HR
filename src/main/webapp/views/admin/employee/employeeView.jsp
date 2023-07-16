@@ -282,6 +282,7 @@
                                     <td><input type="text" class="custom" id="school_dept" name="school-dept"></td>
                                     <td><input type="date" class="custom" id="addmissions_day" name="addmissions-day"></td>
                                     <td><input type="date" class="custom" id="graduation_day" name="graduation-day"></td>
+                                    <td>버튼</td>
                                     <td>
                                         <select class="custom" id="graduation_status" name="graduation-status">
                                             <option value="고졸">고졸</option>
@@ -291,13 +292,14 @@
                                         </select>
                                     </td>
                                     <td><input type="text" class="custom" id="remarks" name="edu-remarks"></td>
+                                    <td><input type="button" value="추가"><input type="button" value="삭제"></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                    <button class="custom-btn btn-10" form="학력">추가하기</button>
+                                    <button class="custom-btn btn-10" >추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
@@ -305,7 +307,7 @@
                         </form>
                     </div>
                     <div class="modal_nav" id="tab-3" style="display: none;">
-                        <form action="/" id="">
+                        <form action="/" >
                             <h4>경력</h4>
                             <table class="profile">
                                 <thead>
@@ -322,7 +324,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="hidden" class="custom" id="emp_num" name="emp-num"><input type="text" class="custom" name="career-num"></td>
+                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="career-num"></td>
                                     <td><input type="text" class="custom" name="company-name"></td>
                                     <td><input type="text" class="custom" name="dept"></td>
                                     <td><input type="text" class="custom" name="rank"></td>
@@ -344,7 +346,7 @@
                         </form>
                     </div>
                     <div class="modal_nav" id="tab-4" style="display: none;">
-                        <form action="/" id="">
+                        <form >
                             <h4>자격증</h4>
                             <table class="profile">
                                 <thead>
@@ -354,27 +356,50 @@
                                     <td>발행처</td>
                                     <td>취득년월</td>
                                     <td>비고</td>
+                                    <td>버튼</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="hidden" class="custom" id="emp_num" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
+                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
                                     <td><input type="text" class="custom" name="cert-name"></td>
                                     <td><input type="text" class="custom" name="issuer"></td>
                                     <td><input type="date" class="custom" name="acquisition-date"></td>
                                     <td><input type="text" class="custom" name="cert-remarks"></td>
+                                    <td><input type="button" value="추가"><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                    <button class="custom-btn btn-10" form="자격증">추가하기</button>
+                                    <button type="button" id="학력테이블" class="custom-btn btn-10">테이블 추가하기</button>
+                                    <button type="button" class="custom-btn btn-10" >추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            $(document).on("click","#학력테이블", function(){
+                                const str =`
+                                <tr>
+                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
+                                    <td><input type="text" class="custom" name="cert-name"></td>
+                                    <td><input type="text" class="custom" name="issuer"></td>
+                                    <td><input type="date" class="custom" name="acquisition-date"></td>
+                                    <td><input type="text" class="custom" name="cert-remarks"></td>
+                                    <td><input type="button" value="추가"><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+                                </tr>
+                                `;
+                                $(".profile tbody").append(str);
+                            })
+
+                            function deleteTableBtn(el){
+                                const parent = el.parentNode.parentNode;
+                                $(parent).remove();
+                            }
+                        </script>
                     </div>
 
                 </div>
@@ -457,42 +482,42 @@
     </form>
 
 </dialog>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script type="text/javascript" src="/assets/js/modal.js"></script>
-	<script>
-	
-	$("#sendEmail").click(function(){
-		$frm = $("#frm").serialize();
-		$.ajax({
-			url : "/empok.do",
-			type : "post",
-			data : $frm,
-			dataType : "json",
-			success : sucFuncJson,
-			error : errFunc
-		});
-		function sucFuncJson(data) {
-			console.log(data);
-			if (data.status == "false") {
-				alert("이미 등록된 이메일입니다.");
-			} else {
-				alert("이메일로 아이디와 비밀번호를 전송하였습니다.");
-				window.location.href = "/emp.do";
-			}
-		}
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="/assets/js/main.js"></script>
+   <script type="text/javascript" src="/assets/js/modal.js"></script>
+   <script>
+   
+   $("#sendEmail").click(function(){
+      $frm = $("#frm").serialize();
+      $.ajax({
+         url : "/empok.do",
+         type : "post",
+         data : $frm,
+         dataType : "json",
+         success : sucFuncJson,
+         error : errFunc
+      });
+      function sucFuncJson(data) {
+         console.log(data);
+         if (data.status == "false") {
+            alert("이미 등록된 이메일입니다.");
+         } else {
+            alert("이메일로 아이디와 비밀번호를 전송하였습니다.");
+            window.location.href = "/emp.do";
+         }
+      }
 
-		function errFunc(e) {
-			alert("실패" + e.status)
-		}
-	})
-	
-	
-	const dialog = document.querySelector("dialog");
-	$(document).on("click", ".table tbody tr", function () {
-		dialog.showModal();
-		console.log(this);
-	});
+      function errFunc(e) {
+         alert("실패" + e.status)
+      }
+   })
+   
+   
+   const dialog = document.querySelector("dialog");
+   $(document).on("click", ".table tbody tr", function () {
+      dialog.showModal();
+      console.log(this);
+   });
 
     function dialogClose() {
         dialog.close();
@@ -515,82 +540,82 @@
         $email = $(this).data("email")
 
         let str = `
-			<tr>
-				<th>사원번호</th>
-				<td><input type="text" name="emp-num" class="profile-text" value="` + $empNum + `"></td>
-				<th class="two rights">이름</th>
-				<td><input type="text" name="emp-name" class="profile-text" value="` + $name + `"> </td>
-			</tr>
-			<tr>
-				<th class="two">부서</th>
-				<td><select class="profiletype" name="emp-dept">
+         <tr>
+            <th>사원번호</th>
+            <td><input type="text" name="emp-num" class="profile-text" value="` + $empNum + `"></td>
+            <th class="two rights">이름</th>
+            <td><input type="text" name="emp-name" class="profile-text" value="` + $name + `"> </td>
+         </tr>
+         <tr>
+            <th class="two">부서</th>
+            <td><select class="profiletype" name="emp-dept">
                     <c:forEach var="list" items="${optDept}">
                         <option value="${list.code_name}">${list.code_value}</option>
                     </c:forEach>
-				</select></td>
-				<th class="rights">주민번호</th>
-				<td><input type="text" name="emp-regist-num" class="profile-text" value="` + $registNum + `" readonly></td>
-			</tr>
-			<tr>
-				<th class="two">직급</th>
-					<td><select class="profiletype" name="emp-rank">
+            </select></td>
+            <th class="rights">주민번호</th>
+            <td><input type="text" name="emp-regist-num" class="profile-text" value="` + $registNum + `" readonly></td>
+         </tr>
+         <tr>
+            <th class="two">직급</th>
+               <td><select class="profiletype" name="emp-rank">
                     <c:forEach var="list" items="${optRank}">
                         <option value="${list.code_name}">${list.code_value}</option>
                     </c:forEach>
-					</select></td>
-				<th class="rights">휴대전화</th>
-				<td><input type="tel" name="emp-phone" class="profile-text" value="` + $phone + `"></td>
-			</tr>
-			<tr>
-				<th>권한타입</th>
-				<td>
-				<select class="profiletype" name="emp-permission-type">
-					<option value="` + $permissionType + `">최고관리자</option>
-					<option value="` + $permissionType + `">직원</option>
-				</select>
-				</td>
-				<th class="rights">직통번호</th>
-				<td><input type="tel" name="emp-direct-num" class="profile-text" value="` + $directNum + `"></td>
-			</tr>
-			<tr>
-				<th class="three">이메일</th>
-				<td><input type="email" name="emp-email" class="profile-text" value="` + $email + `" readonly></td>
-			</tr>
+               </select></td>
+            <th class="rights">휴대전화</th>
+            <td><input type="tel" name="emp-phone" class="profile-text" value="` + $phone + `"></td>
+         </tr>
+         <tr>
+            <th>권한타입</th>
+            <td>
+            <select class="profiletype" name="emp-permission-type">
+               <option value="` + $permissionType + `">최고관리자</option>
+               <option value="` + $permissionType + `">직원</option>
+            </select>
+            </td>
+            <th class="rights">직통번호</th>
+            <td><input type="tel" name="emp-direct-num" class="profile-text" value="` + $directNum + `"></td>
+         </tr>
+         <tr>
+            <th class="three">이메일</th>
+            <td><input type="email" name="emp-email" class="profile-text" value="` + $email + `" readonly></td>
+         </tr>
 
 
-			<tr>
-				<th class="two">주소</th>
-				<td><input type="text" id="modal_postcode" name="emp-post-code" class="profile-text" placeholder="우편번호" value="` + $postCode + `"> </td>
-				<td><input type="button" class="postbtn" data-post-search="modal" value="우편번호 찾기"></td>
-	
-			</tr>
-			<tr>
-				<th></th>
-				<td colspan='2'><input type="text" id="modal_address" name="emp-address" class="profile-text addrtext" placeholder="주소" value="` + $address + `"></td>
-			</tr>
-			<tr>
-				<th></th>
-				<td colspan='2'><input type="text" id="modal_detailAddress" name="emp-detail-address" class="profile-text addrtext" placeholder="상세주소" value="` + $detailAddress + `"> </td>
-	
-			</tr>
-			<tr>
-				<th class="three">입사일</th>
-				<td><input type="date" class="profile-text profiledate" name="emp-hire-date" value="` + $hireDate + `"></td>
-				<th class="three right"><label><input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/> 퇴사일</label></th>
-				<td><input type="date" id="empdate" name="emp-departure-date" class="profile-text profiledate"></td>
-			</tr>
-			<tr>
-				<th></th>
-				<td></td>
-				
-				<th class="rights" id="emptext" >퇴사사유</th>
-				<td><textarea class="emptext" name="emp-reason" id="emptext" ></textarea>
-				
-			<tr>
-				<th class="two">메모</th>
-				<td colspan='3'><textarea class="empmemo" name="emp-remarks" value="` + $remarks + `"></textarea>
-			</tr>
-		`;
+         <tr>
+            <th class="two">주소</th>
+            <td><input type="text" id="modal_postcode" name="emp-post-code" class="profile-text" placeholder="우편번호" value="` + $postCode + `"> </td>
+            <td><input type="button" class="postbtn" data-post-search="modal" value="우편번호 찾기"></td>
+   
+         </tr>
+         <tr>
+            <th></th>
+            <td colspan='2'><input type="text" id="modal_address" name="emp-address" class="profile-text addrtext" placeholder="주소" value="` + $address + `"></td>
+         </tr>
+         <tr>
+            <th></th>
+            <td colspan='2'><input type="text" id="modal_detailAddress" name="emp-detail-address" class="profile-text addrtext" placeholder="상세주소" value="` + $detailAddress + `"> </td>
+   
+         </tr>
+         <tr>
+            <th class="three">입사일</th>
+            <td><input type="date" class="profile-text profiledate" name="emp-hire-date" value="` + $hireDate + `"></td>
+            <th class="three right"><label><input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/> 퇴사일</label></th>
+            <td><input type="date" id="empdate" name="emp-departure-date" class="profile-text profiledate"></td>
+         </tr>
+         <tr>
+            <th></th>
+            <td></td>
+            
+            <th class="rights" id="emptext" >퇴사사유</th>
+            <td><textarea class="emptext" name="emp-reason" id="emptext" ></textarea>
+            
+         <tr>
+            <th class="two">메모</th>
+            <td colspan='3'><textarea class="empmemo" name="emp-remarks" value="` + $remarks + `"></textarea>
+         </tr>
+      `;
 
         $('dialog table').html(str)
     })
