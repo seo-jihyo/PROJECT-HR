@@ -5,6 +5,6 @@
 
 <mapper namespace="dev">
 	<insert id="insertCert" parameterType="com.kosa.hrsystem.dto.CertificateDTO">
-	
+		insert into CERTIFICATE values (#{cert_num},#{emp_num},#{crtfc_name},#{issuer},#{acquisition_date},#{remarks})
 	</insert>
 </mapper>

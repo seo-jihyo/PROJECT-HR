@@ -212,6 +212,8 @@ public class FrontRegisterController extends HttpServlet {
         	forward = userService.selectOneUser(request, response);
         } else if(urlcommand.equals("/myInfoUpdate.do")) {
         	forward = userService.updateOneUser(request, response);
+        } else if(urlcommand.equals("/certInsertok.do")) {
+        	forward = userService.insertCert(request, response);
         }
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
