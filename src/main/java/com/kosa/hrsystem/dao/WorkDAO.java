@@ -1,9 +1,11 @@
 package com.kosa.hrsystem.dao;
 
-import com.kosa.hrsystem.dto.VacationTypeDTO;
+import com.kosa.hrsystem.dto.DayInfoDTO;
 import com.kosa.hrsystem.dto.WorkDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.WorkVO;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionException;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
@@ -11,36 +13,77 @@ import java.util.List;
 public class WorkDAO {
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
 
-    //휴가 일정 유형 전체 조회
-    public List<WorkDTO> selectAllWork(){
+    public List<WorkVO> selectAllWork(){
         SqlSession session = factory.openSession();
-        List<WorkDTO> list= session.selectList("selectAllWork");
+        List<WorkVO> list= session.selectList("selectAllWork");
 
         session.close();
         return list;
     }
-    //휴가 일정 유형 삽입
-    public int insertWork(WorkDTO dto){
+    public int insertWork(WorkDTO dto, List<DayInfoDTO> fixedDayList, List<DayInfoDTO> holiDayList){
         SqlSession session = factory.openSession();
-        int result = session.insert("insertWork",dto);
+        int result = 0;
+        try{
+            result = session.insert("insertWork",dto);
+            int workSeq = session.selectOne("selectCurrval");
 
-        session.close();
+            for (int i = 0; i < fixedDayList.size(); i++) {
+                fixedDayList.get(i).setWork_num(workSeq);
+                session.insert("insertFixedDayList",fixedDayList.get(i));
+            }
+
+            for (int i = 0; i < holiDayList.size(); i++) {
+                holiDayList.get(i).setWork_num(workSeq);
+                session.insert("insertHoliDayList",holiDayList.get(i));
+            }
+
+            session.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            session.rollback();
+        } finally {
+            session.close();
+        }
+
         return result;
     }
-    //휴가 일정 유형 수정
-    public int updateWork(WorkDTO dto){
+    public int updateWork(WorkDTO dto, List<DayInfoDTO> fixedDayList, List<DayInfoDTO> holiDayList){
         SqlSession session = factory.openSession();
-        int result = session.insert("updateWork",dto);
+        int result = 0;
+        try{
+            int workSeq = dto.getWork_num();
+            result = session.update("updateWork",dto);
 
-        session.close();
+            session.delete("deleteFixedDay", workSeq);
+            session.delete("deleteHoliday", workSeq);
+
+            for (int i = 0; i < fixedDayList.size(); i++) {
+                session.insert("insertFixedDayList",fixedDayList.get(i));
+            }
+
+            for (int i = 0; i < holiDayList.size(); i++) {
+                session.insert("insertHoliDayList",holiDayList.get(i));
+            }
+
+            session.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            session.rollback();
+        } finally {
+            session.close();
+        }
         return result;
     }
-    //휴가 일정 유형 삭제
     public int deleteWork(int num){
-        SqlSession session = factory.openSession();
-        int result = session.insert("deleteWork",num);
-
-        session.close();
+        SqlSession session = factory.openSession(true);
+        int result=0;
+        try {
+            result= session.delete("deleteWork",num);
+        }catch (SqlSessionException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         return result;
     }
 }

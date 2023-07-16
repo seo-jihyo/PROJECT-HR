@@ -67,25 +67,25 @@ public class FrontRegisterController extends HttpServlet {
             // 출퇴근 체크 요청
             // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
             boolean attStatus = attendanceService.checkedAtt(request, response);
-            if(attStatus){// 출근시
-                System.out.println("출근"+attStatus);
+            if (attStatus) {// 출근시
+                System.out.println("출근" + attStatus);
                 attendanceService.update(request, response);
             } else {
-                System.out.println("퇴근"+attStatus);
+                System.out.println("퇴근" + attStatus);
                 attendanceService.insert(request, response);
             }
         } else if (urlcommand.equals("/searchId.do")) {
             forward = new ActionForward();
             forward.setPath("/views/user/searchId.jsp");
-        } else if(urlcommand.equals("/searchIdok.do")) {
-        	forward = empService.searchId(request, response);
-        } else if(urlcommand.equals("/searchPwd.do")) {
-        	forward = empService.searchPwd(request, response);
-        } else if(urlcommand.equals("/resetPwd.do")) {
-        	forward = new ActionForward();
+        } else if (urlcommand.equals("/searchIdok.do")) {
+            forward = empService.searchId(request, response);
+        } else if (urlcommand.equals("/searchPwd.do")) {
+            forward = empService.searchPwd(request, response);
+        } else if (urlcommand.equals("/resetPwd.do")) {
+            forward = new ActionForward();
             forward.setPath("/views/user/resetPwd.jsp");
-        } else if(urlcommand.equals("/updatePwdok.do")) {
-        	forward = empService.updatePwd(request, response);
+        } else if (urlcommand.equals("/updatePwdok.do")) {
+            forward = empService.updatePwd(request, response);
         }
 
         /* 직원 */
@@ -126,15 +126,15 @@ public class FrontRegisterController extends HttpServlet {
         else if (urlcommand.equals("/vacation.do")) {
             forward = vacationService.selectAllVacation(request, response);
         }
-        	// 휴가(관리자) 추가
+        // 휴가(관리자) 추가
         else if (urlcommand.equals("/vacationok.do")) {
             forward = vacationService.insertVacation(request, response);
         }
-        	// 휴가(관리자) 업데이트
+        // 휴가(관리자) 업데이트
         else if (urlcommand.equals("/vacationUpdate.do")) {
             forward = vacationService.updateVacation(request, response);
         }
-        	// 휴가(관리자) 삭제
+        // 휴가(관리자) 삭제
         else if (urlcommand.equals("/vacationDelete.do")) {
             forward = vacationService.deleteVacation(request, response);
         }
@@ -154,6 +154,12 @@ public class FrontRegisterController extends HttpServlet {
         /* 근로정보 */
         else if (urlcommand.equals("/work.do")) {
             forward = workService.selectAll(request, response);
+        } else if (urlcommand.equals("/addwork.do")) {
+            forward = workService.insert(request, response);
+        } else if (urlcommand.equals("/workupdate.do")) {
+            forward = workService.update(request,response);
+        } else if (urlcommand.equals("/workdelete.do")) {
+            forward = workService.delete(request,response);
         }
         /* 근무일정 / 유형 */
         else if (urlcommand.equals("/workschedule.do")) {
@@ -164,7 +170,7 @@ public class FrontRegisterController extends HttpServlet {
             forward = workScheduleService.update(request, response);
         } else if (urlcommand.equals("/workscheduledelete.do")) {
             forward = workScheduleService.delete(request, response);
-        }else if (urlcommand.equals("/worktype.do")) {
+        } else if (urlcommand.equals("/worktype.do")) {
             forward = workScheduleService.selectAllType(request, response);
         } else if (urlcommand.equals("/worktypeok.do")) {
             forward = workScheduleService.insertType(request, response);
