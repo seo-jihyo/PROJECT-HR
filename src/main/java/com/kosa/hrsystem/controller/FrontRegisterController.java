@@ -175,6 +175,14 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
             forward = workScheduleService.deleteType(request, response);
         }
+        /* 날짜로 검색 */
+        else if (urlcommand.equals("/searchByDate.do")) {
+            workScheduleService.searchByDate(request, response);
+        }
+        /* 통합 검색(근무일정) */
+        else if (urlcommand.equals("/searchTotal.do")) {
+            workScheduleService.searchTotal(request, response);
+        }
         /* 출퇴근기록 */
         else if (urlcommand.equals("/cmtrecord.do")) {
             forward = commuteRecordService.selectAll(request, response);

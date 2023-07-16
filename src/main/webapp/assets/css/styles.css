@@ -231,7 +231,7 @@ input[type=checkbox].toggle:checked + label:before{
     font-size: var(--small-font-size);
     font-weight: bold;
 }
-.seachbtn{
+.searchbtn{
 	color: white;
 	background-color:  rgb(4, 4, 80);
 	width: 70px;
@@ -243,7 +243,7 @@ input[type=checkbox].toggle:checked + label:before{
 	font-size: 16px;
 }
 
-.seachbtn:hover{
+.searchbtn:hover{
     background-color: white;
     color: black;
 }

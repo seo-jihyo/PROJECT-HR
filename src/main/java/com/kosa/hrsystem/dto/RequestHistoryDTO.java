@@ -15,7 +15,7 @@ public class RequestHistoryDTO {
 	private String dept; // 부서
 	private String request_term; // 요청사항
 	private String request_reasons; // 요청사유
-	private String state; // 상태
+	private char state; // 상태
 	private String approver_note; // 승인권자 노트
 	private String application_date; // 신청일자	 
 }

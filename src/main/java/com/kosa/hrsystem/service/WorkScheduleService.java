@@ -14,6 +14,12 @@ public interface WorkScheduleService {
     public ActionForward update(HttpServletRequest request, HttpServletResponse response);
 
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
+    
+    /* 날짜 검색 */
+    public void searchByDate(HttpServletRequest request, HttpServletResponse response);
+    /* 통합 검색 */
+    public void searchTotal(HttpServletRequest request, HttpServletResponse response);
+    
     /* 근무 일정 유형 */
     public ActionForward selectAllType(HttpServletRequest request, HttpServletResponse response);
 
@@ -22,4 +28,6 @@ public interface WorkScheduleService {
     public ActionForward updateType(HttpServletRequest request, HttpServletResponse response);
 
     public ActionForward deleteType(HttpServletRequest request, HttpServletResponse response);
+
+
 }

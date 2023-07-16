@@ -1,5 +1,7 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,7 +18,6 @@ public class WorkScheduleDAO {
 	public int insertWorkSchedule(WorkScheduleDTO dto) {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.insert("insertWorkSchedule",dto);
-		System.out.println("insert" + result);
 		sqlSession.close();
 		return result;
 	}
@@ -24,7 +25,6 @@ public class WorkScheduleDAO {
 	public int updateWorkSchedule(WorkScheduleDTO dto) {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.update("updateWorkSchedule",dto);
-		System.out.println("update" + result);
 		sqlSession.close();
 		return result;
 	}
@@ -41,11 +41,29 @@ public class WorkScheduleDAO {
 		SqlSession sqlSession = factory.openSession(true);
 		List<WorkScheduleVO> list = null;
 		list = sqlSession.selectList("selectAllWorkSchedule");
-		System.out.println(list);
 		sqlSession.close();
 		return list;
 	}
-
+	
+	// 통합 검색
+	public List<WorkScheduleVO> searchTotal(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<WorkScheduleVO> list = sqlSession.selectList("searchTotal",map);
+		System.out.println("통합검색 : " + list);
+		sqlSession.close();
+		return list;
+	}
+	
+	public List<WorkScheduleVO> searchByDate(HashMap<String, Date> map) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		List<WorkScheduleVO> list = null;
+		list = sqlSession.selectList("searchByDate", map);
+		System.out.println(list + "...... ");
+		sqlSession.close();
+		return list;
+	}
+	
+	
 	// WorkScheduleType - read
 	public List<WorkScheduleTypeDTO> selectAllWorkType() throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
@@ -80,4 +98,6 @@ public class WorkScheduleDAO {
 			System.out.println(result);
 			return result;
 		}
+
+		
 }

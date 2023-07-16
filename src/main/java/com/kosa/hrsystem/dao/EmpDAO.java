@@ -70,7 +70,6 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.insert("insertEmp", dto);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
     
@@ -79,7 +78,6 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.update("updateEmp", dto);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
     
@@ -88,7 +86,6 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.delete("deleteEmp", emp_num);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
 
