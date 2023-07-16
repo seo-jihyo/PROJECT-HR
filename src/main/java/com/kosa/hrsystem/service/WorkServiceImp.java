@@ -47,14 +47,10 @@ public class WorkServiceImp implements WorkService {
         String workName = request.getParameter("workName");
         Integer pay = Integer.valueOf(request.getParameter("pay"));
         String remarks = request.getParameter("remarks");
-
         String[] fixedWorkingDay = request.getParameterValues("fixedWorkingDay");
         String[] weeklyHoliday = request.getParameterValues("weekly_holiday");
-        System.out.println(Arrays.toString(fixedWorkingDay));
-        System.out.println(Arrays.toString(weeklyHoliday));
 
         WorkDAO dao = new WorkDAO();
-
         WorkDTO workDTO = new WorkDTO();
         workDTO.setWork_name(workName);
         workDTO.setPay(pay);
@@ -83,11 +79,57 @@ public class WorkServiceImp implements WorkService {
 
     @Override
     public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+
+        // 데이터 초기화
+        String workNum = request.getParameter("workNum");
+        String workName = request.getParameter("workName");
+        Integer pay = Integer.valueOf(request.getParameter("pay"));
+        String remarks = request.getParameter("remarks");
+        String[] fixedWorkingDay = request.getParameterValues("fixedWorkingDay");
+        String[] weeklyHoliday = request.getParameterValues("weekly_holiday");
+
+        // dto 초기화
+        WorkDAO dao = new WorkDAO();
+        WorkDTO workDTO = new WorkDTO();
+        workDTO.setWork_num(Integer.parseInt(workNum));
+        workDTO.setWork_name(workName);
+        workDTO.setPay(pay);
+        workDTO.setRemarks(remarks);
+
+        List<DayInfoDTO> fixedDayList = new ArrayList<>();
+        for (int i = 0; i < fixedWorkingDay.length; i++) {
+            DayInfoDTO dto = new DayInfoDTO();
+            dto.setWork_num(Integer.parseInt(workNum));
+            dto.setDay(fixedWorkingDay[i].charAt(0));
+            fixedDayList.add(dto);
+        }
+
+        List<DayInfoDTO> holiDayList = new ArrayList<>();
+        for (int i = 0; i < weeklyHoliday.length; i++) {
+            DayInfoDTO dto = new DayInfoDTO();
+            dto.setWork_num(Integer.parseInt(workNum));
+            dto.setDay(weeklyHoliday[i].charAt(0));
+            holiDayList.add(dto);
+        }
+
+        dao.updateWork(workDTO,fixedDayList,holiDayList);
+
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(true);
+        forward.setPath("/work.do");
+        return forward;
     }
 
     @Override
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+
+        String workNum = request.getParameter("workNum");
+        WorkDAO dao = new WorkDAO();
+        dao.deleteWork(Integer.parseInt(workNum));
+
+        ActionForward forward = new ActionForward();
+        forward.setRedirect(true);
+        forward.setPath("/work.do");
+        return forward;
     }
 }

@@ -84,14 +84,14 @@
             </select>
             <input type="text" class="search searchs">
             <input type="button" class="seachbtn" value="검 색">
-            <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
+            <input type="checkbox" id="popup" onclick="resetForm()"> <label class="labelBtn" for="popup">+
             근로정보 추가하기</label>
             <div class="modal">
                 <div>
                     <p>기본정보</p>
                     <label for="popup">X</label>
                     <hr>
-                    <form action="/addwork.do">
+                    <form action="/addwork.do" id="frm">
                         <table>
                             <tr>
                                 <td>근로정보명</td>
@@ -184,25 +184,45 @@
 <dialog>
     <h3>근로정보</h3>
     <hr>
-    <form method="post">
+    <form id="frm2">
         <table class="rank-table">
 
         </table>
         <hr>
-        <button class="dialogbtn">수정</button>
-        <button class="dialogbtn">삭제</button>
-        <button class="dialogbtn" onclick="window.dialog.close();">닫기</button>
+        <button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+        <button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
+        <button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
     </form>
 </dialog>
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modal.js"></script>
 <script type="text/javascript">
-
     const dialog = document.querySelector("dialog");
-    // dialogPolyfill.registerDialog(dialog);
+
+    function dialogClose() {
+        dialog.close();
+    }
+
+    function resetForm() {
+        $('#frm')[0].reset();
+    }
+
+    const $form = $('#frm2');
+
+    $(document).on('click', '#updateBtn', function () {
+        $form.attr('action', 'workupdate.do')
+        $form.attr('method', 'post')
+        $form.submit()
+    })
+    $(document).on('click', '#deleteBtn', function () {
+        $form.attr('action', 'workdelete.do')
+        $form.attr('method', 'post')
+        $form.submit()
+    })
+
     $(document).on("click", ".sec-table tbody tr", function () {
         dialog.showModal();
-
+        $workNum = $(this).data("work-num")
         $workName = $(this).data("work-name")
         $pay = $(this).data("pay")
         $fixedWorkDays = $(this).data("fixed-work-days")
@@ -211,22 +231,25 @@
 
         let str = `
 		<tr class="rank-tr1">
-                <td>근로정보명</td>
-                <td><input type="text" class="rankadd" name="parent_code" value="` + $workName + `"></td>
+            <td>근로정보명</td>
+            <td>
+                <input type="hidden" name="workNum" value="`+$workNum+`" >
+                <input type="text" class="rankadd" name="workName" value="` + $workName + `">
+            </td>
             </tr>
             <tr class="rank-tr1">
                 <td>시급</td>
-                <td><input type="text" class="rankadd" name="code_name" value="` + $pay + `"></td>
+                <td><input type="text" class="rankadd" name="pay" value="` + $pay + `"></td>
             </tr>
             <tr class="rank-tr1">
                 <td>소정근로요일</td>
                 <td>
                 <select name="fixedWorkingDay" id="fixedWorkingDay" multiple>
-                    <option value="월" >월</option>
-                    <option value="화" >화</option>
-                    <option value="수" >수</option>
-                    <option value="목" >목</option>
-                    <option value="금" >금</option>
+                    <option value="월">월</option>
+                    <option value="화">화</option>
+                    <option value="수">수</option>
+                    <option value="목">목</option>
+                    <option value="금">금</option>
                     <option value="토">토</option>
                     <option value="일">일</option>
                 </select>
@@ -242,7 +265,7 @@
                         <option value="목">목</option>
                         <option value="금">금</option>
                         <option value="토">토</option>
-                        <option value="일" >일</option>
+                        <option value="일">일</option>
                     </select>
                 </td>
             </tr>

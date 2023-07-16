@@ -25,9 +25,15 @@
 		insert into WEEKLY_HOLIDAY values (holday_seq.nextval,#{work_num},#{day})
 	</insert>
 	<update id="updateWork" parameterType="com.kosa.hrsystem.dto.WorkDTO">
-
+		update work set work_name=#{work_name},pay=#{pay},remarks=#{remarks} where work_num=#{work_num}
 	</update>
 	<delete id="deleteWork" parameterType="Integer">
-
+		delete from work where work_num=#{num}
+	</delete>
+	<delete id="deleteFixedDay" parameterType="Integer">
+		delete from FIXED_WORKING_DAYS where work_num = #{work_num}
+	</delete>
+	<delete id="deleteHoliday" parameterType="Integer">
+		delete from WEEKLY_HOLIDAY  where work_num = #{work_num}
 	</delete>
 </mapper>
