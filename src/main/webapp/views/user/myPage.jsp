@@ -516,24 +516,26 @@ height: 600px;
 	<!------ tab4 ------>
 	<div class="modal-nav" id="tab-4" style="display: none;">
 		<table class="main-table table4">
-			<tr data-certNum="${info.cert_num}"
-				data-certName="${info.crtfc_name}"
-				data-issuer="${info.issuer}"
-				data-acqDate="<fmt:formatDate value="${info.acquisition_date}" pattern="yyyy-MM-dd"/>"
-				data-remarks="${info.remarks}">
+			<tr>
 				<th>자격증번호</th>
 				<th>자격증명</th>
 				<th>발행처</th>
 				<th>취득년월</th>
 				<th>비고</th>
 			</tr>
-			<tr>
-				<td>${info.cert_num}</td>
-				<td>${info.crtfc_name}</td>
-				<td>${info.issuer}</td>
-				<td><fmt:formatDate value="${info.acquisition_date}" pattern="yyyy-MM-dd"/></td>
-				<td>${info.remarks}</td>
+			<c:forEach var="cList" items="${info.cert}">
+			<tr data-certNum="${cList.cert_num}"
+				data-certName="${cList.crtfc_name}"
+				data-issuer="${cList.issuer}"
+				data-acqDate="<fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/>"
+				data-remarks="${cList.remarks}">
+				<td>${cList.cert_num}</td>
+				<td>${cList.crtfc_name}</td>
+				<td>${cList.issuer}</td>
+				<td><fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/></td>
+				<td>${cList.remarks}</td>
 			</tr>
+			</c:forEach>
 		</table>
 		<button class="updatebtn" onclick='updateView("modal4")'>추가</button>
 	</div>
@@ -541,23 +543,23 @@ height: 600px;
 	<dialog id="modal4">
 	<h1>자격증 추가</h1>
 	<hr>
-	<form method="dialog">
+	<form method="post" action="/certInsertok.do">
 		<table class="info-table table">
 			<tr class="info-tr1">
 				<th class="five">자격증번호</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="certNum"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="four">자격증명</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="certName"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="three">발행처</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="issuer"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="four">취득년월</th>
-				<td><input type="date" class="infoupdate" name=""></td>
+				<td><input type="date" class="infoupdate" name="acqDate"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="two">비고</th>

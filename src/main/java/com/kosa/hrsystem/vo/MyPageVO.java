@@ -1,13 +1,18 @@
 package com.kosa.hrsystem.vo;
 
 import java.util.Date;
+import java.util.List;
+
+import com.kosa.hrsystem.dto.CertificateDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,10 +31,5 @@ public class MyPageVO {
 	private String post_code;		// 우편번호
 	private String address;			// 주소
 	private String detail_address;  // 상세주소
-	private int cert_num;			// 자격증 번호
-	private String crtfc_name;		// 자격증명
-	private String issuer;			// 발행처
-	private Date acquisition_date;  // 취득년월
-	private String remarks;			// 비고
-	
+	private List<CertificateDTO> cert; // 자격증
 }

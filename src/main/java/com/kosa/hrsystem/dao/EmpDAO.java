@@ -1,5 +1,6 @@
 package com.kosa.hrsystem.dao;
 
+import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.MyPageVO;
@@ -95,9 +96,13 @@ public class EmpDAO {
     public MyPageVO selectOneUser(int empNum) throws Exception {
     	SqlSession sqlSession = factory.openSession(true);
     	MyPageVO list = sqlSession.selectOne("selectOneUser", empNum);
+    	List<CertificateDTO> clist = sqlSession.selectList("selectCert", empNum);
+    	list.setCert(clist);
     	sqlSession.close();
     	return list;
     }
+    
+    
     // 마이페이지 개인정보 수정하기
     public int updateOneUser(EmpDTO dto) throws Exception {
     	SqlSession sqlSession = factory.openSession(true);

@@ -12,4 +12,6 @@ public interface UserService {
 
 	public ActionForward updateOneUser(HttpServletRequest request, HttpServletResponse response);
 
+	public ActionForward insertCert(HttpServletRequest request, HttpServletResponse response);
+
 }

@@ -6,15 +6,15 @@
 <mapper namespace="dev">
 	<select id="selectOneUser" parameterType="Integer" resultType="com.kosa.hrsystem.vo.MyPageVO">
 		select  
-			e.emp_num, e.emp_name, e.direct_num, 
-			e.dept,e.rank,e.permission_type,e.annual_num, 
-			e.hire_date, e.departure_date, e.email, 
-			e.phone, e.post_code, e.address, e.detail_address,
-            c.cert_num, c.crtfc_name, c.issuer, 
-            c.acquisition_date, c.remarks
-		from EMP e JOIN CERTIFICATE c 
-		on e.emp_num = c.emp_num 
-		where e.emp_num = #{emp_num}
+			emp_num, emp_name, direct_num, 
+			dept, rank, permission_type, annual_num, 
+			hire_date, departure_date, email, 
+			phone, post_code, address, detail_address		
+		from EMP 
+		where emp_num = #{emp_num}
+	</select>
+	<select id="selectCert" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CertificateDTO">
+		select * from CERTIFICATE where emp_num = #{emp_num}
 	</select>
 	<select id="searchPwd" parameterType="HashMap" resultType="String">
     	select pwd from EMP where email = #{email, jdbcType=VARCHAR} and regist_num = #{regist_num, jdbcType=VARCHAR}
