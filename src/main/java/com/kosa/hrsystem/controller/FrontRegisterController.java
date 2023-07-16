@@ -201,12 +201,6 @@ public class FrontRegisterController extends HttpServlet {
             // 출퇴근 기록 삭제
             forward = commuteRecordService.delete(request, response);
         }
-
-        /* 직원 커스텀 필드 */
-        else if (urlcommand.equals("/personalInfook.do")) {
-            action = new PersonalInfoOkService();
-            forward = action.execute(request, response);
-        }
         /* 사용자 마이페이지 */
         else if(urlcommand.equals("/myPage.do")) {
         	forward = userService.selectOneUser(request, response);
