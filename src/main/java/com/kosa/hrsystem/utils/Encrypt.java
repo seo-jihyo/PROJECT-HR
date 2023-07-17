@@ -29,7 +29,6 @@ public class Encrypt {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			
 			// 2. pwd와 salt를 합친 문자열에 SHA-256적용
-			System.out.println("pwd + salt 적용전 : " + pwd);
 			md.update((pwd).getBytes());
 			byte[] pwdsalt = md.digest();
 			
@@ -38,7 +37,6 @@ public class Encrypt {
 				sb.append(String.format("%02x", b));
 			}
 			result = sb.toString();
-			System.out.println("pwd + salt 적용후 : " + result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -25,7 +25,7 @@ public class RankServiceImp implements CodeTableService {
 			forward.setPath("/views/admin/rank/rankView.jsp");
 			return forward;
 		} catch (Exception e) {
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 
 	}

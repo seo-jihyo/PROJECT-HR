@@ -4,6 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectOneUser" parameterType="Integer" resultType="com.kosa.hrsystem.vo.MyPageVO">
+		select  
+			emp_num, emp_name, direct_num, 
+			dept, rank, permission_type, annual_num, 
+			hire_date, departure_date, email, 
+			phone, post_code, address, detail_address		
+		from EMP 
+		where emp_num = #{emp_num}
+	</select>
+	<select id="selectCert" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CertificateDTO">
+		select * from CERTIFICATE where emp_num = #{emp_num}
+	</select>
 	<select id="searchPwd" parameterType="HashMap" resultType="String">
     	select pwd from EMP where email = #{email, jdbcType=VARCHAR} and regist_num = #{regist_num, jdbcType=VARCHAR}
     </select>
@@ -41,6 +53,14 @@
 	</update>
 	<update id="updatePwd" parameterType="HashMap">
 		update EMP set pwd = #{pwd} where email = #{email}
+	</update>
+	<update id="updateOneUser" parameterType="com.kosa.hrsystem.dto.EmpDTO">
+		update EMP set emp_name = #{emp_name},
+					 phone = #{phone},
+					 post_code = #{post_code},
+					 address = #{address},
+					 detail_address = #{detail_address}
+					 where emp_num = #{emp_num}
 	</update>
 	<delete id="deleteEmp" parameterType="Integer">
 		delete from EMP where emp_num = #{emp_num}

@@ -4,16 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-	<select id="selectAllWork" resultType="com.kosa.hrsystem.dto.WorkDTO">
-		select * from work
+	<select id="selectAllWork" resultType="com.kosa.hrsystem.vo.WorkVO">
+		select
+		    w.work_num, w.work_name, w.pay, w.remarks, f.fixed_work_days, h.holidays
+		from
+		    work w
+		        join (SELECT work_num, LISTAGG(day,',') WITHIN GROUP (ORDER BY day_num) AS fixed_work_days FROM fixed_working_days GROUP BY work_num) f on w.work_num = f.work_num
+		        join (SELECT work_num, LISTAGG(day,',') WITHIN GROUP (ORDER BY day_num) AS holidays FROM weekly_holiday GROUP BY work_num) h on w.work_num = h.work_num
 	</select>
-	<insert id="insertWork" parameterType="com.kosa.hrsystem.dto.WorkDTO">
-
+	<select id="insertWork" resultType="com.kosa.hrsystem.dto.WorkDTO">
+		insert into work values (work_seq.nextval,#{work_name},#{pay},#{remarks})
+	</select>
+	<select id="selectCurrval" resultType="Integer">
+		SELECT work_seq.CURRVAL FROM DUAL
+	</select>
+	<insert id="insertFixedDayList" parameterType="com.kosa.hrsystem.dto.DayInfoDTO">
+		insert into FIXED_WORKING_DAYS values (fixed_work_day_seq.nextval,#{work_num},#{day})
+	</insert>
+	<insert id="insertHoliDayList" parameterType="com.kosa.hrsystem.dto.DayInfoDTO">
+		insert into WEEKLY_HOLIDAY values (holday_seq.nextval,#{work_num},#{day})
 	</insert>
 	<update id="updateWork" parameterType="com.kosa.hrsystem.dto.WorkDTO">
-
+		update work set work_name=#{work_name},pay=#{pay},remarks=#{remarks} where work_num=#{work_num}
 	</update>
 	<delete id="deleteWork" parameterType="Integer">
-
+		delete from work where work_num=#{num}
+	</delete>
+	<delete id="deleteFixedDay" parameterType="Integer">
+		delete from FIXED_WORKING_DAYS where work_num = #{work_num}
+	</delete>
+	<delete id="deleteHoliday" parameterType="Integer">
+		delete from WEEKLY_HOLIDAY  where work_num = #{work_num}
 	</delete>
 </mapper>

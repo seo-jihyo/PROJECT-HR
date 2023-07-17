@@ -120,7 +120,7 @@ public class EmpServiceImp implements EmpService {
 		try {
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(json);
-			System.out.println(json);
+			//System.out.println(json);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -221,7 +221,7 @@ public class EmpServiceImp implements EmpService {
 	public ActionForward searchId(HttpServletRequest request, HttpServletResponse response) {
 		String name = request.getParameter("name");
 		String registNum = request.getParameter("regist-num");
-		System.out.println(name + " , " + registNum);
+		//System.out.println(name + " , " + registNum);
 		HashMap<String, String> map = new HashMap<>();
 		map.put("emp_name", name);
 		map.put("regist_num", registNum);

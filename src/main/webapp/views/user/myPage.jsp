@@ -206,25 +206,25 @@ height: 600px;
 
 <body>
   <%@include file="/views/include/header_user.jsp" %>
-      <div>
+      <div id="myInfo">
          <h1 class="title">내 인사정보</h1><br>
          <hr class="main-hr">
          <table class="main-table-1">
             <tr>
-               <td rowspan="5" width="300px"> <img src=#></td>
-               <th>성함</th>		<td></td>
-               <th>사원번호</th>	<td></td>
-               <th>직통번호</th>	<td></td>
+               <td rowspan="5" width="300px"> <img src="/assets/images/main_ps.jpg"></td>
+               <th>이름</th>		<td>${info.emp_name}</td>
+               <th>사원번호</th>	<td>${info.emp_num}</td>
+               <th>직통번호</th>	<td>${info.direct_num}</td>
             </tr>
             <tr>
-               <th>부서</th>		<td></td>
-               <th>직급</th>		<td></td>
-               <th>권한타입</th>	<td></td>
+               <th>부서</th>		<td>${info.dept}</td>
+               <th>직급</th>		<td>${info.rank}</td>
+               <th>권한타입</th>	<td>${info.permission_type}</td>
             </tr>
             <tr>
-               <th>연차수</th>    <td></td>
-               <th>입사일</th>    <td></td>
-               <th>퇴사일</th>    <td></td>
+               <th>연차수</th>    <td>${info.annual_num}</td>
+               <th>입사일</th>    <td><fmt:formatDate value="${info.hire_date}" pattern="yyyy-MM-dd"/></td>
+               <th>퇴사일</th>    <td><fmt:formatDate value="${info.departure_date}" pattern="yyyy-MM-dd"/></td>
             </tr>
          </table>
       </div>
@@ -242,14 +242,20 @@ height: 600px;
 	<div class="modal-nav" id="tab-1" style="display: block;">
 		<table class="main-table">
 			<tr>
-				<td>성함</td>		<td></td>
-				<td>이메일</td>	<td></td>
-				<td>휴대전화</td>	<td></td>
+				<td>성함</td>		
+				<td>이메일</td>	    
+				<td>휴대전화</td>
+				<td>우편번호</td>	
+				<td>주소</td>
+				<td>상세주소</td>
 			</tr>
 			<tr>
-				<td>우편번호</td>	<td></td>
-				<td>주소</td>		<td></td>
-				<td>상세주소</td>	<td></td>
+				<td>${info.emp_name}</td>
+				<td>${info.email}</td>
+				<td>${info.phone}</td>
+				<td>${info.post_code}</td>
+				<td>${info.address}</td>
+				<td>${info.detail_address}</td>
 			</tr>
 		</table>
 		<button class="updatebtn" onclick='updateView("modal1")'>수정</button>
@@ -258,36 +264,13 @@ height: 600px;
 	<dialog id="modal1">
 	<h1>개인정보 수정</h1>
 	<hr>
-	<form method="dialog">
-		<table class="info-table table">
-			<tr class="info-tr1">
-				<th class="two">성함</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="three">이메일</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">휴대전화</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">우편번호</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="two">주소</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">상세주소</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
+	<form method="get" action="/myInfoUpdate.do">
+		<table id="infoUpdate" class="info-table table">
+			
 		</table>
 		<hr>
 		<input type="submit" class="custom-btn btn-10" value="전송">
-		<button class="dialogbtn custom-btn btn-10" type="button">삭제</button>
+		<!-- <button class="dialogbtn custom-btn btn-10" type="button">삭제</button> -->
 		<button class="dialogbtn custom-btn btn-10" type="button"
 			onclick="dialogClose('modal1');">닫기</button>
 	</form>
@@ -540,13 +523,19 @@ height: 600px;
 				<th>취득년월</th>
 				<th>비고</th>
 			</tr>
-			<tr>
-				<td>0001</td>
-				<td>정보처리기사</td>
-				<td>aa</td>
-				<td>2023-06-06</td>
-				<td>-</td>
+			<c:forEach var="cList" items="${info.cert}">
+			<tr data-certNum="${cList.cert_num}"
+				data-certName="${cList.crtfc_name}"
+				data-issuer="${cList.issuer}"
+				data-acqDate="<fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/>"
+				data-remarks="${cList.remarks}">
+				<td>${cList.cert_num}</td>
+				<td>${cList.crtfc_name}</td>
+				<td>${cList.issuer}</td>
+				<td><fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/></td>
+				<td>${cList.remarks}</td>
 			</tr>
+			</c:forEach>
 		</table>
 		<button class="updatebtn" onclick='updateView("modal4")'>추가</button>
 	</div>
@@ -554,30 +543,25 @@ height: 600px;
 	<dialog id="modal4">
 	<h1>자격증 추가</h1>
 	<hr>
-	<form method="dialog">
+	<form method="post" action="/certInsertok.do">
 		<table class="info-table table">
 			<tr class="info-tr1">
 				<th class="five">자격증번호</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="certNum"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="four">자격증명</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="certName"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="three">발행처</th>
-				<td><input type="text" class="infoupdate" name=""></td>
+				<td><input type="text" class="infoupdate" name="issuer"></td>
 			</tr>
 			<tr class="info-tr1">
 				<th class="four">취득년월</th>
-				<td><input type="date" class="infoupdate" name=""></td>
+				<td><input type="date" class="infoupdate" name="acqDate"></td>
 			</tr>
 			<tr class="info-tr1">
-				<th class="two">주소</th>
-				<td><input type="text" class="infoupdate" name=""></td>
-			</tr>
-			<tr class="info-tr1">
-			<tr>
 				<th class="two">비고</th>
 				<td><textarea name="remarks" class="info-area" cols="70" rows="4"></textarea></td>
 			</tr>
@@ -668,19 +652,50 @@ height: 600px;
        })
        
         function updateView(input){
-        const dialog = document.getElementById(input)
-        dialog.showModal()
+	        const dialog = document.getElementById(input)
+			
+			let str = `
+				<tr class="info-tr1">
+				<th class="two">성함</th>
+				<td><input type="text" class="infoupdate" value="${info.emp_name}" name="name"></td>
+				</tr>
+				<!-- <tr class="info-tr1">
+					<th class="three">이메일</th>
+					<td><input type="text" class="infoupdate" name="" readonly></td>
+				</tr> -->
+				<tr class="info-tr1">
+					<th class="four">휴대전화</th>
+					<td><input type="text" class="infoupdate" value="${info.phone}" name="phone"></td>
+				</tr>
+				<tr class="info-tr1">
+					<th class="four">우편번호</th>
+					<td><input type="text" class="infoupdate" value="${info.post_code}" name="postCode"></td>
+				</tr>
+				<tr class="info-tr1">
+					<th class="two">주소</th>
+					<td><input type="text" class="infoupdate" value="${info.address}" name="address"></td>
+				</tr>
+				<tr class="info-tr1">
+					<th class="four">상세주소</th>
+					<td><input type="text" class="infoupdate" value="${info.detail_address}" name="detailAddress"></td>
+				</tr>
+			`; 
+	
+			$('#infoUpdate').html(str);
+	        
+	        dialog.showModal();
+	        
        }
        
        //dialog 삭제
        function dialogClose(input){
-         const dialog = document.getElementById(input);
-          dialog.close();
+	        const dialog = document.getElementById(input);
+	        dialog.close();
        }
       
       //수정 dialog close
       function dialogClose2(){
-         dialog.close();
+        	dialog.close();
       }
        
        //수정 dialog2 - 경력

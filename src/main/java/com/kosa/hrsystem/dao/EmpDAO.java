@@ -1,7 +1,10 @@
 package com.kosa.hrsystem.dao;
 
+import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.MyPageVO;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -70,7 +73,6 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.insert("insertEmp", dto);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
     
@@ -79,7 +81,6 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.update("updateEmp", dto);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
     
@@ -88,10 +89,25 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.delete("deleteEmp", emp_num);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
-
-	
-
+    
+    // 마이페이지 정보 출력하기
+    public MyPageVO selectOneUser(int empNum) throws Exception {
+    	SqlSession sqlSession = factory.openSession(true);
+    	MyPageVO list = sqlSession.selectOne("selectOneUser", empNum);
+    	List<CertificateDTO> clist = sqlSession.selectList("selectCert", empNum);
+    	list.setCert(clist);
+    	sqlSession.close();
+    	return list;
+    }
+    
+    
+    // 마이페이지 개인정보 수정하기
+    public int updateOneUser(EmpDTO dto) throws Exception {
+    	SqlSession sqlSession = factory.openSession(true);
+    	int result = sqlSession.update("updateOneUser", dto);
+    	sqlSession.close();
+    	return result;
+    }
 }
