@@ -8,8 +8,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Data
-@Getter
-@Setter
 @ToString
 public class CertificateDTO {
 	private int cert_num; // 자격증번호
