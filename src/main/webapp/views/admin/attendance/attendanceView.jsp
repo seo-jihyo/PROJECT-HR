@@ -113,7 +113,6 @@
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
-				<!-- 	<th>번호</th> -->
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>날짜</th>
@@ -134,17 +133,14 @@
 					data-date='<fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/>'
 					data-go-time='<fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/>'
 					data-leave-time='<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>'
-				<%--data-status="${CMTList.att_status}" --%>
 					data-break="${CMTList.break_time}"
 					data-total="${CMTList.work_time}" >
 					<th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<%-- <td>${CMTList.att_num}</td> --%>
 					<td>${CMTList.emp_num}</td>
 					<td>${CMTList.emp_name}</td>
 					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/></td>
 					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/></td>
 					<td><fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/></td>
-					<%-- <td>${CMTList.att_status}</td> --%>
 					
 					<td><!-- 근무시간 7시간 초과 시 휴게시간 1, 8시간 미만일 때 휴게시간 0 -->
 					<c:choose>
@@ -166,25 +162,6 @@
 							${CMTList.work_time}
 						</c:otherwise>
 					</c:choose>
-		<%-- 			<c:choose>
-						<c:when test="${CMTList.work_time >= 4 }">
-							${CMTList.break_time} 
-						</c:when>
-						<c:otherwise>
-							${CMTList.break_time -0.5}
-						</c:otherwise>
-					</c:choose>
-					</td>
-					
-					<td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
-					<c:choose>
-						<c:when test="${CMTList.work_time / 4 == 0}">
-							${CMTList.work_time - 0.5}
-						</c:when>
-						<c:otherwise>
-							${CMTList.work_time}
-						</c:otherwise>
-					</c:choose> --%>
 					</td>
 				</tr>
 				</c:forEach>
@@ -224,13 +201,13 @@
      $(document).on("click", ".sec-table tbody tr", function () {
 	     console.log(this);
 	     $att_num = $(this).data("att-num")
-	     $num = $(this).data("num") //emp_num
+	     $num = $(this).data("num") 
 	     $namtte = $(this).data("name")
 	     $date = $(this).data("date")
 	     $go_time = $(this).data("go-time")
 	     $leave_time = $(this).data("leave-time")
 
-//name과 같아야함 service / $s는 value랑 같게
+
      let str = `
           	<tr class="rank-tr1">
             	<th>직원</th>
@@ -262,7 +239,6 @@
 	const $form = $('#frm2');
 	
 	$(document).on('click', '#updateBtn', function () {
-		console.log("....");
 	    $form.attr('action', 'cmtrecordupdate.do')
 	    $form.attr('method', 'post')
 	    $form.submit()

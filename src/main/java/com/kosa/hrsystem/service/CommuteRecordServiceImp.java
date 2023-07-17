@@ -87,7 +87,6 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 			int emp_num = Integer.parseInt(request.getParameter("emp_num"));
 			String cmt_date = request.getParameter("cmt_date");
 			Date go_work = sdfTime.parse(cmt_date + " " + request.getParameter("go_time"));
-//			Date leave_work = sdfTime.parse(request.getParameter("go_work") + " " +request.getParameter("leave_time"));
 			Date leave_work = sdfTime.parse(cmt_date + " " + request.getParameter("leave_time"));
 			
 			System.out.println(emp_num);

@@ -29,11 +29,6 @@
 	        go_work = #{go_work},
 	        leave_work = #{leave_work}
 	    where att_num = #{att_num}
-	  <!--   update attendance set
-	        emp_num = #{emp_num}, 
-	        go_work = TO_DATE(#{go_work}, 'HH24:mi'),
-	        leave_work = TO_DATE(#{leave_work},'HH24:mi')
-	    where att_num = #{att_num}  -->
 	</update>
  
 	
