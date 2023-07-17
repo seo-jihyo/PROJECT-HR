@@ -18,11 +18,24 @@ public class CommuteRecordDAO {
 		sqlSession.close();
 		return list;
 	}
-
-
-	public void insertRecord(CommuteRecordVO vo) {
-		// TODO Auto-generated method stub
-		
+	public int insertRecord(CommuteRecordVO vo) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.insert("insertRecord", vo);
+		sqlSession.close();
+		return result;
 	}
-
+	public int deleteRecord(int att_num) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.delete("deleteRecord", att_num);
+		sqlSession.close();
+		return result;
+	}
+	public int updateRecord(CommuteRecordVO vo) {
+		SqlSession sqlSession = factory.openSession(true);
+		int result = sqlSession.update("updateRecord", vo);
+		System.out.println(vo.getAtt_num());
+		sqlSession.commit();
+		sqlSession.close();
+		return result;
+	}
 }

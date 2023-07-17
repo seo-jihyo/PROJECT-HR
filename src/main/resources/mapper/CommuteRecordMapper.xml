@@ -6,6 +6,7 @@
 <mapper namespace="dev">
 	<select id="selectAllRecord" resultType="com.kosa.hrsystem.vo.CommuteRecordVO">
 	SELECT
+	a.att_num,
 	a.emp_num,
 	e.emp_name,
 	a.go_work,
@@ -14,5 +15,24 @@
 	TRUNC((a.leave_work - a.go_work) * 24) work_time
 	FROM attendance a
 	JOIN emp e ON a.emp_num = e.emp_num
+	order by go_work desc
 	</select>
+	
+	<insert id="insertRecord" parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
+  		insert into attendance(att_num, emp_num, go_work, leave_work) 
+  		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType = DATE})
+	</insert>
+	
+	<update id="updateRecord" parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
+	    update attendance set
+	        emp_num = #{emp_num}, 
+	        go_work = #{go_work},
+	        leave_work = #{leave_work}
+	    where att_num = #{att_num}
+	</update>
+ 
+	
+	<delete id="deleteRecord"  parameterType="Integer">
+		delete from attendance where att_num = #{att_num}	
+	</delete>
 </mapper>
