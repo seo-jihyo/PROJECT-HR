@@ -241,7 +241,16 @@
 
                                     <th class="rights" id="emptext">퇴사사유</th>
                                     <td><textarea name="emp-reason" class="emptext" id="emptext"></textarea>
-
+								
+								<tr>
+                                    <th class="three">근로정보</th>
+                                    <td><select class="profiletype" name="emp-workNum">
+                                        <c:forEach var="list" items="${optWork}">
+                                            <option value="${list.work_num}">${list.work_name}</option>
+                                        </c:forEach>
+                                    </select></td>
+                                </tr>
+								
                                 <tr>
                                     <th class="two">메모</th>
                                     <td colspan='3'><textarea name="remarks" class="empmemo"></textarea>

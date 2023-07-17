@@ -14,4 +14,16 @@ public interface UserService {
 
 	public ActionForward insertCert(HttpServletRequest request, HttpServletResponse response);
 
+	public ActionForward updateCert(HttpServletRequest request, HttpServletResponse response);
+
+	public ActionForward deleteCert(HttpServletRequest request, HttpServletResponse response);
+	
+	public ActionForward selectCareer(HttpServletRequest request, HttpServletResponse response);
+	
+	public ActionForward insertCareer(HttpServletRequest request, HttpServletResponse response);
+
+	public ActionForward updateCareer(HttpServletRequest request, HttpServletResponse response);
+
+	public ActionForward deleteCareer(HttpServletRequest request, HttpServletResponse response);
+
 }

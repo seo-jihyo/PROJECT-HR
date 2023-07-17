@@ -18,4 +18,22 @@ public class CertificateDAO {
     	System.out.println(result);
     	return result;
     }
+    
+    //  자격증 수정하기
+    public int updateCert(CertificateDTO dto) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	int result = sqlSession.update("updateCert", dto);
+    	sqlSession.close();
+    	System.out.println(result);
+    	return result;
+    }
+    
+    //  자격증 삭제하기
+    public int deleteCert(int certNum) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	int result = sqlSession.delete("deleteCert", certNum);
+    	sqlSession.close();
+    	System.out.println(result);
+    	return result;
+    }
 }

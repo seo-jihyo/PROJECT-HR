@@ -4,7 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectCert" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CertificateDTO">
+		select * from CERTIFICATE where emp_num = #{emp_num}
+	</select>
 	<insert id="insertCert" parameterType="com.kosa.hrsystem.dto.CertificateDTO">
-		insert into CERTIFICATE values (#{cert_num},#{emp_num},#{crtfc_name},#{issuer},#{acquisition_date},#{remarks})
+		insert into CERTIFICATE values (cert_seq.nextval,#{emp_num},#{crtfc_name},#{issuer},#{acquisition_date},#{remarks})
 	</insert>
+	<update id="updateCert" parameterType="com.kosa.hrsystem.dto.CertificateDTO">
+		update CERTIFICATE set crtfc_name = #{crtfc_name},
+							issuer = #{issuer},
+							acquisition_date = #{acquisition_date},
+							remarks = #{remarks}
+							where cert_num = #{cert_num} 
+	</update>
+	<delete id="deleteCert" parameterType="Integer">
+		delete from CERTIFICATE where cert_num = #{cert_num}
+	</delete>
 </mapper>

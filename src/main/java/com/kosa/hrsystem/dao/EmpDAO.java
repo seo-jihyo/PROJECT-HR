@@ -1,5 +1,6 @@
 package com.kosa.hrsystem.dao;
 
+import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
@@ -97,7 +98,9 @@ public class EmpDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	MyPageVO list = sqlSession.selectOne("selectOneUser", empNum);
     	List<CertificateDTO> clist = sqlSession.selectList("selectCert", empNum);
+    	List<CareerDTO> carlist = sqlSession.selectList("selectCareer", empNum);
     	list.setCert(clist);
+    	list.setCareer(carlist);
     	sqlSession.close();
     	return list;
     }

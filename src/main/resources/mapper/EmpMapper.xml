@@ -13,9 +13,6 @@
 		from EMP 
 		where emp_num = #{emp_num}
 	</select>
-	<select id="selectCert" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CertificateDTO">
-		select * from CERTIFICATE where emp_num = #{emp_num}
-	</select>
 	<select id="searchPwd" parameterType="HashMap" resultType="String">
     	select pwd from EMP where email = #{email, jdbcType=VARCHAR} and regist_num = #{regist_num, jdbcType=VARCHAR}
     </select>

@@ -131,8 +131,6 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 			dto.setWork_sch_type_num(workType);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
-			dto.setDept(dept);
-			dto.setRank(rank);
 			dto.setEmp_num(empNum);
 			dto.setRemarks(remarks);
 			WorkScheduleDAO dao = new WorkScheduleDAO();
@@ -172,8 +170,6 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 			dto.setWork_sch_type_num(workType);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
-			dto.setDept(dept);
-			dto.setRank(rank);
 			dto.setEmp_num(empNum);
 			dto.setRemarks(remarks);
 			WorkScheduleDAO dao = new WorkScheduleDAO();
