@@ -72,80 +72,35 @@
 					<label for="popup">X</label>
 					<h1>출퇴근기록 추가하기</h1>
 					<hr>
-
-					<form method="get" action="/" id="frm">
+					<form method="get" action="/cmtrecordok.do" id="frm">
 						<table class="attend-table">
-							<tr>
-								<td>날짜
-								<br></td>
-								<td><input type="date" class="attend-date"></td>
-							</tr>
-							<tr>
-								<td>직원
-								<br></td>
-								<td><select name="employee" id="attend-emp">
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>근무일정
-								<br></td>
-								<td><select name="work" id="attend-work">
-										<option value="">근무1</option>
-										<option value="">근무2</option>
-										<option value="">근무3</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>조직
-								<br></td>
-								<td><select name="group" id="attend-group">
-										<option value="">조직없음</option>
-										<option value="">인사부서</option>
-										<option value="">개발부서</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>직무
-								<br></td>
-								<td><select name="" id="attend-job">
-										<option value="">직무없음</option>
-										<option value="">인사업무</option>
-										<option value="">개발업무</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>출근시간
-								<br></td>
-								<td><input type="time" class="startTime"
-									onKeyup="inputTimeColon(this);" placeholder="출근시간"
-									maxlength="5" /></td>
-
-							</tr>
-							<tr>
-								<td>퇴근시간
-								<br></td>
-								<td><input type="time" class="endTime"
-									onKeyup="inputTimeColon(this);" placeholder="퇴근시간"
-									maxlength="5" /> <input type="checkbox" name="check" id="check"
-									value="">현재 근무중</td>
-							</tr>
-
-							<tr>
-								<td>근무노트
-								<br></td>
-								<td><textarea name="" id="attend-area" cols="30" rows="4" style="resize: none;">
-    	</textarea></td>
-							</tr>
+								<tr>
+									<th>직원명</th>
+									<td><select class="vacation-type" id="selectBox" name="emp_num">
+										<c:forEach var="emplist" items="${empList}">
+											<option value="${emplist.emp_num}">${emplist.emp_name}</option>
+										</c:forEach>
+									</select></td>
+								</tr>
+								<tr>
+									<th>날짜</th>
+									<td><input type="date" name="cmt_date" class="startTime" /> 
+								</tr>
+								<tr>
+									<th>출근시간</th>
+									<td><input type="time" name="go_work" class="startTime" onKeyup="inputTimeColon(this);" /> 
+										<input type="checkbox" name="duty" id="duty" value="" onchange="toggleEndTime(this.checked)">현재 근무중</td>
+								</tr>
+								<tr>
+									<th>퇴근시간</th>
+									<td><input type="time" name="leave_work" class="endTime" onKeyup="inputTimeColon(this);" /></td>
+								</tr>
 						</table>
 					</form>
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
@@ -153,39 +108,37 @@
 				<label for="popup"></label>
 			</div>
 		</div>
-</nav>
+	</nav>
 		<table class="table sec-table table-hover">
 			<thead>
 				<tr>
-					<th style="width: 30px"><input type='checkbox' id="chkAll"
-						onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
+				<!-- 	<th>번호</th> -->
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>날짜</th>
 					<th>출근시간</th>
 					<th>퇴근시간</th>
-					<!--<th>근무일정</th>
-	 			<th>부서</th>
-					<th>직급</th> -->
 					<th>휴게시간</th>
 					<th>근무시간합계</th>
 				</tr>
 			</thead>
 			<tbody>
 			
-			
-			
 			  <c:forEach var="CMTList" items="${list}">
-				<tr data-num="${CMTList.emp_num}"
+			    <c:set var="go_work"><fmt:formatDate value="${CMTList.go_work}" pattern="yyyy-MM-dd HH:mm" /></c:set> 
+        		<c:set var="leave_work"><fmt:formatDate value="${CMTList.leave_work}" pattern="HH:mm"  /></c:set> 
+				<tr data-att-num="${CMTList.att_num}"
+					data-num="${CMTList.emp_num}"
 					data-name="${CMTList.emp_name}"
-					data-date="<fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/>"
-					data-go-time="<fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/>"
-					data-leave-time="<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>"
-				<%-- 	data-status="${CMTList.att_status}" --%>
+					data-date='<fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/>'
+					data-go-time='<fmt:formatDate  value="${CMTList.go_work}" pattern="HH:mm"/>'
+					data-leave-time='<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>'
+				<%--data-status="${CMTList.att_status}" --%>
 					data-break="${CMTList.break_time}"
 					data-total="${CMTList.work_time}" >
-					<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
+					<th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+					<%-- <td>${CMTList.att_num}</td> --%>
 					<td>${CMTList.emp_num}</td>
 					<td>${CMTList.emp_name}</td>
 					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/></td>
@@ -195,7 +148,7 @@
 					
 					<td><!-- 근무시간 7시간 초과 시 휴게시간 1, 8시간 미만일 때 휴게시간 0 -->
 					<c:choose>
-						<c:when test="${CMTList.work_time > 7 }">
+						<c:when test="${CMTList.work_time >= 8 }">
 							${CMTList.break_time} 
 						</c:when>
 						<c:otherwise>
@@ -206,88 +159,44 @@
 					
 					<td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
 					<c:choose>
-						<c:when test="${CMTList.work_time > 7}">
-							${CMTList.work_time -1}
+						<c:when test="${CMTList.work_time >= 8}">
+							${CMTList.work_time - 1}
 						</c:when>
 						<c:otherwise>
 							${CMTList.work_time}
 						</c:otherwise>
 					</c:choose>
+		<%-- 			<c:choose>
+						<c:when test="${CMTList.work_time >= 4 }">
+							${CMTList.break_time} 
+						</c:when>
+						<c:otherwise>
+							${CMTList.break_time -0.5}
+						</c:otherwise>
+					</c:choose>
+					</td>
+					
+					<td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
+					<c:choose>
+						<c:when test="${CMTList.work_time / 4 == 0}">
+							${CMTList.work_time - 0.5}
+						</c:when>
+						<c:otherwise>
+							${CMTList.work_time}
+						</c:otherwise>
+					</c:choose> --%>
 					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</section>
+	
 	<dialog>
     	<h1>출퇴근 기록 수정하기</h1><hr>
 			<form method="get" id="frm2">
 				<table class="attend-table">
-						<!-- 	<tr>
-								<td>날짜
-								<br></td>
-								<td><input type="date" class="attend-date"></td>
-							</tr>
-							<tr>
-								<td>직원
-								<br></td>
-								<td><select name="employee" id="attend-emp">
-										<option value="">이재경</option>
-										<option value="">송기석</option>
-										<option value="">권지연</option>
-										<option value="">서지효</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>근무일정
-								<br></td>
-								<td><select name="work" id="attend-work">
-										<option value="">근무1</option>
-										<option value="">근무2</option>
-										<option value="">근무3</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>조직
-								<br></td>
-								<td><select name="group" id="attend-group">
-										<option value="">조직없음</option>
-										<option value="">인사부서</option>
-										<option value="">개발부서</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>직무
-								<br></td>
-								<td><select name="" id="attend-job">
-										<option value="">직무없음</option>
-										<option value="">인사업무</option>
-										<option value="">개발업무</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>출근시간
-								<br></td>
-								<td><input type="time" class="startTime"
-									onKeyup="inputTimeColon(this);" placeholder="출근시간"
-									maxlength="5" /></td>
-
-							</tr>
-							<tr>
-								<td>퇴근시간
-								<br></td>
-								<td><input type="time" class="endTime"
-									onKeyup="inputTimeColon(this);" placeholder="퇴근시간"
-									maxlength="5" /> <input type="checkbox" name="check" id="check"
-									value="">현재 근무중</td>
-							</tr>
-
-							<tr>
-								<td>근무노트
-								<br></td>
-								<td><textarea name="" id="attend-area" cols="30" rows="4"></textarea></td>
-							</tr> -->
-						</table>
+				</table>
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
@@ -299,87 +208,53 @@
 			</form>
     </dialog>
 <script type="text/javascript">
-const dialog = document.querySelector("dialog");
-$(document).on("click", ".table tbody tr", function () {
-	dialog.showModal();
-	console.log(this);
-});
-
-function dialogClose(){
-	dialog.close();
-}
-function resetForm() {
-	  $('#frm')[0].reset();
-}
+	const dialog = document.querySelector("dialog");
+	$(document).on("click", ".table tbody tr", function () {
+		dialog.showModal();
+		console.log(this);
+	});
+	
+	function dialogClose(){
+		dialog.close();
+	}
+	function resetForm() {
+		  $('#frm')[0].reset();
+	}
 /* 여기부터 */
      $(document).on("click", ".sec-table tbody tr", function () {
-	     dialog.showModal();
 	     console.log(this);
-	     $num = $(this).data("num")
-	     $name = $(this).data("name")
+	     $att_num = $(this).data("att-num")
+	     $num = $(this).data("num") //emp_num
+	     $namtte = $(this).data("name")
 	     $date = $(this).data("date")
-	     $go_time = $(this).data("go_time")
-	     $leave_time = $(this).data("leave_time")
-	     $break = $(this).data("break")
-	     $total = $(this).data("total")
+	     $go_time = $(this).data("go-time")
+	     $leave_time = $(this).data("leave-time")
 
+//name과 같아야함 service / $s는 value랑 같게
      let str = `
-          <tr class="rank-tr1">
+          	<tr class="rank-tr1">
+            	<th>직원</th>
+              	<td>
+              	<input type="hidden" class="rankadd" name="att_num" value="`+$att_num+`">
+              	<select class="vacation-type" id="selectBox" name="emp_num">
+					<c:forEach var="emplist" items="${empList}">
+						<option value="${emplist.emp_num}">${emplist.emp_name}</option>
+					</c:forEach>
+				</select></td>
+             </tr>
+             <tr class="rank-tr1">
+                <th>날짜</th>
+                <td><input type="text" class="rankadd" name="cmt_date" value="`+$date+`"></td>
 
-             <tr class="rank-tr1">
-                <th>사원번호</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
              </tr>
              <tr class="rank-tr1">
-                <th>직원</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+                <th>출근시간</th>
+                <td><input type="text" class="rankadd" name="go_time" value="`+$go_time+`"></td>
              </tr>
              <tr class="rank-tr1">
-                <th>날짜</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
+                <th>퇴근시간</th>
+                <td><input type="text" class="rankadd" name="leave_time" value="`+$leave_time+`"></td>
              </tr>
-             <tr class="rank-tr1">
-                <th>출근시간</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
-             </tr>
-             <tr class="rank-tr1">
-                <th>퇴근시간</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
-             </tr>
-             <tr class="rank-tr1">
-                <th>휴게시간</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
-             </tr>
-             <tr class="rank-tr1">
-                <th>근무시간합계</td>
-                <td><input type="hidden" value="` + $num + `" name="work_sch_type_num">
-                    <input type="text" class="rankadd" name="name" value="` + $name + `"></td>
-             </tr>
-
-         /*     <tr class="rank-tr1">
-                <th class="two">부서</td>
-               	<td><select class="rankadd"  id="selectBox" name="dept">
-                     <c:forEach var="list" items="${optDept}">
-                         <option value="${list.code_name}">${list.code_value}</option>
-                     </c:forEach>
- 				</select></td>
- 				<th class="rights">
-             </tr>
-
-             <tr class="rank-tr1">
-                <th class="two">직급</td>
-                	<td><select class="rankadd"  id="selectBox" name="rank">
-                     <c:forEach var="list" items="${optRank}">
-                         <option value="${list.code_name}">${list.code_value}</option>
-                     </c:forEach>
- 				</select></td>
-             </tr> */
           `;
      $('dialog table').html(str)
 
@@ -387,15 +262,25 @@ function resetForm() {
 	const $form = $('#frm2');
 	
 	$(document).on('click', '#updateBtn', function () {
-	    $form.attr('action', 'worktypeupdate.do')
+		console.log("....");
+	    $form.attr('action', 'cmtrecordupdate.do')
 	    $form.attr('method', 'post')
 	    $form.submit()
 	})
 	$(document).on('click', '#deleteBtn', function () {
-	    $form.attr('action', 'worktypedelete.do')
+	    $form.attr('action', 'cmtrecorddelete.do')
 	    $form.attr('method', 'post')
 	    $form.submit()
 	})
+	
+	/* 현재 근무중 체크시 퇴근시간 입력 불가 */
+	 function toggleEndTime(checked) {
+        const endTimeInput = document.querySelector(".endTime");
+        endTimeInput.disabled = checked;
+        if (checked) {
+            endTimeInput.value = "";
+        }
+    }
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
