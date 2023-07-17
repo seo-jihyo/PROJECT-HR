@@ -8,5 +8,6 @@ import com.kosa.hrsystem.action.ActionForward;
 public interface RequestHistoryService {
 
     public ActionForward selectAllRequest(HttpServletRequest request , HttpServletResponse response);
-    
+    public ActionForward update(HttpServletRequest request , HttpServletResponse response);
+
 }
