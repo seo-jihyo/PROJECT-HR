@@ -205,13 +205,23 @@ height: 600px;
 </style> 
 
 <body>
+
   <%@include file="/views/include/header_user.jsp" %>
       <div id="myInfo">
          <h1 class="title">내 인사정보</h1><br>
          <hr class="main-hr">
          <table class="main-table-1">
             <tr>
-               <td rowspan="5" width="300px"> <img src="/assets/images/main_ps.jpg"></td>
+               <td rowspan="5" width="300px"> <!-- <img src="/assets/images/main_ps.jpg"> -->
+               		<form method="post" action="/upload.do" enctype="multipart/form-data">
+			            <ul>
+			                <li>
+			                    <input type="file" multiple="multiple" name="image">
+			                    <input type="submit" id="submit" value="전송" />
+			                </li>
+			            </ul>
+			        </form>
+               </td>
                <th>이름</th>		<td>${info.emp_name}</td>
                <th>사원번호</th>	<td>${info.emp_num}</td>
                <th>직통번호</th>	<td>${info.direct_num}</td>

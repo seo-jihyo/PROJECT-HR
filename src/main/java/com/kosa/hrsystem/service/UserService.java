@@ -26,4 +26,5 @@ public interface UserService {
 
 	public ActionForward deleteCareer(HttpServletRequest request, HttpServletResponse response);
 
+	public ActionForward UserProfileUpload(HttpServletRequest request, HttpServletResponse response);
 }

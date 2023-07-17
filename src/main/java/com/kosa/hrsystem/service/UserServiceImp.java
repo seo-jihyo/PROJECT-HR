@@ -1,5 +1,6 @@
 package com.kosa.hrsystem.service;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +19,7 @@ import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import com.kosa.hrsystem.dto.ImageDTO;
 import com.kosa.hrsystem.vo.MyPageVO;
 
 public class UserServiceImp implements UserService {
@@ -271,6 +273,41 @@ public class UserServiceImp implements UserService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/myPage.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward UserProfileUpload(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.getAttribute("login");
+		//저장할 파일경로 지정
+        String absolutePath = new File("src/main/resources/static/images/").getAbsolutePath();
+		ImageDTO dto = new ImageDTO();
+		
+		// 확장자 추출
+//        if (!image.isEmpty()) {
+//            String contentType = image.getContentType();
+//            String originalImageExtension;
+//            if (contentType.contains("image/jpeg")) {
+//                originalImageExtension = ".jpg";
+//            } else if (contentType.contains("image/png")) {
+//                originalImageExtension = ".png";
+//            } else if (contentType.contains("image/gif")) {
+//                    originalImageExtension = ".gif";
+//       		}
+//       	}
+		
+		
+		
+		dto.setOriginImageName(null);
+		dto.setNewImageName(null);
+		dto.setImagePath(null);
+		EmpDAO dao = new EmpDAO();
+		dao.uploadImage(dto);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
