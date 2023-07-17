@@ -208,6 +208,18 @@ public class FrontRegisterController extends HttpServlet {
         	forward = userService.updateOneUser(request, response);
         } else if(urlcommand.equals("/certInsertok.do")) {
         	forward = userService.insertCert(request, response);
+        } else if(urlcommand.equals("/certUpdate.do")) {
+        	forward = userService.updateCert(request, response);
+        } else if(urlcommand.equals("/certDelete.do")) {
+        	forward = userService.deleteCert(request, response);
+        } else if(urlcommand.equals("/careerSelect.do")) {
+        	forward = userService.selectCareer(request, response);
+        } else if(urlcommand.equals("/careerInsert.do")) {
+        	forward = userService.insertCareer(request, response);
+        } else if(urlcommand.equals("/careerUpdate.do")) {
+        	forward = userService.updateCareer(request, response);
+        } else if(urlcommand.equals("/careerDelete.do")) {
+        	forward = userService.deleteCareer(request, response);
         }
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {

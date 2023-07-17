@@ -3,6 +3,7 @@ package com.kosa.hrsystem.vo;
 import java.util.Date;
 import java.util.List;
 
+import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
 
 import lombok.AllArgsConstructor;
@@ -32,4 +33,5 @@ public class MyPageVO {
 	private String address;			// 주소
 	private String detail_address;  // 상세주소
 	private List<CertificateDTO> cert; // 자격증
+	private List<CareerDTO> career; // 경력
 }
