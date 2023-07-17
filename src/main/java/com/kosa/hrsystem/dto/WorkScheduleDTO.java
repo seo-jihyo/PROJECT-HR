@@ -18,8 +18,6 @@ public class WorkScheduleDTO {
 	private int work_sch_num;
 	private int work_sch_type_num;
 	private Date schedule;
-	private String dept;
-	private String rank;
 	private int emp_num;
 	private Date go_work;
 	private Date leave_work;

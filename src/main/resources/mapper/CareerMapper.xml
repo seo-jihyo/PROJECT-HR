@@ -4,7 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectCareer" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CareerDTO" >
+		select * from CAREER where emp_num = emp_num
+	</select>
 	<insert id="insertCareer" parameterType="com.kosa.hrsystem.dto.CareerDTO">
-		
+		insert into CAREER values(career_seq.nextval , ${emp_num} , #{company_name}, #{dept}, #{rank}, #{main_tesk}, #{join_date} , #{leave_date} , #{remarks})
 	</insert>
+	<update id="updateCareer" parameterType="com.kosa.hrsystem.dto.CareerDTO">
+		update CAREER set company_name = #{company_name},
+						dept = #{dept},
+						rank = #{rank},
+						main_tesk = #{main_tesk},
+						join_date = #{join_date},
+						leave_date = #{leave_date},
+						remarks = #{remarks}
+						where career_num = #{career_num}
+	</update>
+	<delete id="deleteCareer" parameterType="Integer">
+		delete from CAREER where career_num = #{career_num}
+	</delete>
 </mapper>

@@ -121,14 +121,12 @@
             INNER JOIN code_table         r ON r.code_name = e.rank 
 	</select>
 	<insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
-		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{dept},#{rank},#{emp_num},#{go_work},#{leave_work},#{remarks})
+		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{emp_num},#{go_work},#{leave_work},#{remarks})
 	</insert>
 	<update id="updateWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
 		update work_schedule set 
 		    work_sch_type_num = #{work_sch_type_num},
 		    schedule = #{schedule},
-		    dept = #{dept},
-		    rank = #{rank},
 		    emp_num = #{emp_num},
 		    go_work = #{go_work},
 		    leave_work = #{leave_work},

@@ -16,13 +16,16 @@ import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
+import com.kosa.hrsystem.dao.WorkDAO;
 import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
+import com.kosa.hrsystem.dto.WorkDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
+import com.kosa.hrsystem.vo.WorkVO;
 
 import org.json.simple.JSONObject;
 
@@ -37,10 +40,11 @@ public class EmpServiceImp implements EmpService {
 		List<EmpDTO> list = dao.selectAllEmp();
 		List<CodeTableDTO> optDept= new CodeTableDAO().selectAllByParent("D001");
 		List<CodeTableDTO> optRank= new CodeTableDAO().selectAllByParent("R001");
-
+		List<WorkVO> optWork = new WorkDAO().selectAllWork();
 		request.setAttribute("list", list);
 		request.setAttribute("optDept",optDept);
 		request.setAttribute("optRank",optRank);
+		request.setAttribute("optWork",optWork);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,7 +79,7 @@ public class EmpServiceImp implements EmpService {
 		String emp_remarks = request.getParameter("remarks");
 		String emp_hire_date = request.getParameter("emp-hire-date");
 		String emp_departure_date = request.getParameter("emp-departure-date");
-
+		int work_num = Integer.parseInt(request.getParameter("emp-workNum"));
 		int result = dao.checkEmail(emp_email);
 		JSONObject json = new JSONObject();
 
@@ -106,6 +110,7 @@ public class EmpServiceImp implements EmpService {
 				dto.setRemarks(emp_remarks);
 				dto.setReason(emp_reason);
 				dto.setHire_date(sdf.parse(emp_hire_date));
+				dto.setWork_num(work_num);
 				if (!emp_departure_date.equals("")) {
 					dto.setDeparture_date(sdf.parse(emp_departure_date));
 				} else {
