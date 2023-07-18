@@ -67,14 +67,14 @@ public class EmpServiceImp implements EmpService {
 		
 		
 		String emp_name = null;
-		int emp_num = (int) Objects.requireNonNullElse(request.getParameter("emp-num"), 0);
+		int emp_num = Integer.parseInt(Objects.requireNonNullElse(request.getParameter("emp-num"), "0"));
 		String emp_email = Objects.requireNonNullElse(request.getParameter("emp-email"),"");
 		String emp_pwd = rp.generateRandomPassword(12);
 		String emp_dept = Objects.requireNonNullElse(request.getParameter("emp-dept"),"");
 		String emp_regist_num = Objects.requireNonNullElse(request.getParameter("emp-regist-num"),"");
 		String emp_rank = Objects.requireNonNullElse(request.getParameter("emp-rank"),"");
 		String emp_phone = Objects.requireNonNullElse(request.getParameter("emp-phone"),"");
-		int emp_permission_type = (int) Objects.requireNonNullElse(request.getParameter("emp-permission-type"),0);
+		int emp_permission_type = Integer.parseInt(Objects.requireNonNullElse(request.getParameter("emp-permission-type"),"0"));
 		String emp_direct_num = Objects.requireNonNullElse(request.getParameter("emp-direct-num"),"");
 		String emp_post_code = Objects.requireNonNullElse(request.getParameter("emp-post-code"),"");
 		String emp_address = Objects.requireNonNullElse(request.getParameter("emp-address"),"");
@@ -83,7 +83,7 @@ public class EmpServiceImp implements EmpService {
 		String emp_remarks = Objects.requireNonNullElse(request.getParameter("remarks"),"");
 		String emp_hire_date = Objects.requireNonNullElse(request.getParameter("emp-hire-date"),"");
 		String emp_departure_date = Objects.requireNonNullElse(request.getParameter("emp-departure-date"),"");
-		int work_num = (int)Objects.requireNonNullElse(request.getParameter("emp-workNum"),0);
+		int work_num = Integer.parseInt(Objects.requireNonNullElse(request.getParameter("emp-workNum"),"0"));
 		
 		int result = dao.checkEmail(emp_email);
 		
