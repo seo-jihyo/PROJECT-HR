@@ -15,7 +15,7 @@
 	<select id="insertWork" resultType="com.kosa.hrsystem.dto.WorkDTO">
 		insert into work values (work_seq.nextval,#{work_name},#{pay},#{remarks})
 	</select>
-	<select id="selectCurrval" resultType="Integer">
+	<select id="selectWorkCurrval" resultType="Integer">
 		SELECT work_seq.CURRVAL FROM DUAL
 	</select>
 	<insert id="insertFixedDayList" parameterType="com.kosa.hrsystem.dto.DayInfoDTO">

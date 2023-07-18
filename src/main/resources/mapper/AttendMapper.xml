@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectAttCurrval" resultType="Integer">
+	    SELECT att_seq.CURRVAL FROM DUAL
+    </select>
 	<select id="selectByEmpNum" parameterType="Integer" resultType="com.kosa.hrsystem.dto.AttendanceDTO">
 		SELECT * FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM} AND ROWNUM=1 ORDER BY GO_WORK DESC
 	</select>
@@ -17,4 +20,11 @@
 		WHERE EMP_NUM=#{emp_num}
 		  AND ATT_NUM=(SELECT ATT_NUM FROM ATTENDANCE WHERE EMP_NUM=#{emp_num} ORDER BY GO_WORK DESC FETCH FIRST 1 ROW ONLY)
 	</update>
+	<!-- 스케줄 출퇴근 조회 -->
+	<select id="selectAtt" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
+	SELECT 
+		GO_WORK,
+		leave_work
+	FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM}
+	</select>
 </mapper>
