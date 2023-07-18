@@ -25,7 +25,7 @@ public class WorkDAO {
         int result = 0;
         try{
             result = session.insert("insertWork",dto);
-            int workSeq = session.selectOne("selectCurrval");
+            int workSeq = session.selectOne("selectWorkCurrval");
 
             for (int i = 0; i < fixedDayList.size(); i++) {
                 fixedDayList.get(i).setWork_num(workSeq);

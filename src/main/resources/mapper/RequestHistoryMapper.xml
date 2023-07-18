@@ -35,4 +35,8 @@
 			state=3
 		</if>
 	</update>
+
+	<insert id="insertRequest">
+		insert into REQUEST_HISTORY(rqst_hstry_num,emp_num,request_num,request_type) values (req_seq.nextval,#{emp_num},#{request_num},#{request_type})
+	</insert>
 </mapper>
