@@ -13,6 +13,7 @@ import com.kosa.hrsystem.dao.VacationDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
+import com.kosa.hrsystem.vo.EmpVO;
 import com.kosa.hrsystem.vo.VacationVO;
 
 public class VacationServiceImp implements VacationService {
@@ -22,7 +23,7 @@ public class VacationServiceImp implements VacationService {
 		VacationDAO dao = new VacationDAO();
 		try {
 			List<VacationVO> list = dao.selectAllVacation();
-			List<EmpDTO> empList = new EmpDAO().selectAllEmp();
+			List<EmpVO> empList = new EmpDAO().selectAllEmp();
 			List<VacationTypeDTO> vctnTypeList = dao.selectAll();
 			
 			request.setAttribute("list", list);
