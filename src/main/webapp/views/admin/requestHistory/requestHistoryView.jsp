@@ -44,7 +44,7 @@
 					<option>관리</option>
 				</select>
 				<input type="text" class="searchs search">
-				<input type="button" class="seachbtn" value="검 색">
+				<input type="button" class="searchbtn" value="검 색">
 			</nav>
 		</div>
 		<table class="table sec-table table-hover">

@@ -76,7 +76,7 @@
                 <option>근무 종료 시간</option>
             </select>
             <input type="text" class="search searchs">
-            <input type="button" class="seachbtn" value="검 색">
+            <input type="button" class="searchbtn" value="검 색">
             <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+ 근무일정 유형 추가하기</label>
             <div class="modal">
                 <div>

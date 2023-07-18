@@ -81,7 +81,7 @@
 				<option>실수령액</option>
 			</select>
 			<input type="text" class="search searchs">
-			<input type="button" class="seachbtn" value="검 색">
+			<input type="button" class="searchbtn" value="검 색">
 			<input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
 				급여명세서</label>
 			<div class="modal">
