@@ -220,32 +220,32 @@
           },
           // 이벤트
           events: [
-        	  <c:forEach var="list" items="${userSchedule}">
+        	  <c:forEach var="userlist" items="${userSchedule}">
         	  {
          		 color:'E9BFD1',
          		 textColor:'5D082D',
-         		 title: '${list.work_name}',
-                 start: '<fmt:formatDate value="${list.schedule}" pattern="yyyy-MM-dd" />',
+         		 title: '${userlist.work_name}',
+                 start: '<fmt:formatDate value="${userlist.schedule}" pattern="yyyy-MM-dd" />',
          	 },
          	{
          		  color: 'D8F0A0',
          		  textColor: '385000',
-         		  title: '${list.vctn_name}',
-         		  start: '<fmt:formatDate value="${list.vctn_start_date}" pattern="yyyy-MM-dd HH:MM" />',
-         		  end: '<fmt:formatDate value="${list.vctn_end_date}" pattern="yyyy-MM-dd HH:MM" />'
+         		  title: '${userlist.vctn_name}',
+         		  start: '<fmt:formatDate value="${userlist.vctn_start_date}" pattern="yyyy-MM-dd HH:mm" />',
+         		  end: '<fmt:formatDate value="${userlist.vctn_end_date}" pattern="yyyy-MM-dd HH:mm" />'
          		},
         	 
             {
               color: '',
               textColor: 'black',
               title: '출근',
-              start: '<fmt:formatDate value="${list.go_work}" pattern="yyyy-MM-dd HH:MM" />',
+              start: '<fmt:formatDate value="${userlist.go_work}" pattern="yyyy-MM-dd HH:mm" />',
             },
             {
                 color: 'red',
                 textColor: 'black',
                 title: '퇴근',
-                start: '<fmt:formatDate value="${list.leave_work}" pattern="yyyy-MM-dd HH:MM" />',
+                start: '<fmt:formatDate value="${userlist.leave_work}" pattern="yyyy-MM-dd HH:mm" />',
               },
             </c:forEach>
             
@@ -253,8 +253,8 @@
             
           ]
         });
-        // 캘린더 랜더링
-        calendar.render();
+         // 캘린더 랜더링
+        calendar.render(); 
       });
     })();
   </script>
