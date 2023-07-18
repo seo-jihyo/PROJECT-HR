@@ -4,9 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-    <select id="selectVctnCurrval" resultType="Integer">
-        SELECT vctn_num_seq.CURRVAL FROM DUAL
-    </select>
+
 	<select id="selectAllVacation" resultType="com.kosa.hrsystem.vo.VacationVO">
 	select v.vctn_num, 
         v.emp_num, 
@@ -61,4 +59,23 @@
 	<delete id="deleteVacation" parameterType="Integer">
 		delete from vacation where vctn_num = #{num}
 	</delete>
+	<select id="selectVctnCurrval" resultType="Integer">
+        SELECT vctn_num_seq.CURRVAL FROM DUAL
+    </select>
+	<!-- 스케줄 휴가 조회 -->
+	<select id="selectVac" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
+	SELECT 
+    	v.vctn_start_date,
+    	v.vctn_end_date,
+    	vt.vctn_name
+	FROM 
+    	vacation v
+	INNER JOIN 
+    	emp e ON v.emp_num = e.emp_num
+	INNER JOIN
+    	vacation_type vt ON v.vctn_type_num = vt.vctn_type_num
+	WHERE 
+    	e.emp_num = #{EMPNUM}
+    </select>
+
 </mapper>

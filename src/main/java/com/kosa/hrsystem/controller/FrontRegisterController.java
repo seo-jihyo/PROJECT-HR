@@ -43,7 +43,7 @@ public class FrontRegisterController extends HttpServlet {
         CommuteRecordService commuteRecordService = new CommuteRecordServiceImp();
         RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
         UserService userService = new UserServiceImp();
-        
+        UserScheduleService userScheduleService = new UserScheduleServiceImp();
         ActionForward forward = null;
 
         /* 공통 */
@@ -220,6 +220,10 @@ public class FrontRegisterController extends HttpServlet {
         	forward = userService.updateCareer(request, response);
         } else if(urlcommand.equals("/careerDelete.do")) {
         	forward = userService.deleteCareer(request, response);
+        }
+        /* 사용자 스케줄 */
+        else if(urlcommand.equals("/userSchedule.do")) {
+        	forward = userScheduleService.selectUserSchedule(request, response);
         }
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
