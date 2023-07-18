@@ -4,7 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-
+    <select id="selectVctnCurrval" resultType="Integer">
+        SELECT vctn_num_seq.CURRVAL FROM DUAL
+    </select>
 	<select id="selectAllVacation" resultType="com.kosa.hrsystem.vo.VacationVO">
 	select v.vctn_num, 
         v.emp_num, 

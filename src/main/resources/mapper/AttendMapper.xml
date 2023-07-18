@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+	<select id="selectAttCurrval" resultType="Integer">
+	    SELECT att_seq.CURRVAL FROM DUAL
+    </select>
 	<select id="selectByEmpNum" parameterType="Integer" resultType="com.kosa.hrsystem.dto.AttendanceDTO">
 		SELECT * FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM} AND ROWNUM=1 ORDER BY GO_WORK DESC
 	</select>

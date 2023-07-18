@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
+    <select id="selectWorkSchCurrval" resultType="Integer">
+        SELECT work_seq.CURRVAL FROM DUAL
+    </select>
 	<select id="searchTotal" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
             e.emp_num,
