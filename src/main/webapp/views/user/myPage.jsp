@@ -205,13 +205,48 @@ height: 600px;
 </style> 
 
 <body>
+<script defer>
+	function showImgInput() {
+		document.getElementById("imgInput").click();
+	}
+	
+	function previewImage(input) {
+		const preview = document.getElementById('imgPreview');
+		const test = document.getElementById('fileInputText');
+		const file = input.files[0];
+		const reader = new FileReader();
+	
+		reader.onload = function(e) {
+			preview.src = e.target.result;
+			preview.style.display = 'block';
+			test.style.display = 'none';
+		};
+	
+		if (file) {
+			reader.readAsDataURL(file);
+		} else {
+			preview.src = '#';
+			preview.style.display = 'none';
+		}
+	}
+</script>
   <%@include file="/views/include/header_user.jsp" %>
       <div id="myInfo">
          <h1 class="title">내 인사정보</h1><br>
          <hr class="main-hr">
          <table class="main-table-1">
             <tr>
-               <td rowspan="5" width="300px"> <img src="/assets/images/main_ps.jpg"></td>
+               <td rowspan="5" width="300px"> <!-- <img src="/assets/images/main_ps.jpg"> -->
+               		<form method="post" enctype="multipart/form-data" action="/upload.do">
+						<div class="addImage" onclick="document.getElementById('imgInput').click()">
+							<label for="imgInput" class="addImageLabel" id="fileInputText"></label>
+							<input type="file" id="imgInput" name="filename" style="display: none;"><!--  -->
+							<c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/main_ps.jpg" style="width: 200px; height:200px;"></c:if>
+							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px;"></c:if>
+						</div>
+							<input type="submit" value="프로필 변경" class="addProductBtn">
+					</form>
+               </td>
                <th>이름</th>		<td>${info.emp_name}</td>
                <th>사원번호</th>	<td>${info.emp_num}</td>
                <th>직통번호</th>	<td>${info.direct_num}</td>
@@ -410,10 +445,10 @@ height: 600px;
 	<hr>
 	<form method="post" action="/certInsertok.do">
 		<table class="info-table table">
-			<tr class="info-tr1">
+			<!-- <tr class="info-tr1">
 				<th class="five">자격증번호</th>
 				<td><input type="text" class="infoupdate" name="certNum"></td>
-			</tr>
+			</tr> -->
 			<tr class="info-tr1">
 				<th class="four">자격증명</th>
 				<td><input type="text" class="infoupdate" name="certName"></td>

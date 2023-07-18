@@ -220,6 +220,8 @@ public class FrontRegisterController extends HttpServlet {
         	forward = userService.updateCareer(request, response);
         } else if(urlcommand.equals("/careerDelete.do")) {
         	forward = userService.deleteCareer(request, response);
+        } else if(urlcommand.equals("/upload.do")) {
+        	forward = userService.uploadImage(request, response);
         }
         /* 사용자 스케줄 */
         else if(urlcommand.equals("/userSchedule.do")) {

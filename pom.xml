@@ -104,6 +104,14 @@
             <version>1.18.12</version>
             <scope>compile</scope>
         </dependency>
+        
+       <dependency>
+          <groupId>servlets.com</groupId>
+          <artifactId>cos</artifactId>
+          <version>05Nov2002</version>
+      </dependency> 
+
+
     </dependencies>
 
     <build>
