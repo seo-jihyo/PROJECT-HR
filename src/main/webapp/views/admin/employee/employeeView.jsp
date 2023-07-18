@@ -539,8 +539,7 @@
         $rank = $(this).data("rank")
         $phone = $(this).data("phone")
         $permissionType = $(this).data("permission-type")
-        $directNum ist.emp_name}</option>
-					</c:forEach>= $(this).data("direct-num")
+        $directNum = $(this).data("direct-num")
         $postCode = $(this).data("postCode")
         $address = $(this).data("address")
         $detailAddress = $(this).data("detail-address")
