@@ -136,7 +136,7 @@
                 <option value="memo">메모</option>
             </select> 
             <input type="text" class="search searchs"> 
-            <input type="button" class="seachbtn" value="검 색"> 
+            <input type="button" class="searchbtn" value="검 색"> 
             <input type="checkbox" id="popup" onclick="resetForm()">
             <label class="labelBtn searchs" for="popup">+ 직원 추가하기</label>
 
@@ -539,7 +539,8 @@
         $rank = $(this).data("rank")
         $phone = $(this).data("phone")
         $permissionType = $(this).data("permission-type")
-        $directNum = $(this).data("direct-num")
+        $directNum ist.emp_name}</option>
+					</c:forEach>= $(this).data("direct-num")
         $postCode = $(this).data("postCode")
         $address = $(this).data("address")
         $detailAddress = $(this).data("detail-address")
