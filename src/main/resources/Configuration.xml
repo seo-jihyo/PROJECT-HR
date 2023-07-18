@@ -31,6 +31,7 @@
         <mapper resource="mapper/WorkMapper.xml" />
         <mapper resource="mapper/WorkScheduleMapper.xml" />
         <mapper resource="mapper/WorkScheduleTypeMapper.xml" />
+        <mapper resource="mapper/WorkRecordMapper.xml" />
         <mapper resource="mapper/EducationMapper.xml" />
         <mapper resource="mapper/CareerMapper.xml" />
         <mapper resource="mapper/CertificateMapper.xml" />

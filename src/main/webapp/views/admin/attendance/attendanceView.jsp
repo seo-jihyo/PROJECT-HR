@@ -64,7 +64,7 @@
 			
 			<!-- 추가하기 -->
 			<input type="text" class="search searchs">
-			<input type="button" class="seachbtn" value="검 색">
+			<input type="button" class="searchbtn" value="검 색">
 			<input type="checkbox" id="popup" onclick="resetForm()"> 
 			<label class="labelBtn" for="popup">+ 출퇴근기록 추가하기</label>
 			<div class="modal">
@@ -221,19 +221,20 @@
              </tr>
              <tr class="rank-tr1">
                 <th>날짜</th>
-                <td><input type="text" class="rankadd" name="cmt_date" value="`+$date+`"></td>
+                <td><input type="date" class="rankadd" name="cmt_date" value="`+$date+`"></td>
 
              </tr>
              <tr class="rank-tr1">
                 <th>출근시간</th>
-                <td><input type="text" class="rankadd" name="go_time" value="`+$go_time+`"></td>
+                <td><input type="time" class="rankadd" name="go_time" value="`+$go_time+`"></td>
              </tr>
              <tr class="rank-tr1">
                 <th>퇴근시간</th>
-                <td><input type="text" class="rankadd" name="leave_time" value="`+$leave_time+`"></td>
+                <td><input type="time" class="rankadd" name="leave_time" value="`+$leave_time+`"></td>
              </tr>
           `;
      $('dialog table').html(str)
+	 $("select[name='emp_num']").val($num).prop("selected", true);
 
  });
 	const $form = $('#frm2');

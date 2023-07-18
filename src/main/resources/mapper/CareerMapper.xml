@@ -8,7 +8,7 @@
 		select * from CAREER where emp_num = #{emp_num}
 	</select>
 	<insert id="insertCareer" parameterType="com.kosa.hrsystem.dto.CareerDTO">
-		insert into CAREER values(career_seq.nextval , ${emp_num} , #{company_name}, #{dept}, #{rank}, #{main_tesk}, #{join_date} , #{leave_date} , #{remarks})
+		insert into CAREER values(career_seq.nextval , #{emp_num} , #{company_name}, #{dept}, #{rank}, #{main_tesk}, #{join_date} , #{leave_date} , #{remarks})
 	</insert>
 	<update id="updateCareer" parameterType="com.kosa.hrsystem.dto.CareerDTO">
 		update CAREER set company_name = #{company_name},

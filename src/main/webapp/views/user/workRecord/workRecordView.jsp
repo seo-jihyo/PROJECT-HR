@@ -6,16 +6,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+    <title>내 출퇴근기록</title>
     <%--jquery--%>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
-    
     <link rel="stylesheet" href="/assets/css/modal.css">
-<style type="text/css">
+	<style type="text/css">
 .tab-scroll{
 	margin-left:20px;
 }
@@ -46,7 +43,7 @@ h2{
 }
 .workrecbtn{
 	color: white;
-	background-color:  rgb(4, 4, 80);
+	background-color: rgb(4, 4, 80);
 	width: 70px;
 	height:	30px;
 	border-radius: 8px;
@@ -64,11 +61,9 @@ h2{
 	height:	30px;
 	border: solid 1px black;
 }
-
 dialog{
 	width: 500px;
 	height: 555px;
-
 }
 .diatitle{
 	padding-bottom:20px;
@@ -80,7 +75,6 @@ dialog{
 .workrec-area{
 	width: 170px;
 	height: 60px;
-	
 }
 .workrec-table th{
 	padding: 20px 20px;
@@ -92,8 +86,6 @@ dialog{
 .two{
 	letter-spacing: 30px;
 }
-
-
 .workmodal-table {
 	padding: 20px 20px;
 	width: 100%;
@@ -122,9 +114,8 @@ dialog{
 	letter-spacing: 30px;
 	padding: 0px;
 }
-
 .workmodal-table th{
-		text-align: left;
+	text-align: left;
 }
 .bottom-btn{
 	margin-top:10px;
@@ -134,20 +125,14 @@ dialog{
 	color: red;
 }
 </style>
-<title>휴가관리</title>
-<style type="text/css">
-	
-</style>
 </head>
 <body>
 	<%@include file="/views/include/header_user.jsp"%>
-
-		
 		<div class="tab-scroll">
-		<h2> 내 출퇴근기록</h2>
+		<h2>내 출퇴근기록</h2>
 		<input type="date" class="workdate"> ~ <input type="date" class="workdate">
 		<div class="side">
-		<select>
+		<!-- <select>
 			<option>선택없음</option>
 			<option>날짜</option>
 			<option>출근시간</option>
@@ -160,50 +145,45 @@ dialog{
 			<option>근무노트</option>
 		</select>
 		<input type="text" class="worksearch">
-		<button class="workrecbtn">검색</button>
-		<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+
-				출퇴근 기록 생성 요청</label>
-
+		<button class="workrecbtn">검색</button> -->
+		<input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+ 출퇴근 기록 생성 요청</label>
 			<div class="modal" style="display: hidden;">
-			
 				<div class="modal-content">
-				
 					<label for="popup">x</label>
 					<h1>출퇴근 기록 생성 요청</h1>
 					<hr>
+					<form method="get" action="/workrecorddok.do" id="frm">
 
-					<form method="get" action="/">
 						<table class="workmodal-table">
 							<tr class="rank-tr1">
 								<th class="twomodal">날짜</th>
 								<td><input type="date" class="workadd"></td>
 							</tr>
-								<tr class="work-tr1">
+							<tr class="work-tr1">
 								<th>근무일정</th>
 								<td><select class="workadd">
-										<option></option>
-										<option></option>
-										<option></option>
+									<option></option>
+									<option></option>
+									<option></option>
 									</select>
 								</td>
 							</tr>
-								<tr class="work-tr1">
+							<tr class="work-tr1">
 								<th class="twomodal">부서</th>
 								<td><select class="workadd">
-										<option></option>
-										<option></option>
-										<option></option>
+									<option></option>
+									<option></option>
+									<option></option>
 									</select>
 								</td>
 								<th class="twomodal">직급</th>
 								<td><select class="workadd">
-										<option></option>
-										<option></option>
-										<option></option>
+									<option></option>
+									<option></option>
+									<option></option>
 									</select>
 								</td>								
 							</tr>
-							
 							<tr class="work-tr1">
 								<th>출근시간</th>
 								<td><input type="time" class="workadd"></td>
@@ -212,12 +192,12 @@ dialog{
 							</tr>
 							<tr>
 								<th>근무노트</th>
-								<td colspan='3'><textarea name="" class="work-area" cols="70" rows="4">
-      						</textarea></td>
+								<td colspan='3'>
+								<textarea name="" class="work-area" cols="70" rows="4"></textarea>
+								</td>
 							</tr>
 						</table>
 					</form>
-
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
@@ -232,49 +212,61 @@ dialog{
 		</div>
 		<table class="sec-table table-hover table">
 			<thead class="thead">
-
 				<tr>
-					<th style="width: 30px"><input type='checkbox' id="chkAll"
-						onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
+					<th>직원</th>
 					<th>날짜</th>
 					<th>출근시간</th>
 					<th>퇴근시간</th>
-					<th>근무일정</th>
-					<th>부서</th>
-					<th>직급</th>
 					<th>휴게시간</th>
-					<th>총시간</th>
-					<th>근무노트</th>
+					<th>근무시간합계</th>
 				</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-
-				</tbody>
+				<c:forEach var="rcd" items="${rcdlist}">
+   				<tr data-att-num="${rcd.att_num}"
+       				<%-- data-num="${rcd.emp_num}" --%>
+			        data-name="${rcd.emp_name}"
+			        data-date='<fmt:formatDate  value="${rcd.go_work}" pattern="yyyy-MM-dd"/>'
+			        data-go-time='<fmt:formatDate  value="${rcd.go_work}" pattern="HH:mm"/>'
+			        data-leave-time='<fmt:formatDate  value="${rcd.leave_work}" pattern="HH:mm"/>'
+			        data-break="${rcd.break_time}"
+			        data-total="${rcd.work_time}" >
+			    <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+		        <td>${rcd.emp_name}</td>
+		        <td><fmt:formatDate  value="${rcd.go_work}" pattern="yyyy-MM-dd"/></td>
+		        <td><fmt:formatDate  value="${rcd.go_work}" pattern="HH:mm"/></td>
+		        <td><fmt:formatDate  value="${rcd.leave_work}" pattern="HH:mm"/></td>
+    			<td><!-- 근무시간 7시간 초과 시 휴게시간 1, 8시간 미만일 때 휴게시간 0 -->
+					<c:choose>
+						<c:when test="${rcd.work_time >= 8 }">
+							${rcd.break_time} 
+						</c:when>
+						<c:otherwise>
+							${rcd.break_time -1}
+						</c:otherwise>
+			    	</c:choose>
+				</td>
+					
+				<td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
+					<c:choose>
+						<c:when test="${rcd.work_time >= 8}">
+							${rcd.work_time - 1}
+						</c:when>
+						<c:otherwise>
+							${rcd.work_time}
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>
+			</c:forEach>
+			</tbody>
 			</table>
-			</div>
-			
 	<dialog>
-
-	<h2 class="diatitle">출퇴근 기록 생성 변경</h2>
+	<h2 class="diatitle">출퇴근기록 변경 요청</h2>
 	<hr>
-
-	
 	<form method="dialog">
 		<table class="workrec-table">
-
 			<tr class="workrec-tr">
 				<th class="two">날짜</th>
 				<td><input type="date" class="workadd" name=""></td>
@@ -288,38 +280,20 @@ dialog{
 				<td><input type="time" class="workadd" name=""></td>
 			</tr>
 			<tr class="workrec-tr">
-				<th>근무일정</th>
-					<td><select class="workadd">
-						<option></option>
-						<option></option>
-						<option></option>
-					</select>
-					</td>
-			</tr>
-			<tr class="workrec-tr">
 				<th>휴게시간</th>
 				<td style="font-weight:bold;">1시간</td>
 			</tr>
-
-			<tr class="workrec-tr">
-				<th>근무노트</th>
-				<td><textarea name="" class="workrec-area" cols="70" rows="4"></textarea></td>
-			</tr>
 		</table>
 		<hr>
-
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" class="custom-btn btn-10">수정하기</button>
-				<button type="button"  class="custom-btn btn-10">삭제하기</button>
-				<button type="button"  class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
+				<button type="submit" class="custom-btn btn-10">수정 요청</button>
+				<button type="button" class="custom-btn btn-10">삭제 요청</button>
+				<button type="button" class="btn_close custom-btn btn-10" onclick="dialogClose();">닫기</button>
 			</div>
 		</div>
-		
-
 	</form>
 	</dialog>
-
 
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
@@ -330,11 +304,9 @@ $(document).on("click", ".table tbody tr", function () {
 	dialog.showModal();
 	console.log(this);
 });
-
 function dialogClose(){
 	dialog.close();
 }
-	
 </script>
 </body>
 </html>
