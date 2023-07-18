@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,7 @@ import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
+import com.kosa.hrsystem.vo.EmpVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 import com.kosa.hrsystem.vo.WorkVO;
 
@@ -37,7 +39,8 @@ public class EmpServiceImp implements EmpService {
 
 		try {
 			
-		List<EmpDTO> list = dao.selectAllEmp();
+		//List<EmpDTO> list = dao.selectAllEmp();
+		List<EmpVO> list = dao.selectAllEmp();
 		List<CodeTableDTO> optDept= new CodeTableDAO().selectAllByParent("D001");
 		List<CodeTableDTO> optRank= new CodeTableDAO().selectAllByParent("R001");
 		List<WorkVO> optWork = new WorkDAO().selectAllWork();
@@ -61,26 +64,29 @@ public class EmpServiceImp implements EmpService {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		RandomPwd rp = new RandomPwd();
-
-		int emp_num = Integer.parseInt(request.getParameter("emp-num"));
-		String emp_name = request.getParameter("emp-name");
-		String emp_email = request.getParameter("emp-email");
+		
+		
+		String emp_name = null;
+		int emp_num = (int) Objects.requireNonNullElse(request.getParameter("emp-num"), 0);
+		String emp_email = Objects.requireNonNullElse(request.getParameter("emp-email"),"");
 		String emp_pwd = rp.generateRandomPassword(12);
-		String emp_dept = request.getParameter("emp-dept");
-		String emp_regist_num = request.getParameter("emp-regist-num");
-		String emp_rank = request.getParameter("emp-rank");
-		String emp_phone = request.getParameter("emp-phone");
-		int emp_permission_type = Integer.parseInt(request.getParameter("emp-permission-type"));
-		String emp_direct_num = request.getParameter("emp-direct-num");
-		String emp_post_code = request.getParameter("emp-post-code");
-		String emp_address = request.getParameter("emp-address");
-		String emp_detail_address = request.getParameter("emp-detail-address");
-		String emp_reason = request.getParameter("emp-reason");
-		String emp_remarks = request.getParameter("remarks");
-		String emp_hire_date = request.getParameter("emp-hire-date");
-		String emp_departure_date = request.getParameter("emp-departure-date");
-		int work_num = Integer.parseInt(request.getParameter("emp-workNum"));
+		String emp_dept = Objects.requireNonNullElse(request.getParameter("emp-dept"),"");
+		String emp_regist_num = Objects.requireNonNullElse(request.getParameter("emp-regist-num"),"");
+		String emp_rank = Objects.requireNonNullElse(request.getParameter("emp-rank"),"");
+		String emp_phone = Objects.requireNonNullElse(request.getParameter("emp-phone"),"");
+		int emp_permission_type = (int) Objects.requireNonNullElse(request.getParameter("emp-permission-type"),0);
+		String emp_direct_num = Objects.requireNonNullElse(request.getParameter("emp-direct-num"),"");
+		String emp_post_code = Objects.requireNonNullElse(request.getParameter("emp-post-code"),"");
+		String emp_address = Objects.requireNonNullElse(request.getParameter("emp-address"),"");
+		String emp_detail_address = Objects.requireNonNullElse(request.getParameter("emp-detail-address"),"");
+		String emp_reason = Objects.requireNonNullElse(request.getParameter("emp-reason"),"");
+		String emp_remarks = Objects.requireNonNullElse(request.getParameter("remarks"),"");
+		String emp_hire_date = Objects.requireNonNullElse(request.getParameter("emp-hire-date"),"");
+		String emp_departure_date = Objects.requireNonNullElse(request.getParameter("emp-departure-date"),"");
+		int work_num = (int)Objects.requireNonNullElse(request.getParameter("emp-workNum"),0);
+		
 		int result = dao.checkEmail(emp_email);
+		
 		JSONObject json = new JSONObject();
 
 		if (result == 1) {

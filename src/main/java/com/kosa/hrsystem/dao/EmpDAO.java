@@ -5,6 +5,7 @@ import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.IfileDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.EmpVO;
 import com.kosa.hrsystem.vo.MyPageVO;
 
 import org.apache.ibatis.session.SqlSession;
@@ -63,9 +64,9 @@ public class EmpDAO {
 	}
     
     // 직원 리스트 목록 출력하기
-    public List<EmpDTO> selectAllEmp() throws Exception{
+    public List<EmpVO> selectAllEmp() throws Exception{
     	SqlSession sqlSession = factory.openSession(true);
-    	List<EmpDTO> list = sqlSession.selectList("selectAllEmp");
+    	List<EmpVO> list = sqlSession.selectList("selectAllEmp");
     	sqlSession.close();
     	return list;
     }
