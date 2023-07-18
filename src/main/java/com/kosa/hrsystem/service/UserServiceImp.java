@@ -1,11 +1,13 @@
 package com.kosa.hrsystem.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,8 +21,9 @@ import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
-import com.kosa.hrsystem.dto.ImageDTO;
+import com.kosa.hrsystem.dto.IfileDTO;
 import com.kosa.hrsystem.vo.MyPageVO;
+import com.oreilly.servlet.MultipartRequest;
 
 public class UserServiceImp implements UserService {
 	/* 개인정보 */
@@ -191,7 +194,7 @@ public class UserServiceImp implements UserService {
 	public ActionForward insertCareer(HttpServletRequest request, HttpServletResponse response) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		HttpSession session = request.getSession();
-		EmpDTO edto = new EmpDTO();
+		EmpDTO edto = (EmpDTO) session.getAttribute("login");
 		
 		try {
 			int empNum = edto.getEmp_num();
@@ -281,14 +284,64 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public ActionForward UserProfileUpload(HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward uploadImage(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.getAttribute("login");
-		//저장할 파일경로 지정
-        String absolutePath = new File("src/main/resources/static/images/").getAbsolutePath();
-		ImageDTO dto = new ImageDTO();
+		EmpDTO edto = (EmpDTO) session.getAttribute("login");
 		
-		// 확장자 추출
+		int maxPostSize = 1024 * 1000;
+		ServletContext context = request.getServletContext();
+		String savePath = context.getRealPath("/upload"); // 원본 이미지 저장 경로
+		//String realPath = context.getRealPath(savePath);
+		System.out.println("savePath : " + savePath);
+		//System.out.println("realPath : " + realPath);
+		MultipartRequest mr;
+		try {
+			mr = new MultipartRequest(request, savePath, maxPostSize, "UTF-8");
+			// 새로운 파일명 생성
+			String fileName = mr.getFilesystemName("filename"); //  업로드된 파일을 서버에 저장할 때 사용되는 파일명을 반환
+			//String originFileName = mr.getOriginalFileName("filename"); // 클라이언트가 업로드한 파일의 원래 파일명을 반환
+			String ext = fileName.substring(fileName.lastIndexOf("."));
+			String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+			String newFileName = now + ext; // 새로운 파일 이름("업로드일시.확장자")
+			
+			// 파일명 변경
+			File oldFile = new File(savePath + File.separator + fileName);
+			File newFile = new File(savePath + File.separator + newFileName); 
+			oldFile.renameTo(newFile);
+			
+			System.out.println("fileName: " + fileName);
+			System.out.println("ext: " + ext);
+			System.out.println("now: " + now);
+			System.out.println("newFileName: " + newFileName);
+			System.out.println("oldFile: " + oldFile);
+			System.out.println("newFile: " + newFile);
+			// 다른 폼값 받기
+			
+			IfileDTO dto = new IfileDTO();
+			int empNum = edto.getEmp_num();
+			dto.setEmp_num(empNum);
+			dto.setOfile(fileName);
+			dto.setSfile(newFileName);
+			EmpDAO dao = new EmpDAO();
+			dao.uploadImage(dto);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/myPage.do");
+		return forward;
+	}
+	
+//	@Override
+//	public ActionForward UserProfileUpload(HttpServletRequest request, HttpServletResponse response) {
+//		HttpSession session = request.getSession();
+//		session.getAttribute("login");
+//		//저장할 파일경로 지정
+//        String absolutePath = new File("src/main/resources/static/images/").getAbsolutePath();
+//		ImageDTO dto = new ImageDTO();
+//		
+//		// 확장자 추출
 //        if (!image.isEmpty()) {
 //            String contentType = image.getContentType();
 //            String originalImageExtension;
@@ -300,20 +353,20 @@ public class UserServiceImp implements UserService {
 //                    originalImageExtension = ".gif";
 //       		}
 //       	}
-		
-		
-		
-		dto.setOriginImageName(null);
-		dto.setNewImageName(null);
-		dto.setImagePath(null);
-		EmpDAO dao = new EmpDAO();
-		dao.uploadImage(dto);
-		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
-		forward.setPath("/myPage.do");
-		return forward;
-	}
+//		
+//		
+//		
+//		dto.setOriginImageName(null);
+//		dto.setNewImageName(null);
+//		dto.setImagePath(null);
+//		EmpDAO dao = new EmpDAO();
+//		dao.uploadImage(dto);
+//		
+//		ActionForward forward = new ActionForward();
+//		forward.setRedirect(true);
+//		forward.setPath("/myPage.do");
+//		return forward;
+//	}
 
 	
 

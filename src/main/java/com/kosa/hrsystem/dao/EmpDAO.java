@@ -3,7 +3,7 @@ package com.kosa.hrsystem.dao;
 import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
-import com.kosa.hrsystem.dto.ImageDTO;
+import com.kosa.hrsystem.dto.IfileDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.MyPageVO;
 
@@ -100,8 +100,10 @@ public class EmpDAO {
     	MyPageVO list = sqlSession.selectOne("selectOneUser", empNum);
     	List<CertificateDTO> clist = sqlSession.selectList("selectCert", empNum);
     	List<CareerDTO> carlist = sqlSession.selectList("selectCareer", empNum);
+    	IfileDTO idto = sqlSession.selectOne("selectProfile",empNum);
     	list.setCert(clist);
     	list.setCareer(carlist);
+    	list.setIdto(idto);
     	sqlSession.close();
     	return list;
     }
@@ -115,10 +117,12 @@ public class EmpDAO {
     }
     
     // 마이페이지 이미지 업로드
-    public int uploadImage(ImageDTO dto) {
+    public int uploadImage(IfileDTO dto) {
     	SqlSession sqlSession = factory.openSession(true);
+    	sqlSession.delete("deleteProfile",dto.getEmp_num());
     	int result = sqlSession.insert("save",dto);
     	sqlSession.close();
     	return result;
-    }
+    }  
+  
 }

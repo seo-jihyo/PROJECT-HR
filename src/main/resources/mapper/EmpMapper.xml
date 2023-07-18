@@ -5,11 +5,17 @@
 
 <mapper namespace="dev">
 	<!-- 이미지 업로드 -->
-	<insert id="save" parameterType="com.kosa.hrsystem.dto.ImageDTO">
-		INSERT INTO image(origin_image_name, new_image_name, image_path)
-		VALUES(#{originImageName}, #{newImageName}, #{imagePath})
+	<insert id="save" parameterType="com.kosa.hrsystem.dto.IfileDTO">
+		INSERT INTO IFILE(emp_num,ofile,sfile)
+		VALUES(#{emp_num}, #{ofile} ,#{sfile})
 	</insert>
-	
+	<!-- 프로필 출력 -->
+	<select id="selectProfile" parameterType="Integer" resultType="com.kosa.hrsystem.dto.IfileDTO">
+		select * from IFILE where emp_num = #{emp_num}
+	</select>
+	<delete id="deleteProfile" parameterType="Integer">
+		delete from IFILE where emp_num = #{emp_num}
+	</delete>
 	<select id="selectOneUser" parameterType="Integer" resultType="com.kosa.hrsystem.vo.MyPageVO">
 		select  
 			emp_num, emp_name, direct_num, 

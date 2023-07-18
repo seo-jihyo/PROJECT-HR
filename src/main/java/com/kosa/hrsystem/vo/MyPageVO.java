@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kosa.hrsystem.dto.CareerDTO;
 import com.kosa.hrsystem.dto.CertificateDTO;
+import com.kosa.hrsystem.dto.IfileDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,4 +35,5 @@ public class MyPageVO {
 	private String detail_address;  // 상세주소
 	private List<CertificateDTO> cert; // 자격증
 	private List<CareerDTO> career; // 경력
+	private IfileDTO idto; 			// 이미지
 }
