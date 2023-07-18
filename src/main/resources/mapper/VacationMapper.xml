@@ -59,6 +59,9 @@
 	<delete id="deleteVacation" parameterType="Integer">
 		delete from vacation where vctn_num = #{num}
 	</delete>
+	<select id="selectVctnCurrval" resultType="Integer">
+        SELECT vctn_num_seq.CURRVAL FROM DUAL
+    </select>
 	<!-- 스케줄 휴가 조회 -->
 	<select id="selectVac" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
 	SELECT 
