@@ -229,6 +229,15 @@ height: 600px;
 			preview.style.display = 'none';
 		}
 	}
+	function validateForm() {
+		const fileInput = document.getElementById('imgInput');
+
+		if (fileInput.value === '') {
+			alert('파일을 등록하세요.');
+			return false;
+		}
+		return true;
+	}
 </script>
   <%@include file="/views/include/header_user.jsp" %>
       <div id="myInfo">
@@ -237,12 +246,12 @@ height: 600px;
          <table class="main-table-1">
             <tr>
                <td rowspan="5" width="300px"> <!-- <img src="/assets/images/main_ps.jpg"> -->
-               		<form method="post" enctype="multipart/form-data" action="/upload.do">
+               		<form method="post" enctype="multipart/form-data" action="/upload.do" onsubmit="return validateForm()">
 						<div class="addImage" onclick="document.getElementById('imgInput').click()">
 							<label for="imgInput" class="addImageLabel" id="fileInputText"></label>
-							<input type="file" id="imgInput" name="filename" style="display: none;"><!--  -->
+							<input type="file" id="imgInput" name="filename" style="display: none;">
 							<c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/main_ps.jpg" style="width: 200px; height:200px;"></c:if>
-							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px;"></c:if>
+							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px; border: 1px solid black; border-radius: 100px;"></c:if>
 						</div>
 							<input type="submit" value="프로필 변경" class="addProductBtn">
 					</form>
@@ -697,6 +706,37 @@ height: 600px;
       function dialogClose4(){
     	 updatedialog4.close();
        }
+      
+      $(document).on('click', '.postbtn', function () {
+          execDaumPostcode($(this).data('post-search'));
+      })
+
+      function execDaumPostcode(input) {
+          new daum.Postcode({
+              oncomplete: function (data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var addr = ''; // 주소 변수
+                  var extraAddr = ''; // 참고항목 변수
+
+                  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                      addr = data.roadAddress;
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                      addr = data.jibunAddress;
+                  }
+
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+                  document.getElementById(input + "_postcode").value = data.zonecode;
+                  document.getElementById(input + "_address").value = addr;
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById(input + "_detailAddress").focus();
+              }
+          }).open();
+      }
 </script>
 </body>   
 </html>

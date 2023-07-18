@@ -11,8 +11,7 @@
 
     <%--jquery--%>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
           rel='stylesheet'>
@@ -152,7 +151,6 @@
                     <!--    <form method="get" action="/" id="frm"> -->
                     <div class="tabs">
                         <a data-tab="tab-1">기본정보</a>
-                        <a data-tab="tab-2">학력</a>
                         <a data-tab="tab-3">경력</a>
                         <a data-tab="tab-4">자격증</a>
                     </div>
@@ -270,7 +268,6 @@
                     </div>
                     <div class="modal_nav" id="tab-2" style="display: none;">
                         <form action="/personalInfook.do" id="frm3">
-                            <h4>학력</h4>
                             <table class="profile">
                                 <thead>
                                 <tr>
@@ -382,7 +379,7 @@
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                    <button type="button" id="학력테이블" class="custom-btn btn-10">테이블 추가하기</button>
+                                    <button type="button" id="cert_table" class="custom-btn btn-10">테이블 추가하기</button>
                                     <button type="button" class="custom-btn btn-10" >추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
@@ -390,7 +387,7 @@
                             </div>
                         </form>
                         <script>
-                            $(document).on("click","#학력테이블", function(){
+                            $(document).on("click","#cert_table", function(){
                                 const str =`
                                 <tr>
                                     <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
@@ -406,7 +403,8 @@
 
                             function deleteTableBtn(el){
                                 const parent = el.parentNode.parentNode;
-                                $(parent).remove();
+                               	$(parent).remove();
+                                
                             }
                         </script>
                     </div>
@@ -462,7 +460,7 @@
                     <td>${empList.permission_type}</td>
                     <td>${empList.dept}</td>
                     <td>${empList.rank}</td>
-                    <td>${empList.work_num}</td>
+                    <td>${empList.work_name}</td>
                     <td><fmt:formatDate value="${empList.hire_date}" pattern="yyyy-MM-dd"/></td>
                     <td>${empList.annual_num}</td>
                     <td>${empList.remarks}</td>
@@ -649,7 +647,7 @@
             emptext_elem.show();
         }
     }
-
+	
     $('.tabs a').click(function () {
         let $tabId = $(this).data('tab')
         $('.modal_nav').hide()
@@ -699,12 +697,22 @@
     $(document).on('click', '#updateBtn', function () {
         $form.attr('action', '/empupdate.do')
         $form.attr('method', 'post')
-        $form.submit()
+        if(!confirm("등록하시겠습니까?")){
+        	alert("취소하셨습니다.");
+        } else {
+        	alert("해당 직원을 등록 하셨습니다.");
+      		$form.submit()
+        }
     })
     $(document).on('click', '#deleteBtn', function () {
         $form.attr('action', '/empdelete.do')
         $form.attr('method', 'post')
-        $form.submit()
+        if(!confirm("삭제하시겠습니까?")){
+        	alert("취소하셨습니다.");
+        } else {
+        	alert("해당 직원을 삭제 하셨습니다.");
+      		$form.submit()
+        }
     })
 </script>
 </body>
