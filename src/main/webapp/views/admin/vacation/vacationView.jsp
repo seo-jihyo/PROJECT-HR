@@ -85,7 +85,7 @@
 				<option>사유</option>
 			</select>
 			<input type="text" class="search searchs">
-			<input type="button" class="seachbtn" value="검 색">
+			<input type="button" class="searchbtn" value="검 색">
 			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn" for="popup">+
 				휴가 관리하기</label>
 			<div class="modal" style="display: hidden;">

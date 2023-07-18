@@ -89,7 +89,7 @@ dialog{
 				<option>휴가사유</option>
 			</select>
 			<input type="text" class="search searchs">
-			<input type="button" class="seachbtn" value="검 색">
+			<input type="button" class="searchbtn" value="검 색">
 			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs" for="popup">+
 				휴가 유형 관리</label>
 
