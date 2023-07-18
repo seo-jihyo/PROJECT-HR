@@ -20,4 +20,11 @@
 		WHERE EMP_NUM=#{emp_num}
 		  AND ATT_NUM=(SELECT ATT_NUM FROM ATTENDANCE WHERE EMP_NUM=#{emp_num} ORDER BY GO_WORK DESC FETCH FIRST 1 ROW ONLY)
 	</update>
+	<!-- 스케줄 출퇴근 조회 -->
+	<select id="selectAtt" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
+	SELECT 
+		GO_WORK,
+		leave_work
+	FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM}
+	</select>
 </mapper>

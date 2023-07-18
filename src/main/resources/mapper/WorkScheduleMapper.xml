@@ -139,5 +139,19 @@
 	<delete id="deleteWorkSchedule" parameterType="Integer">
 		delete from work_schedule where work_sch_num = #{work_sch_num}
 	</delete>
+	<!-- 스케줄 근무일정 조회 -->
+	<select id="selectWork" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
+	SELECT 
+    	ws.schedule,  
+    	wst.work_name
+	FROM 
+    	work_schedule ws
+	INNER JOIN 
+    	emp e ON ws.emp_num = e.emp_num
+	INNER JOIN
+    	work_schedule_type wst ON ws.work_sch_type_num = wst.work_sch_type_num
+	WHERE 
+    	e.emp_num = #{EMPNUM}
+	</select>
 </mapper>
 
