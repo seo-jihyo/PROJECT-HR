@@ -19,7 +19,9 @@
 
     <link rel="stylesheet" href="/assets/css/modal.css">
     <style type="text/css">
-
+	body{
+		padding: 0px;
+	}
         .profile {
             padding: 20px 20px;
             width: 100%;

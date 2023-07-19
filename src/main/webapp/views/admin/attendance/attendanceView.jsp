@@ -23,6 +23,9 @@
 <title>출퇴근기록</title>
 
 <style type="text/css">
+	body{
+		padding: 0px;
+	}
 	.attend-table {
 		height: 400px;
 	}

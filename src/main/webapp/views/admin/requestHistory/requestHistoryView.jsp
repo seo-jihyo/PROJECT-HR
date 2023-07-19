@@ -22,6 +22,11 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>요청내역</title>
+    <style type="text/css">
+    body{
+    	padding: 0px;
+    }
+    </style>
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
