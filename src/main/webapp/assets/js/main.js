@@ -139,7 +139,7 @@ $(function() {
 
 // 페이징
 const rowsPerPage= 18;
-const rows = document.querySelectorAll('#my-table tbody tr');
+const rows = document.querySelectorAll('.my-table tbody tr');
 const rowsCount = rows.length;
 const pageCount = Math.ceil(rowsCount/rowsPerPage); 
 const pagingNumbers = document.querySelector('#pagingNumbers');

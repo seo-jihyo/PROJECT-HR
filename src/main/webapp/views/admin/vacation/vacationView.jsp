@@ -160,7 +160,7 @@ body{
 		</div>
 </nav>
 
-		<table class="table sec-table table-hover" id="my-table">
+		<table class="table sec-table table-hover my-table">
 			<colgroup>
 				<col class="">
 			</colgroup>
