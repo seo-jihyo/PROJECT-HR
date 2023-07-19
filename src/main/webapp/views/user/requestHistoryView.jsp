@@ -36,7 +36,7 @@
     <div class="main_title">
     <h1 class="title">요청 내역</h1>
     </div>
-    <table class="sec-table table-hover">
+    <table class="sec-table table-hover my-table">
         <tr>
             <th>요청종류</th>
             <th>요청 보낸 사람</th>
@@ -78,6 +78,12 @@
         </c:forEach>
         </tbody>
     </table>
+    	<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 <script src="/assets/js/main.js"></script>
 <script>
     function approvalBtn(btn,approval){

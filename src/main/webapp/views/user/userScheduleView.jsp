@@ -86,10 +86,16 @@
 </head>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
-<!-- 모달창 -->
-<!-- <nav> -->
 <h1 class="title">근무일정</h1>
 <nav>
+<button class="labelBtn vacBtn">휴가 신청</button>
+<button class="labelBtn workBtn">근무일정 추가</button>
+</nav>
+<!-- 모달창
+<!-- <nav> 
+<h1 class="title">근무일정</h1>
+<nav>
+<button class="labelBtn vacBtn">휴가 신청</button>
 <input type="checkbox" id="popup"> <label class="labelBtn" for="popup"> 근무일정 추가하기</label>
 
 	<div class="modal" style="display: hidden;">
@@ -98,59 +104,27 @@
 				<h1>근무일정 추가하기</h1>
 				<hr>
 
-					<form method="get" action="/">
+					<form method="get" action="/userScheduleInsertVac.do" id="frm">
 						<table class="schedule-table">
 							<tr class="vacation-tr1">
-								<td>날짜</td>
-								<td><input type="date"></td>
+								<td>휴가 시작 날짜</td>
+								<td><input type="datetime-local" name="vctn_start_date"></td>
+							</tr>
+							<tr class="vacation-tr1">
+								<td>휴가 종료 날짜</td>
+								<td><input type="datetime-local" name="vctn_end_date"></td>
 							</tr>
 							<tr>
-								<td>근무일정 유형</td>
-								<td><select name="" class="schedule-type">
-								<option selected disabled hidden>-------------</option>
-										<option value="">없음</option>
-										<option value="">외근 (간주근로 9h)</option>
-										<option value="">재택근무 (간주근로)</option>
-									</select></td>
+								<td>휴가 유형</td>
+								<td><input type="text" name="vctn_type_num">
 							</tr>
 							<tr>
-								<td>조직</td>
-								<td><select name="" id="group">
-										<option selected disabled hidden>-----</option>
-										<option value="1">없음</option>
-									</select>
-								</td>
+								<td>휴가 종류</td>
+								<td><input type="text" name="request_type">
 							</tr>
 							<tr>
-								<td>직무</td>
-								<td><select name="" id="">
-										<option value="1">없음</option>
-										<option selected disabled hidden>-----</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>직원</td>
-								<td><select name="" id="group">										
-										<option selected disabled hidden>-----</option>
-										<option value="1">권지연</option>
-										<option value="1">서지효</option>
-										<option value="1">송기석</option>
-										<option value="1">이재경</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td>시간</td>
-								<td>
-								<input type="time" class="startTime" onKeyup="inputTimeColon(this);" placeholder="출근시간" maxlength="5" />
-								&nbsp;&nbsp;-&nbsp; 
-								<input type="time" class="endTime" onKeyup="inputTimeColon(this);" placeholder="퇴근시간" maxlength="5" />
-								</td>
-							</tr>
-							<tr>
-								<td>일정노트</td>
-								<td><textarea name="" class="schedule-memo" cols="70" rows="4"></textarea></td>
+								<td>휴가사유</td>
+								<td><textarea name="vctn_reason" class="schedule-memo" cols="70" rows="4"></textarea></td>
 							</tr>
 						</table>
 					</form>
@@ -158,20 +132,115 @@
 					<hr>
 					<div class="bottom-btn">
 						<div class="right-btn">
-							<button class="custom-btn btn-10">추가하기</button>
+							<button class="custom-btn btn-10" form="frm">추가하기</button>
 							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
 						</div>
 					</div>
 				</div>
 				<label for="popup"></label>
 			</div>
-	</nav>				
+	</nav>	
+	 -->			
   <!-- calendar 태그 -->
   <div id='calendar-container' class='calendar-container'>
     <div id='calendar'></div>
   </div>
   
-  
+  <dialog class="vacModal">
+      
+    	<h1>휴가 신청하기</h1>
+		<hr>					
+					<form method="get" id="frm">
+						<table class="schedule-table">
+							<tr class="vacation-tr1">
+								<td>휴가 시작 날짜</td>
+								<td><input type="datetime-local" name="vctn_start_date"></td>
+							</tr>
+							<tr class="vacation-tr1">
+								<td>휴가 종료 날짜</td>
+								<td><input type="datetime-local" name="vctn_end_date"></td>
+							</tr>
+							<tr>
+								<td>휴가 유형</td>
+										<td>
+										<input type="text" name="vctn_type_num"> 
+										
+										<%-- <select class="vacation-type" id="selectBox" name="vctn_type_num">
+										
+     										<c:forEach var="vctnlist" items="${vctnTypeList}">
+         								<option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
+     									</c:forEach>
+										</select> --%>
+										</td>
+							</tr>
+							<tr hidden>
+								<td>휴가 종류</td>
+								<td><input type="text" name="request_type" value="V">
+							</tr>
+							<tr>
+								<td>휴가사유</td>
+								<td><textarea name="vctn_reason" class="schedule-memo" cols="70" rows="4"></textarea></td>
+							</tr>
+						</table>
+
+					<hr>
+						<div class="bottom-btn">
+						<div class="right-btn">
+							<button type="submit" id="VacInsertBtn" class="custom-btn btn-10">신청하기</button>
+            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogClose();">닫기</button>
+						</div>
+					</div>
+					</form>
+    </dialog>
+    
+      <dialog class="workModal">
+      
+    	<h1>근무일정 추가하기</h1>
+		<hr>					
+					<form method="get" id="frm2">
+						<table class="schedule-table">
+							<tr>
+									<td>날짜</td>
+									<td><input type="date" name="ws-date" class="ws-date"></td>
+								</tr>
+								<tr class="modal-tr">
+									<td>근무일정 유형</td>
+									<td><input type="text" name="ws-type"></td>
+<%-- 									<td><select name="ws-type" id="workType">
+											<c:forEach var="list" items="${tlist}">
+												<option value="${list.work_sch_type_num}">${list.work_name}</option>
+											</c:forEach>
+									</select></td> --%>
+								</tr>
+								</tr>
+								<tr class="modal-tr">
+									<td>시간</td>
+									<td><input type="time" name="startTime" class="startTime"
+										onKeyup="inputTimeColon(this);" placeholder="출근시간"
+										maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="time"
+										name="endTime" class="endTime" onKeyup="inputTimeColon(this);"
+										placeholder="퇴근시간" maxlength="5" /></td>
+								</tr>
+								<tr class="modal-tr">
+									<td>일정노트</td>
+									<td><textarea name="ws-area" id="ws-area" cols="65"
+											rows="4" style="resize: none;"></textarea></td>
+								</tr>
+								<tr hidden>
+								<td>근무일정 종류</td>
+								<td><input type="text" name="request_type" value="W">
+							</tr>
+							</table>
+
+					<hr>
+						<div class="bottom-btn">
+						<div class="right-btn">
+							<button type="submit" id="WorkInsertBtn" class="custom-btn btn-10">신청하기</button>
+            				<button  class="dialogbtn custom-btn btn-10" type="button"  onclick="dialogCloseWork();">닫기</button>
+						</div>
+					</div>
+					</form>
+    </dialog>
   <script>
     (function(){
       $(function(){
@@ -257,6 +326,41 @@
         calendar.render(); 
       });
     })();
+    
+    const dialog = document.querySelector(".vacModal");
+    $(document).on("click", ".vacBtn", function () {
+    	dialog.showModal();
+    	console.log(this);
+    });
+
+    function dialogClose(){
+    	dialog.close();
+    }
+    
+    const $form = $('#frm');
+    $(document).on('click','#VacInsertBtn',function (){
+       $form.attr('action','/userScheduleInsertVac.do')
+       $form.attr('method','post')
+       $form.submit()
+    })
+    
+    const dialogWork = document.querySelector(".workModal");
+    $(document).on("click", ".workBtn", function () {
+    	dialogWork.showModal();
+    	console.log(this);
+    });
+
+    function dialogCloseWork(){
+    	dialogWork.close();
+    }
+    
+    const $forms = $('#frm2');
+    $(document).on('click','#WorkInsertBtn',function (){
+       $forms.attr('action','/userScheduleInsertWork.do')
+       $forms.attr('method','post')
+       $forms.submit()
+    })
+    
   </script>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>

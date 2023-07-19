@@ -166,7 +166,7 @@ h2{
 			</div>
 		</div>
 		</div>
-		<table class="sec-table table-hover table">
+		<table class="sec-table table-hover table my-table">
 			<thead class="thead">
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
@@ -218,6 +218,12 @@ h2{
 			</c:forEach>
 			</tbody>
 			</table>
+			<div class="pagination">
+				<i class='bx bxs-chevron-left'></i>
+				<ol id="pagingNumbers">
+				</ol>
+				<i class='bx bxs-chevron-right'></i>		
+			</div>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>

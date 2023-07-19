@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.UserScheduleVO;
 
@@ -21,7 +22,7 @@ public class UserScheduleDAO {
         List<UserScheduleVO> attlist= sqlSession.selectList("selectAtt", empNum);
         List<UserScheduleVO> vaclist= sqlSession.selectList("selectVac", empNum);
         List<UserScheduleVO> worklist= sqlSession.selectList("selectWork", empNum);
-
+        
         scheduleList.addAll(attlist);
         scheduleList.addAll(vaclist);
         scheduleList.addAll(worklist);
@@ -29,6 +30,5 @@ public class UserScheduleDAO {
         sqlSession.close();
         return scheduleList;
     }
-	
 	
 }

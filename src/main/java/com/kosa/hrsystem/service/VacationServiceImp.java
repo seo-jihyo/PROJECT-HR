@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.VacationDAO;
-import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.vo.EmpVO;
