@@ -26,6 +26,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
+body{
+	padding: 0px;
+}
 .vacation-table {
 	margin: 0px auto;
 	padding: 8px 0;
@@ -58,6 +61,9 @@
 	width: 250px;
  	resize: none; 
 }
+
+
+
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -153,7 +159,11 @@
 			</div>
 		</div>
 </nav>
-		<table class="table sec-table table-hover">
+
+		<table class="table sec-table table-hover" id="my-table">
+			<colgroup>
+				<col class="">
+			</colgroup>
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
@@ -214,6 +224,12 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 	</section>
 <dialog>
     
@@ -309,6 +325,7 @@ $(document).on('click','#deleteBtn',function (){
    $form.attr('method','post')
    $form.submit()
 })
+
 </script>
 <!-- js -->
 <script src="/assets/js/main.js"></script>
