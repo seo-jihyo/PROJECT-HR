@@ -23,6 +23,7 @@
 				attendance a ON e.emp_num = a.emp_num
 					JOIN
 				work w ON e.work_num = w.work_num
+		where a.go_work > to_date('2023-07-01','yyyy-MM-dd') and a.leave_work <![CDATA[ < ]]> to_date('2023-07-30','yyyy-MM-dd')
 			GROUP BY
 				e.emp_num, w.pay
 		),

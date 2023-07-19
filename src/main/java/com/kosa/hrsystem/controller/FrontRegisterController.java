@@ -91,9 +91,6 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/views/user/resetPwd.jsp");
         } else if (urlcommand.equals("/updatePwdok.do")) {
             forward = empService.updatePwd(request, response);
-        } else if (urlcommand.equals("/dashboard.do")) {
-            forward = new ActionForward();
-            forward.setPath("/views/user/dashboard.jsp");
         }
 
         /* 직원 */
@@ -250,14 +247,8 @@ public class FrontRegisterController extends HttpServlet {
             forward = userService.uploadImage(request, response);
         }
         /* 대시보드 */
-        else if (urlcommand.equals("/dashBoard.do")) {
-        	forward = dashBoardService.selectAttCnt(request, response);
-        } else if (urlcommand.equals("/dashBoard.do")) {
-        	forward = dashBoardService.selectNotAttCnt(request, response);
-        } else if (urlcommand.equals("/dashBoard.do")) {
-        	forward = dashBoardService.selectLeaveCnt(request, response);
-        } else if (urlcommand.equals("/dashBoard.do")) {
-        	forward = dashBoardService.selectVacCnt(request, response);
+        else if (urlcommand.equals("/dashboard.do")) {
+        	forward = dashBoardService.selectAll(request, response);
         }
         /* 사용자 스케줄 */
 		else if(urlcommand.equals("/userSchedule.do")) {

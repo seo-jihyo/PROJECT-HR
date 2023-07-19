@@ -1,7 +1,5 @@
 package com.kosa.hrsystem.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -11,32 +9,33 @@ import com.kosa.hrsystem.vo.DashBoardVO;
 public class DashBoardDAO {
 	private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
 
-	public List<DashBoardVO> selectAttCnt() throws Exception{
-		SqlSession sqlSession = factory.openSession(true);
-		List<DashBoardVO> list = sqlSession.selectList("selectAttCount");
+	public int selectAttCnt() {
+		SqlSession sqlSession = factory.openSession();
+		System.out.println("result");
+		int result = sqlSession.selectOne("selectAttCount");
 		sqlSession.close();
-		return list;
+		return result;
 	}
 
-	public List<DashBoardVO> selectNotAttCnt() {
+	public int selectNotAttCnt() {
 		SqlSession sqlSession = factory.openSession(true);
-		List<DashBoardVO> list = sqlSession.selectList("selectNotAttCount");
+		int result = sqlSession.selectOne("selectNotAttCount");
 		sqlSession.close();
-		return list;
+		return result;
 	}
 
-	public List<DashBoardVO> selectLeaveCnt() {
+	public int selectLeaveCnt() {
 		SqlSession sqlSession = factory.openSession(true);
-		List<DashBoardVO> list = sqlSession.selectList("selectLeaveCount");
+		int result = sqlSession.selectOne("selectLeaveCount");
 		sqlSession.close();
-		return list;
+		return result;
 	}
 
-	public List<DashBoardVO> selectVacCnt() {
+	public int selectVacCnt() {
 		SqlSession sqlSession = factory.openSession(true);
-		List<DashBoardVO> list = sqlSession.selectList("selectVacCount");
+		int result = sqlSession.selectOne("selectVacCount");
 		sqlSession.close();
-		return list;
+		return result;
 	}
 	
 }
