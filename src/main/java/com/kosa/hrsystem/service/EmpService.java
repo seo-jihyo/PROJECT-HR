@@ -14,5 +14,11 @@ public interface EmpService {
     public ActionForward searchId(HttpServletRequest request, HttpServletResponse response);
     public ActionForward searchPwd(HttpServletRequest request, HttpServletResponse response);
     public ActionForward updatePwd(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward insertCareerByManager(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward insertCertByManager(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward selectCertByManager(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward deleteCertByManager(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward selectCareerByManager(HttpServletRequest request, HttpServletResponse response);
+	public ActionForward deleteCareerByManager(HttpServletRequest request, HttpServletResponse response);
     
 }
