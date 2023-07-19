@@ -13,5 +13,4 @@ public interface RequestHistoryService {
     void approval(HttpServletRequest request, HttpServletResponse response);
 
     public ActionForward selectAllByEmp(HttpServletRequest request, HttpServletResponse response);
-	public void searchTotalReq(HttpServletRequest request, HttpServletResponse response);
 }
