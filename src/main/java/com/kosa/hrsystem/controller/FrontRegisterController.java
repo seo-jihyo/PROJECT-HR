@@ -262,6 +262,7 @@ public class FrontRegisterController extends HttpServlet {
         else if (urlcommand.equals("/userSchedule.do")) {
             forward = userScheduleService.selectUserSchedule(request, response);
         }
+
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {
             forward = requestHistoryService.selectAllByEmp(request, response);
@@ -277,6 +278,10 @@ public class FrontRegisterController extends HttpServlet {
             requestHistoryService.approval(request, response);
         } else if (urlcommand.equals("/salary.do")) {
             forward = salaryService.selectAllSalary(request, response);
+        }
+        /* 통합 검색(요청내역) */
+        else if (urlcommand.equals("/searchTotalReq.do")) {
+        	requestHistoryService.searchTotalReq(request, response);
         }
 
         if (forward != null) {

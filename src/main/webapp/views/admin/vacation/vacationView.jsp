@@ -271,7 +271,7 @@ $(document).on("click", ".table tbody tr", function () {
  	$startDate = $(this).data("startdate")
  	$endDate = $(this).data("enddate")
  	$vctnReason = $(this).data("vctn-reason")
-
+	$vcnTypeNum = $(this).data("vctn-type-num")
 
 	let str = `
 	<tr hidden>
@@ -310,6 +310,7 @@ $(document).on("click", ".table tbody tr", function () {
 		`;
 
 	$('dialog table').html(str)
+	$("select[name='vctn_type_num']").val($vcnTypeNum).prop("selected", true);
 }) 
 
 

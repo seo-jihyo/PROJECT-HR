@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kosa.hrsystem.vo.RequestHistoryVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -68,6 +70,7 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return list;
 	}
+<<<<<<< Updated upstream
 	
 	// 요청내역 미승인 개수 출력
 	public int selectNonApproveCount() {
@@ -76,4 +79,16 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return result;
 	}
+=======
+	// 통합 검색
+	public List<RequestHistoryVO> searchTotalReq(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<RequestHistoryVO> list = sqlSession.selectList("searchTotalReq",map);
+		System.out.println("통합검색 : " + list);
+		sqlSession.close();
+		return list;
+	}
+
+	
+>>>>>>> Stashed changes
 }

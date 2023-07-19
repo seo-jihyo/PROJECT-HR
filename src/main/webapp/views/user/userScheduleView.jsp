@@ -70,10 +70,6 @@
 	width: 150px;
     height: 30px;
 	}
- 	.labelBtn {
-	float: right;
-	margin-right: 6%;
-	} 
 	.btn {
 	float: center;
 	}
@@ -82,76 +78,55 @@
 	margin-top: 20px;
 	width: 90%;
 	}
+	.plusBtn{
+		float: right;
+		margin-right: 6%;
+	}
+	.plus{
+		width: 140px;
+		font-size: 15px;
+		height: 30px;
+		border-radius: 8px;
+		background-color:rgb(3, 4, 71);
+		color: white;
+
+	}
+	.plus:hover{
+		cursor: pointer;
+		background-color:white;
+		color: black;
+			}
   </style>
 </head>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
 <h1 class="title">근무일정</h1>
-<nav>
-<button class="labelBtn vacBtn">휴가 신청</button>
-<button class="labelBtn workBtn">근무일정 추가</button>
+<nav class="plusBtn">
+<button class="vacBtn plus">휴가 신청</button>
+<button class="workBtn plus">근무일정 추가</button>
 </nav>
-<!-- 모달창
-<!-- <nav> 
-<h1 class="title">근무일정</h1>
-<nav>
-<button class="labelBtn vacBtn">휴가 신청</button>
-<input type="checkbox" id="popup"> <label class="labelBtn" for="popup"> 근무일정 추가하기</label>
 
-	<div class="modal" style="display: hidden;">
-		<div class="modal-content">
-			<label for="popup">x</label>
-				<h1>근무일정 추가하기</h1>
-				<hr>
-
-					<form method="get" action="/userScheduleInsertVac.do" id="frm">
-						<table class="schedule-table">
-							<tr class="vacation-tr1">
-								<td>휴가 시작 날짜</td>
-								<td><input type="datetime-local" name="vctn_start_date"></td>
-							</tr>
-							<tr class="vacation-tr1">
-								<td>휴가 종료 날짜</td>
-								<td><input type="datetime-local" name="vctn_end_date"></td>
-							</tr>
-							<tr>
-								<td>휴가 유형</td>
-								<td><input type="text" name="vctn_type_num">
-							</tr>
-							<tr>
-								<td>휴가 종류</td>
-								<td><input type="text" name="request_type">
-							</tr>
-							<tr>
-								<td>휴가사유</td>
-								<td><textarea name="vctn_reason" class="schedule-memo" cols="70" rows="4"></textarea></td>
-							</tr>
-						</table>
-					</form>
-
-					<hr>
-					<div class="bottom-btn">
-						<div class="right-btn">
-							<button class="custom-btn btn-10" form="frm">추가하기</button>
-							<button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
-						</div>
-					</div>
-				</div>
-				<label for="popup"></label>
-			</div>
-	</nav>	
-	 -->			
   <!-- calendar 태그 -->
   <div id='calendar-container' class='calendar-container'>
     <div id='calendar'></div>
-  </div>
-  
+
   <dialog class="vacModal">
       
     	<h1>휴가 신청하기</h1>
 		<hr>					
 					<form method="get" id="frm">
 						<table class="schedule-table">
+							<tr>
+								<td>휴가 유형</td>
+								<td>
+							<!-- 	<input type="text" name="vctn_type_num">  -->
+										
+							<select name="vctn_type_num" id="workType">
+  								<c:forEach var="vctnlist" items="${vctnTypeList}">
+    								<option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
+  							</c:forEach>
+							</select>
+							</tr>
 							<tr class="vacation-tr1">
 								<td>휴가 시작 날짜</td>
 								<td><input type="datetime-local" name="vctn_start_date"></td>
@@ -160,19 +135,8 @@
 								<td>휴가 종료 날짜</td>
 								<td><input type="datetime-local" name="vctn_end_date"></td>
 							</tr>
-							<tr>
-								<td>휴가 유형</td>
-										<td>
-										<input type="text" name="vctn_type_num"> 
-										
-										<%-- <select class="vacation-type" id="selectBox" name="vctn_type_num">
-										
-     										<c:forEach var="vctnlist" items="${vctnTypeList}">
-         								<option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
-     									</c:forEach>
-										</select> --%>
-										</td>
-							</tr>
+
+							
 							<tr hidden>
 								<td>휴가 종류</td>
 								<td><input type="text" name="request_type" value="V">
@@ -198,28 +162,23 @@
     	<h1>근무일정 추가하기</h1>
 		<hr>					
 					<form method="get" id="frm2">
-						<table class="schedule-table">
-							<tr>
-									<td>날짜</td>
-									<td><input type="date" name="ws-date" class="ws-date"></td>
-								</tr>
+							<table class="ws-table">
 								<tr class="modal-tr">
 									<td>근무일정 유형</td>
-									<td><input type="text" name="ws-type"></td>
-<%-- 									<td><select name="ws-type" id="workType">
-											<c:forEach var="list" items="${tlist}">
-												<option value="${list.work_sch_type_num}">${list.work_name}</option>
+									<td><select name="ws-type" id="workType">
+											<c:forEach var="worklist" items="${workList}">
+												<option value="${worklist.work_sch_type_num}">${worklist.work_name}</option>
 											</c:forEach>
-									</select></td> --%>
-								</tr>
+									</select></td>
 								</tr>
 								<tr class="modal-tr">
-									<td>시간</td>
-									<td><input type="time" name="startTime" class="startTime"
-										onKeyup="inputTimeColon(this);" placeholder="출근시간"
-										maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="time"
-										name="endTime" class="endTime" onKeyup="inputTimeColon(this);"
-										placeholder="퇴근시간" maxlength="5" /></td>
+								<tr class="modal-tr">
+								<td>근무 시작 시간</td>
+								<td><input type="datetime-local" name="startTime" /></td>
+								</tr>
+								<tr class="modal-tr">
+								<td>근무 종료 시간</td>
+								<td><input type="datetime-local" name="endTime" /></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>일정노트</td>
@@ -227,9 +186,8 @@
 											rows="4" style="resize: none;"></textarea></td>
 								</tr>
 								<tr hidden>
-								<td>근무일정 종류</td>
 								<td><input type="text" name="request_type" value="W">
-							</tr>
+								</tr>
 							</table>
 
 					<hr>
@@ -294,14 +252,15 @@
          		 color:'E9BFD1',
          		 textColor:'5D082D',
          		 title: '${userlist.work_name}',
-                 start: '<fmt:formatDate value="${userlist.schedule}" pattern="yyyy-MM-dd" />',
+                 start: '<fmt:formatDate value="${userlist.wsgowork}" pattern="yyyy-MM-dd HH:mm" />',
+                 end: '<fmt:formatDate value="${userlist.wsleavework}" pattern="yyyy-MM-dd HH:mm" />',
          	 },
          	{
          		  color: 'D8F0A0',
          		  textColor: '385000',
          		  title: '${userlist.vctn_name}',
          		  start: '<fmt:formatDate value="${userlist.vctn_start_date}" pattern="yyyy-MM-dd HH:mm" />',
-         		  end: '<fmt:formatDate value="${userlist.vctn_end_date}" pattern="yyyy-MM-dd HH:mm" />'
+         		  end: '<fmt:formatDate value="${userlist.vctn_end_date}" pattern="yyyy-MM-dd HH:mm" />',
          		},
         	 
             {

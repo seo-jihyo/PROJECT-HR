@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.vo.RequestHistoryVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class RequestHistoryServiceImp implements RequestHistoryService {
 
@@ -98,6 +101,31 @@ public class RequestHistoryServiceImp implements RequestHistoryService {
         forward.setPath("/views/user/requestHistoryView.jsp");
         return forward;
     }
+	/* 통합 검색 */
+	@Override
+	public void searchTotalReq(HttpServletRequest request, HttpServletResponse response) {
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		System.out.println(searchType); System.out.println(searchWord);
+		try {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchWord", searchWord);
+			
+			RequestHistoryDAO dao = new RequestHistoryDAO();
+			List<RequestHistoryVO> list = dao.searchTotalReq(map);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

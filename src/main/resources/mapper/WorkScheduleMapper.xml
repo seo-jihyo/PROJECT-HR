@@ -5,7 +5,7 @@
 
 <mapper namespace="dev">
     <select id="selectWorkSchCurrval" resultType="Integer">
-        SELECT work_seq.CURRVAL FROM DUAL
+        SELECT ws_seq.CURRVAL FROM DUAL
     </select>
 	<select id="searchTotal" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
@@ -87,13 +87,16 @@
 	SELECT 
     	ws.go_work wsgowork,
     	ws.leave_work wsleavework, 
-    	wst.work_name
+    	wst.work_name,
+    	rh.state workstate
 	FROM 
     	work_schedule ws
 	INNER JOIN 
     	emp e ON ws.emp_num = e.emp_num
 	INNER JOIN
     	work_schedule_type wst ON ws.work_sch_type_num = wst.work_sch_type_num
+    INNER JOIN
+    	request_history rh ON ws.emp_num = rh.emp_num
 	WHERE 
     	e.emp_num = #{EMPNUM}
 	</select>
