@@ -67,4 +67,8 @@
 	<insert id="insertRequest">
 		insert into REQUEST_HISTORY(rqst_hstry_num,emp_num,request_num,request_type) values (req_seq.nextval,#{emp_num},#{request_num},#{request_type})
 	</insert>
+	
+	<select id="selectNonApproveCount" resultType="Integer">
+		 select count(*) from request_history where state = '0' 
+	</select>
 </mapper>

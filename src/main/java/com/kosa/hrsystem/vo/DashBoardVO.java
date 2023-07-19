@@ -25,5 +25,6 @@ public class DashBoardVO {
 	private int not_att_count;
 	private int leave_count;
 	private int vac_count;
+	private int non_approve_count;
 //	private List<RequestHistoryDTO> reqHistory;
 }

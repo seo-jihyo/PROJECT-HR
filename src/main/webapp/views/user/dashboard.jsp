@@ -142,10 +142,11 @@
                   <h2 class="mb-0">미확인 요청내역</h2>
            		</div>
            	  </div>
-           	  <hr>
-   
            </div>
             <div class="card-body">
+            	<span class="h2 font-weight-bold mb-0">
+					${vo.non_approve_count}명  
+			  	  </span>
             </div>
           </div>
         </div>
@@ -189,6 +190,7 @@
   </section>
 <script src="/assets/js/main.js"></script>
    <script>
+   
 /*     window.TrackJS &&
       TrackJS.install({
         token: "ee6fab19c5a04ac1a32a645abde4613a",
@@ -196,6 +198,7 @@
       });
      */
     /* 오늘 날짜 출력 js */
+    
     var date = new Date();
     var week = ['일', '월', '화', '수', '목', '금', '토'];
     var year = date.getFullYear();
