@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
-import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.WorkScheduleDAO;
-import com.kosa.hrsystem.dto.CodeTableDTO;
-import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.EmpVO;
@@ -90,14 +87,10 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 		try {
 			List<WorkScheduleVO> list = dao.selectAllWorkSchedule();
 			List<WorkScheduleTypeDTO> tlist = dao.selectAllWorkType();
-			List<CodeTableDTO> optDept = new CodeTableDAO().selectAllByParent("D001");
-			List<CodeTableDTO> optRank = new CodeTableDAO().selectAllByParent("R001");
 			List<EmpVO> elist = new EmpDAO().selectAllEmp();
 
 			request.setAttribute("list", list);
 			request.setAttribute("tlist", tlist);
-			request.setAttribute("optDept", optDept);
-			request.setAttribute("optRank", optRank);
 			request.setAttribute("elist", elist);
 
 			ActionForward forward = new ActionForward();
@@ -111,25 +104,23 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 
 	@Override
 	public ActionForward insert(HttpServletRequest request, HttpServletResponse response) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
 		try {
-			Date ws_date = sdf.parse(request.getParameter("ws-date"));
 			int workType = Integer.parseInt(request.getParameter("ws-type"));
-			Date startTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("startTime"));
-			Date endTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("endTime"));
+			Date startTime = sdfTime.parse(request.getParameter("startTime"));
+			Date endTime = sdfTime.parse(request.getParameter("endTime"));
 			int empNum = Integer.parseInt(request.getParameter("emp-name"));
 			String remarks = request.getParameter("ws-area");
 
 			WorkScheduleDTO dto = new WorkScheduleDTO();
 			// 관리에 DB값이 저장 되었을 떄 하기로...
-			dto.setSchedule(ws_date);
 			dto.setWork_sch_type_num(workType);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
 			dto.setEmp_num(empNum);
 			dto.setRemarks(remarks);
+			
 			WorkScheduleDAO dao = new WorkScheduleDAO();
 			dao.insertWorkSchedule(dto);
 
@@ -146,29 +137,25 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 
 	@Override
 	public ActionForward update(HttpServletRequest request, HttpServletResponse response) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
 		try {
-			int workScheduleNum = Integer.parseInt(request.getParameter("ws-num"));
-			Date ws_date = sdf.parse(request.getParameter("ws-date"));
+			int workNum = Integer.parseInt(request.getParameter("ws-num"));
 			int workType = Integer.parseInt(request.getParameter("ws-type"));
-			String dept = request.getParameter("ws-dept");
-			String rank = request.getParameter("ws-rank");
-			Date startTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("startTime"));
-			Date endTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("endTime"));
+			Date startTime = sdfTime.parse(request.getParameter("startTime"));
+			Date endTime = sdfTime.parse(request.getParameter("endTime"));
 			int empNum = Integer.parseInt(request.getParameter("emp-name"));
 			String remarks = request.getParameter("ws-area");
 
 			WorkScheduleDTO dto = new WorkScheduleDTO();
 			// 관리에 DB값이 저장 되었을 떄 하기로...
-			dto.setWork_sch_num(workScheduleNum);
-			dto.setSchedule(ws_date);
+			dto.setWork_sch_num(workNum);
 			dto.setWork_sch_type_num(workType);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);
 			dto.setEmp_num(empNum);
 			dto.setRemarks(remarks);
+			
 			WorkScheduleDAO dao = new WorkScheduleDAO();
 			dao.updateWorkSchedule(dto);
 

@@ -198,6 +198,8 @@ dialog{
 	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript">
+	updateRowsPerPage(18);
+	
 	const dialog = document.querySelector("dialog");
 	$(document).on("click", ".table tbody tr", function () {
 		dialog.showModal();

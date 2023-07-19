@@ -12,19 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkScheduleVO {
-	private int work_sch_num;
-	private int work_sch_type_num;
 	private int emp_num;
 	private String emp_name;
-	private Date schedule;
 	private Date go_work;
 	private Date leave_work;
 	private String work_name;
-	private String dept;
-	private String dept_code;
-	private String rank;
-	private String rank_code;
+	private int work_sch_type_num;
+	private int work_sch_num;
 	private String remarks;
-	private double totalTime;
 
 }

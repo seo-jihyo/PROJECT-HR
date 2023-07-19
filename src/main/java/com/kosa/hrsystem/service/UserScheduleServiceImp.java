@@ -108,7 +108,6 @@ public class UserScheduleServiceImp implements UserScheduleService{
 
 			WorkScheduleDTO dto = new WorkScheduleDTO();
 			dto.setWork_sch_type_num(workType);
-			dto.setSchedule(ws_date);
 			dto.setEmp_num(empNum);
 			dto.setGo_work(startTime);
 			dto.setLeave_work(endTime);

@@ -161,7 +161,6 @@
                 <h1>출퇴근기록 생성 요청</h1>
                 <hr>
                 <form method="get" action="/workrecordInsertAtt.do" id="frm">
-
                     <table class="workmodal-table">
                         <tr class="rank-tr1">
                             <th class="twomodal">날짜</th>
@@ -249,11 +248,10 @@
     </ol>
     <i class='bx bxs-chevron-right'></i>
 </div>
-
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 <script type="text/javascript">
-    updateRowsPerPage(1);
+    updateRowsPerPage(17);
 </script>
 </body>
 </html>

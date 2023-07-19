@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.javassist.Loader.Simple;
-
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CareerDAO;
 import com.kosa.hrsystem.dao.CertificateDAO;

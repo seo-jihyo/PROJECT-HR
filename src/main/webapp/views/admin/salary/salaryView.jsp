@@ -259,8 +259,6 @@
     <table class="salery-table2" style="width: 90%; height:480px; margin: 0 auto">
 
     </table>
-
-
     <hr>
     <div class="bottom-btn">
         <div class="right-btn">
