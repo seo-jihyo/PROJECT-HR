@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
+import com.kosa.hrsystem.vo.DashBoardVO;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -45,6 +46,7 @@ public class FrontRegisterController extends HttpServlet {
         UserService userService = new UserServiceImp();
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
         WorkRecordService workRecordService= new WorkRecordServiceImp();
+        DashBoardService dashBoardService = new DashBoardServiceImp();
         ActionForward forward = null;
 
         /* 공통 */
@@ -231,16 +233,24 @@ public class FrontRegisterController extends HttpServlet {
         } else if(urlcommand.equals("/upload.do")) {
         	forward = userService.uploadImage(request, response);
         }
+        /* 대시보드 */
+        else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectAttCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectNotAttCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectLeaveCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectVacCnt(request, response);
+        }
         /* 사용자 스케줄 */
-        else if(urlcommand.equals("/userSchedule.do")) {
+		 else if(urlcommand.equals("/userSchedule.do")) {
         	forward = userScheduleService.selectUserSchedule(request, response);
         }
-
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {
             forward = requestHistoryService.selectAllByEmp(request,response);
         }
-
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);

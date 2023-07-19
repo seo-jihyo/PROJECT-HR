@@ -29,7 +29,7 @@
             </div>
 
             <a class="nav_list"></a>
-            <a href="/" class="nav_link active">
+            <a href="/dashBoard.do" class="nav_link active">
                 <i class='nav_icon bx bx-home'></i>
                 <span class="nav_name">메인</span>
             </a>
