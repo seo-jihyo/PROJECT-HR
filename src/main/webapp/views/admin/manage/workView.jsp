@@ -149,7 +149,7 @@
     </div>
     </nav>
 
-    <table class="table sec-table table-hover">
+    <table class="table sec-table table-hover my-table">
         <thead>
         <tr>
             <th><input type="checkbox"></th>
@@ -179,6 +179,12 @@
         </c:forEach>
         </tbody>
     </table>
+    	<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 </section>
 <!-- 수정 dialog -->
 <dialog>

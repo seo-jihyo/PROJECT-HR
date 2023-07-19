@@ -115,7 +115,7 @@
             </div>
     </div>
     </nav>
-    <table class="sec-table table-hover">
+    <table class="sec-table table-hover my-table">
         <thead>
         <tr>
             <th><input type="checkbox" onclick="allCheckboxes('chk[]', this.checked)"></th>
@@ -141,6 +141,12 @@
         </c:forEach>
         </tbody>
     </table>
+    	<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 </section>
 
 <!-- 수정 dialog -->
