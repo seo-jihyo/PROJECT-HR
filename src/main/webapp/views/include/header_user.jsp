@@ -9,6 +9,7 @@
             <a href="/myPage.do">마이페이지</a>
         </nav>
     <nav class="top-nav">
+
         <div class="container">
             <input type="checkbox" class="toggle" id="rounded" name="att_status">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>
@@ -17,7 +18,7 @@
         <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
         <button class="logout" onclick="location.href='/logoutok.do'">로그아웃</button>
         <c:if test="${login.permission_type == 1}">
-            <button class="mode-btn" onclick="location.href='dashboard.do?cate=nav-home'">관리자 모드</button>
+            <button class="mode-btn" onclick="location.href='/views/user/dashboard.jsp'">관리자 모드</button>
         </c:if>
     </nav>
 </header>

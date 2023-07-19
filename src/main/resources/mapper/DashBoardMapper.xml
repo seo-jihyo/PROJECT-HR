@@ -10,19 +10,19 @@
 	WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	<select id="selectNotAttCount" parameterType="Integer" resultType="com.kosa.hrsystem.vo.DashBoardVO">
-	SELECT COUNT(*)
+	SELECT COUNT(*) not_att_count
 	FROM ATTENDANCE
 	WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') != TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	OR GO_WORK IS NULL
 	</select>
 	<select id="selectLeaveCount" parameterType="Integer" resultType="com.kosa.hrsystem.vo.DashBoardVO">
-	SELECT COUNT(*)
+	SELECT COUNT(*) leave_count
 	FROM ATTENDANCE
 	WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') != TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	OR GO_WORK IS NULL
 	</select>
 	<select id="selectVacCount" parameterType="Integer" resultType="com.kosa.hrsystem.vo.DashBoardVO">
-	SELECT COUNT(*)
+	SELECT COUNT(*) vac_count
 	FROM ATTENDANCE
 	WHERE TO_CHAR(leave_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>

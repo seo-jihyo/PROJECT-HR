@@ -17,5 +17,26 @@ public class DashBoardDAO {
 		sqlSession.close();
 		return list;
 	}
+
+	public List<DashBoardVO> selectNotAttCnt() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<DashBoardVO> list = sqlSession.selectList("selectNotAttCount");
+		sqlSession.close();
+		return list;
+	}
+
+	public List<DashBoardVO> selectLeaveCnt() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<DashBoardVO> list = sqlSession.selectList("selectLeaveCount");
+		sqlSession.close();
+		return list;
+	}
+
+	public List<DashBoardVO> selectVacCnt() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<DashBoardVO> list = sqlSession.selectList("selectVacCount");
+		sqlSession.close();
+		return list;
+	}
 	
 }

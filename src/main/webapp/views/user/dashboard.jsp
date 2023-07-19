@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,8 +43,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">근무 현황</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">출근 인원</h5>
+                      <span class="h2 font-weight-bold mb-0">
+							<c:forEach var="attcnt" items="${list}">
+							${attcnt.att_count}
+							</c:forEach>
+					  </span>
                     </div>
                    <div class="col text-right">
                   	<a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -49,7 +56,7 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <!-- <span class="text-nowrap">Since last month</span> -->
                   </p>
                 </div>
               </div>
@@ -60,8 +67,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">출퇴근 누락</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">미출근 인원</h5>
+                      <span class="h2 font-weight-bold mb-0">
+					   <c:forEach var="notcnt" items="${list}">
+                            ${notcnt.not_att_count}
+                        </c:forEach>
+					  </span>
                     </div>
                    <div class="col text-right">
                   	<a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -69,7 +80,7 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>
+                    <!-- <span class="text-nowrap">Since last week</span> -->
                   </p>
                 </div>
               </div>
@@ -80,8 +91,12 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">공지사항</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">퇴근 인원</h5>
+                      <span class="h2 font-weight-bold mb-0">
+                      	<c:forEach var="leavecnt" items="${list}">
+                            ${leavecnt.leave_count}
+                        </c:forEach>
+                      </span>
                     </div>
                    <div class="col text-right">
                   	<a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -89,7 +104,7 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
+                    <!-- <span class="text-nowrap">Since yesterday</span> -->
                   </p>
                 </div>
               </div>
@@ -101,7 +116,11 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">휴가 현황</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <span class="h2 font-weight-bold mb-0">
+						<c:forEach var="vaccnt" items="${list}">
+                            ${vaccnt.vac_count}
+                        </c:forEach>
+					  </span>
                     </div>
                    <div class="col text-right">
                   	<a href="#!" class="btn btn-sm btn-primary">See all</a>
@@ -109,7 +128,7 @@
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <!-- <span class="text-nowrap">Since last month</span> -->
                   </p>
                 </div>
               </div>
@@ -128,13 +147,11 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
-                  <h2 class="mb-0">시작 가이드</h2>
+                  <h2 class="mb-0">미확인 요청내역</h2>
            		</div>
            	  </div>
            	  <hr>
-            <h4 class="mb-0">조직 등록하기</h4><br>
-            <h4 class="mb-0">스케줄링 준비하기</h4><br>
-            <h4 class="mb-0">스케줄링 방식 보기</h4><br>
+   
            </div>
             <div class="card-body">
             </div>
@@ -146,12 +163,20 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">#####</h6>
-                  <h2 class="mb-0">######</h2>
+                  <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
+                  <h2 class="mb-0">관리 바로가기</h2>
                 </div>
               </div>
            	 </div>
-            <div class="card-body"></div>
+            <div class="card-body">
+            <a href="/emp.do"><h4 class="mb-0">직원 관리하기</h4></a><br>
+            <a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br>
+            <a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br>
+            <a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br>
+            <a href="/work.do"><h4 class="mb-0">근로정보 관리하기</h4></a><br>
+            <a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br>
+           
+            </div>
           </div>
         </div>
         
