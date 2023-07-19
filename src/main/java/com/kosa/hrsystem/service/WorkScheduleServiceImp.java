@@ -117,8 +117,6 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 		try {
 			Date ws_date = sdf.parse(request.getParameter("ws-date"));
 			int workType = Integer.parseInt(request.getParameter("ws-type"));
-			String dept = request.getParameter("ws-dept");
-			String rank = request.getParameter("ws-rank");
 			Date startTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("startTime"));
 			Date endTime = sdfTime.parse(request.getParameter("ws-date") + " " + request.getParameter("endTime"));
 			int empNum = Integer.parseInt(request.getParameter("emp-name"));

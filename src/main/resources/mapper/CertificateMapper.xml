@@ -20,4 +20,7 @@
 	<delete id="deleteCert" parameterType="Integer">
 		delete from CERTIFICATE where cert_num = #{cert_num}
 	</delete>
+	<delete id="deleteCertByCrtfcNumAndIssuer" parameterType="HashMap">
+		delete from CERTIFICATE where crtfc_name = #{certName} and issuer = #{issuer}
+	</delete>
 </mapper>
