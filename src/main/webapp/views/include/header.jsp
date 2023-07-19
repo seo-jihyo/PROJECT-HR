@@ -29,31 +29,31 @@
             </div>
 
             <a class="nav_list"></a>
-            <a href="/" class="nav_link active">
+            <a href="/?cate=nav-home" id="nav-home" class="nav_link">
                 <i class='nav_icon bx bx-home'></i>
                 <span class="nav_name">메인</span>
             </a>
-            <a href="/workschedule.do" class="nav_link">
+            <a href="/workschedule.do?cate=nav-ws" id="nav-ws" class="nav_link">
                 <i class='nav_icon bx bx-calendar'></i>
                 <span class="nav_name">근무일정</span>
             </a>
-            <a href="/cmtrecord.do" class="nav_link">
+            <a href="/cmtrecord.do?cate=nav-cmt-rec" id="nav-cmt-rec" class="nav_link">
                 <i class='nav_icon bx bx-time'></i>
                 <span class="nav_name">출퇴근 기록</span>
             </a>
-            <a href="/vacation.do" class="nav_link">
+            <a href="/vacation.do?cate=nav-vac" id="nav-vac" class="nav_link">
                 <i class='nav_icon bx bxs-plane-alt'></i>
                 <span class="nav_name">휴   가</span>
             </a>
-            <a href="/requesthistory.do" class="nav_link">
+            <a href="/requesthistory.do?cate=nav-req-his" id="nav-req-his" class="nav_link">
                 <i class='nav_icon bx bxs-paper-plane'></i>
                 <span class="nav_name">요청내역</span>
             </a>
-            <a href="/views/admin/salery/saleryView.jsp" class="nav_link">
+            <a href="/salary.do?cate=nav-sal" id="nav-sal" class="nav_link">
                 <i class='nav_icon bx bx-money-withdraw'></i>
                 <span class="nav_name">급여내역</span>
             </a>
-            <div href="#" class="nav_link collapse">
+            <div href="/emp.do?cate=nav-emp" id="nav-emp" class="nav_link collapse">
                 <i class='nav_icon bx bxs-report'></i>
                 <span class="nav_name">관   리</span>
 
@@ -83,3 +83,9 @@
 </div>
 </div>
 
+<script>
+    const navCategory = "${param.cate}"
+    $("#nav-home").removeClass("active");
+    $("#"+navCategory).addClass("active");
+
+</script>
