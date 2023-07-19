@@ -45,7 +45,6 @@ public class FrontRegisterController extends HttpServlet {
         UserService userService = new UserServiceImp();
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
         WorkRecordService workRecordService= new WorkRecordServiceImp();
-        
         ActionForward forward = null;
 
         /* 공통 */
@@ -206,16 +205,10 @@ public class FrontRegisterController extends HttpServlet {
         /* 사용자 출퇴근기록 */
         else if (urlcommand.equals("/workrecord.do")) {
            forward = workRecordService.selectAllRcd(request, response);
-        } else if (urlcommand.equals("/workrecorddok.do")) {
-           // 사용자 출퇴근 기록 추가
+        } else if (urlcommand.equals("/workrecordInsertAtt.do")) {
            forward = workRecordService.insertRcd(request, response);
-        } else if (urlcommand.equals("/workrecordupdate.do")) {
-           // 사용자 출퇴근 기록 수정
-           forward = workRecordService.updateRcd(request, response);
-        } else if (urlcommand.equals("/workrecorddelete.do")) {
-           // 사용자 출퇴근 기록 삭제
-           forward = workRecordService.deleteRcd(request, response);
         }
+
         /* 사용자 마이페이지 */
         else if(urlcommand.equals("/myPage.do")) {
         	forward = userService.selectOneUser(request, response);
@@ -242,10 +235,20 @@ public class FrontRegisterController extends HttpServlet {
         else if(urlcommand.equals("/userSchedule.do")) {
         	forward = userScheduleService.selectUserSchedule(request, response);
         }
+
+        /* 사용자 요청내역*/
+        else if (urlcommand.equals("/userRequesthistory.do")) {
+            forward = requestHistoryService.selectAllByEmp(request,response);
+        }
+
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);
+        } else if (urlcommand.equals("/approvalok.do")) {
+            requestHistoryService.approval(request,response);
         }
+
+
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
                 response.sendRedirect(forward.getPath());
