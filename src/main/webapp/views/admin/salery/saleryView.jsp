@@ -169,7 +169,7 @@
 			</div>
 		</div>
 		</nav>
-		<table class="table sec-table table-hover">
+		<table class="table sec-table table-hover my-table">
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll"
@@ -211,6 +211,12 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 	</section>
 <dialog>
     

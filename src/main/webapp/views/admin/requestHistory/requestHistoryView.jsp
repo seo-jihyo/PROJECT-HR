@@ -47,7 +47,7 @@
             <input type="button" class="searchbtn" value="검 색">
         </nav>
     </div>
-    <table class="table sec-table table-hover">
+    <table class="table sec-table table-hover my-table">
         <thead>
         <tr>
             <th>요청내역번호</th>
@@ -104,6 +104,12 @@
         </c:forEach>
         </tbody>
     </table>
+    	<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 </section>
 
 <script type="text/javascript">
