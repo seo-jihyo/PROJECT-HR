@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.kosa.hrsystem.vo.RequestHistoryVO;
-import com.kosa.hrsystem.vo.WorkScheduleVO;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -70,8 +68,12 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return list;
 	}
-
-
-
 	
+	// 요청내역 미승인 개수 출력
+	public int selectNonApproveCount() {
+		SqlSession sqlSession = factory.openSession();
+		int result = sqlSession.selectOne("selectNonApproveCount");
+		sqlSession.close();
+		return result;
+	}
 }
