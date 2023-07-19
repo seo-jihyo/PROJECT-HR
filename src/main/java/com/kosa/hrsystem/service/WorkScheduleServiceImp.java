@@ -18,6 +18,7 @@ import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
+import com.kosa.hrsystem.vo.EmpVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleServiceImp implements WorkScheduleService {
@@ -91,7 +92,7 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 			List<WorkScheduleTypeDTO> tlist = dao.selectAllWorkType();
 			List<CodeTableDTO> optDept = new CodeTableDAO().selectAllByParent("D001");
 			List<CodeTableDTO> optRank = new CodeTableDAO().selectAllByParent("R001");
-			List<EmpDTO> elist = new EmpDAO().selectAllEmp();
+			List<EmpVO> elist = new EmpDAO().selectAllEmp();
 
 			request.setAttribute("list", list);
 			request.setAttribute("tlist", tlist);

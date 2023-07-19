@@ -15,6 +15,7 @@ import com.kosa.hrsystem.dao.CommuteRecordDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.vo.CommuteRecordVO;
+import com.kosa.hrsystem.vo.EmpVO;
 
 public class CommuteRecordServiceImp implements CommuteRecordService {
 
@@ -24,7 +25,7 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 		CommuteRecordDAO dao = new CommuteRecordDAO();
 		try {
 
-			List<EmpDTO> empList = new EmpDAO().selectAllEmp();
+			List<EmpVO> empList = new EmpDAO().selectAllEmp();
 			List<CommuteRecordVO> list = dao.selectAllRecord();
 			request.setAttribute("list", list);
 			request.setAttribute("empList", empList);

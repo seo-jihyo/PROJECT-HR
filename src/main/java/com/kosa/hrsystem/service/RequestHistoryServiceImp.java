@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
+import com.kosa.hrsystem.vo.RequestHistoryVO;
 
 public class RequestHistoryServiceImp implements RequestHistoryService {
 
@@ -16,7 +17,7 @@ public class RequestHistoryServiceImp implements RequestHistoryService {
     public ActionForward selectAllRequest(HttpServletRequest request, HttpServletResponse response) {
         RequestHistoryDAO dao = new RequestHistoryDAO();
         try {
-            List<RequestHistoryDTO> list = dao.selectAllRequest();
+            List<RequestHistoryVO> list = dao.selectAllRequest();
 
             request.setAttribute("list", list);
             ActionForward forward = new ActionForward();
@@ -52,4 +53,29 @@ public class RequestHistoryServiceImp implements RequestHistoryService {
         forward.setPath("/requesthistory.do");
         return forward;
     }
+
+    @Override
+    public void approval(HttpServletRequest request, HttpServletResponse response) {
+        // 승인
+        boolean flag = Boolean.parseBoolean(request.getParameter("approval"));
+        String rqstNum = request.getParameter("rqstNum");
+        String remarks = request.getParameter("remarks");
+
+        RequestHistoryDAO requestHistoryDAO = new RequestHistoryDAO();
+        HashMap<String,Object> map = new HashMap<>();
+        if (flag) {
+            map.put("rqstNum",rqstNum);
+            map.put("remarks",remarks);
+            map.put("state",1);
+            requestHistoryDAO.update(map);
+        } else {
+            map.put("rqstNum",rqstNum);
+            map.put("remarks",remarks);
+            map.put("state",2);
+            requestHistoryDAO.update(map);
+        }
+
+    }
+
+
 }

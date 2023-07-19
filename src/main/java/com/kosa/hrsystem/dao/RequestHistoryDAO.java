@@ -3,6 +3,7 @@ package com.kosa.hrsystem.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.kosa.hrsystem.vo.RequestHistoryVO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -13,9 +14,9 @@ public class RequestHistoryDAO {
 
 	private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
 	
-	public List<RequestHistoryDTO> selectAllRequest() {
+	public List<RequestHistoryVO> selectAllRequest() {
 		SqlSession sqlSession = factory.openSession();
-		List<RequestHistoryDTO> list = sqlSession.selectList("selectAllRequest");
+		List<RequestHistoryVO> list = sqlSession.selectList("selectAllRequest");
 		sqlSession.close();
 		return list;
 	}
