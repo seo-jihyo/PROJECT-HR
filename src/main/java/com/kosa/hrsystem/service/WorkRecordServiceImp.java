@@ -1,20 +1,26 @@
 package com.kosa.hrsystem.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
 import com.kosa.hrsystem.dao.WorkRecordDAO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.dto.WorkRecordDTO;
 import com.kosa.hrsystem.vo.CommuteRecordVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkRecordServiceImp implements WorkRecordService {
 
@@ -81,5 +87,41 @@ public class WorkRecordServiceImp implements WorkRecordService {
 	    forward.setRedirect(true);
 	    forward.setPath("/workrecord.do");
 	    return forward;
+	}
+
+	@Override
+	public void searchWorkRecByDate(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String startDate = request.getParameter("datepicker1");
+		String endDate = request.getParameter("datepicker2");
+
+		try {
+			HttpSession session = request.getSession();
+			EmpDTO empdto = (EmpDTO) session.getAttribute("login");
+			int empNum = empdto.getEmp_num();
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("startDate", sdf.parse(startDate));
+			map.put("endDate", sdf.parse(endDate));
+			map.put("empNum", empNum);
+
+			WorkRecordDAO dao = new WorkRecordDAO();
+			List<WorkRecordDTO> list = dao.searchWorkRecByDate(map);
+
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+
+			// jsonArr.add(json);
+// 			System.out.println(json.toJSONString());
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -9,6 +9,13 @@
     <title>내 출퇴근기록</title>
     <%--jquery--%>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- datepicker -->
+    <link rel="stylesheet"
+          href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
@@ -151,11 +158,12 @@
 <%@include file="/views/include/header_user.jsp" %>
 <div class="tab-scroll">
     <h2>내 출퇴근기록</h2>
-    <input type="date" class="workdate"> ~ <input type="date" class="workdate">
+    <input type="text" class="dp" id="datepicker1" name="a"> - <input
+        type="text" class="dp" id="datepicker2" name='b'>
     <div class="side">
         <!-- 출퇴근기록 생성 요청 -->
         <input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+ 출퇴근기록 생성 요청</label>
-        <div class="modal" style="display: hidden;">
+        <div class="modal" style="display: none;">
             <div class="modal-content">
                 <label for="popup">x</label>
                 <h1>출퇴근기록 생성 요청</h1>
@@ -190,7 +198,7 @@
         </div>
     </div>
 </div>
-<table class="sec-table table-hover table my-table">
+<table class="sec-table table-hover table my-table" id="mainTable">
     <thead class="thead">
     <tr>
         <th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
@@ -248,9 +256,91 @@
     </ol>
     <i class='bx bxs-chevron-right'></i>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('.dp').datepicker({
+            onSelect: function () {
+                let datepicker1 = document.querySelector('#datepicker1');
+                let datepicker2 = document.querySelector('#datepicker2');
+                $.ajax({
+                    type: "post",
+                    data: {
+                        "datepicker1": datepicker1.value,
+                        "datepicker2": datepicker2.value,
+                    },
+                    url: "/searchWorkRecByDate.do",
+                    dataType: "json",
+                    success: sucFuncJson,
+                    error: errFunc
+                });
+
+                function sucFuncJson(data) {
+                    console.log(data);
+                    $('#mainTable tbody').html(htmlStr(data));
+                    if (data) {
+                        if (data.result == true) {
+                            alert("검색 성공");
+                        }
+                    } else {
+                        alert("검색 실패");
+                    }
+                }
+
+                function errFunc(e) {
+                    console.log(e)
+                    alert("실패" + e.status)
+                }
+
+                function htmlStr(data) {
+                    let html = '';
+                    data.forEach(value => {
+                        const goWork = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
+                        const goWorkTime = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+                        const leaveWork = moment(value.leave_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+
+                        html += `
+                        <tr>
+                            <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+                            <td>`+value.emp_name+`</td>
+                            <td>`+goWork+`</td>
+                            <td>`+goWorkTime+`</td>
+                            <td>`+leaveWork+`</td>
+                            <td>
+                                <!-- 근무시간 7시간 초과 시 휴게시간 1, 8시간 미만일 때 휴게시간 0 -->
+                                <c:choose>
+                                    <c:when test="`+value.work_time >= 8+`">
+                                        `+value.break_time+`
+                                    </c:when>
+                                    <c:otherwise>
+                                        `+(value.break_time-1)+`
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+
+                            <td><!-- 근무시간 7시간 초과 시 - 1 (휴게시간) -->
+                                <c:choose>
+                                    <c:when test="`+value.work_time >= 8+`">
+                                        `+(value.work_time-1)+`
+                                    </c:when>
+                                    <c:otherwise>
+                                        `+value.work_time+`
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    `;
+                    })
+                    return html;
+                }
+            }
+        });
+    })
+
+</script>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
-<script type="text/javascript">
+<script src="/assets/js/moment.js"></script>
+<script>
     updateRowsPerPage(17);
 </script>
 </body>

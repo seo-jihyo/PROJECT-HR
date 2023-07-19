@@ -161,7 +161,7 @@
               </div>
            	 </div>
             <div class="card-body">
-            <a href="/emp.do"><h4 class="mb-0">직원 관리하기</h4></a><br>
+            <a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br>
             <a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br>
             <a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br>
             <a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br>
