@@ -45,7 +45,7 @@ public class FrontRegisterController extends HttpServlet {
         RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
         UserService userService = new UserServiceImp();
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
-        WorkRecordService workRecordService= new WorkRecordServiceImp();
+        WorkRecordService workRecordService = new WorkRecordServiceImp();
         DashBoardService dashBoardService = new DashBoardServiceImp();
         SalaryService salaryService = new SalaryServiceImp();
         ActionForward forward = null;
@@ -91,7 +91,7 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/views/user/resetPwd.jsp");
         } else if (urlcommand.equals("/updatePwdok.do")) {
             forward = empService.updatePwd(request, response);
-        } 
+        }
 
         /* 직원 */
         else if (urlcommand.equals("/emp.do")) {
@@ -229,7 +229,7 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/workrecordInsertAtt.do")) {
             forward = workRecordService.insertRcd(request, response);
         } else if (urlcommand.equals("/searchWorkRecByDate.do")) {
-            workRecordService.searchWorkRecByDate(request,response);
+            workRecordService.searchWorkRecByDate(request, response);
         }
 
         /* 사용자 마이페이지 */
@@ -256,11 +256,11 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 대시보드 */
         else if (urlcommand.equals("/dashboard.do")) {
-        	forward = dashBoardService.selectAll(request, response);
+            forward = dashBoardService.selectAll(request, response);
         }
         /* 사용자 스케줄 */
-		else if(urlcommand.equals("/userSchedule.do")) {
-        	forward = userScheduleService.selectUserSchedule(request, response);
+        else if (urlcommand.equals("/userSchedule.do")) {
+            forward = userScheduleService.selectUserSchedule(request, response);
         }
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {

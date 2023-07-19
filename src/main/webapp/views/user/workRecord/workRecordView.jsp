@@ -163,7 +163,7 @@
     <div class="side">
         <!-- 출퇴근기록 생성 요청 -->
         <input type="checkbox" id="popup"><label class="labelBtn searchs" for="popup">+ 출퇴근기록 생성 요청</label>
-        <div class="modal" style="display: none;">
+        <div class="modal" style="display: hidden;">
             <div class="modal-content">
                 <label for="popup">x</label>
                 <h1>출퇴근기록 생성 요청</h1>
