@@ -417,7 +417,7 @@
 
 
     <div class="tab-scroll">
-        <table class="sec-table table-hover table">
+        <table class="sec-table table-hover table my-table">
             <thead class="thead">
 
             <tr>
@@ -470,6 +470,12 @@
         </table>
     </div>
 
+		<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 </section>
 <dialog>
     <h2 class="diatitle">직원 정보 수정하기</h2>

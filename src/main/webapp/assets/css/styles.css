@@ -424,3 +424,33 @@ textarea {
 	width: 100%;
     resize: none !important;
 }
+
+/* 페이징 */
+.pagination{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	align-items: center;
+}
+.pagination i{ 
+	margin-top:4px;
+	font-size: 17px;
+}
+#pagingNumbers{
+	list-style: none;
+}
+#pagingNumbers li{
+	float: left;
+} 
+#pagingNumbers li a {
+  text-decoration: none;
+  color: #999999;
+  padding: 7px;
+  font-size: 17px;
+}
+
+#pagingNumbers li a.active{
+	color:black;
+	background-color:white;
+} 

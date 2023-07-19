@@ -138,7 +138,7 @@
 
     <div class="tab-scroll">
 
-        <table class="sec-table table-hover table">
+        <table class="sec-table table-hover table my-table">
             <thead class="thead">
 
             <tr>
@@ -167,6 +167,12 @@
             </c:forEach>
             </tbody>
         </table>
+       	<div class="pagination">
+			<i class='bx bxs-chevron-left'></i>
+			<ol id="pagingNumbers">
+			</ol>
+			<i class='bx bxs-chevron-right'></i>		
+		</div>
 
     </div>
     <div>
