@@ -5,7 +5,7 @@
 
 <mapper namespace="dev">
 	<select id="selectAttCurrval" resultType="Integer">
-	    SELECT att_seq.CURRVAL FROM DUAL
+	    SELECT attseq.CURRVAL FROM DUAL
     </select>
 	<select id="selectByEmpNum" parameterType="Integer" resultType="com.kosa.hrsystem.dto.AttendanceDTO">
 		SELECT * FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM} AND ROWNUM=1 ORDER BY GO_WORK DESC
@@ -27,4 +27,5 @@
 		leave_work
 	FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM}
 	</select>
+	
 </mapper>
