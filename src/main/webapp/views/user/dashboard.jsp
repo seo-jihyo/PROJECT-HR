@@ -45,9 +45,7 @@
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">출근 인원</h5>
                       <span class="h2 font-weight-bold mb-0">
-							<c:forEach var="attcnt" items="${list}">
-							${attcnt.att_count}
-							</c:forEach>
+							${vo.att_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
@@ -55,7 +53,7 @@
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
                     <!-- <span class="text-nowrap">Since last month</span> -->
                   </p>
                 </div>
@@ -69,9 +67,7 @@
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">미출근 인원</h5>
                       <span class="h2 font-weight-bold mb-0">
-					   <c:forEach var="notcnt" items="${list}">
-                            ${notcnt.not_att_count}
-                        </c:forEach>
+                            ${vo.not_att_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
@@ -79,7 +75,7 @@
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i></span>
                     <!-- <span class="text-nowrap">Since last week</span> -->
                   </p>
                 </div>
@@ -93,9 +89,7 @@
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">퇴근 인원</h5>
                       <span class="h2 font-weight-bold mb-0">
-                      	<c:forEach var="leavecnt" items="${list}">
-                            ${leavecnt.leave_count}
-                        </c:forEach>
+                            ${vo.leave_count}명
                       </span>
                     </div>
                    <div class="col text-right">
@@ -103,7 +97,7 @@
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
                     <!-- <span class="text-nowrap">Since yesterday</span> -->
                   </p>
                 </div>
@@ -117,9 +111,7 @@
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">휴가 현황</h5>
                       <span class="h2 font-weight-bold mb-0">
-						<c:forEach var="vaccnt" items="${list}">
-                            ${vaccnt.vac_count}
-                        </c:forEach>
+                            ${vo.vac_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
@@ -127,7 +119,7 @@
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
                     <!-- <span class="text-nowrap">Since last month</span> -->
                   </p>
                 </div>

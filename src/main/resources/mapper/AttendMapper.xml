@@ -8,7 +8,11 @@
 	    SELECT attseq.CURRVAL FROM DUAL
     </select>
 	<select id="selectByEmpNum" parameterType="Integer" resultType="com.kosa.hrsystem.dto.AttendanceDTO">
-		SELECT * FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM} AND ROWNUM=1 ORDER BY GO_WORK DESC
+		SELECT *
+		FROM ATTENDANCE
+		WHERE EMP_NUM = #{emp_num}
+		ORDER BY go_work DESC
+			FETCH FIRST 1 ROW ONLY
 	</select>
     <insert id="insertAttendance" parameterType="com.kosa.hrsystem.dto.AttendanceDTO">
 		INSERT INTO ATTENDANCE(ATT_NUM,EMP_NUM,ATT_STATUS,GO_WORK) VALUES (ATTSEQ.NEXTVAL,#{emp_num},#{att_status},SYSDATE)
