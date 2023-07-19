@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//내 출퇴근정보 
 public class WorkRecordDTO {
 	private int att_num;	  	// 일렬번호 - ATTENDANCE
 	private int emp_num; 		// 사번 - EMP
@@ -21,6 +22,5 @@ public class WorkRecordDTO {
 	private int work_time;  	// 근무시간 - ATTENDANCE
 	private String work_name; 	// 근무유형 - WORK_SCHEDULE_TYPE 
 	private String att_status; 	// 근무상태 - ATTENDANCE 
-	//private List<WorkRecordDTO> rcdlist; //출퇴근기록
 		
 }
