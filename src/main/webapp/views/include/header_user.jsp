@@ -18,7 +18,7 @@
         <img class="reload" src="/assets/images/reload.png" onClick="window.location.reload()"/>
         <button class="logout" onclick="location.href='/logoutok.do'">로그아웃</button>
         <c:if test="${login.permission_type == 1}">
-            <button class="mode-btn" onclick="location.href='dashboard.do?cate=nav-home'">관리자 모드</button>
+            <button class="mode-btn" onclick="location.href='/dashboard.do?cate=nav-home'">관리자 모드</button>
         </c:if>
     </nav>
 </header>

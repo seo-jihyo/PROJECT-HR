@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
+import com.kosa.hrsystem.vo.DashBoardVO;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -45,6 +46,7 @@ public class FrontRegisterController extends HttpServlet {
         UserService userService = new UserServiceImp();
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
         WorkRecordService workRecordService= new WorkRecordServiceImp();
+        DashBoardService dashBoardService = new DashBoardServiceImp();
         SalaryService salaryService = new SalaryServiceImp();
         ActionForward forward = null;
 
@@ -247,11 +249,20 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/upload.do")) {
             forward = userService.uploadImage(request, response);
         }
-        /* 사용자 스케줄 */
-        else if (urlcommand.equals("/userSchedule.do")) {
-            forward = userScheduleService.selectUserSchedule(request, response);
+        /* 대시보드 */
+        else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectAttCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectNotAttCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectLeaveCnt(request, response);
+        } else if (urlcommand.equals("/dashBoard.do")) {
+        	forward = dashBoardService.selectVacCnt(request, response);
         }
-
+        /* 사용자 스케줄 */
+		else if(urlcommand.equals("/userSchedule.do")) {
+        	forward = userScheduleService.selectUserSchedule(request, response);
+        }
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {
             forward = requestHistoryService.selectAllByEmp(request, response);
@@ -284,7 +295,6 @@ public class FrontRegisterController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request, response);
     }
-
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doProcess(request, response);
