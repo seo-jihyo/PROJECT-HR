@@ -40,5 +40,6 @@
         <mapper resource="mapper/RequestHistoryMapper.xml" />
         <mapper resource="mapper/DashBoardMapper.xml" />
         <mapper resource="mapper/SalaryMapper.xml" />
+        
     </mappers>
 </configuration>

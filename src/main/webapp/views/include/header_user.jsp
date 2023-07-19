@@ -9,7 +9,6 @@
             <a href="/myPage.do">마이페이지</a>
         </nav>
     <nav class="top-nav">
-
         <div class="container">
             <input type="checkbox" class="toggle" id="rounded" name="att_status">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>
