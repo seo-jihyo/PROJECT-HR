@@ -29,10 +29,9 @@
             </div>
 
             <a class="nav_list"></a>
-            <a href="/dashBoard.do" class="nav_link active">
-            <a href="/?cate=nav-home" id="nav-home" class="nav_link">
+            <a href="/dashBoard.do/?cate=nav-home" id="nav-home" class="nav_link">
                 <i class='nav_icon bx bx-home'></i>
-                <span class="nav_name">메인</span>
+                <span class="nav_name">대쉬보드</span>
             </a>
             <a href="/workschedule.do?cate=nav-ws" id="nav-ws" class="nav_link">
                 <i class='nav_icon bx bx-calendar'></i>

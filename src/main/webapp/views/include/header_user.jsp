@@ -19,6 +19,9 @@
         <button class="logout" onclick="location.href='/logoutok.do'">로그아웃</button>
         <c:if test="${login.permission_type == 1}">
             <button class="mode-btn" onclick="location.href='dashboard.do?cate=nav-home'">관리자 모드</button>
+<!-- =======
+            <button class="mode-btn" onclick="location.href='/dashboard.do?cate=nav-home'">관리자 모드</button>
+>>>>>>> a58d5d9c186e2fa9c72c8414575e72c2d820b8f8 -->
         </c:if>
     </nav>
 </header>
