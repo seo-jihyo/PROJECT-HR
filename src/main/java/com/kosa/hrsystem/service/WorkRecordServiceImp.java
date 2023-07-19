@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.dao.RequestHistoryDAO;
 import com.kosa.hrsystem.dao.WorkRecordDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
-import com.kosa.hrsystem.dto.RequestDTO;
+import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.dto.WorkRecordDTO;
+import com.kosa.hrsystem.vo.CommuteRecordVO;
 
 public class WorkRecordServiceImp implements WorkRecordService {
 
@@ -36,46 +38,48 @@ public class WorkRecordServiceImp implements WorkRecordService {
 	    return forward;
 	}
 
+	//사용자 출퇴근기록 추가 요청
 	@Override
 	public ActionForward insertRcd(HttpServletRequest request, HttpServletResponse response) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-		try {
-		    int att_status = 0;
-		    
-		    int emp_num = Integer.parseInt(request.getParameter("emp_num"));
-		    char request_type = request.getParameter("request_type").charAt(0);
-		    String cmt_date = request.getParameter("cmt_date");
-		    Date go_work = sdfTime.parse(cmt_date + " " + request.getParameter("go_time"));
-		    Date leave_work = sdfTime.parse(cmt_date + " " + request.getParameter("leave_time"));
+	    try {
+	   	 HttpSession session = request.getSession();
+	     EmpDTO empdto = (EmpDTO) session.getAttribute("login");
+	     int empNum = empdto.getEmp_num();
+	     System.out.println("empnum: " + empNum);
+			
+			int att_status = 0;
+			String cmt_date = request.getParameter("cmt_date");
+			Date go_work = sdfTime.parse(cmt_date + " " + request.getParameter("go_work"));
+			Date leave_work = null;
+			
+				if (request.getParameter("leave_work") == null) {
+					 att_status = 1;
+				}else {
+					 leave_work = sdfTime.parse(cmt_date + " " + request.getParameter("leave_work"));
+				}
+			CommuteRecordVO vo = new CommuteRecordVO();
+			vo.setEmp_num(empNum);
+			vo.setGo_work(go_work);
+			vo.setLeave_work(leave_work);
+			
+			
+	        RequestHistoryDTO reqdto = new RequestHistoryDTO();
+	        reqdto.setEmp_num(empNum);
+	        reqdto.setRequest_type('A'); 
 
-		    WorkRecordDTO dto = new WorkRecordDTO();
-		    dto.setGo_work(go_work);
-		    dto.setLeave_work(leave_work);
-		    
-		    RequestDTO requestDTO = new RequestDTO();
-		    requestDTO.setEmp_num(emp_num);
-		    requestDTO.setRequest_type(request_type);		   
-
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
-		forward.setPath("/workrecord.do");
-		return forward;
-	}
-
-	@Override
-	public ActionForward updateRcd(HttpServletRequest request, HttpServletResponse response) {
-		return null;
-	}
-
-	@Override
-	public ActionForward deleteRcd(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		return null;
+	        RequestHistoryDAO dao = new RequestHistoryDAO();
+	        dao.insert(reqdto, vo);
+	        System.out.println("reqdto: " + reqdto);
+	        System.out.println("vo: " + vo);
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    }
+	    ActionForward forward = new ActionForward();
+	    forward.setRedirect(true);
+	    forward.setPath("/workrecord.do");
+	    return forward;
 	}
 }

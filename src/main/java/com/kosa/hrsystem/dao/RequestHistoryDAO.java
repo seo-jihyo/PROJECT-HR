@@ -36,7 +36,7 @@ public class RequestHistoryDAO {
 					seq = sqlSession.selectOne("selectWorkSchCurrval");
 					break;
 				case 'A': // 근태
-					result = sqlSession.insert("insertAttendance",dto);
+					result = sqlSession.insert("insertRecord",dto);
 					seq = sqlSession.selectOne("selectAttCurrval");
 					break;
 			}
