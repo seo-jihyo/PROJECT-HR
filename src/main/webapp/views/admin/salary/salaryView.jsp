@@ -21,6 +21,7 @@
   <title>급여</title>
   
 <style type="text/css">
+
 	.salery-emp {
 		font-size: 15px;
 		padding: 5px 0;

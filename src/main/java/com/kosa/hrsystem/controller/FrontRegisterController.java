@@ -241,6 +241,12 @@ public class FrontRegisterController extends HttpServlet {
             forward = requestHistoryService.selectAllByEmp(request,response);
         }
 
+        else if(urlcommand.equals("/userScheduleInsertVac.do")) {
+        	forward = userScheduleService.UserScheduleInsetVac(request, response);
+        }
+        else if(urlcommand.equals("/userScheduleInsertWork.do")) {
+        	forward = userScheduleService.UserScheduleInsetWork(request, response);
+        }
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);

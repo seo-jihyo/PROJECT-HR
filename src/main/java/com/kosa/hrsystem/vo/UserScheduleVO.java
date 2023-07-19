@@ -26,6 +26,7 @@ public class UserScheduleVO {
 	private Date vctn_start_date;
 	private Date vctn_end_date;
 	private String vctn_name;
+	private int vctn_type_num;
 	
 	// 근무일정 조회
 	private Date schedule;
