@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
 	<style type="text/css">
-body{
-	padding: 0px 0px 0px 0px;
-}
+
 .tab-scroll{
 	margin-left:20px;
 }

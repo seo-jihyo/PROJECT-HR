@@ -19,7 +19,7 @@
 body{
     position:relative;
     margin:0;
-    padding:0 0 6.75rem;
+    padding:0;
     transition:.5s
 }
 body-pd{
