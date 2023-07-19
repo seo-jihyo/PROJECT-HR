@@ -15,4 +15,8 @@ public interface CommuteRecordService {
 
 	public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
 
+	public void searchByDateAtt(HttpServletRequest request, HttpServletResponse response);
+
+	public void searchTotalAtt(HttpServletRequest request, HttpServletResponse response);
+
 }
