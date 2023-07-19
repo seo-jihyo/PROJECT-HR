@@ -245,7 +245,11 @@ public class FrontRegisterController extends HttpServlet {
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);
+        } else if (urlcommand.equals("/approvalok.do")) {
+            requestHistoryService.approval(request,response);
         }
+
+
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"
                 response.sendRedirect(forward.getPath());
