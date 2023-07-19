@@ -16,21 +16,11 @@
             t.work_name,
             t.work_sch_type_num,
             w.work_sch_num,
-            d.code_name dept_code,
-            d.code_value dept,
-            r.code_name rank_code,
-            r.code_value rank,
             w.remarks
-        FROM
-            (
-                (
-                    work_schedule w
-                    INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
-                )
-                INNER JOIN emp                e ON e.emp_num = w.emp_num
-            )
-            INNER JOIN code_table         d ON d.code_name = e.dept
-            INNER JOIN code_table         r ON r.code_name = e.rank 
+        FROM work_schedule w
+              INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
+			  INNER JOIN emp  e ON e.emp_num = w.emp_num
+             
             where 1=1
             <choose>
                 <when test = "searchType == 'empNum'.toString()">
@@ -42,11 +32,8 @@
                 <when test = "searchType == 'workType'.toString()">
                     AND work_name like '%' || #{searchWord} || '%'
                 </when>
-                <when test = "searchType == 'rank'.toString()">
-                    AND r.code_value like '%' || #{searchWord} || '%'
-                </when>
             </choose>
-            order by schedule desc
+            order by w.go_work desc
 	</select>
 	<select id="searchByDate" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
@@ -57,22 +44,12 @@
             t.work_name,
             t.work_sch_type_num,
             w.work_sch_num,
-            d.code_name dept_code,
-            d.code_value dept,
-            r.code_name rank_code,
-            r.code_value rank,
             w.remarks
-        FROM
-            (
-                (
-                    work_schedule w
-                    INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
-                )
-                INNER JOIN emp                e ON e.emp_num = w.emp_num
-            )
-            INNER JOIN code_table         d ON d.code_name = e.dept
-            INNER JOIN code_table         r ON r.code_name = e.rank 
-            where schedule BETWEEN #{startDate} AND #{endDate} order by schedule desc
+        FROM work_schedule w
+            INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
+            INNER JOIN emp e ON e.emp_num = w.emp_num
+
+            where to_char(w.go_work,'yyyy-MM-dd') >= #{startDate} AND to_char(w.leave_work,'yyyy-MM-dd') <![CDATA[ <= ]]> #{endDate} order by w.go_work desc
 	</select>
 	<select id="selectAllWorkSchedule" parameterType="Integer" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
@@ -88,6 +65,7 @@
             work_schedule w
             INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num              
             INNER JOIN emp e ON e.emp_num = w.emp_num
+            order by w.go_work desc
 	</select>
 	<insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
 		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{emp_num},#{go_work},#{leave_work},#{remarks})

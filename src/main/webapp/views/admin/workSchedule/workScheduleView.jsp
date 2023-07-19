@@ -140,8 +140,8 @@
 			let html='';
 			data.forEach(value => {
                 const schedule = moment(value.schedule, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
-                const goWork = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
-                const leaveWork = moment(value.leave_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+                const goWork = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm');
+                const leaveWork = moment(value.leave_work, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm');
 
                 html += `
                <tr 
@@ -149,28 +149,22 @@
                     data-work-sch-type-num="`+value.work_sch_type_num+`"
                     data-emp-num="`+value.emp_num+`"
                     data-emp-name="`+value.emp_name+`"
-                    data-schedule="`+schedule+`"
                     data-go-work="`+goWork+`"
                     data-leave-work="`+leaveWork+`"
                     data-work-name="`+value.work_name+`"
-                    data-restTime="`+value.totalTime/4+`" data-dept="`+value.dept+`"
-                    data-dept-code="`+value.dept_code+`" data-rank="`+value.rank+`"
-                    data-rank-code="`+value.rank_code+`"
                     data-remarks="`+value.remarks+`"
-                    data-totalTime="`+value.totalTime+`">
+                    >
 
                     <th><input type='checkbox' name='chk[]'
                         onclick="isAllCheck(this.name, 'chkAll');"></th>
                     <td>`+value.emp_num+`</td>
                     <td>`+value.emp_name+`</td>
-                    <td>`+schedule+`</td>
-                    <td>`+goWork+`~`+leaveWork+`</td>
+                    <td>`+goWork+`</td>
+                    <td>`+leaveWork+`</td>
                     <td>`+value.work_name+`</td>
-                    <td>`+value.totalTime/4+`시간</td>
-                    <td>`+value.rank+`</td>
                     <td
                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">`+value.remarks+`</td>
-                    <td>`+value.totalTime+`시간</td>
+                    
                 </tr>
                 `;
             })
@@ -193,7 +187,6 @@
 					<option value="empNum">사원번호</option>
 					<option value="empName">직원</option>
 					<option value="workType">근무일정유형</option>
-					<option value="rank">직급</option>
 				</select> <input type="text" class="search searchs"> <input
 					type="button" class="searchbtn" value="검 색"> <input
 					type="checkbox" id="popup" onclick="resetForm()"> <label
@@ -211,10 +204,6 @@
 						<form method="get" action="/workscheduleok.do" id="frm">
 							<table class="ws-table">
 								<tr class="modal-tr">
-									<td>날짜</td>
-									<td><input type="date" name="ws-date" class="ws-date"></td>
-								</tr>
-								<tr class="modal-tr">
 									<td>근무일정 유형</td>
 									<td><select name="ws-type" id="workType">
 											<c:forEach var="list" items="${tlist}">
@@ -223,21 +212,6 @@
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
-									<td>부서</td>
-									<td><select name="ws-dept" id="group">
-											<c:forEach var="list" items="${optDept}">
-												<option value="${list.code_name}">${list.code_value}</option>
-											</c:forEach>
-									</select></td>
-								</tr>
-								<tr class="modal-tr">
-									<td>직급</td>
-									<td><select name="ws-rank" id="job">
-											<c:forEach var="list" items="${optRank}">
-												<option value="${list.code_name}">${list.code_value}</option>
-											</c:forEach>
-									</select></td>
-								</tr>
 								<tr class="modal-tr">
 									<td>직원</td>
 									<td><select name="emp-name" id="emp-name">
@@ -247,12 +221,12 @@
 									</select></td>
 								</tr>
 								<tr class="modal-tr">
-									<td>시간</td>
-									<td><input type="time" name="startTime" class="startTime"
-										onKeyup="inputTimeColon(this);" placeholder="출근시간"
-										maxlength="5" />&nbsp;&nbsp;-&nbsp; <input type="time"
-										name="endTime" class="endTime" onKeyup="inputTimeColon(this);"
-										placeholder="퇴근시간" maxlength="5" /></td>
+								<td>근무 시작 시간</td>
+								<td><input type="datetime-local" name="startTime" /></td>
+								</tr>
+								<tr class="modal-tr">
+								<td>근무 종료 시간</td>
+								<td><input type="datetime-local" name="endTime" /></td>
 								</tr>
 								<tr class="modal-tr">
 									<td>일정노트</td>
@@ -364,24 +338,13 @@
 		$workScheduleNum = $(this).data("work-sch-num")
 		$empNum = $(this).data("emp-num")
 		$empName = $(this).data("emp-name")
-		$schedule = $(this).data("schedule")
 		$goWork = $(this).data("go-work")
 		$leaveWork = $(this).data("leave-work")
 		$workName = $(this).data("work-name")
-		$restTime = $(this).data("restTime")
-		$dept = $(this).data("dept")
-		$deptCode = $(this).data("dept-code")
-		$rank = $(this).data("rank")
-		$rankCode = $(this).data("rank-code")
 		$remarks = $(this).data("remarks")
 		$workScheduleTypeNum = $(this).data("work-sch-type-num");
 		let str = `
 			<input type="hidden" name="ws-num" value="` + $workScheduleNum + `">
-			<tr class="modal-tr">
-				<td>날짜</td>
-				<td><input type="date" name="ws-date" class="ws-date" value="` + $schedule + `"></td>
-			</tr>
-			
 			<tr class="modal-tr">
 				<td>근무일정 유형</td>
 				<td>
@@ -393,34 +356,18 @@
 				</td>
 			</tr>
 			<tr class="modal-tr">
-				<td>부서</td>
-				<td>
-					<input type="hidden" name="ws-dept" id="group" value="`+$deptCode+`" readonly>
-					`+$dept+`
-				</td>
-			</tr>
-			<tr class="modal-tr">
-				<td>직급</td>
-				<td>
-					<input type="hidden" name="ws-rank" id="job" value="`+$deptCode+`" readonly>
-					`+$rank+`
-				</td>
-			</tr>
-			<tr class="modal-tr">
 				<td>직원</td>
 				<td>
 					<input type="hidden" name="emp-name" id="emp-name" value="`+$empNum+`" readonly>
 					`+$empName+`
 				</td>
 			</tr>
+			<td>근무 시작 시간</td>
+			<td><input type="datetime-local" name="startTime" value="`+$goWork+`"/></td>
+			</tr>
 			<tr class="modal-tr">
-				<td>시간</td>
-				<td>
-					<input type="time" name="startTime" class="startTime" value="` + $goWork + `"
-					onKeyup="inputTimeColon(this);" placeholder="출근시간" maxlength="5" />&nbsp;&nbsp;-&nbsp;
-					<input type="time" name="endTime" class="endTime" value="` + $leaveWork + `"
-					onKeyup="inputTimeColon(this);" placeholder="퇴근시간" maxlength="5" />
-				</td>
+			<td>근무 종료 시간</td>
+			<td><input type="datetime-local" name="endTime" value="`+$leaveWork+`"/></td>
 			</tr>
 			<tr class="modal-tr">
 			<td>일정노트</td>
@@ -474,6 +421,7 @@ function textLengthOverCut(txt, len, lastTxt) {
 	<script>
 	
 	updateRowsPerPage(18);
+	
     /* 오늘 날짜 출력 js */
     var date = new Date();
     var week = ['일', '월', '화', '수', '목', '금', '토'];
