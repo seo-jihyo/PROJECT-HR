@@ -68,4 +68,12 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return list;
 	}
+	
+	// 요청내역 미승인 개수 출력
+	public int selectNonApproveCount() {
+		SqlSession sqlSession = factory.openSession();
+		int result = sqlSession.selectOne("selectNonApproveCount");
+		sqlSession.close();
+		return result;
+	}
 }
