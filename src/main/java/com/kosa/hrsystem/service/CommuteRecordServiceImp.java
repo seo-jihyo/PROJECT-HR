@@ -3,6 +3,7 @@ package com.kosa.hrsystem.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.CommuteRecordDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.vo.CommuteRecordVO;
 import com.kosa.hrsystem.vo.EmpVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class CommuteRecordServiceImp implements CommuteRecordService {
 
@@ -124,6 +128,61 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 		forward.setRedirect(true);
 		forward.setPath("/cmtrecord.do");
 		return forward;
+	}
+
+	@Override
+	public void searchByDateAtt(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String startDate = request.getParameter("datepicker1");
+		String endDate = request.getParameter("datepicker2");
+		
+		try {
+			HashMap<String, Date> map = new HashMap<>();
+			map.put("startDate", sdf.parse(startDate));
+			map.put("endDate", sdf.parse(endDate));
+
+			CommuteRecordDAO dao = new CommuteRecordDAO();
+			List<CommuteRecordVO> list = dao.searchByDateAtt(map);
+
+            Gson gson = new Gson();
+            String json = gson.toJson(list);
+            System.out.println(json);
+            
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void searchTotalAtt(HttpServletRequest request, HttpServletResponse response) {
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		System.out.println(searchType); System.out.println(searchWord);
+		try {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchWord", searchWord);
+			
+			CommuteRecordDAO dao = new CommuteRecordDAO();
+			List<CommuteRecordVO> list = dao.searchTotalAtt(map);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
