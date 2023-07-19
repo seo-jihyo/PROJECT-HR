@@ -530,8 +530,10 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script src="/assets/js/main.js"></script>
    <script type="text/javascript" src="/assets/js/modal.js"></script>
-   <script>
-   
+
+   <script type="text/javascript">
+   	updateRowsPerPage(18);
+   	
    $("#sendEmail").click(function(){
       $frm = $("#frm").serialize();
       $.ajax({

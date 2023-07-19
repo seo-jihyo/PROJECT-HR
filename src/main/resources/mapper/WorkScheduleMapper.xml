@@ -11,7 +11,6 @@
 		SELECT
             e.emp_num,
             e.emp_name,
-            w.schedule,
             w.go_work,
             w.leave_work,
             t.work_name,
@@ -21,14 +20,7 @@
             d.code_value dept,
             r.code_name rank_code,
             r.code_value rank,
-            w.remarks,
-            round(
-                (TO_DATE(to_char(
-                    leave_work, 'HH24:MI'
-                ), 'HH24:MI') - TO_DATE(to_char(
-                    go_work, 'HH24:MI'
-                ), 'HH24:MI')) * 24, 2
-            )            totaltime
+            w.remarks
         FROM
             (
                 (
@@ -60,7 +52,6 @@
 		SELECT
             e.emp_num,
             e.emp_name,
-            w.schedule,
             w.go_work,
             w.leave_work,
             t.work_name,
@@ -70,14 +61,7 @@
             d.code_value dept,
             r.code_name rank_code,
             r.code_value rank,
-            w.remarks,
-            round(
-                (TO_DATE(to_char(
-                    leave_work, 'HH24:MI'
-                ), 'HH24:MI') - TO_DATE(to_char(
-                    go_work, 'HH24:MI'
-                ), 'HH24:MI')) * 24, 2
-            )            totaltime
+            w.remarks
         FROM
             (
                 (
@@ -90,46 +74,27 @@
             INNER JOIN code_table         r ON r.code_name = e.rank 
             where schedule BETWEEN #{startDate} AND #{endDate} order by schedule desc
 	</select>
-	<select id="selectAllWorkSchedule" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
+	<select id="selectAllWorkSchedule" parameterType="Integer" resultType="com.kosa.hrsystem.vo.WorkScheduleVO">
 		SELECT
             e.emp_num,
             e.emp_name,
-            w.schedule,
             w.go_work,
             w.leave_work,
             t.work_name,
             t.work_sch_type_num,
             w.work_sch_num,
-            d.code_name dept_code,
-            d.code_value dept,
-            r.code_name rank_code,
-            r.code_value rank,
-            w.remarks,
-            round(
-                (TO_DATE(to_char(
-                    leave_work, 'HH24:MI'
-                ), 'HH24:MI') - TO_DATE(to_char(
-                    go_work, 'HH24:MI'
-                ), 'HH24:MI')) * 24, 2
-            )            totaltime
+            w.remarks
         FROM
-            (
-                (
-                    work_schedule w
-                    INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num
-                )
-                INNER JOIN emp                e ON e.emp_num = w.emp_num
-            )
-            INNER JOIN code_table         d ON d.code_name = e.dept
-            INNER JOIN code_table         r ON r.code_name = e.rank 
+            work_schedule w
+            INNER JOIN work_schedule_type t ON w.work_sch_type_num = t.work_sch_type_num              
+            INNER JOIN emp e ON e.emp_num = w.emp_num
 	</select>
 	<insert id="insertWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
-		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{schedule},#{emp_num},#{go_work},#{leave_work},#{remarks})
+		insert into work_schedule values (ws_seq.nextval,#{work_sch_type_num},#{emp_num},#{go_work},#{leave_work},#{remarks})
 	</insert>
 	<update id="updateWorkSchedule" parameterType="com.kosa.hrsystem.dto.WorkScheduleDTO">
 		update work_schedule set 
 		    work_sch_type_num = #{work_sch_type_num},
-		    schedule = #{schedule},
 		    emp_num = #{emp_num},
 		    go_work = #{go_work},
 		    leave_work = #{leave_work},
@@ -142,7 +107,8 @@
 	<!-- 스케줄 근무일정 조회 -->
 	<select id="selectWork" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
 	SELECT 
-    	ws.schedule,  
+    	ws.go_work wsgowork,
+    	ws.leave_work wsleavework, 
     	wst.work_name
 	FROM 
     	work_schedule ws

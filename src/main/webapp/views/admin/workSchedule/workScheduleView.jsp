@@ -283,13 +283,10 @@
 						onclick="allCheckboxes('chk[]', this.checked)"></th>
 					<th>사원번호</th>
 					<th>직원</th>
-					<th>날짜</th>
-					<th>일정시간</th>
+					<th>근무 시작 시간</th>
+					<th>근무 종료 시간</th>
 					<th>근무일정 유형</th>
-					<th>휴게시간</th>
-					<th>직급</th>
 					<th>일정노트</th>
-					<th>총 시간</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -298,30 +295,22 @@
 						data-work-sch-type-num="${wsList.work_sch_type_num}"
 						data-emp-num="${wsList.emp_num}"
 						data-emp-name="${wsList.emp_name}"
-						data-schedule='<fmt:formatDate value="${wsList.schedule}" pattern="yyyy-MM-dd" />'
-						data-go-work='<fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />'
-						data-leave-work='<fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" />'
+						data-go-work='<fmt:formatDate value="${wsList.go_work}" pattern="yyyy-MM-dd HH:mm" />'
+						data-leave-work='<fmt:formatDate value="${wsList.leave_work}" pattern="yyyy-MM-dd HH:mm" />'
 						data-work-name="${wsList.work_name}"
-						data-restTime="${wsList.totalTime/4}" data-dept="${wsList.dept}"
-						data-dept-code="${wsList.dept_code}" data-rank="${wsList.rank}"
-						data-rank-code="${wsList.rank_code}"
 						data-remarks="${wsList.remarks}"
-						data-totalTime="${wsList.totalTime}">
+						>
 
 						<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
 						<td>${wsList.emp_num}</td>
 						<td>${wsList.emp_name}</td>
-						<td><fmt:formatDate value="${wsList.schedule}"
-								pattern="yyyy-MM-dd" /></td>
-						<td><fmt:formatDate value="${wsList.go_work}" pattern="HH:mm" />
-							~ <fmt:formatDate value="${wsList.leave_work}" pattern="HH:mm" /></td>
+						<td><fmt:formatDate value="${wsList.go_work}" pattern="yyyy-MM-dd HH:mm" /></td>
+						<td><fmt:formatDate value="${wsList.leave_work}" pattern="yyyy-MM-dd HH:mm" /></td>
 						<td>${wsList.work_name}</td>
-						<td>${wsList.totalTime/4}시간</td>
-						<td>${wsList.rank}</td>
+
 						<td
 							style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${wsList.remarks}</td>
-						<td>${wsList.totalTime}시간</td>
 					</tr>
 				</c:forEach>
 
@@ -483,6 +472,8 @@ function textLengthOverCut(txt, len, lastTxt) {
 
 </script>
 	<script>
+	
+	updateRowsPerPage(18);
     /* 오늘 날짜 출력 js */
     var date = new Date();
     var week = ['일', '월', '화', '수', '목', '금', '토'];
@@ -493,8 +484,11 @@ function textLengthOverCut(txt, len, lastTxt) {
 
     document.getElementById("current_date").innerHTML = "(" + month + "월 " + day + "일 " + ", " + dayOfWeek + ")";
 </script>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+	updateRowsPerPage(18);
+</script>
 	<!-- js -->
-	<script src="/assets/js/main.js"></script>
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script type="text/javascript" src="/assets/js/moment.js"></script>
 </body>
