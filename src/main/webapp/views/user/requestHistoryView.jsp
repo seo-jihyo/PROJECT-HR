@@ -49,41 +49,57 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>휴가 생성</td>
-            <td>송기석</td>
-            <td>6월30일/병가(8h,0일)</td>
-            <td>배가아파요</td>
-            <td>거절됨<br>이재경(X)</td>
-            <td>꾀병인듯</td>
-            <td>06/30 14:12</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>휴가 생성</td>
-            <td>송기석</td>
-            <td>6월30일/병가(8h,0일)</td>
-            <td>배가아파요</td>
-            <td>대기<br>이재경()</td>
-            <td></td>
-            <td>06/30 14:12</td>
-            <td>
-                <button onclick="">취소</button>
-            </td>
-        </tr>
-        <tr>
-            <td>휴가 생성</td>
-            <td>송기석</td>
-            <td>6월30일/병가(8h,0일)</td>
-            <td>배가아파요</td>
-            <td>승인<br>이재경(O)</td>
-            <td></td>
-            <td>06/30 14:12</td>
-            <td>
-            </td>
-        </tr>
+        <c:forEach items="${list}" var="requestList">
+            <tr>
+                <td>${requestList.request_type == 'A' ? '출퇴근 요청' :
+                        requestList.request_type == 'W' ? '근무일정 요청' :
+                                requestList.request_type == 'V' ? '휴가 요청' :''}</td>
+                <td>${requestList.emp_name}</td>
+                <td>
+                    <c:if test="${requestList.request_type == 'V'}">
+                        <fmt:formatDate value="${requestList.start_date}" pattern="yy-MM-dd"/>&nbsp;~&nbsp;
+                        <fmt:formatDate value="${requestList.end_date}" pattern="yy-MM-dd"/>/${requestList.special_note!=null?requestList.special_note:""}
+                    </c:if>
+                    <c:if test="${requestList.request_type != 'V'}">
+                        <fmt:formatDate value="${requestList.start_date}" pattern="yy-MM-dd HH:mm"/>&nbsp;~&nbsp;
+                        <fmt:formatDate value="${requestList.end_date}" pattern="yy-MM-dd HH:mm"/>${requestList.special_note!=null?"/"+requestList.special_note:""}
+                    </c:if>
+                </td>
+                <td>${requestList.request_reason}</td>
+                <td>${requestList.state == 0 ? '대기' : (requestList.state == 1 ? '승인' : (requestList.state == 2 ? '거절' : (requestList.state == 3 ? '취소' : '알 수 없음')))}</td>
+                <td>${requestList.approver_note}</td>
+                <td>${requestList.application_date}</td>
+                <td>
+                    <c:if test="${requestList.state == 0}">
+                        <button type="button" onclick="approvalBtn(this,'cancle')" data-rqst-num="${requestList.rqst_hstry_num}" class="approve">취소</button>
+                    </c:if>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 <script src="/assets/js/main.js"></script>
+<script>
+    function approvalBtn(btn,approval){
+        const rqstNum = $(btn).data("rqst-num");
+        if(!confirm("취소하시겠습니까?")) return
+        $.ajax({
+            url : "/approvalok.do?approval="+approval,
+            type : "get",
+            data : {"rqstNum":rqstNum},
+            dataType : "json",
+            success : sucFuncJson,
+            error : errFunc
+        });
+
+        function sucFuncJson(){
+            alert("승인되었습니다.");
+            window.location.reload();
+        }
+        function errFunc(error){
+            console.log(error)
+        }
+    }
+</script>
 </body>
 </html>

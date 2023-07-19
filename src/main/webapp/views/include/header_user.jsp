@@ -5,7 +5,7 @@
         <nav class="link-menu">
             <a href="/userSchedule.do">스케줄</a>
             <a href="/workrecord.do">출퇴근기록</a>
-            <a href="/views/user/requestHistoryView.jsp">요청 내역</a>
+            <a href="/userRequesthistory.do">요청 내역</a>
             <a href="/myPage.do">마이페이지</a>
         </nav>
     <nav class="top-nav">

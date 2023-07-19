@@ -61,4 +61,11 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return result;
 	}
+
+	public List<RequestHistoryVO> selectAllByEmp(int empNum) {
+		SqlSession sqlSession = factory.openSession();
+		List<RequestHistoryVO> list = sqlSession.selectList("selectAllByEmp",empNum);
+		sqlSession.close();
+		return list;
+	}
 }

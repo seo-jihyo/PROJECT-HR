@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
+import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.vo.RequestHistoryVO;
 
@@ -57,24 +59,44 @@ public class RequestHistoryServiceImp implements RequestHistoryService {
     @Override
     public void approval(HttpServletRequest request, HttpServletResponse response) {
         // 승인
-        boolean flag = Boolean.parseBoolean(request.getParameter("approval"));
+        String approval = request.getParameter("approval");
         String rqstNum = request.getParameter("rqstNum");
         String remarks = request.getParameter("remarks");
 
         RequestHistoryDAO requestHistoryDAO = new RequestHistoryDAO();
         HashMap<String,Object> map = new HashMap<>();
-        if (flag) {
+        if (approval.equals("true")) {
             map.put("rqstNum",rqstNum);
             map.put("remarks",remarks);
             map.put("state",1);
             requestHistoryDAO.update(map);
-        } else {
+        } else if(approval.equals("false")){
             map.put("rqstNum",rqstNum);
             map.put("remarks",remarks);
             map.put("state",2);
             requestHistoryDAO.update(map);
+        } else if(approval.equals("cancle")){
+            map.put("rqstNum",rqstNum);
+            map.put("remarks",null);
+            map.put("state",3);
+            requestHistoryDAO.update(map);
         }
 
+    }
+
+    @Override
+    public ActionForward selectAllByEmp(HttpServletRequest request, HttpServletResponse response) {
+        RequestHistoryDAO requestHistoryDAO = new RequestHistoryDAO();
+        HttpSession session = request.getSession();
+        EmpDTO dto = (EmpDTO) session.getAttribute("login");
+
+        List<RequestHistoryVO> list = requestHistoryDAO.selectAllByEmp(dto.getEmp_num());
+        System.out.println(list);
+        request.setAttribute("list" ,list);
+
+        ActionForward forward = new ActionForward();
+        forward.setPath("/views/user/requestHistoryView.jsp");
+        return forward;
     }
 
 
