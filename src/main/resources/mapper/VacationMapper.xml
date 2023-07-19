@@ -67,6 +67,7 @@
 	SELECT 
     	v.vctn_start_date,
     	v.vctn_end_date,
+    	vt.vctn_type_num,
     	vt.vctn_name
 	FROM 
     	vacation v

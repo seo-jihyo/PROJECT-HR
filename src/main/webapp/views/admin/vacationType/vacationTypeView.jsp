@@ -17,6 +17,7 @@
     
     <link rel="stylesheet" href="/assets/css/modal.css">
 <style type="text/css">
+
 dialog{
 	width: 520px;
 	height: 540px;

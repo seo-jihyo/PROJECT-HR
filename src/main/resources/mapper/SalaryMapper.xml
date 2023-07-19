@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="dev">
+	<select id="selectAllSalary" resultType="com.kosa.hrsystem.dto.SalaryDTO">
+		WITH basic_sal AS (
+			SELECT
+				e.emp_num,
+				NVL(w.pay, 0) * NVL(SUM(TRUNC((a.leave_work - a.go_work) * 24) -
+										CASE
+											WHEN (leave_work - go_work) * 24 >= 20 THEN 2.5
+											WHEN (leave_work - go_work) * 24 >= 16 THEN 2
+											WHEN (leave_work - go_work) * 24 >= 12 THEN 1.5
+											WHEN (leave_work - go_work) * 24 >= 8 THEN 1
+											WHEN (leave_work - go_work) * 24 >= 4 THEN 0.5
+											ELSE 0
+											END) * COUNT(go_work), 0) AS basic
+			FROM
+				emp e
+					JOIN
+				attendance a ON e.emp_num = a.emp_num
+					JOIN
+				work w ON e.work_num = w.work_num
+			GROUP BY
+				e.emp_num, w.pay
+		),
+			 bonus AS (
+				 SELECT
+					 c.emp_num,
+					 50000 * COUNT(*) AS 자격증수당
+				 FROM
+					 certificate c
+						 JOIN
+					 emp e ON c.emp_num = e.emp_num
+				 GROUP BY
+					 c.emp_num
+			 ),
+			 rank_bonus AS (
+				 SELECT
+					 e.emp_num,
+					 CASE
+						 WHEN c.code_value = '대리' THEN 10
+						 WHEN c.code_value = '과장' THEN 20
+						 WHEN c.code_value = '차장' THEN 30
+						 WHEN c.code_value = '부장' THEN 40
+						 ELSE 1
+						 END AS 직급수당
+				 FROM emp e join code_table c on e.rank = c.code_name
+			 ),
+			 annual_bonus AS (
+				 SELECT
+					 emp_num,
+					 50000 * FLOOR((TO_DATE(SYSDATE, 'yyyy-MM-dd') - TO_DATE(hire_date, 'yyyy-MM-dd')) / 365) AS 연차수당
+				 FROM
+					 emp
+			 )
+		SELECT
+		    rownum as sal_num,
+			e.emp_num,
+			e.emp_name,
+			b.basic AS basic,
+			nvl(Be.자격증수당, 0) AS bonus,
+			r.직급수당 AS directBenefits,
+			a.연차수당 as annualAllowance,
+			(b.basic + nvl(Be.자격증수당, 0) + r.직급수당 + a.연차수당) AS totalPay
+			-- 공제항목 및 실지급액 계산은 서버에서 수행하거나 트리거를 사용할 수 있습니다.
+		FROM
+			emp e
+				LEFT JOIN
+			basic_sal b ON e.emp_num = b.emp_num
+				LEFT JOIN
+			bonus Be ON e.emp_num = Be.emp_num
+				LEFT JOIN
+			rank_bonus r ON e.emp_num = r.emp_num
+				LEFT JOIN
+			annual_bonus a ON e.emp_num = a.emp_num
+	</select>
+</mapper>

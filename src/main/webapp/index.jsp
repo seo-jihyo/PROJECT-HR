@@ -19,14 +19,14 @@
 
 <c:choose>
     <c:when test="${login.permission_type == 1}">
-        <c:redirect url="views/user/dashboard.jsp"></c:redirect>
+        <c:redirect url="/dashboard.do?cate=nav-home"></c:redirect>
 
     </c:when>
     <c:when test="${login.permission_type == 0}">
-        <c:redirect url="views/user/userScheduleView.jsp"></c:redirect>
+        <c:redirect url="/userSchedule.do"></c:redirect>
     </c:when>
     <c:otherwise>
-        <c:redirect url="views/user/login.jsp"></c:redirect>
+        <c:redirect url="/login.do"></c:redirect>
     </c:otherwise>
 </c:choose>
 

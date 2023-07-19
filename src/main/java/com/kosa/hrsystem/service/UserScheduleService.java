@@ -9,4 +9,8 @@ public interface UserScheduleService {
 
 	public ActionForward selectUserSchedule(HttpServletRequest request, HttpServletResponse response);
 
+	public ActionForward UserScheduleInsetVac(HttpServletRequest request, HttpServletResponse response);
+
+	public ActionForward UserScheduleInsetWork(HttpServletRequest request, HttpServletResponse response);
+
 }

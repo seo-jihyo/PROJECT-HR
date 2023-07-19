@@ -27,6 +27,7 @@
 <title>근로정보</title>
 
 <style type="text/css">
+
 .ws-table {
 	height: 400px;
 }

@@ -47,6 +47,7 @@ public class FrontRegisterController extends HttpServlet {
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
         WorkRecordService workRecordService= new WorkRecordServiceImp();
         DashBoardService dashBoardService = new DashBoardServiceImp();
+        SalaryService salaryService = new SalaryServiceImp();
         ActionForward forward = null;
 
         /* 공통 */
@@ -70,14 +71,14 @@ public class FrontRegisterController extends HttpServlet {
             attendanceService.toggleAtt(request, response);
             // 출퇴근 체크 요청
             // 근태 상태로 db에 삽입할지 업데이트 할지 정해야함 가져올건? 근무 상태
-            boolean attStatus = attendanceService.checkedAtt(request, response);
-            if (attStatus) {// 출근시
-                System.out.println("출근" + attStatus);
-                attendanceService.update(request, response);
-            } else {
-                System.out.println("퇴근" + attStatus);
-                attendanceService.insert(request, response);
-            }
+//            boolean attStatus = attendanceService.checkedAtt(request, response);
+//            if (attStatus) {// 출근시
+//                System.out.println("출근" + attStatus);
+//                attendanceService.update(request, response);
+//            } else {
+//                System.out.println("퇴근" + attStatus);
+//                attendanceService.insert(request, response);
+//            }
         } else if (urlcommand.equals("/searchId.do")) {
             forward = new ActionForward();
             forward.setPath("/views/user/searchId.jsp");
@@ -90,6 +91,9 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/views/user/resetPwd.jsp");
         } else if (urlcommand.equals("/updatePwdok.do")) {
             forward = empService.updatePwd(request, response);
+        } else if (urlcommand.equals("/dashboard.do")) {
+            forward = new ActionForward();
+            forward.setPath("/views/user/dashboard.jsp");
         }
 
         /* 직원 */
@@ -102,6 +106,18 @@ public class FrontRegisterController extends HttpServlet {
             forward = empService.update(request, response);
         } else if (urlcommand.equals("/empdelete.do")) {
             forward = empService.delete(request, response);
+        } else if (urlcommand.equals("/careerselectByManager.do")) {
+            forward = empService.selectCareerByManager(request, response);
+        } else if (urlcommand.equals("/careerInsertByManager.do")) {
+            forward = empService.insertCareerByManager(request, response);
+        } else if (urlcommand.equals("/careerDeleteByManager.do")) {
+            forward = empService.deleteCareerByManager(request, response);
+        } else if (urlcommand.equals("/certSelectByManager.do")) {
+            forward = empService.selectCertByManager(request, response);
+        } else if (urlcommand.equals("/certInsertByManager.do")) {
+            forward = empService.insertCertByManager(request, response);
+        } else if (urlcommand.equals("/certDeleteByManager.do")) {
+            forward = empService.deleteCertByManager(request, response);
         }
 
         /* 부서 */
@@ -161,9 +177,9 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/addwork.do")) {
             forward = workService.insert(request, response);
         } else if (urlcommand.equals("/workupdate.do")) {
-            forward = workService.update(request,response);
+            forward = workService.update(request, response);
         } else if (urlcommand.equals("/workdelete.do")) {
-            forward = workService.delete(request,response);
+            forward = workService.delete(request, response);
         }
         /* 근무일정 / 유형 */
         else if (urlcommand.equals("/workschedule.do")) {
@@ -206,32 +222,32 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 사용자 출퇴근기록 */
         else if (urlcommand.equals("/workrecord.do")) {
-           forward = workRecordService.selectAllRcd(request, response);
+            forward = workRecordService.selectAllRcd(request, response);
         } else if (urlcommand.equals("/workrecordInsertAtt.do")) {
-           forward = workRecordService.insertRcd(request, response);
+            forward = workRecordService.insertRcd(request, response);
         }
 
         /* 사용자 마이페이지 */
-        else if(urlcommand.equals("/myPage.do")) {
-        	forward = userService.selectOneUser(request, response);
-        } else if(urlcommand.equals("/myInfoUpdate.do")) {
-        	forward = userService.updateOneUser(request, response);
-        } else if(urlcommand.equals("/certInsertok.do")) {
-        	forward = userService.insertCert(request, response);
-        } else if(urlcommand.equals("/certUpdate.do")) {
-        	forward = userService.updateCert(request, response);
-        } else if(urlcommand.equals("/certDelete.do")) {
-        	forward = userService.deleteCert(request, response);
-        } else if(urlcommand.equals("/careerSelect.do")) {
-        	forward = userService.selectCareer(request, response);
-        } else if(urlcommand.equals("/careerInsert.do")) {
-        	forward = userService.insertCareer(request, response);
-        } else if(urlcommand.equals("/careerUpdate.do")) {
-        	forward = userService.updateCareer(request, response);
-        } else if(urlcommand.equals("/careerDelete.do")) {
-        	forward = userService.deleteCareer(request, response);
-        } else if(urlcommand.equals("/upload.do")) {
-        	forward = userService.uploadImage(request, response);
+        else if (urlcommand.equals("/myPage.do")) {
+            forward = userService.selectOneUser(request, response);
+        } else if (urlcommand.equals("/myInfoUpdate.do")) {
+            forward = userService.updateOneUser(request, response);
+        } else if (urlcommand.equals("/certInsertok.do")) {
+            forward = userService.insertCert(request, response);
+        } else if (urlcommand.equals("/certUpdate.do")) {
+            forward = userService.updateCert(request, response);
+        } else if (urlcommand.equals("/certDelete.do")) {
+            forward = userService.deleteCert(request, response);
+        } else if (urlcommand.equals("/careerSelect.do")) {
+            forward = userService.selectCareer(request, response);
+        } else if (urlcommand.equals("/careerInsert.do")) {
+            forward = userService.insertCareer(request, response);
+        } else if (urlcommand.equals("/careerUpdate.do")) {
+            forward = userService.updateCareer(request, response);
+        } else if (urlcommand.equals("/careerDelete.do")) {
+            forward = userService.deleteCareer(request, response);
+        } else if (urlcommand.equals("/upload.do")) {
+            forward = userService.uploadImage(request, response);
         }
         /* 대시보드 */
         else if (urlcommand.equals("/dashBoard.do")) {
@@ -244,20 +260,25 @@ public class FrontRegisterController extends HttpServlet {
         	forward = dashBoardService.selectVacCnt(request, response);
         }
         /* 사용자 스케줄 */
-		 else if(urlcommand.equals("/userSchedule.do")) {
+		else if(urlcommand.equals("/userSchedule.do")) {
         	forward = userScheduleService.selectUserSchedule(request, response);
         }
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {
-            forward = requestHistoryService.selectAllByEmp(request,response);
+            forward = requestHistoryService.selectAllByEmp(request, response);
+        } else if (urlcommand.equals("/userScheduleInsertVac.do")) {
+            forward = userScheduleService.UserScheduleInsetVac(request, response);
+        } else if (urlcommand.equals("/userScheduleInsertWork.do")) {
+            forward = userScheduleService.UserScheduleInsetWork(request, response);
         }
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);
         } else if (urlcommand.equals("/approvalok.do")) {
-            requestHistoryService.approval(request,response);
+            requestHistoryService.approval(request, response);
+        } else if (urlcommand.equals("/salary.do")) {
+            forward = salaryService.selectAllSalary(request, response);
         }
-
 
         if (forward != null) {
             if (forward.isRedirect()) { //true 페이지 재 요청 (location.href="페이지"

@@ -19,7 +19,6 @@
 
     <link rel="stylesheet" href="/assets/css/modal.css">
     <style type="text/css">
-
         .profile {
             padding: 20px 20px;
             width: 100%;
@@ -113,7 +112,12 @@
 </head>
 <body>
 <%@include file="/views/include/header.jsp" %>
-
+<script defer>
+	$(document).on('keyup', '#keyEmp', function(){
+		$('.keyEmp').val($(this).val());
+	
+	})
+</script>
 <section id="body-pd" class="body-pd">
 
     <div class="main_title">
@@ -161,7 +165,7 @@
 
                                 <tr>
                                     <th>사원번호</th>
-                                    <td><input type="text" class="profile-text" name="emp-num"></td>
+                                    <td><input type="text" class="profile-text" id="keyEmp" name="emp-num"></td>
                                     <th class="two rights">이름</th>
                                     <td><input type="text" class="profile-text" name="emp-name"></td>
                                 </tr>
@@ -266,59 +270,13 @@
 
                         </form>
                     </div>
-                    <div class="modal_nav" id="tab-2" style="display: none;">
-                        <form action="/personalInfook.do" id="frm3">
-                            <table class="profile">
-                                <thead>
-                                <tr>
-                                    <th>학교명</th>
-                                    <th>학과명</th>
-                                    <th>입학년월</th>
-                                    <th>졸업년월</th>
-                                    <th>졸업상태</th>
-                                    <th>비고</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <input type="hidden" class="custom" name="emp-num">
-                                        <input type="text" class="custom" id="school_name" name="school-name">
-                                    </td>
-                                    <td><input type="text" class="custom" id="school_dept" name="school-dept"></td>
-                                    <td><input type="date" class="custom" id="addmissions_day" name="addmissions-day"></td>
-                                    <td><input type="date" class="custom" id="graduation_day" name="graduation-day"></td>
-                                    <td>버튼</td>
-                                    <td>
-                                        <select class="custom" id="graduation_status" name="graduation-status">
-                                            <option value="고졸">고졸</option>
-                                            <option value="학사">학사</option>
-                                            <option value="석사">석사</option>
-                                            <option value="박사">박사</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" class="custom" id="remarks" name="edu-remarks"></td>
-                                    <td><input type="button" value="추가"><input type="button" value="삭제"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <hr>
-                            <div class="bottom-btn">
-                                <div class="right-btn">
-                                    <button class="custom-btn btn-10" >추가하기</button>
-                                    <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                     <div class="modal_nav" id="tab-3" style="display: none;">
-                        <form action="/" >
+                       <form id="careerFrm">
                             <h4>경력</h4>
-                            <table class="profile">
+                            <table class="profile career">
                                 <thead>
                                 <tr>
-                                    <th>경력번호</th>
+                                    <!-- <th>경력번호</th> -->
                                     <th>회사명</th>
                                     <th>부서명</th>
                                     <th>직급</th>
@@ -330,49 +288,52 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="career-num"></td>
-                                    <td><input type="text" class="custom" name="company-name"></td>
-                                    <td><input type="text" class="custom" name="dept"></td>
-                                    <td><input type="text" class="custom" name="rank"></td>
-                                    <td><input type="text" class="custom" name="main-task"></td>
-                                    <td><input type="date" class="custom" name="join-date"></td>
-                                    <td><input type="date" class="custom" name="leave-date"></td>
-                                    <td><input type="text" class="custom" name="career-remarks"></td>
+                                    <input type="hidden" class="custom keyEmp" name="empNum"><!-- <input type="text" class="custom" name="career-num"> -->
+                                    <td><input type="text" class="custom" name="companyName[]"></td>
+                                    <td><input type="text" class="custom" name="dept[]"></td>
+                                    <td><input type="text" class="custom" name="rank[]"></td>
+                                    <td><input type="text" class="custom" name="mainTask[]"></td>
+                                    <td><input type="date" class="custom" name="joinDate[]"></td>
+                                    <td><input type="date" class="custom" name="leaveDate[]"></td>
+                                    <td><input type="text" class="custom" name="careerRemarks[]"></td>
+                                    <td><input type="button" onclick="delCareer(this)" value="삭제"></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                    <button class="custom-btn btn-10" form="경력">추가하기</button>
+                                	<button type="button" id="career_table" class="custom-btn btn-10">테이블 추가하기</button>
+                                    <button class="custom-btn btn-10" form="경력" onclick="sendCareer(this.form);">추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                       </form>
                     </div>
                     <div class="modal_nav" id="tab-4" style="display: none;">
-                        <form >
+                        <form id="certFrm">
                             <h4>자격증</h4>
-                            <table class="profile">
+                            <table class="profile certification">
                                 <thead>
                                 <tr>
-                                    <td>자격증번호</td>
+                                    <!-- <td>자격증번호</td> -->
                                     <td>자격증명</td>
                                     <td>발행처</td>
                                     <td>취득년월</td>
                                     <td>비고</td>
-                                    <td>버튼</td>
+                                    <td></td>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                
                                 <tr>
-                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
-                                    <td><input type="text" class="custom" name="cert-name"></td>
-                                    <td><input type="text" class="custom" name="issuer"></td>
-                                    <td><input type="date" class="custom" name="acquisition-date"></td>
-                                    <td><input type="text" class="custom" name="cert-remarks"></td>
-                                    <td><input type="button" value="추가"><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+                                    <input type="hidden" class="custom keyEmp" name="emp-num"><!-- <input type="text" class="custom" name="cert-num"> -->
+                                    <td><input type="text" class="custom" name="cert-name[]"></td>
+                                    <td><input type="text" class="custom" name="issuer[]"></td>
+                                    <td><input type="date" class="custom" name="acquisition-date[]"></td>
+                                    <td><input type="text" class="custom" name="cert-remarks[]"></td>
+                                    <td><input type="button" onclick="delCert(this)" value="삭제"></td> <!-- onclick="deleteTableBtn(this)" -->
                                 </tr>
                                 </tbody>
                             </table>
@@ -380,31 +341,102 @@
                             <div class="bottom-btn">
                                 <div class="right-btn">
                                     <button type="button" id="cert_table" class="custom-btn btn-10">테이블 추가하기</button>
-                                    <button type="button" class="custom-btn btn-10" >추가하기</button>
+                                    <button type="button" class="custom-btn btn-10" onclick="sendCert(this.form)"  >추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
                             </div>
                         </form>
+                      
                         <script>
+                        	
+                        	
+							function sendCareer(input){
+								const trCareer = Array.from(document.querySelectorAll('.career tbody tr'))
+	                        	const careerGroup = trCareer.map(tr => {
+	                        		return Array.from(tr.querySelectorAll('input')).map(input => input.value);
+	                        	}) 
+								$.ajax({
+                        			url : "/careerInsertByManager.do",
+                        			type : "post",
+                        			data : {"careerGroup": JSON.stringify(careerGroup)}
+                        		});
+                        	} 
+                        
+                        	function delCareer(input){
+                        		var companyName = $('input[name=companyName]').val();
+                        		$.ajax({
+                        			url : "/careerDeleteByManager.do",
+                        			type : "post",
+                        			data : {"companyName": companyName},
+                        			success : deleteTableBtn(input)
+                        		});
+                        	}
+                        	
+                        	function sendCert(input){
+                        		console.log(input)
+                        		const trCert = Array.from(document.querySelectorAll('.certification tbody tr'))
+	                        	const certGroup = trCert.map(tr => {
+	                        		return Array.from(tr.querySelectorAll('input')).map(input => input.value);
+	                        	}) 
+                        		$.ajax({
+                        			url : "/certInsertByManager.do",
+                        			type : "post",
+                        			data : {"certGroup": JSON.stringify(certGroup)}
+                        		});
+                        	}
+                        	
+                        	
+                        	function delCert(input){
+	                        	var certName = $('input[name=cert-name]').val();
+	                        	var issuer = $('input[name=issuer]').val();
+	                        	console.log(certName + " " + issuer);
+                        		$.ajax({
+                        			url : "/certDeleteByManager.do",
+                        			type : "post",
+                        			data : {
+                        				"certName" : certName,
+                        				"issuer" : issuer
+                        			},
+                        			success : deleteTableBtn(input)
+                        		});
+                        	}
+                        	
+	                        $(document).on("click","#career_table", function(){
+	                            const str =`
+		                            	<tr>
+		                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="`+$('#keyEmp').val()+`">
+		                                    <td><input type="text" class="custom" name="company-name[]"></td>
+		                                    <td><input type="text" class="custom" name="dept[]"></td>
+		                                    <td><input type="text" class="custom" name="rank[]"></td>
+		                                    <td><input type="text" class="custom" name="main-task[]"></td>
+		                                    <td><input type="date" class="custom" name="join-date[]"></td>
+		                                    <td><input type="date" class="custom" name="leave-date[]"></td>
+		                                    <td><input type="text" class="custom" name="career-remarks[]"></td>
+		                                    <td><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+	                                	</tr>
+	                            `;
+	                           
+	                            $(".career tbody").append(str);
+	                        })
+	                        
                             $(document).on("click","#cert_table", function(){
                                 const str =`
                                 <tr>
-                                    <td><input type="hidden" class="custom" name="emp-num"><input type="text" class="custom" name="cert-num"></td>
+                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="`+$('#keyEmp').val()+`">
                                     <td><input type="text" class="custom" name="cert-name"></td>
                                     <td><input type="text" class="custom" name="issuer"></td>
                                     <td><input type="date" class="custom" name="acquisition-date"></td>
                                     <td><input type="text" class="custom" name="cert-remarks"></td>
-                                    <td><input type="button" value="추가"><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+                                    <td><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
                                 </tr>
                                 `;
-                                $(".profile tbody").append(str);
+                                $(".certification tbody").append(str);
                             })
 
                             function deleteTableBtn(el){
                                 const parent = el.parentNode.parentNode;
                                	$(parent).remove();
-                                
                             }
                         </script>
                     </div>

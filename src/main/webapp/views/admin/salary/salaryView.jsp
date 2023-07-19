@@ -21,6 +21,7 @@
   <title>급여</title>
   
 <style type="text/css">
+
 	.salery-emp {
 		font-size: 15px;
 		padding: 5px 0;
@@ -191,16 +192,17 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach var="list" items="${list}">
 				<tr>
 					<th><input type='checkbox' name='chk[]'
 							onclick="isAllCheck(this.name, 'chkAll');"></th>
-					<td>001</td>
+					<td>${list.sal_num}</td>
 					<td>7/1</td>
-					<td>이재경</td>
-					<td>하루 종일</td>
-					<td>연차</td>
-					<td>개발부서</td>
-					<td>직무</td>
+					<td>${list.emp_name}</td>
+					<td>${list.basic}</td>
+					<td>${list.bonus}</td>
+					<td>${list.directBenefits}</td>
+					<td>${list.annualAllowance}</td>
 					<td></td>
 					<td>일정노트</td>
 					<td></td>
@@ -209,6 +211,7 @@
 					<td></td>
 					<td></td>
 				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 		<div class="pagination">
