@@ -41,25 +41,126 @@
 
 </head>
 <body>
-	<%@include file="/views/include/header.jsp"%>
+<script defer>
 
+	$(document).on('blur', '.dp', function(){
+		let datepicker1 = document.querySelector('#datepicker1');
+		let datepicker2 = document.querySelector('#datepicker2');
+		console.log(datepicker1.value);
+		console.log(datepicker2.value);
+		$.ajax({
+			type:"post",
+			data: {
+				"datepicker1" : datepicker1.value,
+				"datepicker2" : datepicker2.value,
+			},
+			url:"/searchByDateAtt.do",
+			dataType:"json",
+			success : sucFuncJson,
+			error : errFunc
+		});
+		function sucFuncJson(data) {
+			console.log(data);
+		    $('#mainTable tbody').html(htmlStr(data));
+			if (data) {
+				if(data.result == true){
+					alert("검색 성공");
+				}
+			} else {
+				alert("검색 실패");
+			}
+		}
+		function errFunc(e) {	
+			console.log(e)
+			alert("실패" + e.status)
+		}
+	})
+	
+	$(document).on('click','.searchbtn',function(){
+		let searchType = document.querySelector(".searchtype");
+		let searchWord = document.querySelector(".search");
+		$.ajax({
+			type: "post",
+			data: {
+				"searchType" : searchType.value,
+				"searchWord" : searchWord.value,
+			},
+			url: "/searchTotalAtt.do",
+			dataType: "json",
+			success : sucFuncJson,
+			error : errFunc
+		})
+		function sucFuncJson(data) {
+			console.log(data);
+		    $('#mainTable tbody').html(htmlStr(data));
+			if (data) {
+				if(data.result == true){
+					alert("검색 성공");
+				}
+			} else {
+				alert("검색 실패");
+			}
+		}
+		function errFunc(e) {	
+			console.log(e)
+			alert("실패" + e.status)
+		}
+	})
+	
+	function htmlStr(data){
+
+			let html='';
+			data.forEach(value => {
+                const goWork = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
+                const goTime = moment(value.go_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm');
+                
+                const leaveTime = value.leave_work!=null? moment(value.leave_work, 'MMM DD, YYYY, h:mm:ss A').format('HH:mm'):" ";
+                html += `
+               <tr 
+                    data-num="`+value.emp_num+`"
+                    data-name="`+value.emp_name+`"
+                    data-date="`+goWork+`"
+                    data-go-time="`+goTime+`"
+                    data-leave-time="`+leaveTime+`"
+                    data-break="`+value.break_time+`"
+                    data-total="`+value.work_time+`"
+                    >
+
+                    <th><input type='checkbox' name='chk[]'
+                        onclick="isAllCheck(this.name, 'chkAll');"></th>
+                    <td>`+value.emp_num+`</td>
+                    <td>`+value.emp_name+`</td>
+                    <td>`+goWork+`</td>
+                    <td>`+goTime+`</td>
+                    <td>`+leaveTime+`</td>
+                    <td>`+value.break_time+`</td>
+                    <td>`+value.work_time+`</td>
+                </tr>
+                `;
+            })
+
+            return html;
+		}
+</script>
+	<%@include file="/views/include/header.jsp"%>
+	
 	<section id="body-pd" class="body-pd">
 
 		<div class="main_title">
 			<h2>출퇴근기록</h2>
-			<input type="text" id="datepicker1"> -
-       	 	<input type="text" id="datepicker2">
+			<input type="text" class="dp" id="datepicker1"> -
+       	 	<input type="text" class="dp" id="datepicker2">
 			<nav class="plusinfo">
-			<select class="searchtype searchs">
-				<option>전체</option>
-				<option>사원번호</option>
-				<option>직원</option>
-				<option>날짜</option>
+			<select class="searchtype searchs" name="searchType">
+				<option value="total">전체</option>
+				<option value="empNum">사원번호</option>
+				<option value="empName">직원</option>
+				<!-- <option>날짜</option>
 				<option>근무일정</option>
 				<option>근무시간</option>
 				<option>총 시간</option>
 				<option>출근시간</option>
-				<option>퇴근시간</option>
+				<option>퇴근시간</option> -->
 			</select>
 			
 			<!-- 추가하기 -->
@@ -109,7 +210,7 @@
 			</div>
 		</div>
 	</nav>
-		<table class="table sec-table table-hover my-table">
+		<table class="table sec-table table-hover my-table" id="mainTable">
 			<thead>
 				<tr>
 					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
@@ -271,5 +372,6 @@
 <!-- js -->
 
 <script type="text/javascript" src="/assets/js/modal.js"></script>
+<script type="text/javascript" src="/assets/js/moment.js"></script>
 </body>
 </html>
