@@ -204,6 +204,9 @@
 <script src="/assets/js/main.js"></script>
 <script src="/assets/js/modal.js"></script>
 <script type="text/javascript">
+
+	updateRowsPerPage(18);
+	
     const dialog = document.querySelector("dialog");
 
     function dialogClose() {

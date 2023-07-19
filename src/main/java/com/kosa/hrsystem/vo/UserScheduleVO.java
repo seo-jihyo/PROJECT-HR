@@ -1,9 +1,6 @@
 package com.kosa.hrsystem.vo;
 
 import java.util.Date;
-import java.util.List;
-
-import com.kosa.hrsystem.dto.AttendanceDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +26,7 @@ public class UserScheduleVO {
 	private int vctn_type_num;
 	
 	// 근무일정 조회
-	private Date schedule;
+	private Date wsgowork;
+	private Date wsleavework;
 	private String work_name;
 }

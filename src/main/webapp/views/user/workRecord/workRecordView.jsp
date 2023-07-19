@@ -225,106 +225,10 @@ h2{
 				</ol>
 				<i class='bx bxs-chevron-right'></i>		
 			</div>
-<script type="text/javascript">			
-// 페이징
-const rowsPerPage= 17;
-const rows = document.querySelectorAll('.my-table tbody tr');
-const rowsCount = rows.length;
-const pageCount = Math.ceil(rowsCount/rowsPerPage); 
-const pagingNumbers = document.querySelector('#pagingNumbers');
-// 변수 추가
-const prevPageBtn = document.querySelector('.pagination .bxs-chevron-left');
-const nextPageBtn = document.querySelector('.pagination .bxs-chevron-right');
-let pageActiveIdx = 0; // 현재 보고 있는 페이지그룹 번호
-let currentPageNum = 0; // 현재 보고 있는 페이지네이션 번호
-let maxPageNum = 5; // 페이지 그룹 최대 개수
-
-for(let i = 1;i <= pageCount; i++){
-/* 	console.log(i); */
- 	 pagingNumbers.innerHTML += '<li><a href="">'+i+'</a></li>'; 
- } 
- 
-const pagingBtn = pagingNumbers.querySelectorAll('a');
-console.log(pagingBtn);
-
-// 페이지네이션 번호 감추기
-for(pb of pagingBtn){
-	pb.style.display='none';
-}
-
-// 클릭 이벤트 처리(active)
-pagingBtn.forEach((item,idx)=>{
- 	item.addEventListener('click',(e)=>{
-		e.preventDefault();		
-		// 테이블 출력 함수
-		displayRow(idx);
-	});
-});
-function displayRow(idx){
-	// 배열 만들기
-	let start = idx*rowsPerPage;
-	let end = start+rowsPerPage;
-	let rowsArray = [...rows];
-	
-	for(ra of rowsArray){
-		ra.style.display = 'none';
-	}
-	let newRows = rowsArray.slice(start,end);
-	for(nr of newRows){
-		nr.style.display= '';
-	}
-	for(pb of pagingBtn){
-		pb.classList.remove('active');
-	}
-	pagingBtn[idx].classList.add('active'); 
-	
-} // displayRow
-
-displayRow(0);
-// 페이지네이션 그룹 표시 함수
-function displayPage(num){
-	// 페이지네이션 번호 감추기
-	for(pb of pagingBtn){
-		pb.style.display='none';
-	}
-	let totalPageCount = Math.ceil(pageCount/maxPageNum);
-	
-	let pageArr = [...pagingBtn];
-	let start = num*maxPageNum;
-	let end = start+maxPageNum;
-	let PageListArr = pageArr.slice(start, end);
-	
-	
-	for(let item of PageListArr){
-		item.style.display = 'block';
-	}
-	if(pageActiveIdx == 0){
-		prevPageBtn.style.display = 'none';
-	} else{
-		prevPageBtn.style.display = 'block';
-	}
-	if(pageActiveIdx == totalPageCount - 1){
-		nextPageBtn.style.display = 'none';
-	} else{
-		nextPageBtn.style.display = 'block';
-	}
-}
-displayPage(0);
-
-nextPageBtn.addEventListener('click',()=>{
-	let nextPageBtn = pageActiveIdx*maxPageNum+maxPageNum;
-	displayRow(nextPageBtn);
-	++pageActiveIdx;
-	displayPage(pageActiveIdx);
-});
-prevPageBtn.addEventListener('click',()=>{
-	let nextPageBtn = pageActiveIdx*maxPageNum-maxPageNum;
-	displayRow(nextPageBtn);
-	--pageActiveIdx;
-	displayPage(pageActiveIdx);
-});
-</script>
 <script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+	updateRowsPerPage(17);
+</script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>

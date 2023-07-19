@@ -204,7 +204,9 @@
 
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
+
 <script type="text/javascript">
+	updateRowsPerPage(18);
 
     const $form = $('#frm2');
     $(document).on('click', '#updateBtn', function () {
