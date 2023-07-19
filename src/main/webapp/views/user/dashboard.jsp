@@ -49,7 +49,7 @@
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -71,7 +71,7 @@
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -93,7 +93,7 @@
                       </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -115,7 +115,7 @@
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/vacation.do?cate=nav-vac" class="btn btn-sm btn-primary">See all</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -147,8 +147,13 @@
             	<span class="h2 font-weight-bold mb-0">
 					${vo.non_approve_count}명  
 			  	  </span>
+			  	  <div class="col text-right">
+                  	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">See all</a>
+                  </div>
             </div>
+           
           </div>
+          
         </div>
         
         <div class="col-xl-4">
