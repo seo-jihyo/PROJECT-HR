@@ -11,70 +11,22 @@ import com.kosa.hrsystem.vo.DashBoardVO;
 
 public class DashBoardServiceImp implements DashBoardService {
 
-
 	@Override
-	public ActionForward selectAttCnt(HttpServletRequest request, HttpServletResponse response) {
+	public ActionForward selectAll(HttpServletRequest request, HttpServletResponse response) {
 		DashBoardDAO dao = new DashBoardDAO();
-		try {
-			List<DashBoardVO> list = dao.selectAttCnt();
-			System.out.println(list);
-			request.setAttribute("list", list);
-			ActionForward forward  = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/views/user/dashboard.jsp");
-			return forward;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+		DashBoardVO vo = new DashBoardVO();
+		
+		vo.setAtt_count(dao.selectAttCnt());
+		vo.setNot_att_count(dao.selectNotAttCnt());
+		vo.setLeave_count(dao.selectLeaveCnt());
+		vo.setVac_count(dao.selectVacCnt());
 
-	@Override
-	public ActionForward selectNotAttCnt(HttpServletRequest request, HttpServletResponse response) {
-		DashBoardDAO dao = new DashBoardDAO();
-		try {
-			List<DashBoardVO> list = dao.selectNotAttCnt();
-			System.out.println(list);
-			request.setAttribute("list", list);
-			ActionForward forward  = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/views/user/dashboard.jsp");
-			return forward;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
+		request.setAttribute("vo", vo);
 
-	@Override
-	public ActionForward selectLeaveCnt(HttpServletRequest request, HttpServletResponse response) {
-		DashBoardDAO dao = new DashBoardDAO();
-		try {
-			List<DashBoardVO> list = dao.selectLeaveCnt();
-			System.out.println(list);
-			request.setAttribute("list", list);
-			ActionForward forward  = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/views/user/dashboard.jsp");
-			return forward;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("/views/user/dashboard.jsp");
+		return forward;
 	}
-
-	@Override
-	public ActionForward selectVacCnt(HttpServletRequest request, HttpServletResponse response) {
-		DashBoardDAO dao = new DashBoardDAO();
-		try {
-			List<DashBoardVO> list = dao.selectVacCnt();
-			System.out.println(list);
-			request.setAttribute("list", list);
-			ActionForward forward  = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/views/user/dashboard.jsp");
-			return forward;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 
 }

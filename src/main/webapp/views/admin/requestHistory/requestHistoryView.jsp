@@ -113,7 +113,10 @@
 		</div>
 </section>
 
+<script src="/assets/js/main.js"></script>
 <script type="text/javascript">
+	updateRowsPerPage(18);
+	
 function approvalBtn(btn,approval){
     const rqstNum = $(btn).data("rqst-num");
     const remarks = prompt(approval?"승인 사유를 적어주세요":"거절 사유를 적어주세요")
@@ -138,7 +141,6 @@ function approvalBtn(btn,approval){
 
 </script>
 <!-- js -->
-<script src="/assets/js/main.js"></script>
 <script type="text/javascript" src="/assets/js/modal.js"></script>
 </body>
 </html>
