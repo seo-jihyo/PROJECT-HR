@@ -11,4 +11,6 @@ public interface RequestHistoryService {
     public ActionForward update(HttpServletRequest request , HttpServletResponse response);
 
     void approval(HttpServletRequest request, HttpServletResponse response);
+
+    public ActionForward selectAllByEmp(HttpServletRequest request, HttpServletResponse response);
 }

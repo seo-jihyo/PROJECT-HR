@@ -235,6 +235,12 @@ public class FrontRegisterController extends HttpServlet {
         else if(urlcommand.equals("/userSchedule.do")) {
         	forward = userScheduleService.selectUserSchedule(request, response);
         }
+
+        /* 사용자 요청내역*/
+        else if (urlcommand.equals("/userRequesthistory.do")) {
+            forward = requestHistoryService.selectAllByEmp(request,response);
+        }
+
         /* 관리자 요청 내역 */
         else if (urlcommand.equals("/requesthistory.do")) {
             forward = requestHistoryService.selectAllRequest(request, response);
