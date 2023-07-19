@@ -3,12 +3,12 @@ package com.kosa.hrsystem.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import com.kosa.hrsystem.vo.RequestHistoryVO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
+import com.kosa.hrsystem.vo.RequestHistoryVO;
 
 public class RequestHistoryDAO {
 
