@@ -138,8 +138,7 @@ dialog{
 			<table class="sec-table table-hover table my-table">
 				<thead class="thead">
 					<tr>
-						<th style="width: 30px"><input type='checkbox' id="chkAll"
-							onclick="allCheckboxes('chk[]', this.checked)"></th>
+
 						<th>휴가유형번호</th>
 						<th>휴가명</th>
 						<th>유급시간</th>
@@ -154,8 +153,7 @@ dialog{
 						data-vctn-time="${vacationTypeList.vctn_time}"
 						data-deduction-day="${vacationTypeList.deduction_day}"
 					>
-						<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
+
  						<td>${vacationTypeList.vctn_type_num}</td>
 						<td>${vacationTypeList.vctn_name}</td>
 						<td>${vacationTypeList.vctn_time}</td>

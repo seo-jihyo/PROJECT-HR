@@ -201,7 +201,7 @@
 <table class="sec-table table-hover table my-table" id="mainTable">
     <thead class="thead">
     <tr>
-        <th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
+
         <th>직원</th>
         <th>날짜</th>
         <th>출근시간</th>
@@ -219,7 +219,7 @@
             data-leave-time='<fmt:formatDate  value="${rcd.leave_work}" pattern="HH:mm"/>'
             data-break="${rcd.break_time}"
             data-total="${rcd.work_time}">
-            <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
             <td>${rcd.emp_name}</td>
             <td><fmt:formatDate value="${rcd.go_work}" pattern="yyyy-MM-dd"/></td>
             <td><fmt:formatDate value="${rcd.go_work}" pattern="HH:mm"/></td>
@@ -300,7 +300,7 @@
 
                         html += `
                         <tr>
-                            <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                             <td>`+value.emp_name+`</td>
                             <td>`+goWork+`</td>
                             <td>`+goWorkTime+`</td>
