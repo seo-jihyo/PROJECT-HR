@@ -60,7 +60,7 @@
                 <i class='collapse_link bx bxs-chevron-down arrow'></i>
 
                 <ul class="collapse_menu">
-                    <a href="/emp.do" class="collapse_sublink">직원</a><br>
+                    <a href="/emp.do?cate=nav-emp" class="collapse_sublink">직원</a><br>
                     <a href="/dept.do" class="collapse_sublink">부서</a><br>
                     <a href="/rank.do" class="collapse_sublink">직급</a><br>
                     <a href="/vacationtype.do" class="collapse_sublink">휴가유형</a><br>

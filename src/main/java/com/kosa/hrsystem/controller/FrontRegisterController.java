@@ -91,11 +91,13 @@ public class FrontRegisterController extends HttpServlet {
             forward.setPath("/views/user/resetPwd.jsp");
         } else if (urlcommand.equals("/updatePwdok.do")) {
             forward = empService.updatePwd(request, response);
-        }
+        } 
 
         /* 직원 */
         else if (urlcommand.equals("/emp.do")) {
             forward = empService.selectAll(request, response);
+        } else if (urlcommand.equals("/searchEmp.do")) {
+            empService.searchEmp(request, response);
         } else if (urlcommand.equals("/empok.do")) {
             // 직원 추가하기
             forward = empService.insert(request, response);
@@ -222,6 +224,8 @@ public class FrontRegisterController extends HttpServlet {
             forward = workRecordService.selectAllRcd(request, response);
         } else if (urlcommand.equals("/workrecordInsertAtt.do")) {
             forward = workRecordService.insertRcd(request, response);
+        } else if (urlcommand.equals("/searchWorkRecByDate.do")) {
+            workRecordService.searchWorkRecByDate(request,response);
         }
 
         /* 사용자 마이페이지 */

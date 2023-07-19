@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 public interface EmpService {
 
     public ActionForward selectAll(HttpServletRequest request , HttpServletResponse response);
+    
     public ActionForward insert(HttpServletRequest request , HttpServletResponse response);
     public ActionForward update(HttpServletRequest request, HttpServletResponse response);
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response);
@@ -20,5 +21,6 @@ public interface EmpService {
 	public ActionForward deleteCertByManager(HttpServletRequest request, HttpServletResponse response);
 	public ActionForward selectCareerByManager(HttpServletRequest request, HttpServletResponse response);
 	public ActionForward deleteCareerByManager(HttpServletRequest request, HttpServletResponse response);
-    
+
+    void searchEmp(HttpServletRequest request, HttpServletResponse response);
 }

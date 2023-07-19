@@ -1,5 +1,7 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,4 +22,11 @@ public class WorkRecordDAO {
 	    sqlSession.close();
 	    return list;
 	}
+
+    public List<WorkRecordDTO> searchWorkRecByDate(HashMap<String, Object> map) {
+		SqlSession sqlSession = factory.openSession();
+		List<WorkRecordDTO> list = sqlSession.selectList("searchWorkRecByDate", map);
+		sqlSession.close();
+		return list;
+    }
 }

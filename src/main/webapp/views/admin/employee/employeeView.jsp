@@ -113,10 +113,10 @@
 <body>
 <%@include file="/views/include/header.jsp" %>
 <script defer>
-	$(document).on('keyup', '#keyEmp', function(){
-		$('.keyEmp').val($(this).val());
-	
-	})
+    $(document).on('keyup', '#keyEmp', function () {
+        $('.keyEmp').val($(this).val());
+
+    })
 </script>
 <section id="body-pd" class="body-pd">
 
@@ -127,19 +127,16 @@
 
             <select class="searchtype searchs">
                 <option value="none">선택없음</option>
-                <option value="groupname">사원번호</option>
-                <option value="name">이름</option>
-                <option value="hire_date">입사일</option>
+                <option value="empNum">사원번호</option>
+                <option value="empName">이름</option>
+                <option value="hireDate">입사일</option>
                 <option value="dept">부서</option>
-                <option value="position">직위</option>
-                <option value="duty">직책</option>
                 <option value="rank">직급</option>
-                <option value="worktype">근로정보명</option>
-                <option value="pay">시급</option>
-                <option value="memo">메모</option>
-            </select> 
-            <input type="text" class="search searchs"> 
-            <input type="button" class="searchbtn" value="검 색"> 
+                <option value="workType">근로정보명</option>
+                <option value="remarks">메모</option>
+            </select>
+            <input type="text" class="search searchs">
+            <input type="button" class="searchbtn" value="검 색">
             <input type="checkbox" id="popup" onclick="resetForm()">
             <label class="labelBtn searchs" for="popup">+ 직원 추가하기</label>
 
@@ -243,8 +240,8 @@
 
                                     <th class="rights" id="emptext">퇴사사유</th>
                                     <td><textarea name="emp-reason" class="emptext" id="emptext"></textarea>
-								
-								<tr>
+
+                                <tr>
                                     <th class="three">근로정보</th>
                                     <td><select class="profiletype" name="emp-workNum">
                                         <c:forEach var="list" items="${optWork}">
@@ -252,7 +249,7 @@
                                         </c:forEach>
                                     </select></td>
                                 </tr>
-								
+
                                 <tr>
                                     <th class="two">메모</th>
                                     <td colspan='3'><textarea name="remarks" class="empmemo"></textarea>
@@ -262,7 +259,7 @@
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                    <button type="button" class="custom-btn btn-10" id="sendEmail" >추가하기</button>
+                                    <button type="button" class="custom-btn btn-10" id="sendEmail">추가하기</button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
@@ -271,7 +268,7 @@
                         </form>
                     </div>
                     <div class="modal_nav" id="tab-3" style="display: none;">
-                       <form id="careerFrm">
+                        <form id="careerFrm">
                             <h4>경력</h4>
                             <table class="profile career">
                                 <thead>
@@ -288,7 +285,8 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <input type="hidden" class="custom keyEmp" name="empNum"><!-- <input type="text" class="custom" name="career-num"> -->
+                                    <input type="hidden" class="custom keyEmp" name="empNum">
+                                    <!-- <input type="text" class="custom" name="career-num"> -->
                                     <td><input type="text" class="custom" name="companyName[]"></td>
                                     <td><input type="text" class="custom" name="dept[]"></td>
                                     <td><input type="text" class="custom" name="rank[]"></td>
@@ -303,13 +301,14 @@
                             <hr>
                             <div class="bottom-btn">
                                 <div class="right-btn">
-                                	<button type="button" id="career_table" class="custom-btn btn-10">테이블 추가하기</button>
-                                    <button class="custom-btn btn-10" form="경력" onclick="sendCareer(this.form);">추가하기</button>
+                                    <button type="button" id="career_table" class="custom-btn btn-10">테이블 추가하기</button>
+                                    <button class="custom-btn btn-10" form="경력" onclick="sendCareer(this.form);">추가하기
+                                    </button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
                             </div>
-                       </form>
+                        </form>
                     </div>
                     <div class="modal_nav" id="tab-4" style="display: none;">
                         <form id="certFrm">
@@ -326,14 +325,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                
+
                                 <tr>
-                                    <input type="hidden" class="custom keyEmp" name="emp-num"><!-- <input type="text" class="custom" name="cert-num"> -->
+                                    <input type="hidden" class="custom keyEmp" name="emp-num">
+                                    <!-- <input type="text" class="custom" name="cert-num"> -->
                                     <td><input type="text" class="custom" name="cert-name[]"></td>
                                     <td><input type="text" class="custom" name="issuer[]"></td>
                                     <td><input type="date" class="custom" name="acquisition-date[]"></td>
                                     <td><input type="text" class="custom" name="cert-remarks[]"></td>
-                                    <td><input type="button" onclick="delCert(this)" value="삭제"></td> <!-- onclick="deleteTableBtn(this)" -->
+                                    <td><input type="button" onclick="delCert(this)" value="삭제"></td>
+                                    <!-- onclick="deleteTableBtn(this)" -->
                                 </tr>
                                 </tbody>
                             </table>
@@ -341,71 +342,72 @@
                             <div class="bottom-btn">
                                 <div class="right-btn">
                                     <button type="button" id="cert_table" class="custom-btn btn-10">테이블 추가하기</button>
-                                    <button type="button" class="custom-btn btn-10" onclick="sendCert(this.form)"  >추가하기</button>
+                                    <button type="button" class="custom-btn btn-10" onclick="sendCert(this.form)">추가하기
+                                    </button>
                                     <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기
                                     </button>
                                 </div>
                             </div>
                         </form>
-                      
+
                         <script>
-                        	
-                        	
-							function sendCareer(input){
-								const trCareer = Array.from(document.querySelectorAll('.career tbody tr'))
-	                        	const careerGroup = trCareer.map(tr => {
-	                        		return Array.from(tr.querySelectorAll('input')).map(input => input.value);
-	                        	}) 
-								$.ajax({
-                        			url : "/careerInsertByManager.do",
-                        			type : "post",
-                        			data : {"careerGroup": JSON.stringify(careerGroup)}
-                        		});
-                        	} 
-                        
-                        	function delCareer(input){
-                        		var companyName = $('input[name=companyName]').val();
-                        		$.ajax({
-                        			url : "/careerDeleteByManager.do",
-                        			type : "post",
-                        			data : {"companyName": companyName},
-                        			success : deleteTableBtn(input)
-                        		});
-                        	}
-                        	
-                        	function sendCert(input){
-                        		console.log(input)
-                        		const trCert = Array.from(document.querySelectorAll('.certification tbody tr'))
-	                        	const certGroup = trCert.map(tr => {
-	                        		return Array.from(tr.querySelectorAll('input')).map(input => input.value);
-	                        	}) 
-                        		$.ajax({
-                        			url : "/certInsertByManager.do",
-                        			type : "post",
-                        			data : {"certGroup": JSON.stringify(certGroup)}
-                        		});
-                        	}
-                        	
-                        	
-                        	function delCert(input){
-	                        	var certName = $('input[name=cert-name]').val();
-	                        	var issuer = $('input[name=issuer]').val();
-	                        	console.log(certName + " " + issuer);
-                        		$.ajax({
-                        			url : "/certDeleteByManager.do",
-                        			type : "post",
-                        			data : {
-                        				"certName" : certName,
-                        				"issuer" : issuer
-                        			},
-                        			success : deleteTableBtn(input)
-                        		});
-                        	}
-                        	
-	                        $(document).on("click","#career_table", function(){
-	                            const str =`
+
+
+                            function sendCareer(input) {
+                                const trCareer = Array.from(document.querySelectorAll('.career tbody tr'))
+                                const careerGroup = trCareer.map(tr => {
+                                    return Array.from(tr.querySelectorAll('input')).map(input => input.value);
+                                })
+                                $.ajax({
+                                    url: "/careerInsertByManager.do",
+                                    type: "post",
+                                    data: {"careerGroup": JSON.stringify(careerGroup)}
+                                });
+                            }
+
+                            function delCareer(input) {
+                                var companyName = $('input[name=companyName]').val();
+                                $.ajax({
+                                    url: "/careerDeleteByManager.do",
+                                    type: "post",
+                                    data: {"companyName": companyName},
+                                    success: deleteTableBtn(input)
+                                });
+                            }
+
+                            function sendCert(input) {
+                                console.log(input)
+                                const trCert = Array.from(document.querySelectorAll('.certification tbody tr'))
+                                const certGroup = trCert.map(tr => {
+                                    return Array.from(tr.querySelectorAll('input')).map(input => input.value);
+                                })
+                                $.ajax({
+                                    url: "/certInsertByManager.do",
+                                    type: "post",
+                                    data: {"certGroup": JSON.stringify(certGroup)}
+                                });
+                            }
+
+
+                            function delCert(input) {
+                                var certName = $('input[name=cert-name]').val();
+                                var issuer = $('input[name=issuer]').val();
+                                console.log(certName + " " + issuer);
+                                $.ajax({
+                                    url: "/certDeleteByManager.do",
+                                    type: "post",
+                                    data: {
+                                        "certName": certName,
+                                        "issuer": issuer
+                                    },
+                                    success: deleteTableBtn(input)
+                                });
+                            }
+
+                            $(document).on("click", "#career_table", function () {
+                                const str = `
 		                            	<tr>
-		                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="`+$('#keyEmp').val()+`">
+		                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="` + $('#keyEmp').val() + `">
 		                                    <td><input type="text" class="custom" name="company-name[]"></td>
 		                                    <td><input type="text" class="custom" name="dept[]"></td>
 		                                    <td><input type="text" class="custom" name="rank[]"></td>
@@ -416,14 +418,14 @@
 		                                    <td><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
 	                                	</tr>
 	                            `;
-	                           
-	                            $(".career tbody").append(str);
-	                        })
-	                        
-                            $(document).on("click","#cert_table", function(){
-                                const str =`
+
+                                $(".career tbody").append(str);
+                            })
+
+                            $(document).on("click", "#cert_table", function () {
+                                const str = `
                                 <tr>
-                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="`+$('#keyEmp').val()+`">
+                                    <input type="hidden" class="custom keyEmp" name="emp-num" value="` + $('#keyEmp').val() + `">
                                     <td><input type="text" class="custom" name="cert-name"></td>
                                     <td><input type="text" class="custom" name="issuer"></td>
                                     <td><input type="date" class="custom" name="acquisition-date"></td>
@@ -434,9 +436,9 @@
                                 $(".certification tbody").append(str);
                             })
 
-                            function deleteTableBtn(el){
+                            function deleteTableBtn(el) {
                                 const parent = el.parentNode.parentNode;
-                               	$(parent).remove();
+                                $(parent).remove();
                             }
                         </script>
                     </div>
@@ -449,7 +451,7 @@
 
 
     <div class="tab-scroll">
-        <table class="sec-table table-hover table my-table">
+        <table class="sec-table table-hover table my-table" id="mainTable">
             <thead class="thead">
 
             <tr>
@@ -502,12 +504,12 @@
         </table>
     </div>
 
-		<div class="pagination">
-			<i class='bx bxs-chevron-left'></i>
-			<ol id="pagingNumbers">
-			</ol>
-			<i class='bx bxs-chevron-right'></i>		
-		</div>
+    <div class="pagination">
+        <i class='bx bxs-chevron-left'></i>
+        <ol id="pagingNumbers">
+        </ol>
+        <i class='bx bxs-chevron-right'></i>
+    </div>
 </section>
 <dialog>
     <h2 class="diatitle">직원 정보 수정하기</h2>
@@ -527,44 +529,45 @@
     </form>
 
 </dialog>
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <script src="/assets/js/main.js"></script>
-   <script type="text/javascript" src="/assets/js/modal.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/modal.js"></script>
+<script src="/assets/js/moment.js"></script>
+<script type="text/javascript">
+    updateRowsPerPage(18);
 
-   <script type="text/javascript">
-   	updateRowsPerPage(18);
-   	
-   $("#sendEmail").click(function(){
-      $frm = $("#frm").serialize();
-      $.ajax({
-         url : "/empok.do",
-         type : "post",
-         data : $frm,
-         dataType : "json",
-         success : sucFuncJson,
-         error : errFunc
-      });
-      function sucFuncJson(data) {
-         console.log(data);
-         if (data.status == "false") {
-            alert("이미 등록된 이메일입니다.");
-         } else {
-            alert("이메일로 아이디와 비밀번호를 전송하였습니다.");
-            window.location.href = "/emp.do";
-         }
-      }
+    $("#sendEmail").click(function () {
+        $frm = $("#frm").serialize();
+        $.ajax({
+            url: "/empok.do",
+            type: "post",
+            data: $frm,
+            dataType: "json",
+            success: sucFuncJson,
+            error: errFunc
+        });
 
-      function errFunc(e) {
-         alert("실패" + e.status)
-      }
-   })
-   
-   
-   const dialog = document.querySelector("dialog");
-   $(document).on("click", ".table tbody tr", function () {
-      dialog.showModal();
-      console.log(this);
-   });
+        function sucFuncJson(data) {
+            console.log(data);
+            if (data.status == "false") {
+                alert("이미 등록된 이메일입니다.");
+            } else {
+                alert("이메일로 아이디와 비밀번호를 전송하였습니다.");
+                window.location.href = "/emp.do?cate=nav-emp"
+            }
+        }
+
+        function errFunc(e) {
+            alert("실패" + e.status)
+        }
+    })
+
+
+    const dialog = document.querySelector("dialog");
+    $(document).on("click", ".table tbody tr", function () {
+        dialog.showModal();
+        console.log(this);
+    });
 
     function dialogClose() {
         dialog.close();
@@ -667,6 +670,76 @@
         $('dialog table').html(str)
     })
 
+    $(document).on('click', '.searchbtn', function () {
+        let searchType = document.querySelector(".searchtype");
+        let searchWord = document.querySelector(".search");
+        $.ajax({
+            type: "post",
+            data: {
+                "searchType": searchType.value,
+                "searchWord": searchWord.value,
+            },
+            url: "/searchEmp.do",
+            dataType: "json",
+            success: sucFuncJson,
+            error: errFunc
+        })
+
+        function sucFuncJson(data) {
+            console.log(data);
+            $('#mainTable tbody').html(htmlStr(data));
+            if (data) {
+                if (data.result == true) {
+                    alert("검색 성공");
+                }
+            } else {
+                alert("검색 실패");
+            }
+        }
+
+        function errFunc(e) {
+            console.log(e)
+            alert("실패" + e.status)
+        }
+
+        function htmlStr(data) {
+            let html = '';
+            data.forEach(value => {
+                const hireDate = moment(value.hire_date, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
+
+                html += `
+               <tr
+                    data-emp-num="` + value.emp_num + `"
+                    data-emp-name="` + value.emp_name + `"
+                    data-permisision-type="` + value.permission_type + `"
+                    data-dept-code="` + value.dept_code + `"
+                    data-rank-code="` + value.rank_code + `"
+                    data-rank-code="` + value.rank_code + `"
+                    data-work-num="` + value.work_num + `"
+                    data-hire-date-work="` + hireDate + `"
+                    data-annual-numk="` + value.annual_num + `"
+                    data-remarks="` + value.remarks + `"
+                    >
+
+                    <th><input type='checkbox' name='chk[]'
+                               onclick="isAllCheck(this.name, 'chkAll');"></th>
+                    <td>` + value.emp_num + `</td>
+                    <td>` + value.emp_name + `</td>
+                    <td>` + value.permission_type + `</td>
+                    <td>` + value.dept + `</td>
+                    <td>` + value.rank + `</td>
+                    <td>` + value.work_name + `</td>
+                    <td>` + hireDate + `</td>
+                    <td>` + value.annual_num + `</td>
+                    <td>` + value.remarks + `</td>
+                </tr>
+                `;
+
+            })
+            return html;
+        }
+    })
+
     function toggleTextbox(checkbox) {
 
         // 1. 텍스트 박스 element 찾기
@@ -687,7 +760,7 @@
             emptext_elem.show();
         }
     }
-	
+
     $('.tabs a').click(function () {
         let $tabId = $(this).data('tab')
         $('.modal_nav').hide()
@@ -737,21 +810,21 @@
     $(document).on('click', '#updateBtn', function () {
         $form.attr('action', '/empupdate.do')
         $form.attr('method', 'post')
-        if(!confirm("등록하시겠습니까?")){
-        	alert("취소하셨습니다.");
+        if (!confirm("등록하시겠습니까?")) {
+            alert("취소하셨습니다.");
         } else {
-        	alert("해당 직원을 등록 하셨습니다.");
-      		$form.submit()
+            alert("해당 직원을 등록 하셨습니다.");
+            $form.submit()
         }
     })
     $(document).on('click', '#deleteBtn', function () {
         $form.attr('action', '/empdelete.do')
         $form.attr('method', 'post')
-        if(!confirm("삭제하시겠습니까?")){
-        	alert("취소하셨습니다.");
+        if (!confirm("삭제하시겠습니까?")) {
+            alert("취소하셨습니다.");
         } else {
-        	alert("해당 직원을 삭제 하셨습니다.");
-      		$form.submit()
+            alert("해당 직원을 삭제 하셨습니다.");
+            $form.submit()
         }
     })
 </script>

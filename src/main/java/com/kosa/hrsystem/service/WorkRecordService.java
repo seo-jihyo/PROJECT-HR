@@ -9,5 +9,6 @@ public interface WorkRecordService {
 	public ActionForward selectAllRcd(HttpServletRequest request, HttpServletResponse response);
 	
 	public ActionForward insertRcd(HttpServletRequest request, HttpServletResponse response);
-	
+
+    void searchWorkRecByDate(HttpServletRequest request, HttpServletResponse response);
 }

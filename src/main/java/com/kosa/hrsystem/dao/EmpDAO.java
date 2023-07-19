@@ -64,7 +64,7 @@ public class EmpDAO {
 	}
     
     // 직원 리스트 목록 출력하기
-    public List<EmpVO> selectAllEmp() throws Exception{
+    public List<EmpVO> selectAllEmp() {
     	SqlSession sqlSession = factory.openSession(true);
     	List<EmpVO> list = sqlSession.selectList("selectAllEmp");
     	sqlSession.close();
@@ -124,6 +124,12 @@ public class EmpDAO {
     	int result = sqlSession.insert("save",dto);
     	sqlSession.close();
     	return result;
-    }  
-  
+    }
+
+	public List<EmpVO> searchEmp(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession();
+		List<EmpVO> list = sqlSession.selectList("searchEmp", map);
+		sqlSession.close();
+		return list;
+	}
 }
