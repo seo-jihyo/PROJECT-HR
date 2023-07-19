@@ -15,6 +15,7 @@ public class CodeTableDAO {
         SqlSession sqlSession = factory.openSession(true);
         List<CodeTableDTO> list = null;
         list = sqlSession.selectList("selectAllByParent",codeName);
+        sqlSession.close();
         return list;
     }
 

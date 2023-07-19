@@ -15,7 +15,6 @@ public class EducationDAO {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.insert("insertEdu", dto);
     	sqlSession.close();
-    	System.out.println(result);
     	return result;
     }
 }

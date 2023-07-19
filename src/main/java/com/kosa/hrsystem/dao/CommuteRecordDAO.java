@@ -33,8 +33,6 @@ public class CommuteRecordDAO {
 	public int updateRecord(CommuteRecordVO vo) {
 		SqlSession sqlSession = factory.openSession(true);
 		int result = sqlSession.update("updateRecord", vo);
-		System.out.println(vo.getAtt_num());
-		sqlSession.commit();
 		sqlSession.close();
 		return result;
 	}
