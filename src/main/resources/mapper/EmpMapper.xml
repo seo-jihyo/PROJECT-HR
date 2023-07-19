@@ -49,8 +49,8 @@
 			inner join work w on w.work_num = e.work_num
 	</select>
 	<insert id="insertEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO" >
-		insert into EMP(emp_num,emp_name,email,pwd,hire_date,departure_date,reason,direct_num,phone,regist_num,annual_num,post_code,address,detail_address,permission_type,dept,rank) values(
-			#{emp_num},#{emp_name},#{email},#{pwd},#{hire_date},#{departure_date, jdbcType=DATE},#{reason},#{direct_num},#{phone},#{regist_num},12.0,#{post_code},#{address},#{detail_address},#{permission_type},#{dept},#{rank})
+		insert into EMP(emp_num,emp_name,email,pwd,hire_date,departure_date,reason,direct_num,phone,regist_num,annual_num,post_code,address,detail_address,permission_type,dept,rank,work_num) values(
+			#{emp_num},#{emp_name},#{email},#{pwd},#{hire_date},#{departure_date, jdbcType=DATE},#{reason},#{direct_num},#{phone},#{regist_num},12.0,#{post_code},#{address},#{detail_address},#{permission_type},#{dept},#{rank},#{work_num})
 	</insert>
 	<update id="updateEmp" parameterType="com.kosa.hrsystem.dto.EmpDTO">
 		update EMP set emp_name = #{emp_name},
@@ -65,7 +65,8 @@
 					 reason = #{reason, jdbcType=VARCHAR},
 					 remarks = #{remarks, jdbcType=VARCHAR},
 					 hire_date = #{hire_date},
-					 departure_date = #{departure_date, jdbcType=DATE}
+					 departure_date = #{departure_date, jdbcType=DATE},
+					 work_num = #{work_num}
 					 where emp_num = #{emp_num}	
 	</update>
 	<update id="updatePwd" parameterType="HashMap">

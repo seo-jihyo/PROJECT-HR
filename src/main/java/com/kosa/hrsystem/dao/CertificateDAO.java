@@ -1,5 +1,7 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -32,6 +34,14 @@ public class CertificateDAO {
     public int deleteCert(int certNum) {
     	SqlSession sqlSession = factory.openSession(true);
     	int result = sqlSession.delete("deleteCert", certNum);
+    	sqlSession.close();
+    	System.out.println(result);
+    	return result;
+    }
+    // 관리 - 직원 자격증 삭제하기
+    public int deleteCertByCrtfcNumAndIssuer(HashMap<String, String> map) {
+    	SqlSession sqlSession = factory.openSession(true);
+    	int result = sqlSession.delete("deleteCertByCrtfcNumAndIssuer", map);
     	sqlSession.close();
     	System.out.println(result);
     	return result;

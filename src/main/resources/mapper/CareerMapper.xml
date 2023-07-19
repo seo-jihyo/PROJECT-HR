@@ -23,4 +23,7 @@
 	<delete id="deleteCareer" parameterType="Integer">
 		delete from CAREER where career_num = #{career_num}
 	</delete>
+	<delete id="deleteCareerByCompanyName" parameterType="String">
+		delete from CAREER where company_name = #{companyName}
+	</delete>
 </mapper>

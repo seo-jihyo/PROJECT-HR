@@ -2,7 +2,10 @@ package com.kosa.hrsystem.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,12 +15,18 @@ import java.util.Objects;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
+import com.kosa.hrsystem.dao.CareerDAO;
+import com.kosa.hrsystem.dao.CertificateDAO;
 import com.kosa.hrsystem.dao.CodeTableDAO;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.WorkDAO;
+import com.kosa.hrsystem.dto.CareerDTO;
+import com.kosa.hrsystem.dto.CertificateDTO;
 import com.kosa.hrsystem.dto.CodeTableDTO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.dto.WorkDTO;
@@ -26,10 +35,13 @@ import com.kosa.hrsystem.utils.Encrypt;
 import com.kosa.hrsystem.utils.NaverSMTP;
 import com.kosa.hrsystem.utils.RandomPwd;
 import com.kosa.hrsystem.vo.EmpVO;
+import com.kosa.hrsystem.vo.MyPageVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 import com.kosa.hrsystem.vo.WorkVO;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class EmpServiceImp implements EmpService {
 
@@ -66,7 +78,7 @@ public class EmpServiceImp implements EmpService {
 		RandomPwd rp = new RandomPwd();
 		
 		
-		String emp_name = null;
+		String emp_name = Objects.requireNonNullElse(request.getParameter("emp-name"), "");
 		int emp_num = Integer.parseInt(Objects.requireNonNullElse(request.getParameter("emp-num"), "0"));
 		String emp_email = Objects.requireNonNullElse(request.getParameter("emp-email"),"");
 		String emp_pwd = rp.generateRandomPassword(12);
@@ -313,6 +325,166 @@ public class EmpServiceImp implements EmpService {
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
 		forward.setPath("/login.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward insertCareerByManager(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			String[] jsonData = request.getParameterValues("careerGroup");
+			JSONParser jsonParser = new JSONParser();
+			JSONArray jsonArray = (JSONArray) jsonParser.parse(jsonData[0]);
+			String[][] arrData = new String[jsonArray.size()][];
+			for (int i = 0; i < jsonArray.size(); i++) {
+			    JSONArray rowArray = (JSONArray) jsonArray.get(i);
+			    String[] row = new String[rowArray.size()-1];
+			    for (int j = 0; j < rowArray.size()-1; j++) {
+			        row[j] = (String) rowArray.get(j);
+			    }
+			    arrData[i] = row;
+			    System.out.println(Arrays.toString(arrData[i]));
+			    
+			    CareerDTO cdto = new CareerDTO();
+			    cdto.setEmp_num(Integer.parseInt(arrData[i][0]));
+				cdto.setCompany_name(arrData[i][1]);
+				cdto.setDept(arrData[i][2]);
+				cdto.setRank(arrData[i][3]);
+				cdto.setMain_tesk(arrData[i][4]);
+				cdto.setJoin_date(sdf.parse(arrData[i][5]));
+				cdto.setLeave_date(sdf.parse(arrData[i][6]));
+				cdto.setRemarks(arrData[i][7]);
+				
+				CareerDAO dao = new CareerDAO();
+				int result = dao.insertCareer(cdto);
+				System.out.println("Manager insert : " + result);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/emp.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward insertCertByManager(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			String[] jsonData = request.getParameterValues("certGroup");
+			JSONParser jsonParser = new JSONParser();
+			JSONArray jsonArray;
+			jsonArray = (JSONArray) jsonParser.parse(jsonData[0]);
+			String[][] arrData = new String[jsonArray.size()][];
+			for (int i = 0; i < jsonArray.size(); i++) {
+			    JSONArray rowArray = (JSONArray) jsonArray.get(i);
+			    String[] row = new String[rowArray.size()-1];
+			    for (int j = 0; j < rowArray.size()-1; j++) {
+			        row[j] = (String) rowArray.get(j);
+			    }
+			    arrData[i] = row;
+			    System.out.println(Arrays.toString(arrData[i]));
+			    
+			    CertificateDTO cdto = new CertificateDTO();
+			    cdto.setEmp_num(Integer.parseInt(arrData[i][0]));
+				cdto.setCrtfc_name(arrData[i][1]);
+				cdto.setIssuer(arrData[i][2]);
+				cdto.setAcquisition_date(sdf.parse(arrData[i][3]));
+				cdto.setRemarks(arrData[i][4]);
+				CertificateDAO dao = new CertificateDAO();
+				int result = dao.insertCert(cdto);
+				System.out.println("result : " + result);
+			}
+		}
+		catch (org.json.simple.parser.ParseException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/emp.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward selectCertByManager(HttpServletRequest request, HttpServletResponse response) {
+		
+		int empNum = Integer.parseInt(request.getParameter("emp-num"));
+		
+		EmpDAO dao = new EmpDAO();
+		try {
+			MyPageVO info = dao.selectOneUser(empNum);
+			System.out.println(info);
+			request.setAttribute("info", info);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("/emp.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward deleteCertByManager(HttpServletRequest request, HttpServletResponse response) {
+		//int certNum = Integer.parseInt(request.getParameter("certNum"));
+		
+		String certName = Objects.requireNonNullElse(request.getParameter("certName"), "");
+		String issuer = Objects.requireNonNullElse(request.getParameter("issuer"), "");
+		System.out.println(certName);
+		System.out.println(issuer);
+		HashMap<String, String>map = new HashMap<>();
+		map.put("certName", certName);
+		map.put("issuer", issuer);
+		
+		CertificateDAO dao = new CertificateDAO();
+		int result = dao.deleteCertByCrtfcNumAndIssuer(map);
+		System.out.println("delete : " + result);
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/emp.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward selectCareerByManager(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			int empNum = Integer.parseInt("emp-num");
+			CareerDAO dao = new CareerDAO();
+			List<CareerDTO> list = dao.selectCareer(empNum);
+			System.out.println("리스트 : " + list);
+			request.setAttribute("careerlist", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/emp.do");
+		return forward;
+	}
+
+	@Override
+	public ActionForward deleteCareerByManager(HttpServletRequest request, HttpServletResponse response) {
+		String companyName = request.getParameter("companyName");
+		
+		CareerDAO dao = new CareerDAO();
+		try {
+			int result = dao.deleteCareerByCompanyName(companyName);
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(true);
+		forward.setPath("/emp.do");
 		return forward;
 	}
 

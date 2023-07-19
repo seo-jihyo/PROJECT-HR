@@ -45,4 +45,12 @@ public class CareerDAO {
     	System.out.println(result);
     	return result;
     }
+    
+    public int deleteCareerByCompanyName(String companyName) throws Exception {
+    	SqlSession sqlSession = factory.openSession(true);
+    	int result = sqlSession.delete("deleteCareerByCompanyName", companyName);
+    	sqlSession.close();
+    	System.out.println(result);
+    	return result;
+    }
 }
