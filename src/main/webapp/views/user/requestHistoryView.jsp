@@ -18,7 +18,7 @@
 <style>
     .title {
         margin: auto;
-        margin-top: 32px;
+  		margin-top: 20px;
         width: 90%;
     }
     .sec-table{

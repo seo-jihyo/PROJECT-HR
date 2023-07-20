@@ -73,7 +73,7 @@ img{
     width: 90%;
     height: 50px;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 20px;
    }
 .tabs {
     margin-left: auto;
@@ -112,6 +112,7 @@ img{
 }
 .infoupdate{
    height: 25px;
+   width: 180px;
    border: 1px solid black;
 }
 .info-area{
@@ -124,21 +125,41 @@ dialog{
    top:20%;
    left: 33%   
 }
+.dialog2{
+   width: 500px;
+   height:535px;
+}
+.dialog4{
+   width: 500px;
+   height:460px;
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
 #modal1{
-   width: 40%;
-   height: 40%;
+   width: 27%;
+   height: 41%;
+   top:20%;
+   left: 33%   
+}
+#modal2{
+   width: 500px;
+   height:535px;
    top:20%;
    left: 33%   
 }
 #modal4{
-   width: 40%;
-   height:60%;
+   width: 500px;
+   height:420px;
    top:20%;
    left: 33%   
 }
+
 .updatebtn{
    float: right;
-   margin-right: 10%;
+   margin-right: 5%;
 }
 .updatebtn{
    color: white;
@@ -217,6 +238,11 @@ height: 600px;
 .addProductBtn:hover {
     background-color: white;
     color: black;
+}
+.rightbtn{
+	float: right;
+    margin: 10px;
+}
 </style> 
 
 <body>
@@ -286,17 +312,18 @@ height: 600px;
 	</div>
 	<!--------------- modal1 ---------------->
 	<dialog id="modal1">
-	<h1>개인정보 수정</h1>
+	<h2 class="diatitle">개인정보 수정</h2>
 	<hr>
 	<form method="get" action="/myInfoUpdate.do">
 		<table id="infoUpdate" class="info-table table">
 			
 		</table>
 		<hr>
-		<input type="submit" class="custom-btn btn-10" value="전송">
+		
 		<!-- <button class="dialogbtn custom-btn btn-10" type="button">삭제</button> -->
-		<button class="dialogbtn custom-btn btn-10" type="button"
+		<button class="dialogbtn custom-btn btn-10 rightbtn" type="button"
 			onclick="dialogClose('modal1');">닫기</button>
+		<input type="submit" class="custom-btn btn-10 rightbtn" value="전송">
 	</form>
 	</dialog>
 
@@ -339,7 +366,7 @@ height: 600px;
 	</div>
 	<!--------------- 추가 modal2 ---------------->
 	<dialog id="modal2">
-	<h1>경력 추가</h1>
+	<h2 class="diatitle">경력 추가</h2>
 	<hr>
 	<form method="post" action="/careerInsert.do">
 		<table class="info-table table">
@@ -378,14 +405,15 @@ height: 600px;
 			</tr>
 		</table>
 		<hr>
-		<input type="submit" class="custom-btn btn-10" value="추가">
-		<button class="dialogbtn custom-btn btn-10" type="button"
+		
+		<button class="dialogbtn custom-btn btn-10 rightbtn" type="button"
 			onclick="dialogClose('modal2');">닫기</button>
+		<input type="submit" class="custom-btn btn-10 rightbtn" value="추가">	
 	</form>
 	</dialog>
 	<!------ 수정 modal2 ------>
 	<dialog class="dialog2">
-	<h1 class="diatitle">경력 변경하기</h1>
+	<h2 class="diatitle">경력 변경하기</h2>
 	<hr>
 	<form id="frm3">
 		<table id="careerUpdate" class="update-table">
@@ -436,7 +464,7 @@ height: 600px;
 	</div>
 	<!--------------- modal4 ---------------->
 	<dialog id="modal4">
-	<h1>자격증 추가</h1>
+	<h2 class="diatitle">자격증 추가</h2>
 	<hr>
 	<form method="post" action="/certInsertok.do">
 		<table class="info-table table">
@@ -463,14 +491,15 @@ height: 600px;
 		</table>
 
 		<hr>
-		<input type="submit" class="custom-btn btn-10" value="전송">
-		<button class="dialogbtn custom-btn btn-10" type="button"
+
+		<button class="dialogbtn custom-btn btn-10 rightbtn" type="button"
 			onclick="dialogClose('modal4');">닫기</button>
+				<input type="submit" class="custom-btn btn-10 rightbtn" value="전송">	
 	</form>
 	</dialog>
 	<!------ 수정 modal4 ------>
 	<dialog class="dialog4">
-	<h1 class="diatitle">자격증 변경하기</h1>
+	<h2 class="diatitle">자격증 변경하기</h2>
 	<hr>
 	<form id="frm2">
 		<table id="certUpdate" class="update-table">

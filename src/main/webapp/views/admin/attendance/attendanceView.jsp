@@ -23,6 +23,7 @@
 <title>출퇴근기록</title>
 
 <style type="text/css">
+
 dialog {
 	height:540px;
 	width: 370px;
