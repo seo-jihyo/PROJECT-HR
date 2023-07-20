@@ -20,8 +20,9 @@
 
 dialog{
 	width: 520px;
-	height: 540px;
-
+	height: 350px;
+	top: 30%;
+	left: 40%;
 }
 .diatitle{
 	padding-top:20px;
@@ -81,16 +82,6 @@ dialog{
 		
 			<h2>휴가 유형 관리</h2>
 			<nav class="plusinfo">
-			<select class="searchtype searchs">
-				<option>선택없음</option>
-				<option>휴가유형번호</option>
-				<option>휴가명</option>
-				<option>유급시간</option>
-				<option>차감일수</option>
-				<option>휴가사유</option>
-			</select>
-			<input type="text" class="search searchs">
-			<input type="button" class="searchbtn" value="검 색">
 			<input type="checkbox" id="popup" onclick="resetForm()"><label class="labelBtn searchs" for="popup">+
 				휴가 유형 관리</label>
 

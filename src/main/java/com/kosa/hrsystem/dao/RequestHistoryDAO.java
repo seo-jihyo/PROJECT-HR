@@ -45,6 +45,7 @@ public class RequestHistoryDAO {
 			}
 			// 사원번호, 요청종류, 상태=0
 			reqDTO.setRequest_num(seq);
+			reqDTO.setState('0');
 			sqlSession.insert("insertRequest",reqDTO);
 			sqlSession.commit();
 		} catch (Exception e){
@@ -68,6 +69,13 @@ public class RequestHistoryDAO {
 	public List<RequestHistoryVO> selectAllByEmp(int empNum) {
 		SqlSession sqlSession = factory.openSession();
 		List<RequestHistoryVO> list = sqlSession.selectList("selectAllByEmp",empNum);
+		sqlSession.close();
+		return list;
+	}
+	// 대쉬보드에 최대 5개까지 리스트 출력
+	public List<RequestHistoryVO> selectRequestHistoryTop5() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<RequestHistoryVO> list = sqlSession.selectList("selectRequestHistoryTop5");
 		sqlSession.close();
 		return list;
 	}
