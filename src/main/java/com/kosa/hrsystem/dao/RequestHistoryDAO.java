@@ -71,6 +71,13 @@ public class RequestHistoryDAO {
 		sqlSession.close();
 		return list;
 	}
+	// 대쉬보드에 최대 5개까지 리스트 출력
+	public List<RequestHistoryVO> selectRequestHistoryTop5() {
+		SqlSession sqlSession = factory.openSession(true);
+		List<RequestHistoryVO> list = sqlSession.selectList("selectRequestHistoryTop5");
+		sqlSession.close();
+		return list;
+	}
 	
 	// 요청내역 미승인 개수 출력
 	public int selectNonApproveCount() {

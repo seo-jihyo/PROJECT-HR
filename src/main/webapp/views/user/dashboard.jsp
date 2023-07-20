@@ -140,16 +140,34 @@
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
                   <h2 class="mb-0">미확인 요청내역</h2>
+                  <span class="h2 font-weight-bold mb-0">
+					${vo.non_approve_count}명  
+			  	  </span>
            		</div>
            	  </div>
            </div>
             <div class="card-body">
-            	<span class="h2 font-weight-bold mb-0">
-					${vo.non_approve_count}명  
-			  	  </span>
+       			<table class="col-6 ml-2">
+       				<thead>
+       					<th class="text-lg"><h3 class="mb-0 text-center">이름</h2></th>
+       					<th class="text-lg"><h3 class="mb-0 text-center">요청내역번호</h2></th>
+       					<th class="text-lg"><h3 class="mb-0 text-center">부서</h2></th>
+       					<th class="text-lg"><h3 class="mb-0 text-center">요청타입</h2></th>
+       				</thead>
+       				<tbody>
+	       				<c:forEach var="list" items="${vo.rhvo}">
+	       					<tr>
+	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.emp_name}</h4></td>
+	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.rqst_hstry_num}</td>
+	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.dept}</td>
+	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.request_type}</td>
+	       					</tr>
+	       				</c:forEach>
+       				</tbody>
+       			</table>
 			  	  <div class="col text-right">
-                  	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">See all</a>
-                  </div>
+	                 	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">See all</a>
+	                 </div>
             </div>
            
           </div>
