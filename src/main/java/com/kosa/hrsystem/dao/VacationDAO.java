@@ -37,6 +37,10 @@ public class VacationDAO {
             reqDTO.setRequest_type('V');
             reqDTO.setApprover_note("자동승인");
             reqDTO.setRequest_num(seq);
+            HashMap<String ,Integer> map = new HashMap<>();
+            map.put("empNum",dto.getEmp_num());
+            map.put("vctnNum",dto.getVctn_num());
+            session.update("updateCalcVac",map);
             session.insert("insertRequest", reqDTO);
             session.commit();
         }catch (Exception e){
