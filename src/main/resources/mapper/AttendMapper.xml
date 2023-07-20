@@ -27,9 +27,12 @@
 	<!-- 스케줄 출퇴근 조회 -->
 	<select id="selectAtt" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
 	SELECT 
-		GO_WORK,
-		leave_work
-	FROM ATTENDANCE WHERE EMP_NUM=#{EMPNUM}
+    	a.GO_WORK,
+    	a.leave_work
+	FROM ATTENDANCE a
+	INNER JOIN emp e ON a.emp_num = e.emp_num
+	INNER JOIN request_history rh ON a.att_num = rh.request_num 
+	WHERE e.EMP_NUM = #{emp_num} AND rh.state != 0
 	</select>
 	
 </mapper>

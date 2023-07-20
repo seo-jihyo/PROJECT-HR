@@ -24,7 +24,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- CSS Files -->
     <link href="../../assets/css/dashboard.css?v=1.1.2" rel="stylesheet"/>
-    <title>근로정보</title>
+    <title>근무일정</title>
 
     <style type="text/css">
 
@@ -228,14 +228,13 @@
                 type="button" class="searchbtn" value="검 색"> <input
                 type="checkbox" id="popup" onclick="resetForm()"> <label
                 class="labelBtn" for="popup">+ 근무일정 추가하기</label>
+                
             <div class="modal">
                 <div>
                     <label for="popup">X</label>
-                    <div class="ws-title text-white mb-0">
-                        <h3 id="ws-add">근무일정 추가하기</h3>
-                        &nbsp;
-                        <h4 id="current_date"></h4>
-                    </div>
+
+                        <h1>근무일정 추가하기</h1>
+
                     <hr>
 
                     <form method="get" action="/workscheduleok.do" id="frm">

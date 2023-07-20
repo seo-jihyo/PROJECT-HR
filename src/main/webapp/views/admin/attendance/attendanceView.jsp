@@ -23,20 +23,53 @@
 <title>출퇴근기록</title>
 
 <style type="text/css">
-	.attend-table {
-		height: 400px;
-	}
-	.attend-table tr td {
-		padding: 7px;
-		font-size: 15px;
-	}
-	.attend-date, #attend-emp, #attend-work, #attend-group, #attend-job, .startTime, .endTime {
-		border: 1px solid black;
-		height: 30px;
-	}
-	#attend-area {
-		border: 1px solid black;
-	}
+dialog {
+	height:540px;
+	width: 370px;
+	left: 45%;
+
+}
+
+.diatitle {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.attend-table {
+	height: 400px;
+}
+
+.attend-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
+
+.atttext {
+	border: 1px solid black;
+	height: 30px;
+	width: 150px;
+}
+
+#attend-area {
+	border: 1px solid black;
+}
+
+.attend-table th {
+	text-align: left;
+}
+
+.two {
+	letter-spacing: 20px;
+}
+
+.three {
+	letter-spacing: 5px;
+}
+
+.modaltable th {
+	padding: 20px;
+}
 </style>
 
 </head>
@@ -147,6 +180,7 @@
 
 		<div class="main_title">
 			<h2>출퇴근기록</h2>
+			<br>
 			<input type="text" class="dp" id="datepicker1"> -
        	 	<input type="text" class="dp" id="datepicker2">
 			<nav class="plusinfo">
@@ -175,25 +209,26 @@
 					<form method="get" action="/cmtrecordok.do" id="frm">
 						<table class="attend-table">
 								<tr>
-									<th>직원명</th>
-									<td><select class="vacation-type" id="selectBox" name="emp_num">
+									<th class="three">직원명</th>
+									<td><select class="atttext" id="selectBox" name="emp_num">
 										<c:forEach var="emplist" items="${empList}">
 											<option value="${emplist.emp_num}">${emplist.emp_name}</option>
 										</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
-									<th>날짜</th>
-									<td><input type="date" name="cmt_date" class="startTime" /> 
+									<th class="two">날짜</th>
+									<td><input type="date" name="cmt_date" class="startTime atttext" /> 
 								</tr>
 								<tr>
 									<th>출근시간</th>
-									<td><input type="time" name="go_work" class="startTime" onKeyup="inputTimeColon(this);" /> 
-										<input type="checkbox" name="duty" id="duty" value="" onchange="toggleEndTime(this.checked)">현재 근무중</td>
+									<td><input type="time" name="go_work" class="startTime atttext" onKeyup="inputTimeColon(this);" /> 
+										</td>
 								</tr>
 								<tr>
 									<th>퇴근시간</th>
-									<td><input type="time" name="leave_work" class="endTime" onKeyup="inputTimeColon(this);" /></td>
+									<td><input type="time" name="leave_work" class="endTime atttext" onKeyup="inputTimeColon(this);" />
+									<input type="checkbox" name="duty" id="duty" value="" onchange="toggleEndTime(this.checked)">   현재 근무중</td>
 								</tr>
 						</table>
 					</form>
@@ -275,8 +310,8 @@
 		</div>
 	</section>
 	
-	<dialog>
-    	<h1>출퇴근 기록 수정하기</h1><hr>
+	<dialog class="modaltable">
+    	<h2 class="diatitle">출퇴근 기록 수정하기</h2><hr>
 			<form method="get" id="frm2">
 				<table class="attend-table">
 				</table>
@@ -292,7 +327,7 @@
     </dialog>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript">
-	updateRowsPerPage(18);
+	updateRowsPerPage(17);
 
 	const dialog = document.querySelector("dialog");
 	$(document).on("click", ".table tbody tr", function () {
@@ -319,27 +354,27 @@
 
      let str = `
           	<tr class="rank-tr1">
-            	<th>직원</th>
+            	<th class="three">직원명</th>
               	<td>
               	<input type="hidden" class="rankadd" name="att_num" value="`+$att_num+`">
-              	<select class="vacation-type" id="selectBox" name="emp_num">
+              	<select class="atttext" id="selectBox" name="emp_num">
 					<c:forEach var="emplist" items="${empList}">
 						<option value="${emplist.emp_num}">${emplist.emp_name}</option>
 					</c:forEach>
 				</select></td>
              </tr>
              <tr class="rank-tr1">
-                <th>날짜</th>
-                <td><input type="date" class="rankadd" name="cmt_date" value="`+$date+`"></td>
+                <th class="two">날짜</th>
+                <td><input type="date" class="atttext" name="cmt_date" value="`+$date+`"></td>
 
              </tr>
              <tr class="rank-tr1">
                 <th>출근시간</th>
-                <td><input type="time" class="rankadd" name="go_time" value="`+$go_time+`"></td>
+                <td><input type="time" class="atttext" name="go_time" value="`+$go_time+`"></td>
              </tr>
              <tr class="rank-tr1">
                 <th>퇴근시간</th>
-                <td><input type="time" class="rankadd" name="leave_time" value="`+$leave_time+`"></td>
+                <td><input type="time" class="atttext" name="leave_time" value="`+$leave_time+`"></td>
              </tr>
           `;
      $('dialog table').html(str)
