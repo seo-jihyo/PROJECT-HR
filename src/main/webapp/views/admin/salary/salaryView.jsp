@@ -162,9 +162,8 @@
             <i class='bx bxs-chevron-right'></i>
         </div>
 </section>
-<dialog>
-
-    <h1>급여 수정하기</h1>
+<dialog >
+    <h1>급여명세서</h1>
     <hr>
     <table class="salery-table2" style="width: 90%; height:480px; margin: 0 auto">
 

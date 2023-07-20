@@ -237,17 +237,12 @@ public class VacationServiceImp implements VacationService {
 			HashMap<String, Date> map = new HashMap<>();
 			map.put("startDate", sdf.parse(startDate));
 			map.put("endDate", sdf.parse(endDate));
- System.out.println(map);
 			VacationDAO dao = new VacationDAO();
 			List<VacationVO> list = dao.searchVacByDate(map);
-System.out.println(list);
             Gson gson = new Gson();
             String json = gson.toJson(list);
             System.out.println(json);
-     
             
-			// jsonArr.add(json);
-// 			System.out.println(json.toJSONString());
 			response.setContentType("application/json");
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(json);
