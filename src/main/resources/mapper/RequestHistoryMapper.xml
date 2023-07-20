@@ -124,7 +124,7 @@
 		order by rqst_hstry_num   desc
 	</select>
 
-	<update id="updateRequest" parameterType="HashMap"> -- rqstNum , remarks, state
+	<update id="updateRequest" parameterType="HashMap">
 		update request_history
 		set
 			<if test="remarks != null">
@@ -134,10 +134,36 @@
 	</update>
 
 	<insert id="insertRequest">
-		insert into REQUEST_HISTORY(rqst_hstry_num,emp_num,request_num,request_type) values (req_seq.nextval,#{emp_num},#{request_num},#{request_type})
+		insert into REQUEST_HISTORY(rqst_hstry_num,emp_num,request_num,request_type,state) values (req_seq.nextval,#{emp_num},#{request_num},#{request_type},#{state})
 	</insert>
 	
 	<select id="selectNonApproveCount" resultType="Integer">
 		 select count(*) from request_history where state = '0' 
+	</select>
+	
+	<select id="selectRequestHistoryTop5" resultType="com.kosa.hrsystem.vo.RequestHistoryVO">
+		select * from
+			(
+				select r.rqst_hstry_num as  rqst_hstry_num, r.state as state, r.emp_num as emp_num, d.code_name as dept_code, d.code_value as dept, e.emp_name as emp_name, v.vctn_start_date as start_date,v.vctn_end_date as end_date, vt.vctn_name||'('||vctn_time||'h,'||vt.deduction_day||'일)' as special_note , v.vctn_reason as request_reason, r.request_type, r.approver_note ,r.application_date
+				from request_history r
+						 join vacation v on r.request_num = v.vctn_num and r.request_type='V'
+						 join vacation_type vt on v.vctn_type_num = vt.vctn_type_num
+						 join emp e on r.emp_num = e.emp_num
+						 join code_table d on e.dept = d.code_name
+				union all
+
+				select r.rqst_hstry_num as rqst_hstry_num, r.state as state, r.emp_num as emp_num, d.code_name as dept_code, d.code_value as dept, e.emp_name as emp_name ,a.go_work as start_date,a.leave_work as end_date, null as special_note, null as request_reason, r.request_type, r.approver_note ,r.application_date
+				from request_history r
+						 join attendance a on r.request_num = a.att_num and r.request_type='A'
+						 join emp e on r.emp_num = e.emp_num
+						 join code_table d on e.dept = d.code_name
+				union all
+
+				select r.rqst_hstry_num as rqst_hstry_num, r.state as state, r.emp_num as emp_num, d.code_name as dept_code, d.code_value as dept, e.emp_name as emp_name, ws.go_work as start_date,ws.leave_work as end_date, null as special_note, ws.remarks as request_reason, r.request_type, r.approver_note ,r.application_date
+				from request_history r
+						 join work_schedule ws on r.request_num = ws.work_sch_num
+						 join emp e on r.emp_num = e.emp_num
+						 join code_table d on e.dept = d.code_name )
+		where state = '0' and rownum <![CDATA[ <= ]]> 5 order by application_date asc
 	</select>
 </mapper>

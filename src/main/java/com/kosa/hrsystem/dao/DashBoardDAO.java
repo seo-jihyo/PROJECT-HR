@@ -10,7 +10,7 @@ public class DashBoardDAO {
 	private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
 
 	public int selectAttCnt() {
-		SqlSession sqlSession = factory.openSession();
+		SqlSession sqlSession = factory.openSession(true);
 		System.out.println("result");
 		int result = sqlSession.selectOne("selectAttCount");
 		sqlSession.close();

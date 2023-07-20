@@ -22,6 +22,7 @@ public class DashBoardServiceImp implements DashBoardService {
 		vo.setLeave_count(dao.selectLeaveCnt());
 		vo.setVac_count(dao.selectVacCnt());
 		vo.setNon_approve_count(rdao.selectNonApproveCount());
+		vo.setRhvo(rdao.selectRequestHistoryTop5());
 		
 		request.setAttribute("vo", vo);
 

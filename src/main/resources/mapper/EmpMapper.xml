@@ -47,6 +47,7 @@
 			e inner join code_table d on d.code_name = e.dept  
 			inner join code_table r on r.code_name = e.rank 
 			inner join work w on w.work_num = e.work_num
+			order by emp_num
 	</select>
 	<select id="searchEmp"  parameterType="HashMap" resultType="com.kosa.hrsystem.vo.EmpVO">
 		SELECT e.emp_num, e.emp_name, e.permission_type ,

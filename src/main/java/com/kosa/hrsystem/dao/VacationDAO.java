@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -24,12 +25,26 @@ public class VacationDAO {
         return list;
     }
     //휴가 관리자 삽입
-    public int insertVacation(VacationDTO dto) throws Exception {
+    public int insertVacation(VacationDTO dto, RequestHistoryDTO reqDTO) throws Exception {
         SqlSession session = factory.openSession(true);
-        int result = session.insert("insertVacation",dto);
-        System.out.println(result);
-        
-        session.close();
+        int result = 0;
+        int seq = 0;
+        try {
+            result = session.insert("insertVacation",dto);
+            seq = session.selectOne("selectVctnCurrval");
+
+            reqDTO.setState('1');
+            reqDTO.setRequest_type('V');
+            reqDTO.setApprover_note("자동승인");
+            reqDTO.setRequest_num(seq);
+            session.insert("insertRequest", reqDTO);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         return result;
     }
     

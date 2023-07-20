@@ -22,15 +22,16 @@
     <style type="text/css">
 
         .tab-scroll {
-            margin-left: 20px;
+            width: 90%;
+            margin: auto;
         }
 
         .sec-table {
-            margin-left: 42px;
-            width: 95%;
+            margin: 32px auto;
+            width: 90%;
         }
 
-        h2 {
+        h1 {
             margin-top: 30px;
         }
 
@@ -55,54 +56,9 @@
             border: solid 1px black;
         }
 
-        .workrecbtn {
-            color: white;
-            background-color: rgb(4, 4, 80);
-            width: 70px;
-            height: 30px;
-            border-radius: 8px;
-            transition: all 0.4s;
-            cursor: pointer;
-            border: 1.5px solid rgb(4, 4, 80);
-            font-size: 16px;
-        }
-
-        .workrecbtn:hover {
-            background-color: white;
-            color: black;
-        }
-
-        .worksearch {
-            width: 200px;
-            height: 30px;
-            border: solid 1px black;
-        }
-
-        .diatitle {
-            padding-bottom: 20px;
-            padding-left: 20px;
-        }
-
-        .workrec-table {
-            padding-bottom: 20px;
-        }
-
-        .workrec-area {
-            width: 170px;
-            height: 60px;
-        }
-
         .workrec-table th {
             padding: 20px 20px;
             text-align: left;
-        }
-
-        .workrec-tr {
-            height: 50px;
-        }
-
-        .two {
-            letter-spacing: 30px;
         }
 
         .workmodal-table {
@@ -125,16 +81,6 @@
             border: 1px solid black;
         }
 
-        .work-area {
-            width: 450px;
-            height: 100px;
-            border: 1px solid black;
-        }
-
-        .workrec-area {
-            border: 1px solid black;
-        }
-
         .twomodal {
             letter-spacing: 30px;
             padding: 0px;
@@ -148,16 +94,12 @@
             margin-top: 10px;
         }
 
-        .dialogsub {
-            backgroud: black;
-            color: red;
-        }
     </style>
 </head>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
 <div class="tab-scroll">
-    <h2>내 출퇴근기록</h2>
+    <h1>내 출퇴근기록</h1>
     <input type="text" class="dp" id="datepicker1" name="a"> - <input
         type="text" class="dp" id="datepicker2" name='b'>
     <div class="side">
@@ -201,7 +143,7 @@
 <table class="sec-table table-hover table my-table" id="mainTable">
     <thead class="thead">
     <tr>
-        <th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
+
         <th>직원</th>
         <th>날짜</th>
         <th>출근시간</th>
@@ -219,7 +161,7 @@
             data-leave-time='<fmt:formatDate  value="${rcd.leave_work}" pattern="HH:mm"/>'
             data-break="${rcd.break_time}"
             data-total="${rcd.work_time}">
-            <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
             <td>${rcd.emp_name}</td>
             <td><fmt:formatDate value="${rcd.go_work}" pattern="yyyy-MM-dd"/></td>
             <td><fmt:formatDate value="${rcd.go_work}" pattern="HH:mm"/></td>
@@ -300,7 +242,7 @@
 
                         html += `
                         <tr>
-                            <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                             <td>`+value.emp_name+`</td>
                             <td>`+goWork+`</td>
                             <td>`+goWorkTime+`</td>

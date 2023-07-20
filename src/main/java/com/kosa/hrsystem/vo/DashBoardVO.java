@@ -27,4 +27,5 @@ public class DashBoardVO {
 	private int vac_count;
 	private int non_approve_count;
 //	private List<RequestHistoryDTO> reqHistory;
+	private List<RequestHistoryVO> rhvo;
 }

@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.WorkScheduleDAO;
+import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.dto.WorkScheduleDTO;
 import com.kosa.hrsystem.dto.WorkScheduleTypeDTO;
 import com.kosa.hrsystem.vo.EmpVO;
@@ -113,16 +114,18 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 			int empNum = Integer.parseInt(request.getParameter("emp-name"));
 			String remarks = request.getParameter("ws-area");
 
-			WorkScheduleDTO dto = new WorkScheduleDTO();
+			WorkScheduleDTO wsDto = new WorkScheduleDTO();
 			// 관리에 DB값이 저장 되었을 떄 하기로...
-			dto.setWork_sch_type_num(workType);
-			dto.setGo_work(startTime);
-			dto.setLeave_work(endTime);
-			dto.setEmp_num(empNum);
-			dto.setRemarks(remarks);
-			
+			wsDto.setWork_sch_type_num(workType);
+			wsDto.setGo_work(startTime);
+			wsDto.setLeave_work(endTime);
+			wsDto.setEmp_num(empNum);
+			wsDto.setRemarks(remarks);
+
+			RequestHistoryDTO reqDto = new RequestHistoryDTO();
+			reqDto.setEmp_num(empNum);
 			WorkScheduleDAO dao = new WorkScheduleDAO();
-			dao.insertWorkSchedule(dto);
+			dao.insertWorkSchedule(wsDto, reqDto);
 
 		} catch (ParseException e) {
 			e.printStackTrace();
