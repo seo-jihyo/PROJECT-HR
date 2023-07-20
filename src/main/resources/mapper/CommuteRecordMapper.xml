@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        
+
 <mapper namespace="dev">
 	<select id="searchTotalAtt" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.CommuteRecordVO">
 		SELECT
@@ -54,22 +54,26 @@
 		JOIN emp e ON a.emp_num = e.emp_num
 		order by go_work desc
 	</select>
-	
-	<insert id="insertRecord" parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
-  		insert into attendance(att_num, emp_num, go_work, leave_work) 
-  		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType = DATE})
+
+	<insert id="insertRecord"
+		parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
+		insert into attendance(att_num, emp_num, go_work, leave_work)
+		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType =
+		DATE})
 	</insert>
-	
-	<update id="updateRecord" parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
-	    update attendance set
-	        emp_num = #{emp_num}, 
-	        go_work = #{go_work},
-	        leave_work = #{leave_work}
-	    where att_num = #{att_num}
+
+	<update id="updateRecord"
+		parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
+		update attendance set
+		emp_num = #{emp_num},
+		go_work = #{go_work},
+		leave_work = #{leave_work}
+		where att_num = #{att_num}
 	</update>
- 
-	
-	<delete id="deleteRecord"  parameterType="Integer">
-		delete from attendance where att_num = #{att_num}	
+
+
+	<delete id="deleteRecord" parameterType="Integer">
+		delete from attendance
+		where att_num = #{att_num}
 	</delete>
 </mapper>

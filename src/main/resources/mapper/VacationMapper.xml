@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev">
-
 	<select id="selectAllVacation" resultType="com.kosa.hrsystem.vo.VacationVO">
 	select v.vctn_num, 
         v.emp_num, 
@@ -25,27 +24,6 @@
         vacation_type vt
     on v.vctn_type_num = vt.vctn_type_num
 	order by v.vctn_num
-	
-<!-- 	select v.vctn_num, 
-        v.emp_num, 
-        e.emp_name, 
-        to_char(v.vctn_start_date, 'yyyy-mm-dd HH24:MI') as startdate, 
-        to_char(v.vctn_end_date,  'yyyy-mm-dd HH24:MI') as enddate,
-        v.vctn_type_num,
-        vt.vctn_name,
-        vt.vctn_time,
-        vt.deduction_day,
-        v.vctn_reason,
-        vt.vctn_time*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totaltime, 
-        vt.deduction_day*to_number(floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')))  as totalday 
-    from vacation v
-    inner join 
-        emp e
-    on v.emp_num = e.emp_num
-    inner join
-        vacation_type vt
-    on v.vctn_type_num = vt.vctn_type_num
-	order by v.vctn_num -->
 	</select> 
 	
 	<insert id="insertVacation" parameterType="com.kosa.hrsystem.dto.VacationDTO">
@@ -79,4 +57,63 @@
     	e.emp_num = #{EMPNUM}
     </select>
 
+	<select id="searchVacTotal" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.VacationVO">
+	select 
+		v.vctn_num, 
+        v.emp_num, 
+        e.emp_name, 
+        to_char(v.vctn_start_date, 'yyyy-mm-dd HH24:MI') as startdate, 
+        to_char(v.vctn_end_date,  'yyyy-mm-dd HH24:MI') as enddate,
+        v.vctn_type_num,
+        vt.vctn_name,
+        vt.vctn_time,
+        vt.deduction_day,
+        v.vctn_reason,
+        floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI'))  as countday
+    from 
+    	vacation v
+    inner join 
+    	emp e on v.emp_num = e.emp_num
+    inner join 
+    	vacation_type vt  on v.vctn_type_num = vt.vctn_type_num
+     
+     where 1=1
+            <choose>
+                <when test = "searchType == 'empNum'.toString()">
+                    AND v.emp_num like '%' || #{searchWord} || '%'
+                </when>        
+                <when test = "searchType == 'empName'.toString()">
+                    AND e.emp_name like '%' || #{searchWord} || '%'
+                </when>
+                <when test = "searchType == 'vacType'.toString()">
+                    AND vt.vctn_name like '%' || #{searchWord} || '%'
+                </when>
+             
+            </choose>
+	order by v.vctn_num desc
+	</select>
+	
+	<!-- 날짜검색 -->
+	<select id="searchVacByDate" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.VacationVO">
+        select 
+		v.vctn_num, 
+        v.emp_num, 
+        e.emp_name, 
+        to_char(v.vctn_start_date, 'yyyy-mm-dd HH24:MI') as startdate, 
+        to_char(v.vctn_end_date,  'yyyy-mm-dd HH24:MI') as enddate,
+        v.vctn_type_num,
+        vt.vctn_name,
+        vt.vctn_time,
+        vt.deduction_day,
+        v.vctn_reason,
+        floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI'))  as countday
+    from 
+    	vacation v
+    inner join 
+    	emp e on v.emp_num = e.emp_num
+    inner join 
+    	vacation_type vt  on v.vctn_type_num = vt.vctn_type_num
+    where to_char(v.vctn_start_date,'yyyy-MM-dd') >= #{startDate} and to_char(v.vctn_end_date,'yyyy-MM-dd') <![CDATA[ <= ]]> #{endDate}
+     order by v.vctn_num desc
+	</select>
 </mapper>
