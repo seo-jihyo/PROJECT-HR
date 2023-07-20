@@ -166,8 +166,7 @@ body{
 			</colgroup>
 			<thead>
 				<tr>
-					<th style="width: 30px"><input type='checkbox' id="chkAll"
-						onclick="allCheckboxes('chk[]', this.checked)"></th>
+
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>휴가시간</th>
@@ -193,8 +192,7 @@ body{
 					data-countday="${vacationList.countday}"
 					>
 				
-					<th><input type='checkbox' name='chk[]'
-							onclick="isAllCheck(this.name, 'chkAll');"></th>
+
 					<td>${vacationList.emp_num}</td>
 					<td>${vacationList.emp_name}</td>
 					<td>${vacationList.startdate} ~ ${vacationList.enddate}</td>

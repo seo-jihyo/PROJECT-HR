@@ -455,8 +455,7 @@
             <thead class="thead">
 
             <tr>
-                <th style="width: 30px"><input type='checkbox' id="chkAll"
-                                               onclick="allCheckboxes('chk[]', this.checked)"></th>
+
                 <th>사원번호</th>
                 <th>이름</th>
                 <th>권한타입</th>
@@ -487,8 +486,7 @@
                     data-annual-num="${empList.annual_num}"
                     data-email="${empList.email}"
                     data-remarks="${empList.remarks}">
-                    <th><input type='checkbox' name='chk[]'
-                               onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                     <td>${empList.emp_num}</td>
                     <td>${empList.emp_name}</td>
                     <td>${empList.permission_type}</td>
@@ -721,8 +719,7 @@
                     data-remarks="` + value.remarks + `"
                     >
 
-                    <th><input type='checkbox' name='chk[]'
-                               onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                     <td>` + value.emp_num + `</td>
                     <td>` + value.emp_name + `</td>
                     <td>` + value.permission_type + `</td>

@@ -182,8 +182,7 @@
     <table class="table sec-table table-hover my-table">
         <thead>
         <tr>
-            <th style="width: 30px"><input type='checkbox' id="chkAll"
-                                           onclick="allCheckboxes('chk[]', this.checked)"></th>
+            
             <th>사원번호</th>
             <th>귀속연월</th>
             <th>이름</th>
@@ -216,8 +215,7 @@
                     data-empl-insurance='<fmt:formatNumber type="currency" value="${list.empl_insurance}" pattern="###,###"/>'
                     data-total-deduction='<fmt:formatNumber type="currency" value="${list.totalDeduction}" pattern="###,###"/>'
                     data-total-pay='<fmt:formatNumber type="currency" value="${list.totalPay}" pattern="###,###"/>'>
-                <th><input type='checkbox' name='chk[]'
-                           onclick="isAllCheck(this.name, 'chkAll');"></th>
+                
                 <td>${list.sal_num}</td>
                 <td>7/1</td>
                 <td>${list.emp_name}</td>

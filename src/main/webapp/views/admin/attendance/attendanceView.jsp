@@ -126,8 +126,7 @@
                     data-total="`+value.work_time+`"
                     >
 
-                    <th><input type='checkbox' name='chk[]'
-                        onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                     <td>`+value.emp_num+`</td>
                     <td>`+value.emp_name+`</td>
                     <td>`+goWork+`</td>
@@ -213,7 +212,7 @@
 		<table class="table sec-table table-hover my-table" id="mainTable">
 			<thead>
 				<tr>
-					<th style="width: 30px"><input type='checkbox' id="chkAll" onclick="allCheckboxes('chk[]', this.checked)"></th>
+
 					<th>사원번호</th>
 					<th>직원</th>
 					<th>날짜</th>
@@ -236,7 +235,7 @@
 					data-leave-time='<fmt:formatDate  value="${CMTList.leave_work}" pattern="HH:mm"/>'
 					data-break="${CMTList.break_time}"
 					data-total="${CMTList.work_time}" >
-					<th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
 					<td>${CMTList.emp_num}</td>
 					<td>${CMTList.emp_name}</td>
 					<td><fmt:formatDate  value="${CMTList.go_work}" pattern="yyyy-MM-dd"/></td>

@@ -143,8 +143,7 @@
             <thead class="thead">
 
             <tr>
-                <th style="width: 30px"><input type='checkbox' id="chkAll"
-                                               onclick="allCheckboxes('chk[]', this.checked)"></th>
+
                 <th>상위코드</th>
                 <th>코드번호</th>
                 <th>직급명</th>
@@ -158,8 +157,7 @@
                     data-name="${rankList.code_name}"
                     data-value="${rankList.code_value}"
                     data-remarks="${rankList.remarks}">
-                    <th><input type='checkbox' name='chk[]'
-                               onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                     <td>${rankList.parent_code}</td>
                     <td>${rankList.code_name}</td>
                     <td>${rankList.code_value}</td>

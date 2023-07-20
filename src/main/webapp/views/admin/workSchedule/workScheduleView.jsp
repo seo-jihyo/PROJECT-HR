@@ -193,8 +193,7 @@
                     data-remarks="` + value.remarks + `"
                     >
 
-                    <th><input type='checkbox' name='chk[]'
-                        onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                     <td>` + value.emp_num + `</td>
                     <td>` + value.emp_name + `</td>
                     <td>` + goWork + `</td>
@@ -292,8 +291,7 @@
            style="table-layout: fixed;">
         <thead>
         <tr>
-            <th style="width: 30px"><input type='checkbox' id="chkAll"
-                                           onclick="allCheckboxes('chk[]', this.checked)"></th>
+
             <th>사원번호</th>
             <th>직원</th>
             <th>근무 시작 시간</th>
@@ -314,8 +312,7 @@
                 data-remarks="${wsList.remarks}"
             >
 
-                <th><input type='checkbox' name='chk[]'
-                           onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                 <td>${wsList.emp_num}</td>
                 <td>${wsList.emp_name}</td>
                 <td><fmt:formatDate value="${wsList.go_work}" pattern="yyyy-MM-dd HH:mm"/></td>
