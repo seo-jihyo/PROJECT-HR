@@ -31,7 +31,4 @@ public class DashBoardServiceImp implements DashBoardService {
 		forward.setPath("/views/user/dashboard.jsp");
 		return forward;
 	}
-	
-	
-
 }

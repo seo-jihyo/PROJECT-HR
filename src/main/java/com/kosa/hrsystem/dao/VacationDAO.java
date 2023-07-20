@@ -1,5 +1,7 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
@@ -10,6 +12,7 @@ import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
 import com.kosa.hrsystem.vo.VacationVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class VacationDAO {
     private SqlSessionFactory factory = SqlMapConfig.getSqlSession();
@@ -96,4 +99,21 @@ public class VacationDAO {
         session.close();
         return result;
     }
+    //통합 검색
+	public List<VacationVO> searchTotal(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<VacationVO> list = sqlSession.selectList("searchVacTotal",map);
+		System.out.println("통합검색 : " + list);
+		sqlSession.close();
+		return list;
+	}
+	//날짜 검색
+	public List<VacationVO> searchVacByDate(HashMap<String, Date> map) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		List<VacationVO> list = null;
+		list = sqlSession.selectList("searchVacByDate", map);
+		System.out.println(list + "...... ");
+		sqlSession.close();
+		return list;
+	}
 }
