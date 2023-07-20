@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import com.google.gson.Gson;
@@ -66,8 +67,11 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 			vo.setGo_work(go_work);
 			vo.setLeave_work(leave_work);
 
+			RequestHistoryDTO reqDTO = new RequestHistoryDTO();
+			reqDTO.setEmp_num(emp_num);
+
 			CommuteRecordDAO dao = new CommuteRecordDAO();
-			dao.insertRecord(vo);
+			dao.insertRecord(vo,reqDTO);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
