@@ -90,169 +90,80 @@
             </select>
             <input type="text" class="search searchs">
             <input type="button" class="searchbtn" value="검 색">
-            <input type="checkbox" id="popup"> <label class="labelBtn" for="popup">+
-            급여명세서</label>
-            <div class="modal">
-                <div>
-                    <label for="popup">X</label>
-                    <h1>급여명세서</h1>
-                    <hr>
+        </nav>
+        <table class="table sec-table table-hover my-table">
+            <thead>
+            <tr>
 
-                    <div class="salery-emp">
-                        <p>직원 : <select name="select" id="select">
-                            <option value="lee">이재경</option>
-                            <option value="song">송기석</option>
-                            <option value="gun">권지연</option>
-                            <option value="seo">서지효</option>
-                        </select>
-                    </div>
-                    <hr>
-
-                    <table class="salery-table">
-                        <tr>
-                            <td>성명</td>
-                            <td>
-                                <div id="name" onChange="getselect()">이재경</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>지급일</td>
-                            <td>2023.07.02</td>
-                        </tr>
-                    </table>
-                    <br>
-                    <table class="salery-table2">
-                        <tr>
-                            <td colspan="2">임금지급내역</td>
-                            <td colspan="2">공제내역</td>
-                        </tr>
-                        <tr>
-                            <td>임금항목</td>
-                            <td>지급금액(원)</td>
-                            <td>공제항목</td>
-                            <td>지급금액(원)</td>
-                        </tr>
-                        <tr>
-                            <td>기본금</td>
-                            <td>5,000,000</td>
-                            <td>소득세</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>상여금</td>
-                            <td>1,000,000</td>
-                            <td>국민연금</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>직책수당</td>
-                            <td>0</td>
-                            <td>건강보험</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>연차수당</td>
-                            <td>0</td>
-                            <td>고용보험</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>지급액 계</td>
-                            <td>6,000,000</td>
-                            <td>공제액 계</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>실지급액</td>
-                            <td colspan="3">6,000,000</td>
-                        </tr>
-                    </table>
-                    <hr>
-                    <div class="bottom-btn">
-                        <div class="right-btn">
-                            <button class="custom-btn btn-10">추가하기</button>
-                            <button type="button" class="btn_close custom-btn btn-10" onclick="btnClose();">닫기</button>
-                        </div>
-                    </div>
-                </div>
-                <label for="popup"></label>
-            </div>
-    </div>
-    </nav>
-    <table class="table sec-table table-hover my-table">
-        <thead>
-        <tr>
-            
-            <th>사원번호</th>
-            <th>귀속연월</th>
-            <th>이름</th>
-            <th>기본금</th>
-            <th>상여금</th>
-            <th>직책수당(팀장이상)</th>
-            <th>연차수당</th>
-            <th>지급액 계</th>
-            <th>국민연금(4.5%)</th>
-            <th>건강보험(3.99%)</th>
-            <th>장기요양보험</th>
-            <th>고용보험</th>
-            <th>공제액 계</th>
-            <th>실수령액</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="list" items="${list}">
-            <tr
-                    data-emp-name="${list.emp_name}"
-                    data-emp-name="${list.emp_name}"
-                    data-basic='<fmt:formatNumber type="currency" value="${list.basic}" pattern="###,###"/>'
-                    data-bonus='<fmt:formatNumber type="currency" value="${list.bonus}" pattern="###,###"/>'
-                    data-direct-benefits='<fmt:formatNumber type="currency" value="${list.directBenefits}" pattern="###,###"/>'
-                    data-annual-allowance='<fmt:formatNumber type="currency" value="${list.annualAllowance}" pattern="###,###"/>'
-                    data-payment='<fmt:formatNumber type="currency" value="${list.payment}" pattern="###,###"/>'
-                    data-national-pension='<fmt:formatNumber type="currency" value="${list.national_pension}" pattern="###,###"/>'
-                    data-health-insurance='<fmt:formatNumber type="currency" value="${list.health_insurance}" pattern="###,###"/>'
-                    data-lncr-insurance='<fmt:formatNumber type="currency" value="${list.lncr_insurance}" pattern="###,###"/>'
-                    data-empl-insurance='<fmt:formatNumber type="currency" value="${list.empl_insurance}" pattern="###,###"/>'
-                    data-total-deduction='<fmt:formatNumber type="currency" value="${list.totalDeduction}" pattern="###,###"/>'
-                    data-total-pay='<fmt:formatNumber type="currency" value="${list.totalPay}" pattern="###,###"/>'>
-                
-                <td>${list.sal_num}</td>
-                <td>7/1</td>
-                <td>${list.emp_name}</td>
-                <td><fmt:formatNumber type="currency" value="${list.basic}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.bonus}" pattern="###,###"/>원</td>
-                <td>
-                    <c:if test="${list.directBenefits == 1}">
-                        <fmt:formatNumber type="currency" value="${0}" pattern="###,###"/>원
-                    </c:if>
-                    <c:if test="${list.directBenefits != 1}">
-                        <fmt:formatNumber type="currency" value="${list.directBenefits}" pattern="###,###"/>만원
-                    </c:if>
-                </td>
-                <td>
-                    <fmt:formatNumber type="currency" value="${list.annualAllowance}" pattern="###,###"/>원
-                </td>
-                <td><fmt:formatNumber type="currency" value="${list.payment}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.national_pension}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.health_insurance}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.lncr_insurance}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.empl_insurance}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.totalDeduction}" pattern="###,###"/>원</td>
-                <td><fmt:formatNumber type="currency" value="${list.totalPay}" pattern="###,###"/>원</td>
+                <th>사원번호</th>
+                <th>귀속연월</th>
+                <th>이름</th>
+                <th>기본금</th>
+                <th>상여금</th>
+                <th>직책수당(팀장이상)</th>
+                <th>연차수당</th>
+                <th>지급액 계</th>
+                <th>국민연금(4.5%)</th>
+                <th>건강보험(3.99%)</th>
+                <th>장기요양보험</th>
+                <th>고용보험</th>
+                <th>공제액 계</th>
+                <th>실수령액</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <div class="pagination">
-        <i class='bx bxs-chevron-left'></i>
-        <ol id="pagingNumbers">
-        </ol>
-        <i class='bx bxs-chevron-right'></i>
-    </div>
-</section>
-<dialog >
+            </thead>
+            <tbody>
+            <c:forEach var="list" items="${list}">
+                <tr
+                        data-emp-name="${list.emp_name}"
+                        data-emp-name="${list.emp_name}"
+                        data-basic='<fmt:formatNumber type="currency" value="${list.basic}" pattern="###,###"/>'
+                        data-bonus='<fmt:formatNumber type="currency" value="${list.bonus}" pattern="###,###"/>'
+                        data-direct-benefits='<fmt:formatNumber type="currency" value="${list.directBenefits}" pattern="###,###"/>'
+                        data-annual-allowance='<fmt:formatNumber type="currency" value="${list.annualAllowance}" pattern="###,###"/>'
+                        data-payment='<fmt:formatNumber type="currency" value="${list.payment}" pattern="###,###"/>'
+                        data-national-pension='<fmt:formatNumber type="currency" value="${list.national_pension}" pattern="###,###"/>'
+                        data-health-insurance='<fmt:formatNumber type="currency" value="${list.health_insurance}" pattern="###,###"/>'
+                        data-lncr-insurance='<fmt:formatNumber type="currency" value="${list.lncr_insurance}" pattern="###,###"/>'
+                        data-empl-insurance='<fmt:formatNumber type="currency" value="${list.empl_insurance}" pattern="###,###"/>'
+                        data-total-deduction='<fmt:formatNumber type="currency" value="${list.totalDeduction}" pattern="###,###"/>'
+                        data-total-pay='<fmt:formatNumber type="currency" value="${list.totalPay}" pattern="###,###"/>'>
 
-    <h1>급여 수정하기</h1>
+                    <td>${list.sal_num}</td>
+                    <td>7/1</td>
+                    <td>${list.emp_name}</td>
+                    <td><fmt:formatNumber type="currency" value="${list.basic}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.bonus}" pattern="###,###"/>원</td>
+                    <td>
+                        <c:if test="${list.directBenefits == 1}">
+                            <fmt:formatNumber type="currency" value="${0}" pattern="###,###"/>원
+                        </c:if>
+                        <c:if test="${list.directBenefits != 1}">
+                            <fmt:formatNumber type="currency" value="${list.directBenefits}" pattern="###,###"/>만원
+                        </c:if>
+                    </td>
+                    <td>
+                        <fmt:formatNumber type="currency" value="${list.annualAllowance}" pattern="###,###"/>원
+                    </td>
+                    <td><fmt:formatNumber type="currency" value="${list.payment}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.national_pension}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.health_insurance}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.lncr_insurance}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.empl_insurance}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.totalDeduction}" pattern="###,###"/>원</td>
+                    <td><fmt:formatNumber type="currency" value="${list.totalPay}" pattern="###,###"/>원</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <i class='bx bxs-chevron-left'></i>
+            <ol id="pagingNumbers">
+            </ol>
+            <i class='bx bxs-chevron-right'></i>
+        </div>
+</section>
+<dialog>
+    <h1>급여명세서</h1>
     <hr>
     <table class="salery-table2" style="width: 90%; height:480px; margin: 0 auto">
 

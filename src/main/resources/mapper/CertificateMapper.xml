@@ -5,7 +5,7 @@
 
 <mapper namespace="dev">
 	<select id="selectCert" parameterType="Integer" resultType="com.kosa.hrsystem.dto.CertificateDTO">
-		select rownum as cert_num, CRTFC_NAME, ISSUER, ACQUISITION_DATE, REMARKS from CERTIFICATE where emp_num = #{emp_num}
+		select rownum as rnum, cert_num, CRTFC_NAME, ISSUER, ACQUISITION_DATE, REMARKS from CERTIFICATE where emp_num = #{emp_num}
 	</select>
 	<insert id="insertCert" parameterType="com.kosa.hrsystem.dto.CertificateDTO">
 		insert into CERTIFICATE values (cert_seq.nextval,#{emp_num},#{crtfc_name},#{issuer},#{acquisition_date},#{remarks})
