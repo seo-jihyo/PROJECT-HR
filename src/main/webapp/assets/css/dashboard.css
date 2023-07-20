@@ -222,6 +222,14 @@ hr{
     flex:1 1 auto;
     padding:1.5rem
 }
+
+.card-body table{
+	padding: 5px;
+    margin-left: -20px !important;
+	border: .1rem solid #5e5e7c;
+	border-radius: 10px;
+}
+
 .card-title{
     margin-bottom:1.25rem
 }
