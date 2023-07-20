@@ -32,4 +32,5 @@
 	WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD') 
 	BETWEEN TO_CHAR(vctn_start_date,'YYYY-MM-DD') AND TO_CHAR(vctn_end_date, 'YYYY-MM-DD')
 	</select>
+	
 </mapper>
