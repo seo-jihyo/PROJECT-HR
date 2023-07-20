@@ -17,4 +17,5 @@
 	<delete id="deleteVctnType" parameterType="Integer">
 		delete from vacation_type where vctn_type_num = #{num}
 	</delete>
+	
 </mapper>

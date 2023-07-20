@@ -15,7 +15,6 @@ import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
 import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
-import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.vo.RequestHistoryVO;
 import com.kosa.hrsystem.vo.WorkScheduleVO;
 
