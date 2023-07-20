@@ -202,43 +202,24 @@ height: 600px;
 	letter-spacing: 4px;
 }
 
+.addProductBtn {
+    color: white;
+    background-color: rgb(4, 4, 80);
+    width: 100px;
+    height: 25px;
+    border-radius: 8px;
+    transition: all 0.4s;
+    cursor: pointer;
+    border: 1.5px solid rgb(4, 4, 80);
+    font-size: 14px;
+    margin-left: 50px;
+}
+.addProductBtn:hover {
+    background-color: white;
+    color: black;
 </style> 
 
 <body>
-<script defer>
-	function showImgInput() {
-		document.getElementById("imgInput").click();
-	}
-	
-	function previewImage(input) {
-		const preview = document.getElementById('imgPreview');
-		const test = document.getElementById('fileInputText');
-		const file = input.files[0];
-		const reader = new FileReader();
-	
-		reader.onload = function(e) {
-			preview.src = e.target.result;
-			preview.style.display = 'block';
-			test.style.display = 'none';
-		};
-	
-		if (file) {
-			reader.readAsDataURL(file);
-		} else {
-			preview.src = '#';
-			preview.style.display = 'none';
-		}
-	}
-	function validateForm() {
-		const fileInput = document.getElementById('imgInput');
-
-		if (fileInput.value === '') {
-			alert('파일을 등록하세요.');
-			return false;
-		}
-		return true;
-	}
-</script>
   <%@include file="/views/include/header_user.jsp" %>
       <div id="myInfo">
          <h1 class="title">내 인사정보</h1><br>
@@ -250,10 +231,10 @@ height: 600px;
 						<div class="addImage" onclick="document.getElementById('imgInput').click()">
 							<label for="imgInput" class="addImageLabel" id="fileInputText"></label>
 							<input type="file" id="imgInput" name="filename" style="display: none;">
-							<c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/main_ps.jpg" style="width: 200px; height:200px;"></c:if>
-							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px; border: 1px solid black; border-radius: 100px;"></c:if>
-						</div>
+							<c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/user.png" style="width: 200px; height:200px;"></c:if>
+							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px; border: 2px solid black; border-radius: 100px;"></c:if>
 							<input type="submit" value="프로필 변경" class="addProductBtn">
+						</div>
 					</form>
                </td>
                <th>이름</th>		<td>${info.emp_name}</td>
@@ -285,12 +266,12 @@ height: 600px;
 	<div class="modal-nav" id="tab-1" style="display: block;">
 		<table class="main-table">
 			<tr>
-				<td>성함</td>		
-				<td>이메일</td>	    
-				<td>휴대전화</td>
-				<td>우편번호</td>	
-				<td>주소</td>
-				<td>상세주소</td>
+				<th>성함</th>		
+				<th>이메일</th>	    
+				<th>휴대전화</th>
+				<th>우편번호</th>	
+				<th>주소</th>
+				<th>상세주소</th>
 			</tr>
 			<tr>
 				<td>${info.emp_name}</td>
@@ -322,33 +303,37 @@ height: 600px;
 	<!------ tab2 ------>
 	<div class="modal-nav" id="tab-2" style="display: none;">
 		<table class="main-table table2">
-			<tr>
-				<th>회사명</th>
-				<th>부서명</th>
-				<th>직급</th>
-				<th>주요업무</th>
-				<th>입사년월</th>
-				<th>퇴사년월</th>
-				<th>비고</th>
-			</tr>
-			<c:forEach var="cList" items="${info.career}">
-			<tr data-careernum="${cList.career_num}"
-			data-companyname="${cList.company_name}"
-			data-dept="${cList.dept}"
-			data-rank="${cList.rank}"
-			data-maintesk="${cList.main_tesk}"
-			data-joindate="<fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/>"
-			data-leavedate="<fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/>"
-			data-remarks="${cList.remarks}">
-				<td>${cList.company_name}</td>
-				<td>${cList.dept}</td>
-				<td>${cList.rank}</td>
-				<td>${cList.main_tesk}</td>
-				<td><fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/></td>
-				<td><fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/></td>
-				<td>${cList.remarks}</td>
-			</tr>
-			</c:forEach>
+			<thead>
+				<tr>
+					<th>회사명</th>
+					<th>부서명</th>
+					<th>직급</th>
+					<th>주요업무</th>
+					<th>입사년월</th>
+					<th>퇴사년월</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="cList" items="${info.career}">
+				<tr data-careernum="${cList.career_num}"
+				data-companyname="${cList.company_name}"
+				data-dept="${cList.dept}"
+				data-rank="${cList.rank}"
+				data-maintesk="${cList.main_tesk}"
+				data-joindate="<fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/>"
+				data-leavedate="<fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/>"
+				data-remarks="${cList.remarks}">
+					<td>${cList.company_name}</td>
+					<td>${cList.dept}</td>
+					<td>${cList.rank}</td>
+					<td>${cList.main_tesk}</td>
+					<td><fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/></td>
+					<td><fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/></td>
+					<td>${cList.remarks}</td>
+				</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 		<button class="updatebtn" onclick='updateView("modal2")'>추가</button>
 	</div>
@@ -510,6 +495,40 @@ height: 600px;
 	<script type="text/javascript" src="/assets/js/modal.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<script>
+	
+	function showImgInput() {
+		document.getElementById("imgInput").click();
+	}
+	
+	function previewImage(input) {
+		const preview = document.getElementById('imgPreview');
+		const test = document.getElementById('fileInputText');
+		const file = input.files[0];
+		const reader = new FileReader();
+	
+		reader.onload = function(e) {
+			preview.src = e.target.result;
+			preview.style.display = 'block';
+			test.style.display = 'none';
+		};
+	
+		if (file) {
+			reader.readAsDataURL(file);
+		} else {
+			preview.src = '#';
+			preview.style.display = 'none';
+		}
+	}
+	function validateForm() {
+		const fileInput = document.getElementById('imgInput');
+
+		if (fileInput.value === '') {
+			alert('파일을 등록하세요.');
+			return false;
+		}
+		return true;
+	}
+	
     $('.tabs a').click(function(){
         let $tabId = $(this).data('tab')
        $('.modal-nav').hide()

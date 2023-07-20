@@ -45,7 +45,7 @@ public class FrontRegisterController extends HttpServlet {
         RequestHistoryService requestHistoryService = new RequestHistoryServiceImp();
         UserService userService = new UserServiceImp();
         UserScheduleService userScheduleService = new UserScheduleServiceImp();
-        WorkRecordService workRecordService= new WorkRecordServiceImp();
+        WorkRecordService workRecordService = new WorkRecordServiceImp();
         DashBoardService dashBoardService = new DashBoardServiceImp();
         SalaryService salaryService = new SalaryServiceImp();
         ActionForward forward = null;
@@ -96,6 +96,8 @@ public class FrontRegisterController extends HttpServlet {
         /* 직원 */
         else if (urlcommand.equals("/emp.do")) {
             forward = empService.selectAll(request, response);
+        } else if (urlcommand.equals("/searchEmp.do")) {
+            empService.searchEmp(request, response);
         } else if (urlcommand.equals("/empok.do")) {
             // 직원 추가하기
             forward = empService.insert(request, response);
@@ -199,10 +201,18 @@ public class FrontRegisterController extends HttpServlet {
         /* 날짜로 검색 */
         else if (urlcommand.equals("/searchByDate.do")) {
             workScheduleService.searchByDate(request, response);
+        } else if (urlcommand.equals("/searchByDateAtt.do")) {
+            commuteRecordService.searchByDateAtt(request, response);
+        } else if (urlcommand.equals("/searchByDateRequestHistory.do")) {
+            requestHistoryService.searchByDateRequestHistory(request, response);
         }
         /* 통합 검색(근무일정) */
         else if (urlcommand.equals("/searchTotal.do")) {
             workScheduleService.searchTotal(request, response);
+        } else if (urlcommand.equals("/searchTotalAtt.do")) {
+            commuteRecordService.searchTotalAtt(request, response);
+        } else if (urlcommand.equals("/searchTotalRequestHistory.do")) {
+            requestHistoryService.searchTotalRequestHistory(request, response);
         }
         /* 출퇴근기록 */
         else if (urlcommand.equals("/cmtrecord.do")) {
@@ -222,6 +232,8 @@ public class FrontRegisterController extends HttpServlet {
             forward = workRecordService.selectAllRcd(request, response);
         } else if (urlcommand.equals("/workrecordInsertAtt.do")) {
             forward = workRecordService.insertRcd(request, response);
+        } else if (urlcommand.equals("/searchWorkRecByDate.do")) {
+            workRecordService.searchWorkRecByDate(request, response);
         }
 
         /* 사용자 마이페이지 */
@@ -248,11 +260,11 @@ public class FrontRegisterController extends HttpServlet {
         }
         /* 대시보드 */
         else if (urlcommand.equals("/dashboard.do")) {
-        	forward = dashBoardService.selectAll(request, response);
+            forward = dashBoardService.selectAll(request, response);
         }
         /* 사용자 스케줄 */
-		else if(urlcommand.equals("/userSchedule.do")) {
-        	forward = userScheduleService.selectUserSchedule(request, response);
+        else if (urlcommand.equals("/userSchedule.do")) {
+            forward = userScheduleService.selectUserSchedule(request, response);
         }
         /* 사용자 요청내역*/
         else if (urlcommand.equals("/userRequesthistory.do")) {
