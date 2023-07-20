@@ -18,17 +18,12 @@
 <style>
     .title {
         margin: auto;
-        margin-top: 20px;
+        margin-top: 32px;
         width: 90%;
     }
-
-    .sec-table {
-        border-collapse: collapse;
-        width: 80%;
-        height: 10px;
-        text-align: center;
-        margin-top: 75px;
-        margin-left: 10%;
+    .sec-table{
+        width: 90%;
+        margin: 32px auto;
     }
 </style>
 <body>

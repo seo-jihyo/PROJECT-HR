@@ -27,7 +27,7 @@ body, div {
    margin: auto;
    margin-top: 60px;
     margin-bottom: 60px;
-   width: 80%;
+   width: 90%;
    heignt: 20%;
     align-content: center;
    border-style: solid;
@@ -38,7 +38,7 @@ body, div {
    margin: auto;
    margin-top: 60px;
    margin-bottom: 30px;
-   width: 80%;
+   width: 90%;
    heignt: 20%;
    align-content: center;
    border-style: solid;
@@ -66,18 +66,18 @@ img{
 }
 .main-hr {
    background-color: #d3d3d3;
-   width: 80%;
+   width: 90%;
    margin: auto;
 }
 .title {
-    width: 80%;
+    width: 90%;
     height: 50px;
     margin: auto;
     margin-top: 30px;
    }
 .tabs {
     margin-left: auto;
-    width: 90%;
+    width: 95%;
     font-weight: 600;
    }
 .tabs a{

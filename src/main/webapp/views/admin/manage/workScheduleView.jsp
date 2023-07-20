@@ -119,7 +119,7 @@
     <table class="sec-table table-hover my-table">
         <thead>
         <tr>
-            <th><input type="checkbox" onclick="allCheckboxes('chk[]', this.checked)"></th>
+
             <th>근로일정 유형명</th>
             <th>근무 시작 시간</th>
             <th>근무 종료 시간</th>
@@ -134,7 +134,7 @@
             	data-name="${WSTList.work_name}"
             	data-start="${work_start}"
             	data-end="${work_end}">
-                <th><input type='checkbox' name='chk[]' onclick="isAllCheck(this.name, 'chkAll');"></th>
+
                 <td>${WSTList.work_name}</td>
 				<td><fmt:formatDate value="${WSTList.work_start}" pattern="HH:mm" /></td>
 				<td><fmt:formatDate value="${WSTList.work_end}" pattern="HH:mm"/></td> 

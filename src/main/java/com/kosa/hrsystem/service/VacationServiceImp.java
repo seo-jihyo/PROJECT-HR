@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.VacationDAO;
-import com.kosa.hrsystem.dao.WorkScheduleDAO;
+import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.vo.EmpVO;
@@ -55,19 +55,19 @@ public class VacationServiceImp implements VacationService {
 			char vctnApproval =  request.getParameter("vctn_approval").charAt(0);
 			
 
-			VacationDTO dto = new VacationDTO();
+			VacationDTO vacDto = new VacationDTO();
+			vacDto.setEmp_num(empNum);
+			vacDto.setVctn_type_num(vctnTypeNum);
+			vacDto.setVctn_start_date(vctnStartDate);
+			vacDto.setVctn_end_date(vctnEndDate);
+			vacDto.setVctn_reason(vctnReason);
+			vacDto.setVctn_approval(vctnApproval);
 
-			dto.setEmp_num(empNum);
-			dto.setVctn_type_num(vctnTypeNum);
-			dto.setVctn_start_date(vctnStartDate);
-			dto.setVctn_end_date(vctnEndDate);
-			dto.setVctn_reason(vctnReason);
-			dto.setVctn_approval(vctnApproval);
-			
-
+			RequestHistoryDTO reqDto = new RequestHistoryDTO();
+			reqDto.setEmp_num(empNum);
 			VacationDAO dao = new VacationDAO();
-		
-			dao.insertVacation(dto);
+			dao.insertVacation(vacDto,reqDto);
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

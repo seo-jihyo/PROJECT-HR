@@ -153,7 +153,6 @@
     <table class="table sec-table table-hover my-table">
         <thead>
         <tr>
-            <th><input type="checkbox"></th>
             <th>근로정보명</th>
             <th>시급</th>
             <th>소정근로요일</th>
@@ -170,7 +169,6 @@
                     data-fixed-work-days="${list.fixed_work_days}"
                     data-holidays="${list.holidays}"
                     data-remarks="${list.remarks}">
-                <td><input type="checkbox"></td>
                 <td>${list.work_name}</td>
                 <td><fmt:formatNumber value="${list.pay}" type="currency"/></td>
                 <td>${list.fixed_work_days}</td>
