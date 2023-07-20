@@ -71,7 +71,7 @@
         }
 
         .rights {
-            padding-left: 12.5em;
+            padding-left: 10.5em;
         }
 
         .empmemo {
@@ -151,8 +151,8 @@
 
                     <!--    <form method="get" action="/" id="frm"> -->
                     <div class="tabs">
-                        <a data-tab="tab-1">기본정보</a>
-                        <a data-tab="tab-3">경력</a>
+                        <a data-tab="tab-1">기본정보</a>&nbsp;&nbsp;&nbsp;
+                        <a data-tab="tab-3">경력</a>&nbsp;&nbsp;&nbsp;
                         <a data-tab="tab-4">자격증</a>
                     </div>
                     <hr>
@@ -317,11 +317,11 @@
                                 <thead>
                                 <tr>
                                     <!-- <td>자격증번호</td> -->
-                                    <td>자격증명</td>
-                                    <td>발행처</td>
-                                    <td>취득년월</td>
-                                    <td>비고</td>
-                                    <td></td>
+                                    <th>자격증명</th>
+                                    <th>발행처</th>
+                                    <th>취득년월</th>
+                                    <th>비고</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -509,7 +509,7 @@
         <i class='bx bxs-chevron-right'></i>
     </div>
 </section>
-<dialog>
+<dialog style="width: 740px;">
     <h2 class="diatitle">직원 정보 수정하기</h2>
     <hr>
     <form method="get" id="frm2">

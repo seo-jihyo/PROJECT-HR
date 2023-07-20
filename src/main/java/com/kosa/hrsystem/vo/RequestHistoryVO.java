@@ -24,6 +24,6 @@ public class RequestHistoryVO {
 	private String request_reason;
 	private String request_type;
 	private String approver_note;
-	private String application_date;
+	private Date application_date;
 
 }
