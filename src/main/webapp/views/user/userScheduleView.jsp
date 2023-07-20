@@ -95,7 +95,28 @@
 		cursor: pointer;
 		background-color:white;
 		color: black;
-			}
+	}
+	.textbox{
+		border: solid 1px;
+		width: 200px;
+		height: 30px;
+	}
+	.schedule-memo{
+		width: 200px;
+	}
+	h2{
+		padding: 10px;
+	}
+	dialog{
+		width: 400px;
+		height: 380px;
+	}	
+	.schedule-table th{
+		text-align: left;
+	}
+	.four{
+	letter-spacing: 14px;
+	}
   </style>
 </head>
 <body>
@@ -106,43 +127,43 @@
 <button class="workBtn plus">근무일정 추가</button>
 </nav>
 
-  <!-- calendar 태그 -->
+  <!-- calendar 태그 --> 
   <div id='calendar-container' class='calendar-container'>
     <div id='calendar'></div>
 
   <dialog class="vacModal">
       
-    	<h1>휴가 신청하기</h1>
+    	<h2>휴가 신청하기</h2>
 		<hr>					
 					<form method="get" id="frm">
 						<table class="schedule-table">
 							<tr>
-								<td>휴가 유형</td>
+								<th class="four">휴가유형</th>
 								<td>
 							<!-- 	<input type="text" name="vctn_type_num">  -->
 										
-							<select name="vctn_type_num" id="workType">
+							<select name="vctn_type_num" class="textbox" id="workType">
   								<c:forEach var="vctnlist" items="${vctnTypeList}">
     								<option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
-  							</c:forEach>
+  								</c:forEach>
 							</select>
 							</tr>
 							<tr class="vacation-tr1">
-								<td>휴가 시작 날짜</td>
-								<td><input type="datetime-local" name="vctn_start_date"></td>
+								<th>휴가 시작 날짜</th>
+								<td><input type="datetime-local" class="textbox" name="vctn_start_date"></td>
 							</tr>
 							<tr class="vacation-tr1">
-								<td>휴가 종료 날짜</td>
-								<td><input type="datetime-local" name="vctn_end_date"></td>
+								<th>휴가 종료 날짜</th>
+								<td><input type="datetime-local" class="textbox" name="vctn_end_date"></td>
 							</tr>
 
 							
 							<tr hidden>
-								<td>휴가 종류</td>
-								<td><input type="text" name="request_type" value="V">
+								<th class="four">휴가 종류</th>
+								<td><input type="text" name="request_type" class="textbox" value="V">
 							</tr>
 							<tr>
-								<td>휴가사유</td>
+								<th class="four">휴가사유</th>
 								<td><textarea name="vctn_reason" class="schedule-memo" cols="70" rows="4"></textarea></td>
 							</tr>
 						</table>
@@ -159,13 +180,13 @@
     
       <dialog class="workModal">
       
-    	<h1>근무일정 추가하기</h1>
+    	<h2>근무일정 추가하기</h2>
 		<hr>					
 					<form method="get" id="frm2">
-							<table class="ws-table">
+							<table class="schedule-table">
 								<tr class="modal-tr">
-									<td>근무일정 유형</td>
-									<td><select name="ws-type" id="workType">
+									<th>근무일정 유형</th>
+									<td><select name="ws-type" class="textbox" id="workType">
 											<c:forEach var="worklist" items="${workList}">
 												<option value="${worklist.work_sch_type_num}">${worklist.work_name}</option>
 											</c:forEach>
@@ -173,17 +194,16 @@
 								</tr>
 								<tr class="modal-tr">
 								<tr class="modal-tr">
-								<td>근무 시작 시간</td>
-								<td><input type="datetime-local" name="startTime" /></td>
+								<th>근무 시작 시간</th>
+								<td><input type="datetime-local" class="textbox" name="startTime" /></td>
 								</tr>
 								<tr class="modal-tr">
-								<td>근무 종료 시간</td>
-								<td><input type="datetime-local" name="endTime" /></td>
+								<th>근무 종료 시간</th>
+								<td><input type="datetime-local" class="textbox" name="endTime" /></td>
 								</tr>
 								<tr class="modal-tr">
-									<td>일정노트</td>
-									<td><textarea name="ws-area" id="ws-area" cols="65"
-											rows="4" style="resize: none;"></textarea></td>
+								<th class="four">일정노트</th>
+									<td><textarea name="ws-area" class="schedule-memo" id="ws-area" cols="65" rows="4" style="resize: none;"></textarea></td>
 								</tr>
 								<tr hidden>
 								<td><input type="text" name="request_type" value="W">

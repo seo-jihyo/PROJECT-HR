@@ -44,7 +44,8 @@ public class UserScheduleServiceImp implements UserScheduleService{
 			request.setAttribute("workList", workList);	
 			request.setAttribute("vctnTypeList", vctnTypeList);	
 			request.setAttribute("userSchedule", userSchedule);
-				
+			
+			System.out.println(userSchedule);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
