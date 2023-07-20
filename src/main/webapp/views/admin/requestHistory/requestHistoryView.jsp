@@ -22,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>요청내역</title>
+    
 
 </head>
 <body>
@@ -134,6 +135,7 @@
 <section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>요청 내역</h2>
+        <br>
         <input type="text" class="dp" id="datepicker1"> -
         <input type="text" class="dp" id="datepicker2">
         <nav class="plusinfo">
@@ -216,7 +218,7 @@
 
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript">
-	updateRowsPerPage(18);
+	updateRowsPerPage(17);
 	
 function approvalBtn(btn,approval){
     const rqstNum = $(btn).data("rqst-num");

@@ -23,7 +23,7 @@
     inner join
         vacation_type vt
     on v.vctn_type_num = vt.vctn_type_num
-	order by v.vctn_num
+	order by v.vctn_start_date desc
 	</select> 
 	
 	<insert id="insertVacation" parameterType="com.kosa.hrsystem.dto.VacationDTO">
@@ -42,7 +42,7 @@
     </select>
 	<!-- 스케줄 휴가 조회 -->
 	<select id="selectVac" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
-	SELECT 
+    SELECT 
     	v.vctn_start_date,
     	v.vctn_end_date,
     	vt.vctn_type_num,
@@ -53,8 +53,10 @@
     	emp e ON v.emp_num = e.emp_num
 	INNER JOIN
     	vacation_type vt ON v.vctn_type_num = vt.vctn_type_num
+   INNER JOIN
+    	request_history rh ON v.vctn_num = rh.request_num
 	WHERE 
-    	e.emp_num = #{EMPNUM}
+    	e.emp_num = #{EMPNUM} and rh.state != 0
     </select>
 
 	<select id="searchVacTotal" parameterType="HashMap" resultType="com.kosa.hrsystem.vo.VacationVO">
