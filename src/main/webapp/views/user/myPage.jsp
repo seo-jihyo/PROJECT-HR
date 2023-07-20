@@ -417,12 +417,13 @@ height: 600px;
 			</thead>
 			<tbody>
 				<c:forEach var="cList" items="${info.cert}">
-				<tr data-cert-num="${cList.cert_num}"
+				<tr data-rnum="${cList.rnum}"
+					data-cert-num="${cList.cert_num}"
 					data-cert-name="${cList.crtfc_name}"
 					data-issuer="${cList.issuer}"
 					data-acq-date="<fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/>"
 					data-cert-remarks="${cList.remarks}">
-					<td>${cList.cert_num}</td>
+					<td>${cList.rnum}</td>
 					<td>${cList.crtfc_name}</td>
 					<td>${cList.issuer}</td>
 					<td><fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/></td>

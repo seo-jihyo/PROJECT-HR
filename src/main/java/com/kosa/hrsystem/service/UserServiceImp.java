@@ -93,15 +93,12 @@ public class UserServiceImp implements UserService {
 		
 		try {
 			int empNum = edto.getEmp_num();
-			int certNum = Integer.parseInt(request.getParameter("certNum"));
 			String certName = request.getParameter("certName");
 			String issuer = request.getParameter("issuer");
 			Date acqDate = sdf.parse(request.getParameter("acqDate"));
 			String remarks = request.getParameter("certRemarks");
-			
 			CertificateDTO dto = new CertificateDTO();
 			dto.setEmp_num(empNum);
-			dto.setCert_num(certNum);
 			dto.setCrtfc_name(certName);
 			dto.setIssuer(issuer);
 			dto.setAcquisition_date(acqDate);
@@ -126,7 +123,6 @@ public class UserServiceImp implements UserService {
 		
 		try {
 			int empNum = edto.getEmp_num();
-			System.out.println(request.getParameter("certNum"));
 			int certNum = Integer.parseInt(request.getParameter("certNum"));
 			String certName = request.getParameter("certName");
 			String issuer = request.getParameter("issuer");
