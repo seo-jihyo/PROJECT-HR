@@ -23,6 +23,8 @@ public class UserScheduleDAO {
         List<UserScheduleVO> vaclist= sqlSession.selectList("selectVac", empNum);
         List<UserScheduleVO> worklist= sqlSession.selectList("selectWork", empNum);
         
+        System.out.println(worklist);
+        
         scheduleList.addAll(attlist);
         scheduleList.addAll(vaclist);
         scheduleList.addAll(worklist);
