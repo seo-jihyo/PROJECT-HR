@@ -1,14 +1,17 @@
 package com.kosa.hrsystem.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import com.kosa.hrsystem.vo.RequestHistoryVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.kosa.hrsystem.dto.RequestHistoryDTO;
 import com.kosa.hrsystem.utils.SqlMapConfig;
-import com.kosa.hrsystem.vo.RequestHistoryVO;
 
 public class RequestHistoryDAO {
 
@@ -75,5 +78,24 @@ public class RequestHistoryDAO {
 		int result = sqlSession.selectOne("selectNonApproveCount");
 		sqlSession.close();
 		return result;
+	}
+	
+	// 통합 검색
+	public List<RequestHistoryVO> searchTotalRequestHistory(HashMap<String, String> map) {
+		SqlSession sqlSession = factory.openSession(true);
+		List<RequestHistoryVO> list = sqlSession.selectList("searchTotalRequestHistory",map);
+		System.out.println("통합검색 : " + list);
+		sqlSession.close();
+		return list;
+	}
+	
+	// 날짜 검색
+	public List<RequestHistoryVO> searchByDateRequestHistory(HashMap<String, Date> map) throws Exception {
+		SqlSession sqlSession = factory.openSession(true);
+		List<RequestHistoryVO> list = null;
+		list = sqlSession.selectList("searchByDateRequestHistory", map);
+		System.out.println(list + "...... ");
+		sqlSession.close();
+		return list;
 	}
 }

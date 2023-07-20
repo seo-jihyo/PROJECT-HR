@@ -1,5 +1,8 @@
 package com.kosa.hrsystem.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,10 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.RequestHistoryDAO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.EmpDTO;
 import com.kosa.hrsystem.vo.RequestHistoryVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class RequestHistoryServiceImp implements RequestHistoryService {
 
@@ -97,6 +103,64 @@ public class RequestHistoryServiceImp implements RequestHistoryService {
         forward.setPath("/views/user/requestHistoryView.jsp");
         return forward;
     }
+
+	@Override
+	public void searchTotalRequestHistory(HttpServletRequest request, HttpServletResponse response) {
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		System.out.println(searchType); System.out.println(searchWord);
+		try {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchWord", searchWord);
+			
+			RequestHistoryDAO dao = new RequestHistoryDAO();
+			List<RequestHistoryVO> list = dao.searchTotalRequestHistory(map);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void searchByDateRequestHistory(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String startDate = request.getParameter("datepicker1");
+		String endDate = request.getParameter("datepicker2");
+
+		try {
+			HashMap<String, Date> map = new HashMap<>();
+			map.put("startDate", sdf.parse(startDate));
+			map.put("endDate", sdf.parse(endDate));
+
+			RequestHistoryDAO dao = new RequestHistoryDAO();
+			List<RequestHistoryVO> list = dao.searchByDateRequestHistory(map);
+
+            Gson gson = new Gson();
+            String json = gson.toJson(list);
+            System.out.println(json);
+     
+            
+			// jsonArr.add(json);
+// 			System.out.println(json.toJSONString());
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

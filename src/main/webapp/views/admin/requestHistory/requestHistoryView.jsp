@@ -25,134 +25,131 @@
 
 </head>
 <body>
-  
-	<script defer>
-<!--
-	$(document).on('blur', '.dp', function(){
-		let datepicker1 = document.querySelector('#datepicker1');
-		let datepicker2 = document.querySelector('#datepicker2');
-		console.log(datepicker1.value);
-		console.log(datepicker2.value);
-		$.ajax({
-			type:"post",
-			data: {
-				"datepicker1" : datepicker1.value,
-				"datepicker2" : datepicker2.value,
-			},
-			url:"/searchByDateReq.do",
-			dataType:"json",
-			success : sucFuncJson,
-			error : errFunc
-		});
-		function sucFuncJson(data) {
-			console.log(data);
-		    $('#mainTable tbody').html(htmlStr(data));
-			if (data) {
-				if(data.result == true){
-					alert("검색 성공");
-				}
-			} else {
-				alert("검색 실패");
-			}
-		}
-		function errFunc(e) {	
-			console.log(e)
-			alert("실패" + e.status)
-		}
-		
+<script defer>
+	
+	$(function () {
+	    $('.dp').datepicker({
+	        onSelect: function () {
+	            let datepicker1 = document.querySelector('#datepicker1');
+	            let datepicker2 = document.querySelector('#datepicker2');
+	            $.ajax({
+	                type:"post",
+	                data: {
+	                    "datepicker1" : datepicker1.value,
+	                    "datepicker2" : datepicker2.value,
+	                },
+	                url:"/searchByDateRequestHistory.do",
+	                dataType:"json",
+	                success : sucFuncJson,
+	                error : errFunc
+	            });
+	            function sucFuncJson(data) {
+	                console.log(data);
+	                $('#mainTable tbody').html(htmlStr(data));
+	                if (data) {
+	                    if(data.result == true){
+	                        alert("검색 성공");
+	                    }
+	                } else {
+	                    alert("검색 실패");
+	                }
+	            }
+	            function errFunc(e) {
+	                console.log(e)
+	                alert("실패" + e.status)
+	            }
+	        }
+	    });
 	})
-	-->
-	$(document).on('click','.searchbtn',function(){
-		let searchType = document.querySelector(".searchtype");
-		let searchWord = document.querySelector(".search");
-		$.ajax({
-			type: "post",
-			data: {
-				"searchType" : searchType.value,
-				"searchWord" : searchWord.value,
-			},
-			url: "/searchTotalReq.do",
-			dataType: "json",
-			success : sucFuncJson,
-			error : errFunc
-		})
-		function sucFuncJson(data) {
-			console.log(data);
-		    $('#mainTable tbody').html(htmlStr(data));
-			if (data) {
-				if(data.result == true){
-					alert("검색 성공");
-				}
-			} else {
-				alert("검색 실패");
-			}
-		}
-		function errFunc(e) {	
-			console.log(e)
-			alert("실패" + e.status)
-		}
+
+	$(document).on('click', '.searchbtn', function () {
+	    let searchType = document.querySelector(".searchtype");
+	    let searchWord = document.querySelector(".search");
+	    $.ajax({
+	        type: "post",
+	        data: {
+	            "searchType": searchType.value,
+	            "searchWord": searchWord.value,
+	        },
+	        url: "/searchTotalRequestHistory.do",
+	        dataType: "json",
+	        success: sucFuncJson,
+	        error: errFunc
+	    })
+	
+	    function sucFuncJson(data) {
+	        console.log(data);
+	        $('#mainTable tbody').html(htmlStr(data));
+	        if (data) {
+	            if (data.result == true) {
+	                alert("검색 성공");
+	            }
+	        } else {
+	            alert("검색 실패");
+	        }
+	    }
+	
+	    function errFunc(e) {
+	        console.log(e)
+	        alert("실패" + e.status)
+	    }
 	})
 	
-	function htmlStr(data){
-
-			let html='';
-			data.forEach(value => {
-                const schedule = moment(value.schedule, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
-                const application_date = moment(value.application_date, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD');
-               
-
-                html += `
-               <tr 
-                    data-rqst-hstry-num="`+value.rqst_hstry_num+`"
-                    data-emp-num="`+value.emp_num+`"
-                    data-request-type="`+value.request_type+`"
-                    data-dept="`+value.dept+`"
-                    data-emp-name="`+value.emp_name+`"
-                    data-go-work="`+goWork+`"
-                    data-leave-work="`+leaveWork+`"
-                    data-work-name="`+value.work_name+`"
-                    data-remarks="`+value.remarks+`"
-                    >
-
-                    <th><input type='checkbox' name='chk[]'
-                        onclick="isAllCheck(this.name, 'chkAll');"></th>
-                    <td>`+value.emp_num+`</td>
-                    <td>`+value.emp_name+`</td>
-                    <td>`+goWork+`</td>
-                    <td>`+leaveWork+`</td>
-                    <td>`+value.work_name+`</td>
-                    <td
-                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">`+value.remarks+`</td>
-                    
-                </tr>
-                `;
-            })
-
-            return html;
-		} 
+	function htmlStr(data) {
 	
+	    let html = '';
+	    data.forEach(value => {
+	        const startDate = moment(value.start_date, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm');
+	        const endDate = moment(value.end_date, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm');
+	        const applicationDate = moment(value.application_date, 'MMM DD, YYYY, h:mm:ss A').format('YYYY-MM-DD HH:mm');
+	        console.log(value.application_date+""+value.end_date)
+	        html += `
+	           <tr>
+	                <td>` + value.rqst_hstry_num + `</td>
+	                <td>` + value.emp_num + `</td>
+	                <td>` + (value.request_type == 'A' ? '출퇴근 요청' :
+	                	value.request_type == 'W' ? '근무일정 요청' :
+	                	value.request_type == 'V' ? '휴가 요청' :'')+ `</td>
+	                <td>` + value.dept + `</td>
+	                <td>` + value.emp_name + `</td>
+	                <td>` + (value.request_type == 'V'? startDate + `~` + endDate + `/`+ value.special_note : startDate + `~` + endDate)  + `</td>
+	                <td>` + (value.request_reason !=null ?value.request_reason:"") + `</td>
+	                <td>` + (value.state == 0 ? '대기' : (value.state == 1 ? '승인' : (value.state == 2 ? '거절' : (value.state == 3 ? '취소' : '알 수 없음')))) + `</td>
+	                <td>` + (value.approve_note != null ? value.approve_note : "") + `</td>
+	                <td>` + applicationDate + `</td>
+	                <td>` + (value.state == 0 ? 
+                	`<button type="button" onclick="approvalBtn(this, true)" data-rqst-num="` + value.rqst_hstry_num + `" class="approve">승인</button>
+	                     &nbsp;
+	                     <button type="button" onclick="approvalBtn(this, false)" data-rqst-num="` + value.rqst_hstry_num + `" class="reject">거절</button>`
+	                 : "") + `
+            	</td>
+	            </tr>
+	            `;
+	    })
+	
+	    return html;
+}
+</script>
 <%@include file="/views/include/header.jsp" %>
 <section id="body-pd" class="body-pd">
     <div class="main_title">
         <h2>요청 내역</h2>
-        <input type="text" id="datepicker1"> -
-        <input type="text" id="datepicker2">
+        <input type="text" class="dp" id="datepicker1"> -
+        <input type="text" class="dp" id="datepicker2">
         <nav class="plusinfo">
             <select class="searchs searchtype">
-                <option>전체</option>
-                <option>부서</option>
-                <option>사원번호</option>                
-                <option>요청 보낸 사람</option>
-                <option>요청종류</option>
-                <option>상태</option>
-
+                <option value="total">전체</option>
+                <option value="empNum">사원번호</option>
+                <option value="requestType">요청종류(V,W,A)</option>
+                <option value="empName">요청 보낸 사람</option>
+                <option value="dept">부서</option>
+                <option value="state">상태(0,1,2,3)</option>
             </select>
             <input type="text" class="searchs search">
             <input type="button" class="searchbtn" value="검 색">
         </nav>
     </div>
-    <table class="table sec-table table-hover my-table" id="mainTable"
-		style="table-layout: fixed;">
+    <table class="table sec-table table-hover my-table" id="mainTable">
         <thead>
         <tr>
             <th>요청내역번호</th>
@@ -196,7 +193,7 @@
                 <td>${requestList.request_reason}</td>
                 <td>${requestList.state == 0 ? '대기' : (requestList.state == 1 ? '승인' : (requestList.state == 2 ? '거절' : (requestList.state == 3 ? '취소' : '알 수 없음')))}</td>
                 <td>${requestList.approver_note}</td>
-                <td>${requestList.application_date}</td>
+                <td><fmt:formatDate value="${requestList.application_date}" pattern="yy-MM-dd HH:mm"/></td>
                 <td>
                     <c:if test="${requestList.state == 0}">
                         <button type="button" onclick="approvalBtn(this, true)" data-rqst-num="${requestList.rqst_hstry_num}" class="approve">승인</button>
@@ -246,5 +243,6 @@ function approvalBtn(btn,approval){
 </script>
 <!-- js -->
 <script type="text/javascript" src="/assets/js/modal.js"></script>
+<script type="text/javascript" src="/assets/js/moment.js"></script>
 </body>
 </html>
