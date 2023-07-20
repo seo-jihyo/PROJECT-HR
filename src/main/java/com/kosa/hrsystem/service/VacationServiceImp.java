@@ -1,19 +1,24 @@
 package com.kosa.hrsystem.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.dao.EmpDAO;
 import com.kosa.hrsystem.dao.VacationDAO;
+import com.kosa.hrsystem.dao.WorkScheduleDAO;
 import com.kosa.hrsystem.dto.VacationDTO;
 import com.kosa.hrsystem.dto.VacationTypeDTO;
 import com.kosa.hrsystem.vo.EmpVO;
 import com.kosa.hrsystem.vo.VacationVO;
+import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class VacationServiceImp implements VacationService {
 
@@ -196,5 +201,62 @@ public class VacationServiceImp implements VacationService {
 		forward.setRedirect(true);
 		forward.setPath("/vacationtype.do");
 		return forward;
+	}
+
+	@Override
+	public void searchVacTotal(HttpServletRequest request, HttpServletResponse response) {
+		String searchType = request.getParameter("searchType");
+		String searchWord = request.getParameter("searchWord");
+		try {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("searchType", searchType);
+			map.put("searchWord", searchWord);
+			
+			VacationDAO dao = new VacationDAO();
+			List<VacationVO> list = dao.searchTotal(map);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(list);
+			System.out.println(json);
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void searchVacByDate(HttpServletRequest request, HttpServletResponse response) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		String startDate = request.getParameter("datepicker1");
+		String endDate = request.getParameter("datepicker2");
+
+		try {
+			HashMap<String, Date> map = new HashMap<>();
+			map.put("startDate", sdf.parse(startDate));
+			map.put("endDate", sdf.parse(endDate));
+ 
+			VacationDAO dao = new VacationDAO();
+			List<VacationVO> list = dao.searchVacByDate(map);
+
+            Gson gson = new Gson();
+            String json = gson.toJson(list);
+            System.out.println(json);
+     
+            
+			// jsonArr.add(json);
+// 			System.out.println(json.toJSONString());
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(json);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

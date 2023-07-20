@@ -212,6 +212,7 @@
 
 </script>
 
+<<<<<<< Updated upstream
 <%@include file="/views/include/header.jsp" %>
 <section id="body-pd" class="body-pd">
     <div class="main_title">

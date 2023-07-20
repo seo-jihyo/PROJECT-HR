@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.kosa.hrsystem.action.Action;
 import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
-import com.kosa.hrsystem.vo.DashBoardVO;
 
 @WebServlet("*.do")
 public class FrontRegisterController extends HttpServlet {
@@ -198,7 +197,7 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
             forward = workScheduleService.deleteType(request, response);
         }
-        /* 날짜로 검색 */
+        /* 날짜로  */
         else if (urlcommand.equals("/searchByDate.do")) {
             workScheduleService.searchByDate(request, response);
         } else if (urlcommand.equals("/searchByDateAtt.do")) {

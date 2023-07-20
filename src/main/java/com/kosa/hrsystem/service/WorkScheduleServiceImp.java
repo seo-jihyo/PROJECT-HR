@@ -20,7 +20,7 @@ import com.kosa.hrsystem.vo.WorkScheduleVO;
 
 public class WorkScheduleServiceImp implements WorkScheduleService {
 	
-	/* 통합 검색 */
+	/* 통합 검색 */ 
 	@Override
 	public void searchTotal(HttpServletRequest request, HttpServletResponse response) {
 		String searchType = request.getParameter("searchType");
@@ -58,7 +58,7 @@ public class WorkScheduleServiceImp implements WorkScheduleService {
 			HashMap<String, Date> map = new HashMap<>();
 			map.put("startDate", sdf.parse(startDate));
 			map.put("endDate", sdf.parse(endDate));
-
+ 
 			WorkScheduleDAO dao = new WorkScheduleDAO();
 			List<WorkScheduleVO> list = dao.searchByDate(map);
 
