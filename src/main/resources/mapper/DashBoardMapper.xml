@@ -4,46 +4,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dev">
 
-   <select id="selectAttCount" resultType="Integer">
-      SELECT COUNT(*)
-      FROM ATTENDANCE
-      WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-      AND LEAVE_WORK IS NULL
-   </select>
-   <select id="selectNotAttCount" resultType="Integer">
-      SELECT COUNT(*)
-      FROM EMP
-      WHERE emp_num NOT IN (
-      SELECT EMP_NUM
-      FROM ATTENDANCE
-      WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-      ) AND emp_num NOT IN (
-      SELECT emp_num
-      FROM VACATION
-      WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD') BETWEEN TO_CHAR(vctn_start_date,
-      'YYYY-MM-DD') AND TO_CHAR(vctn_end_date, 'YYYY-MM-DD')
-      )
-   </select>
-   <select id="selectLeaveCount" resultType="Integer">
-      SELECT COUNT(*)
-      FROM EMP
-      WHERE emp_num IN (
-      SELECT EMP_NUM
-      FROM ATTENDANCE
-      WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-      AND LEAVE_WORK IS NOT NULL
-      )
-   </select>
-   <select id="selectVacCount" resultType="Integer">
-      SELECT COUNT(*)
-      FROM ATTENDANCE
-      WHERE TO_CHAR(leave_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-   </select>
-   <select id="selectRequest" resultType="Integer">
-      SELECT COUNT(*)
-      FROM VACATION
-      WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-      BETWEEN TO_CHAR(vctn_start_date,'YYYY-MM-DD') AND TO_CHAR(vctn_end_date,
-      'YYYY-MM-DD')
-   </select>
+	<select id="selectAttCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM ATTENDANCE
+		WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		AND LEAVE_WORK IS NULL
+	</select>
+	<select id="selectNotAttCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM EMP
+		WHERE emp_num NOT IN (
+		SELECT EMP_NUM
+		FROM ATTENDANCE
+		WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		) AND emp_num NOT IN (
+		SELECT emp_num
+		FROM VACATION
+		WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD') BETWEEN TO_CHAR(vctn_start_date,
+		'YYYY-MM-DD') AND TO_CHAR(vctn_end_date, 'YYYY-MM-DD')
+		)
+	</select>
+	<select id="selectLeaveCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM EMP
+		WHERE emp_num IN (
+		SELECT EMP_NUM
+		FROM ATTENDANCE
+		WHERE TO_CHAR(GO_WORK, 'YYYY-MM-DD') = TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		AND LEAVE_WORK IS NOT NULL
+		)
+
+	</select>
+	<select id="selectVacCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM (
+		SELECT DISTINCT emp_num
+		FROM VACATION
+		WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD') BETWEEN
+		TO_CHAR(vctn_start_date,'YYYY-MM-DD') AND TO_CHAR(vctn_end_date,'YYYY-MM-DD')
+		) vacation_counts
+	</select>
+	<select id="selectRequest" resultType="Integer">
+		SELECT COUNT(*)
+		FROM VACATION
+		WHERE TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		BETWEEN TO_CHAR(vctn_start_date,'YYYY-MM-DD') AND TO_CHAR(vctn_end_date,
+		'YYYY-MM-DD')
+	</select>
 </mapper>
