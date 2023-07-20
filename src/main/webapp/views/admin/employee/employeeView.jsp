@@ -463,7 +463,7 @@ div.plusbtn{
 		                                    <td><input type="date" class="custom" name="join-date[]"></td>
 		                                    <td><input type="date" class="custom" name="leave-date[]"></td>
 		                                    <td><input type="text" class="custom" name="career-remarks[]"></td>
-		                                    <td><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+		                                    <td><input type="button" class="delBtn" onclick="deleteTableBtn(this)" value="삭제"></td>
 	                                	</tr>
 	                            `;
 
@@ -478,7 +478,7 @@ div.plusbtn{
                                     <td><input type="text" class="custom" name="issuer"></td>
                                     <td><input type="date" class="custom" name="acquisition-date"></td>
                                     <td><input type="text" class="custom" name="cert-remarks"></td>
-                                    <td><input type="button" onclick="deleteTableBtn(this)" value="삭제"></td>
+                                    <td><input type="button"  class="delBtn" onclick="deleteTableBtn(this)" value="삭제"></td>
                                 </tr>
                                 `;
                                 $(".certification tbody").append(str);

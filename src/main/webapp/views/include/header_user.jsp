@@ -9,7 +9,7 @@
             <a href="/myPage.do">마이페이지</a>
         </nav>
     <nav class="top-nav">
-
+        <h1>${login.emp_name}님 환영합니다&nbsp;</h1 >
         <div class="container">
             <input type="checkbox" class="toggle" id="rounded" name="att_status">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>

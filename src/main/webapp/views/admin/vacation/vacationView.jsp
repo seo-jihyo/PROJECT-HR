@@ -26,8 +26,16 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
-body{
-   padding: 0px;
+dialog {
+    height: 500px;
+    width: 500px;
+    left: 40%;
+    top: 25%;
+}
+.diatitle{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
 }
 .vacation-table {
    margin: 0px auto;
@@ -47,7 +55,7 @@ body{
     border: 1px solid black;
 }
 .vacation-type {
-   width: 150px;
+   width: 200px;
     height: 30px;
     border: 1px solid black;
 }
@@ -61,9 +69,21 @@ body{
    width: 250px;
     resize: none; 
 }
-
-
-
+.vacation-table th{
+	text-align: left;
+}
+.two{
+	letter-spacing: 50px;
+}
+.three{
+	letter-spacing: 20px;
+}
+.four{
+	letter-spacing: 7px;
+}
+.modaltable th{
+	padding: 20px;
+}
 </style>
 <title>휴가관리</title>
 <style type="text/css">
@@ -176,6 +196,7 @@ body{
 
       <div class="main_title">
          <h2>휴가</h2>
+         <br>
          <input type="text" class="dp" id="datepicker1"> -
               <input type="text" class="dp" id="datepicker2">
          <nav class="plusinfo">
@@ -198,7 +219,7 @@ body{
                <form method="post" action="/vacationok.do" id="frm">
                   <table class="vacation-table">
                      <tr class="vacation-tr1">
-                     <th>직원명</th>
+                     <th class="three">직원명</th>
                      <td><select class="vacation-type" id="selectBox" name="emp_num">
                        <c:forEach var="emplist" items="${empList}">
                            <option value="${emplist.emp_num}">${emplist.emp_name}</option>
@@ -214,7 +235,7 @@ body{
                            <td><input type="datetime-local" class="vacation-date" name="vctn_end_date">
                         </tr>
                      <tr>
-                     <th>휴가 유형</th>
+                     <th class="four">휴가유형</th>
                      <td><select class="vacation-type" id="selectBox" name="vctn_type_num">
                        <c:forEach var="vctnlist" items="${vctnTypeList}">
                            <option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
@@ -222,11 +243,11 @@ body{
                      </select></td>
                      </tr> 
                      <tr>
-                        <th>사유</th>
+                        <th class="two">사유</th>
                         <td><textarea name="vctn_reason" class="vacation-area" cols="70" rows="4"></textarea></td>
                      </tr>
                      <tr hidden>
-                        <th>승인여부</th>
+                        <th class="four">승인여부</th>
                         <td><input type="number" name="vctn_approval" value="1"></td>
                      </tr>
                   </table>
@@ -312,12 +333,13 @@ body{
    </section>
 <dialog>
     
-                <h1>휴가 수정하기</h1>
+                <h2 class="diatitle">휴가 수정하기</h2>
                <hr>
                <form method="get" id="frm2">
-                  <table class="vacation-table">
+                  <table class="vacation-table i modaltable">
 
                   </table>
+                  <hr>
                   <div class="bottom-btn">
                   <div class="right-btn">
                      <button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
@@ -329,7 +351,7 @@ body{
     </dialog>
 <script src="/assets/js/main.js"></script>
 <script type="text/javascript">
-   updateRowsPerPage(18);
+   updateRowsPerPage(10);
    
 const dialog = document.querySelector("dialog");
 $(document).on("click", ".table tbody tr", function () {
@@ -356,11 +378,11 @@ $(document).on("click", ".table tbody tr", function () {
       <td><input type="text" name="vctn_num" value="`+$vctnNum+`"></td>
    </tr>    
    <tr>
-    <th>직원명</th>
+    <th class="three">직원명</th>
        <td>`+$EmpName+`</td>
     </tr> 
     <tr>
-   <th>휴가 유형</th>
+   <th class="four">휴가유형</th>
    <td><select class="vacation-type" id="selectBox" name="vctn_type_num">
      <c:forEach var="vctnlist" items="${vctnTypeList}">
          <option value="${vctnlist.vctn_type_num}">${vctnlist.vctn_name}(${vctnlist.vctn_time}h, ${vctnlist.deduction_day}일)</option>
@@ -377,11 +399,11 @@ $(document).on("click", ".table tbody tr", function () {
       <td><input type="datetime-local" class="vacation-date" name="vctn_end_date" value="`+$endDate+`">
    </tr>
    <tr>
-      <th>사유</th>
+      <th class="two">사유</th>
       <td><textarea class="vacation-area" name="vctn_reason" cols="30" rows="4">`+$vctnReason+`</textarea></td>
    </tr>
    <tr hidden>
-      <th>승인상태</th>
+      <th class="four">승인상태</th>
       <td><input type="text" name="vctn_approval" value="1" readonly></td>
    <tr>
       `;

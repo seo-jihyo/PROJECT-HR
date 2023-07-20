@@ -15,10 +15,10 @@ import com.kosa.hrsystem.action.ActionForward;
 import com.kosa.hrsystem.service.*;
 
 @WebServlet("*.do")
-public class FrontRegisterController extends HttpServlet {
+public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public FrontRegisterController() {
+    public FrontController() {
         super();
 
     }

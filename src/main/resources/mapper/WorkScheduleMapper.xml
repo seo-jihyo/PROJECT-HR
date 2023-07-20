@@ -84,27 +84,12 @@
 	</delete>
 	<!-- 스케줄 근무일정 조회 -->
 	<select id="selectWork" parameterType="Integer" resultType="com.kosa.hrsystem.vo.UserScheduleVO">
-    <!--	SELECT 
+
+    SELECT DISTINCT
     	ws.go_work wsgowork,
     	ws.leave_work wsleavework, 
     	wst.work_name,
-    	rh.state workstate
-	FROM 
-    	work_schedule ws
-	INNER JOIN 
-    	emp e ON ws.emp_num = e.emp_num
-	INNER JOIN
-    	work_schedule_type wst ON ws.work_sch_type_num = wst.work_sch_type_num
-    INNER JOIN
-    	request_history rh ON ws.emp_num = rh.emp_num
-	WHERE 
-    	e.emp_num = #{EMPNUM}
-  --> 
-    SELECT 
-    	ws.go_work wsgowork,
-    	ws.leave_work wsleavework, 
-    	wst.work_name,
-        rh.state workstate
+        rh.state
 	FROM 
     	work_schedule ws
 	INNER JOIN 
@@ -112,9 +97,9 @@
 	INNER JOIN
     	work_schedule_type wst ON ws.work_sch_type_num = wst.work_sch_type_num
         INNER JOIN
-    	request_history rh ON ws.emp_num = rh.emp_num    
+    	request_history rh ON ws.work_sch_num = rh.request_num     
 	WHERE 
-    	e.emp_num = #{EMPNUM} and rh.state != 0
+    	e.emp_num = #{emp_num} and rh.state != 0
     	
 	</select>
 </mapper>
