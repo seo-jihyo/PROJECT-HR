@@ -5,23 +5,19 @@
         
 <mapper namespace="dev">
 	<select id="selectAllRcd" parameterType="Integer" resultType="com.kosa.hrsystem.dto.WorkRecordDTO">
-		SELECT
-		   a.att_num,
-		   a.emp_num,
-		   e.emp_name,
-		   a.go_work,
-		   a.leave_work,
-		   a.break_time,
-		   TRUNC((a.leave_work - a.go_work) * 24) work_time
-		FROM
-		   attendance a
-		JOIN
-		   emp e ON a.emp_num = e.emp_num
-		WHERE
-		   a.emp_num = #{emp_num}
-		AND e.emp_num =  #{emp_num}
-		ORDER BY
-		   go_work DESC
+
+	SELECT
+	a.att_num,
+	a.emp_num,
+	e.emp_name,
+	a.go_work,
+	a.leave_work,
+	a.break_time,
+	TRUNC((a.leave_work - a.go_work) * 24) work_time
+	FROM ATTENDANCE a
+	INNER JOIN emp e ON a.emp_num = e.emp_num
+	INNER JOIN request_history rh ON a.att_num = rh.request_num
+	WHERE e.EMP_NUM = #{emp_num} AND rh.state != 0
 	</select>
 	<select id="searchWorkRecByDate" parameterType="HashMap" resultType="com.kosa.hrsystem.dto.WorkRecordDTO">
 		SELECT

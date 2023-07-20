@@ -43,13 +43,13 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">출근 인원</h5>
-                      <span class="h2 font-weight-bold mb-0">
+                      <h5 class="card-title text-uppercase text-muted mb-0">근무중 인원</h5>
+                      <span class="h1 font-weight-bold mb-0">
 							${vo.att_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -66,12 +66,12 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">미출근 인원</h5>
-                      <span class="h2 font-weight-bold mb-0">
+                      <span class="h1 font-weight-bold mb-0">
                             ${vo.not_att_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -88,12 +88,12 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">퇴근 인원</h5>
-                      <span class="h2 font-weight-bold mb-0">
+                      <span class="h1 font-weight-bold mb-0">
                             ${vo.leave_count}명
                       </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -110,12 +110,12 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">휴가 현황</h5>
-                      <span class="h2 font-weight-bold mb-0">
+                      <span class="h1 font-weight-bold mb-0">
                             ${vo.vac_count}명
 					  </span>
                     </div>
                    <div class="col text-right">
-                  	<a href="/vacation.do?cate=nav-vac" class="btn btn-sm btn-primary">See all</a>
+                  	<a href="/vacation.do?cate=nav-vac" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
@@ -139,10 +139,14 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
-                  <h2 class="mb-0">미확인 요청내역</h2>
-                  <span class="h2 font-weight-bold mb-0">
-					${vo.non_approve_count}명  
-			  	  </span>
+                  <h2 class="mb-0">미확인 요청내역&nbsp;&nbsp;-&nbsp;&nbsp;${vo.non_approve_count} 건
+	                 	<div class="col text-right">
+	                 	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">더보기</a>
+	                 	</div>
+                 <!--   <div class="col text-right">
+	                 </div> -->
+                  </h2>
+                  
            		</div>
            	  </div>
            </div>
@@ -153,6 +157,7 @@
        					<th class="text-lg"><h3 class="mb-0 text-center">요청내역번호</h2></th>
        					<th class="text-lg"><h3 class="mb-0 text-center">부서</h2></th>
        					<th class="text-lg"><h3 class="mb-0 text-center">요청타입</h2></th>
+       					
        				</thead>
        				<tbody>
 	       				<c:forEach var="list" items="${vo.rhvo}">
@@ -165,9 +170,9 @@
 	       				</c:forEach>
        				</tbody>
        			</table>
-			  	  <div class="col text-right">
+			 <!--  	  <div class="col text-right">
 	                 	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">See all</a>
-	                 </div>
+	                 </div> -->
             </div>
            
           </div>
@@ -185,12 +190,27 @@
               </div>
            	 </div>
             <div class="card-body">
-            <a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br>
+            <table class="admin">
+            <tr>
+            	<td><a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br></td>
+            	<td><a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br></td>
+            </tr>
+            <tr>
+            	<td><a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br></td>
+            	<td><a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br></td>
+            </tr>
+            	<tr>
+            	<td><a href="/work.do"><h4 class="mb-0">근로정보 관리하기</h4></a><br></td>
+            	<td><a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br></td>
+            </tr>
+            
+            </table>
+           <!--  <a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br>
             <a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br>
             <a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br>
             <a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br>
             <a href="/work.do"><h4 class="mb-0">근로정보 관리하기</h4></a><br>
-            <a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br>
+            <a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br> -->
            
             </div>
           </div>
