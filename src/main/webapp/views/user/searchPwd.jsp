@@ -118,7 +118,7 @@ body{
 			<form name="frm">
 
 				<input type="text" class="email" name="email" placeholder="아이디를 입력하세요. ">
-				<input type="text" name="regist-num" placeholder="주민등록번호를 입력하세요.">
+				<input type="password" name="regist-num" placeholder="주민등록번호를 입력하세요.">
 
 				<input type="button" id="searchBtn" class="button" value="Search">
 			</form>
