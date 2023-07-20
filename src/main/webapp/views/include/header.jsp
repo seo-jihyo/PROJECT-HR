@@ -9,9 +9,9 @@
     <h1 class="company">MAIN</h1>
 
     <nav class="top-nav">
-
+        <h1>${login.emp_name}님 환영합니다&nbsp;</h1 >
         <div class="container">
-            ${login.emp_name}님 환영합니다.
+
             <input type="checkbox" class="toggle" id="rounded">
             <label for="rounded" data-checked="근 무 중" class="rounded" data-unchecked="  퇴   근"/>
         </div>
