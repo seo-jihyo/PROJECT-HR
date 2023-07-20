@@ -25,6 +25,6 @@ public interface VacationService {
 
 	/* 통합 검색 */
 	public void searchVacTotal(HttpServletRequest request, HttpServletResponse response);
-	 /* 날짜 검색 */
+	/* 날짜 검색 */
     public void searchVacByDate(HttpServletRequest request, HttpServletResponse response);
 }

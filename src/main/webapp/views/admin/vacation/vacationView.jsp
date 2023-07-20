@@ -71,7 +71,7 @@ body{
 </style>
 </head>
 <body>
-	<script defer>/* 107-136 */
+	<script defer>
 
 	$(function () {
 	    $('.dp').datepicker({
@@ -314,8 +314,6 @@ body{
     
     				<h1>휴가 수정하기</h1>
 					<hr>
-					
-
 					<form method="get" id="frm2">
 						<table class="vacation-table">
 

@@ -197,13 +197,15 @@ public class FrontRegisterController extends HttpServlet {
         } else if (urlcommand.equals("/worktypedelete.do")) {
             forward = workScheduleService.deleteType(request, response);
         }
-        /* 날짜로  */
+        /* 날짜 검색 */
         else if (urlcommand.equals("/searchByDate.do")) {
             workScheduleService.searchByDate(request, response);
         } else if (urlcommand.equals("/searchByDateAtt.do")) {
             commuteRecordService.searchByDateAtt(request, response);
         } else if (urlcommand.equals("/searchByDateRequestHistory.do")) {
             requestHistoryService.searchByDateRequestHistory(request, response);
+        }else if (urlcommand.equals("/searchVacByDate.do")) {
+            vacationService.searchVacByDate(request, response);
         }
         /* 통합 검색(근무일정) */
         else if (urlcommand.equals("/searchTotal.do")) {
@@ -212,6 +214,8 @@ public class FrontRegisterController extends HttpServlet {
             commuteRecordService.searchTotalAtt(request, response);
         } else if (urlcommand.equals("/searchTotalRequestHistory.do")) {
             requestHistoryService.searchTotalRequestHistory(request, response);
+        }else if (urlcommand.equals("/searchVacTotal.do")) {
+            vacationService.searchVacTotal(request, response);
         }
         /* 출퇴근기록 */
         else if (urlcommand.equals("/cmtrecord.do")) {

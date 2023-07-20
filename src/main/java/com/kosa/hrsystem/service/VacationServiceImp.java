@@ -46,7 +46,6 @@ public class VacationServiceImp implements VacationService {
 	@Override
 	public ActionForward insertVacation(HttpServletRequest request, HttpServletResponse response) {
 		SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-		/* SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm"); */
 		try {
 			int empNum = Integer.parseInt(request.getParameter("emp_num"));
 			int vctnTypeNum = Integer.parseInt(request.getParameter("vctn_type_num"));
@@ -238,10 +237,10 @@ public class VacationServiceImp implements VacationService {
 			HashMap<String, Date> map = new HashMap<>();
 			map.put("startDate", sdf.parse(startDate));
 			map.put("endDate", sdf.parse(endDate));
- 
+ System.out.println(map);
 			VacationDAO dao = new VacationDAO();
 			List<VacationVO> list = dao.searchVacByDate(map);
-
+System.out.println(list);
             Gson gson = new Gson();
             String json = gson.toJson(list);
             System.out.println(json);

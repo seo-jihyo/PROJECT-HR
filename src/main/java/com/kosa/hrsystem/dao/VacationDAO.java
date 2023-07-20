@@ -92,6 +92,7 @@ public class VacationDAO {
 		sqlSession.close();
 		return list;
 	}
+	//날짜 검색
 	public List<VacationVO> searchVacByDate(HashMap<String, Date> map) throws Exception {
 		SqlSession sqlSession = factory.openSession(true);
 		List<VacationVO> list = null;
