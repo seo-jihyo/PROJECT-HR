@@ -68,34 +68,11 @@
 
     <div class="main_title">
         <h2>급여</h2>
-        <input type="text" id="datepicker1"> -
-        <input type="text" id="datepicker2">
-        <nav class="plusinfo">
-            <select class="searchtype searchs">
-                <option>전체</option>
-                <option>사원번호</option>
-                <option>귀속연월</option>
-                <option>이름</option>
-                <option>기본금</option>
-                <option>상여금</option>
-                <option>직책수당</option>
-                <option>연차수당</option>
-                <option>국민연금</option>
-                <option>건강보험</option>
-                <option>장기요양보험</option>
-                <option>고용보험</option>
-                <option>소득세</option>
-                <option>지방소득세</option>
-                <option>실수령액</option>
-            </select>
-            <input type="text" class="search searchs">
-            <input type="button" class="searchbtn" value="검 색">
-        </nav>
         <table class="table sec-table table-hover my-table">
             <thead>
             <tr>
 
-                <th>사원번호</th>
+                <th>#</th>
                 <th>귀속연월</th>
                 <th>이름</th>
                 <th>기본금</th>

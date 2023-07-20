@@ -261,7 +261,12 @@ dialog {
 			
 			  <c:forEach var="CMTList" items="${list}">
 			    <c:set var="go_work"><fmt:formatDate value="${CMTList.go_work}" pattern="yyyy-MM-dd HH:mm" /></c:set> 
-        		<c:set var="leave_work"><fmt:formatDate value="${CMTList.leave_work}" pattern="HH:mm"  /></c:set> 
+        		<c:set var="leave_work"><fmt:formatDate value="${CMTList.leave_work}" pattern="HH:mm"  /></c:set>
+				  <c:if test="${CMTList.emp_num == login.emp_num && CMTList.att_status == 1}">
+					  <script>
+						  localStorage.setItem('attendanceState', 1);
+					  </script>
+				  </c:if>
 				<tr data-att-num="${CMTList.att_num}"
 					data-num="${CMTList.emp_num}"
 					data-name="${CMTList.emp_name}"
@@ -402,6 +407,8 @@ dialog {
             endTimeInput.value = "";
         }
     }
+
+
 </script>
 <!-- js -->
 
