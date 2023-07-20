@@ -45,6 +45,7 @@ public class RequestHistoryDAO {
 			}
 			// 사원번호, 요청종류, 상태=0
 			reqDTO.setRequest_num(seq);
+			reqDTO.setState('0');
 			sqlSession.insert("insertRequest",reqDTO);
 			sqlSession.commit();
 		} catch (Exception e){
