@@ -119,9 +119,9 @@
 }
 
 dialog {
-    height: 750px;
+    height: 800px;
     width: 900px;
-    top: 15%;
+    top: 10%;
     left: 30%;
 }
 .diatitle{
