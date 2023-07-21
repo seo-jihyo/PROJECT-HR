@@ -149,7 +149,9 @@
 	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.emp_name}</h4></td>
 	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.rqst_hstry_num}</td>
 	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.dept}</td>
-	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.request_type}</td>
+	       						<td class="text-sm"><h4 class="mb-0 text-center">${list.request_type == 'A' ? '출퇴근요청' :
+                                                                                    list.request_type == 'W' ? '근무일정 요청' :
+                                                                                            list.request_type == 'V' ? '휴가 요청' :''}</td>
 	       					</tr>
 	       				</c:forEach>
        				</tbody>
