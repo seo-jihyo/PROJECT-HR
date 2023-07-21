@@ -60,7 +60,7 @@ h2,h3,h4,h5,h6{
 }
 p{
     margin-top:0;
-    margin-bottom:1rem
+    margin-bottom:2rem
 }
 a{
     color:#5e72e4;
@@ -82,9 +82,20 @@ a{
     line-height:1.5;
     color:#32325d
 }
+.h1-1{
+	font-size:2.5rem;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 14px;
+    color: #32325d;
+    display: block;
+}
 .h1,h1{
 	font-size:2rem
 }
+
 .h2,h2{
     font-size:1.25rem
 }
@@ -114,7 +125,6 @@ hr{
 }
 .row{
     display:flex;
-    flex-wrap:wrap;
     margin-right:-15px;
     margin-left:-15px
 }
@@ -127,7 +137,6 @@ hr{
 }
 .col-6{
     flex:0 0 50%;
-   /*  max-width:50% */
 }
 @media (min-width:992px){
     .col-lg{
@@ -231,11 +240,12 @@ hr{
 
 .card-body table{
 	padding: 5px;
-    /* margin-left: -20px !important; */
-	/* border: .1rem solid #5e5e7c; */
 	border-radius: 10px;
 }
-
+.admin{
+	width: 100%;
+    margin-left: 40px;
+}
 .card-title{
     margin-bottom:1.25rem
 }
@@ -324,9 +334,6 @@ a.bg-white:focus,a.bg-white:hover{
 .mr-2{
     margin-right:.5rem!important
 }
-/* .ml-2{
-    margin-left:.5rem!important
-} */
 .mt-3{
     margin-top:1rem!important
 }
@@ -343,7 +350,7 @@ a.bg-white:focus,a.bg-white:hover{
     margin-bottom:1.5rem!important
 }
 .mb-5{
-    margin-bottom:3rem!important
+       margin-bottom: 17.6rem!important;
 }
 .mt--7{
     margin-top:-6rem!important
@@ -356,6 +363,10 @@ a.bg-white:focus,a.bg-white:hover{
 }
 .text-right{
     text-align:right!important
+}
+.text-right-b{
+    text-align:right!important;
+    margin-top:3.1rem;
 }
 .text-center{
     text-align:center!important
@@ -474,6 +485,14 @@ a.bg-white:focus,a.bg-white:hover{
 }
 a.text-white:focus,a.text-white:hover{
     color:#e6e6e6!important
+}
+.title-container {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬을 위해 추가 */
+}
+
+.title-container a {
+  margin-left: auto; /* 버튼을 오른쪽으로 이동 */
 }
 .btn{
     position:relative;

@@ -32,9 +32,8 @@
         
         <!-- 날짜 출력 -->
           <h1 class="text-white mb-0">
-        	<div id="current_date"></div><p><p>
+        	<div id="current_date"></div><p><p><p>
           </h1>
-        	
           <!-- Card stats -->
           <!-- Card 1 -->
           <div class="row">
@@ -44,18 +43,15 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">근무중 인원</h5>
-                      <span class="h1 font-weight-bold mb-0">
+                      <span class="h1-1 font-weight-bold mb-0">
 							${vo.att_count}명
 					  </span>
                     </div>
-                   <div class="col text-right">
+                   <div class="col text-right-b">
                   	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
-                    <!-- <span class="text-nowrap">Since last month</span> -->
-                  </p>
+                  <p class="mt-3 mb-0 text-muted text-sm"></p>
                 </div>
               </div>
             </div>
@@ -66,18 +62,15 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">미출근 인원</h5>
-                      <span class="h1 font-weight-bold mb-0">
+                      <span class="h1-1 font-weight-bold mb-0">
                             ${vo.not_att_count}명
 					  </span>
                     </div>
-                   <div class="col text-right">
+                   <div class="col text-right-b">
                   	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i></span>
-                    <!-- <span class="text-nowrap">Since last week</span> -->
-                  </p>
+                  <p class="mt-3 mb-0 text-muted text-sm"></p>
                 </div>
               </div>
             </div>
@@ -88,18 +81,15 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">퇴근 인원</h5>
-                      <span class="h1 font-weight-bold mb-0">
+                      <span class="h1-1 font-weight-bold mb-0">
                             ${vo.leave_count}명
                       </span>
                     </div>
-                   <div class="col text-right">
+                   <div class="col text-right-b">
                   	<a href="/cmtrecord.do?cate=nav-cmt-rec" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i></span>
-                    <!-- <span class="text-nowrap">Since yesterday</span> -->
-                  </p>
+                  <p class="mt-3 mb-0 text-muted text-sm"></p>
                 </div>
               </div>
             </div>
@@ -110,18 +100,15 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">휴가 현황</h5>
-                      <span class="h1 font-weight-bold mb-0">
+                      <span class="h1-1 font-weight-bold mb-0">
                             ${vo.vac_count}명
 					  </span>
                     </div>
-                   <div class="col text-right">
+                   <div class="col text-right-b">
                   	<a href="/vacation.do?cate=nav-vac" class="btn btn-sm btn-primary">더보기</a>
                    </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i></span>
-                    <!-- <span class="text-nowrap">Since last month</span> -->
-                  </p>
+                  <p class="mt-3 mb-0 text-muted text-sm"></p>
                 </div>
               </div>
             </div>
@@ -129,7 +116,7 @@
         </div>
       </div>
     </div>
-    <p>
+    <p><p>
     <!-- Over View -->
     <div class="container-fluid">
       <div class="row">
@@ -139,20 +126,17 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
-                  <h2 class="mb-0">미확인 요청내역&nbsp;&nbsp;-&nbsp;&nbsp;${vo.non_approve_count} 건
-	                 	<div class="col text-right">
+                  <h2 class="mb-0 title-container">미확인 요청내역&nbsp;&nbsp;-&nbsp;&nbsp;${vo.non_approve_count} 건&nbsp;&nbsp;&nbsp;&nbsp;
 	                 	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">더보기</a>
-	                 	</div>
-                 <!--   <div class="col text-right">
-	                 </div> -->
+               
                   </h2>
                   
            		</div>
            	  </div>
            </div>
             <div class="card-body">
-       			<table class="col-6 ml-2">
-       				<thead>
+       			<table class="col-6">
+       				<thead class="thead">
        					<th class="text-lg"><h3 class="mb-0 text-center">이름</h2></th>
        					<th class="text-lg"><h3 class="mb-0 text-center">요청내역번호</h2></th>
        					<th class="text-lg"><h3 class="mb-0 text-center">부서</h2></th>
@@ -170,15 +154,9 @@
 	       				</c:forEach>
        				</tbody>
        			</table>
-			 <!--  	  <div class="col text-right">
-	                 	<a href="/requesthistory.do?cate=nav-req-his" class="btn btn-sm btn-primary">See all</a>
-	                 </div> -->
             </div>
-           
           </div>
-          
         </div>
-        
         <div class="col-xl-4">
           <div class="card shadow">
             <div class="card-header bg-transparent">
@@ -192,26 +170,18 @@
             <div class="card-body">
             <table class="admin">
             <tr>
-            	<td><a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br></td>
-            	<td><a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br></td>
+            	<td><a href="/emp.do?cate=nav-emp"><h4 class="mb-0">ㆍ직원 관리하기</h4></a><br></td>
+            	<td><a href="/dept.do"><h4 class="mb-0">ㆍ부서 관리하기</h4></a><br></td>
             </tr>
             <tr>
-            	<td><a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br></td>
-            	<td><a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br></td>
+            	<td><a href="/rank.do"><h4 class="mb-0">ㆍ직급 관리하기</h4></a><br></td>
+            	<td><a href="/vacationtype.do"><h4 class="mb-0">ㆍ휴가유형 관리하기</h4></a><br></td>
             </tr>
-            	<tr>
-            	<td><a href="/work.do"><h4 class="mb-0">근로정보 관리하기</h4></a><br></td>
-            	<td><a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br></td>
+            <tr>
+            	<td><a href="/work.do"><h4 class="mb-0">ㆍ근로정보 관리하기</h4></a><br></td>
+            	<td><a href="/worktype.do"><h4 class="mb-0">ㆍ근무일정유형 관리하기</h4></a><br></td>
             </tr>
-            
             </table>
-           <!--  <a href="/emp.do?cate=nav-emp"><h4 class="mb-0">직원 관리하기</h4></a><br>
-            <a href="/dept.do"><h4 class="mb-0">부서 관리하기</h4></a><br>
-            <a href="/rank.do"><h4 class="mb-0">직급 관리하기</h4></a><br>
-            <a href="/vacationtype.do"><h4 class="mb-0">휴가유형 관리하기</h4></a><br>
-            <a href="/work.do"><h4 class="mb-0">근로정보 관리하기</h4></a><br>
-            <a href="/worktype.do"><h4 class="mb-0">근무일정유형 관리하기</h4></a><br> -->
-           
             </div>
           </div>
         </div>
@@ -233,15 +203,8 @@
   </section>
 <script src="/assets/js/main.js"></script>
    <script>
-   
-/*     window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
-     */
-    /* 오늘 날짜 출력 js */
-    
+
+   /* 오늘 날짜 출력 js */
     var date = new Date();
     var week = ['일', '월', '화', '수', '목', '금', '토'];
     var year = date.getFullYear();
