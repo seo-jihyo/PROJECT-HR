@@ -522,6 +522,7 @@ div.plusbtn{
 							data-regist-num="${empList.regist_num}"
 							data-permission-type="${empList.permission_type}"
 							data-dept="${empList.dept}" data-rank="${empList.rank}"
+							data-dept-code="${empList.dept_code}" data-rank-code="${empList.rank_code}"
 							data-work-num="${empList.work_num}"
 							data-hire-date="<fmt:formatDate value="${empList.hire_date}" pattern="yyyy-MM-dd"/>"
 							data-phone="${empList.phone}"
@@ -530,7 +531,9 @@ div.plusbtn{
 							data-address="${empList.address}"
 							data-detail-address="${empList.detail_address}"
 							data-annual-num="${empList.annual_num}"
-							data-email="${empList.email}" data-remarks="${empList.remarks}">
+							data-email="${empList.email}" data-remarks="${empList.remarks}"
+							data-work-num="${empList.work_num}"
+						>
 
 							<td>${empList.emp_num}</td>
 							<td>${empList.emp_name}</td>
@@ -623,6 +626,8 @@ div.plusbtn{
         $empNum = $(this).data("emp-num")
         $name = $(this).data("name")
         $registNum = $(this).data("regist-num")
+		$deptCode = $(this).data("dept-code")
+		$rankCode = $(this).data("rank-code")
         $rank = $(this).data("rank")
         $phone = $(this).data("phone")
         $permissionType = $(this).data("permission-type")
@@ -668,8 +673,8 @@ div.plusbtn{
             <th>권한타입</th>
             <td>
             <select class="profiletype" name="emp-permission-type">
-               <option value="` + $permissionType + `">최고관리자</option>
-               <option value="` + $permissionType + `">직원</option>
+               <option value="1">최고관리자</option>
+               <option value="0">직원</option>
             </select>
             </td>
             <th class="rights">직통번호</th>
@@ -708,7 +713,15 @@ div.plusbtn{
             
             <th class="right" id="emptext" >퇴사사유</th>
             <td><textarea class="emptext" name="emp-reason" id="emptext" ></textarea>
-            
+         </tr>
+         <tr>
+										<th>근로정보</th>
+										<td><select class="profiletype" name="emp-workNum">
+												<c:forEach var="list" items="${optWork}">
+													<option value="${list.work_num}">${list.work_name}</option>
+												</c:forEach>
+										</select></td>
+									</tr>
          <tr>
             <th class="two">메모</th>
             <td colspan='3'><textarea class="diaempmemo" name="emp-remarks" value="` + $remarks + `"></textarea>
@@ -716,6 +729,10 @@ div.plusbtn{
       `;
 
         $('dialog table').html(str)
+		$("select[name='emp-rank']").val($rankCode).prop("selected", true);
+		$("select[name='emp-dept']").val($deptCode).prop("selected", true);
+		$("select[name='emp-permission-type']").val($permissionType).prop("selected", true);
+		$("select[name='emp-workNum']").val($workNum).prop("selected", true);
     })
 
     $(document).on('click', '.searchbtn', function () {
@@ -840,7 +857,7 @@ div.plusbtn{
         if (!confirm("등록하시겠습니까?")) {
             alert("취소하셨습니다.");
         } else {
-            alert("해당 직원을 등록 하셨습니다.");
+            alert("해당 직원의 정보를 수정하셨습니다.");
             $form.submit()
         }
     })
