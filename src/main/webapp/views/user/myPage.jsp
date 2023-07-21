@@ -273,7 +273,7 @@ height: 600px;
             <tr>
                <th>부서</th>      <td>${info.dept}</td>
                <th>직급</th>      <td>${info.rank}</td>
-               <th>권한타입</th>   <td>${info.permission_type}</td>
+               <th>권한타입</th>   <td>${info.permission_type == 1?'최고 관리자':"사용자"}</td>
             </tr>
             <tr>
                <th>연차수</th>    <td>${info.annual_num}</td>
