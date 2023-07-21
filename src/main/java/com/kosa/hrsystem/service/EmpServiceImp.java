@@ -102,7 +102,7 @@ public class EmpServiceImp implements EmpService {
             json.put("status", "true");
 
             Encrypt en = new Encrypt();
-            String encryptPwd = en.getEncrypt("qwer"); // 암호화 emp_pwd
+            String encryptPwd = en.getEncrypt(emp_pwd); // 암호화 emp_pwd
             emailSend(emp_email, emp_pwd); // 메일 전송
 
             try {
@@ -165,6 +165,8 @@ public class EmpServiceImp implements EmpService {
         String emp_remarks = request.getParameter("remarks");
         String emp_hire_date = request.getParameter("emp-hire-date");
         String emp_departure_date = request.getParameter("emp-departure-date");
+        String workNum = request.getParameter("workNum");
+
         try {
             EmpDTO dto = new EmpDTO();
             dto.setEmp_num(emp_num);
@@ -180,6 +182,7 @@ public class EmpServiceImp implements EmpService {
             dto.setReason(emp_reason);
             dto.setRemarks(emp_remarks);
             dto.setHire_date(sdf.parse(emp_hire_date));
+            dto.setWork_num(Integer.parseInt(workNum));
             if (!emp_departure_date.equals("")) {
                 dto.setDeparture_date(sdf.parse(emp_departure_date));
             } else {
@@ -200,7 +203,7 @@ public class EmpServiceImp implements EmpService {
     @Override
     public ActionForward delete(HttpServletRequest request, HttpServletResponse response) {
         int emp_num = Integer.parseInt(request.getParameter("emp-num"));
-
+        System.out.println(emp_num);
         EmpDAO dao = new EmpDAO();
         try {
             dao.deleteEmp(emp_num);

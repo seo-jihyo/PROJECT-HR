@@ -26,45 +26,53 @@
     <link href="../../assets/css/dashboard.css?v=1.1.2" rel="stylesheet"/>
     <title>근무일정</title>
 
-    <style type="text/css">
+<style type="text/css">
+dialog{
+	width: 600px;
+	height: 675px;
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
+.ws-table {
+	height: 400px;
+}
 
-        .ws-table {
-            height: 400px;
-        }
+.ws-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
 
-        .ws-table tr td {
-            padding: 7px;
-            font-size: 15px;
-        }
+#workType, #group, #job, #emp-name {
+	border: 1px solid black;
+	width: 100px;
+	height: 30px;
+}
 
-        #workType, #group, #job, #emp-name {
-            border: 1px solid black;
-            width: 100px;
-            height: 30px;
-        }
+#ws-area {
+	border: 1px solid black;
+}
 
-        #ws-area {
-            border: 1px solid black;
-        }
+.ws-date, .startTime, .endTime {
+	border: 1px solid black;
+	width: 100px;
+	height: 30px;
+}
 
-        .ws-date, .startTime, .endTime {
-            border: 1px solid black;
-            width: 100px;
-            height: 30px;
-        }
+.ws-title {
+	display: flex;
+	justify-content: flex-start;
+	padding: 7px 300px 10px 5px;
+}
 
-        .ws-title {
-            display: flex;
-            justify-content: flex-start;
-            padding: 7px 300px 10px 5px;
-        }
-
-        .asd .remarks {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    </style>
+.asd .remarks {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+</style>
 
 </head>
 <body>
@@ -334,7 +342,7 @@
 </section>
 <dialog>
 
-    <h1>근무일정 수정하기</h1>
+    <h1 class="diatitle">근무일정 수정하기</h1>
     <hr>
 
 

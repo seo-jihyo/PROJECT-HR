@@ -124,21 +124,40 @@ dialog{
    top:20%;
    left: 33%   
 }
+.dialog2{
+   width: 500px;
+   height:535px;
+}
+.dialog4{
+   width: 500px;
+   height:460px;
+}
+.diatitle{
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+}
 #modal1{
-   width: 40%;
-   height: 40%;
+   width: 27%;
+   height: 41%;
+   top:20%;
+   left: 33%   
+}
+#modal2{
+   width: 500px;
+   height:535px;
    top:20%;
    left: 33%   
 }
 #modal4{
-   width: 40%;
-   height:60%;
+   width: 500px;
+   height:420px;
    top:20%;
    left: 33%   
 }
 .updatebtn{
    float: right;
-   margin-right: 10%;
+   margin-right: 5%;
 }
 .updatebtn{
    color: white;
@@ -155,51 +174,56 @@ dialog{
     background-color: white;
     color: black;
 }
+.rights-btn{
+	float: right;
+
+   margin: 10px;
+}
 /* .dialog2{
 width: 600px;
 height: 600px;
 } */
 .diatitle .modal2 .modal3{
-	padding-top:20px;
-	padding-bottom:20px;
-	padding-left:20px;
+   padding-top:20px;
+   padding-bottom:20px;
+   padding-left:20px;
 }
 .update-table th{
-		text-align: left;
+      text-align: left;
 }
 .update-table {
-	padding: 20px 20px;
-	width: 100%;
+   padding: 20px 20px;
+   width: 100%;
 }
 .update-table tr {
-	margin: 5px;
+   margin: 5px;
 }
 .update-table tr td {
-	padding: 7px;
-	font-size: 15px;
+   padding: 7px;
+   font-size: 15px;
 }
 .info-area{
-	width: 300px;
-	height: 90px;
-	border: 1px solid black;
+   width: 300px;
+   height: 90px;
+   border: 1px solid black;
 }
 .update-table th{
-	text-align: left;
+   text-align: left;
 }
 .info-table th{
-	text-align: left;
+   text-align: left;
 }
 .two{
-	letter-spacing: 62px;
+   letter-spacing:52px;
 }
 .three{
-	letter-spacing: 23px;
+   letter-spacing: 23px;
 }
 .four{
-	letter-spacing: 10px;
+   letter-spacing: 10px;
 }
 .five{
-	letter-spacing: 4px;
+   letter-spacing: 4px;
 }
 
 .addProductBtn {
@@ -217,6 +241,11 @@ height: 600px;
 .addProductBtn:hover {
     background-color: white;
     color: black;
+ }
+ 
+ .rights:hover {
+  background-color: rgb(4, 4, 80);
+ }
 </style> 
 
 <body>
@@ -227,24 +256,24 @@ height: 600px;
          <table class="main-table-1">
             <tr>
                <td rowspan="5" width="300px"> <!-- <img src="/assets/images/main_ps.jpg"> -->
-               		<form method="post" enctype="multipart/form-data" action="/upload.do" onsubmit="return validateForm()">
-						<div class="addImage" onclick="document.getElementById('imgInput').click()">
-							<label for="imgInput" class="addImageLabel" id="fileInputText"></label>
-							<input type="file" id="imgInput" name="filename" style="display: none;">
-							<c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/user.png" style="width: 200px; height:200px;"></c:if>
-							<c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px; border: 2px solid black; border-radius: 100px;"></c:if>
-							<input type="submit" value="프로필 변경" class="addProductBtn">
-						</div>
-					</form>
+                     <form method="post" enctype="multipart/form-data" action="/upload.do" onsubmit="return validateForm()">
+                  <div class="addImage" onclick="document.getElementById('imgInput').click()">
+                     <label for="imgInput" class="addImageLabel" id="fileInputText"></label>
+                     <input type="file" id="imgInput" name="filename" style="display: none;">
+                     <c:if test="${info.idto.sfile==null}"><img class="imgPreview" id="imgPreview" alt="" src="/assets/images/user.png" style="width: 200px; height:200px;"></c:if>
+                     <c:if test="${info.idto.sfile!=null}"><img class="imgPreview" id="imgPreview" alt="" src="/upload/${info.idto.sfile}" style="width: 200px; height:200px; border: 2px solid black; border-radius: 100px;"></c:if>
+                     <input type="submit" value="프로필 변경" class="addProductBtn">
+                  </div>
+               </form>
                </td>
-               <th>이름</th>		<td>${info.emp_name}</td>
-               <th>사원번호</th>	<td>${info.emp_num}</td>
-               <th>직통번호</th>	<td>${info.direct_num}</td>
+               <th>이름</th>      <td>${info.emp_name}</td>
+               <th>사원번호</th>   <td>${info.emp_num}</td>
+               <th>직통번호</th>   <td>${info.direct_num}</td>
             </tr>
             <tr>
-               <th>부서</th>		<td>${info.dept}</td>
-               <th>직급</th>		<td>${info.rank}</td>
-               <th>권한타입</th>	<td>${info.permission_type}</td>
+               <th>부서</th>      <td>${info.dept}</td>
+               <th>직급</th>      <td>${info.rank}</td>
+               <th>권한타입</th>   <td>${info.permission_type}</td>
             </tr>
             <tr>
                <th>연차수</th>    <td>${info.annual_num}</td>
@@ -263,273 +292,279 @@ height: 600px;
       </div>
       <br>
       <!-- tab1 -->
-	<div class="modal-nav" id="tab-1" style="display: block;">
-		<table class="main-table">
-			<tr>
-				<th>성함</th>		
-				<th>이메일</th>	    
-				<th>휴대전화</th>
-				<th>우편번호</th>	
-				<th>주소</th>
-				<th>상세주소</th>
-			</tr>
-			<tr>
-				<td>${info.emp_name}</td>
-				<td>${info.email}</td>
-				<td>${info.phone}</td>
-				<td>${info.post_code}</td>
-				<td>${info.address}</td>
-				<td>${info.detail_address}</td>
-			</tr>
-		</table>
-		<button class="updatebtn" onclick='updateView("modal1")'>수정</button>
-	</div>
-	<!--------------- modal1 ---------------->
-	<dialog id="modal1">
-	<h1>개인정보 수정</h1>
-	<hr>
-	<form method="get" action="/myInfoUpdate.do">
-		<table id="infoUpdate" class="info-table table">
-			
-		</table>
-		<hr>
-		<input type="submit" class="custom-btn btn-10" value="전송">
-		<!-- <button class="dialogbtn custom-btn btn-10" type="button">삭제</button> -->
-		<button class="dialogbtn custom-btn btn-10" type="button"
-			onclick="dialogClose('modal1');">닫기</button>
-	</form>
-	</dialog>
+   <div class="modal-nav" id="tab-1" style="display: block;">
+      <table class="main-table">
+         <tr>
+            <th>성함</th>      
+            <th>이메일</th>       
+            <th>휴대전화</th>
+            <th>우편번호</th>   
+            <th>주소</th>
+            <th>상세주소</th>
+         </tr>
+         <tr>
+            <td>${info.emp_name}</td>
+            <td>${info.email}</td>
+            <td>${info.phone}</td>
+            <td>${info.post_code}</td>
+            <td>${info.address}</td>
+            <td>${info.detail_address}</td>
+         </tr>
+      </table>
+      <button class="updatebtn" onclick='updateView("modal1")'>수정</button>
+   </div>
+   <!--------------- modal1 ---------------->
+   <dialog id="modal1">
+   <h2 class="diatitle">개인정보 수정</h2>
+   <hr>
+   <form method="get" action="/myInfoUpdate.do">
+      <table id="infoUpdate" class="info-table table">
+         
+      </table>
+      <hr>
+      <div class="rights-btn">
+      <input type="submit" class="dialogbtn custom-btn btn-10 rights" value="전송">
+      <!-- <button class="dialogbtn custom-btn btn-10" type="button">삭제</button> -->
+      <button class="dialogbtn custom-btn btn-10" type="button"
+         onclick="dialogClose('modal1');">닫기</button>
+       </div>
+   </form>
+   </dialog>
 
-	<!------ tab2 ------>
-	<div class="modal-nav" id="tab-2" style="display: none;">
-		<table class="main-table table2">
-			<thead>
-				<tr>
-					<th>회사명</th>
-					<th>부서명</th>
-					<th>직급</th>
-					<th>주요업무</th>
-					<th>입사년월</th>
-					<th>퇴사년월</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="cList" items="${info.career}">
-				<tr data-careernum="${cList.career_num}"
-				data-companyname="${cList.company_name}"
-				data-dept="${cList.dept}"
-				data-rank="${cList.rank}"
-				data-maintesk="${cList.main_tesk}"
-				data-joindate="<fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/>"
-				data-leavedate="<fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/>"
-				data-remarks="${cList.remarks}">
-					<td>${cList.company_name}</td>
-					<td>${cList.dept}</td>
-					<td>${cList.rank}</td>
-					<td>${cList.main_tesk}</td>
-					<td><fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/></td>
-					<td><fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/></td>
-					<td>${cList.remarks}</td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button class="updatebtn" onclick='updateView("modal2")'>추가</button>
-	</div>
-	<!--------------- 추가 modal2 ---------------->
-	<dialog id="modal2">
-	<h1>경력 추가</h1>
-	<hr>
-	<form method="post" action="/careerInsert.do">
-		<table class="info-table table">
-			<!-- <tr class="info-tr1">
-				<th class="four">경력번호</th>
-				<td><input type="text" class="infoupdate" name="careerNum"></td>
-			</tr> -->
-			<tr class="info-tr1">
-				<th class="three">회사명</th>
-				<td><input type="text" class="infoupdate" name="companyName"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="three">부서명</th>
-				<td><input type="text" class="infoupdate" name="dept"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="two">직급</th>
-				<td><input type="text" class="infoupdate" name="rank"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">주요업무</th>
-				<td><input type="text" class="infoupdate" name="mainTask"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">입사년월</th>
-				<td><input type="date" class="infoupdate" name="joinDate"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">퇴사년월</th>
-				<td><input type="date" class="infoupdate" name="leaveDate"></td>
-			</tr>
-			<tr>
-				<th class="two">비고</th>
-				<td><textarea name="careerRemarks" class="info-area" cols="70"
-						rows="4"></textarea></td>
-			</tr>
-		</table>
-		<hr>
-		<input type="submit" class="custom-btn btn-10" value="추가">
-		<button class="dialogbtn custom-btn btn-10" type="button"
-			onclick="dialogClose('modal2');">닫기</button>
-	</form>
-	</dialog>
-	<!------ 수정 modal2 ------>
-	<dialog class="dialog2">
-	<h1 class="diatitle">경력 변경하기</h1>
-	<hr>
-	<form id="frm3">
-		<table id="careerUpdate" class="update-table">
-			
-		</table>
-		<hr>
-		<div class="bottom-btn">
-			<div class="right-btn">
-				<button type="button" id="careerUpdateBtn" class="custom-btn btn-10">수정하기</button>
-				<button type="button" id="careerDeleteBtn" class="custom-btn btn-10">삭제하기</button>
-				<button type="button" class="btn_close custom-btn btn-10"
-					onclick="dialogClose2();">닫기</button>
-			</div>
-		</div>
-	</form>
-	</dialog>
-	
-	<!------ tab4 ------>
-	<div class="modal-nav" id="tab-4" style="display: none;">
-		<table class="main-table table4">
-			<thead>
-				<tr>
-					<th>자격증번호</th>
-					<th>자격증명</th>
-					<th>발행처</th>
-					<th>취득년월</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="cList" items="${info.cert}">
-				<tr data-rnum="${cList.rnum}"
-					data-cert-num="${cList.cert_num}"
-					data-cert-name="${cList.crtfc_name}"
-					data-issuer="${cList.issuer}"
-					data-acq-date="<fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/>"
-					data-cert-remarks="${cList.remarks}">
-					<td>${cList.rnum}</td>
-					<td>${cList.crtfc_name}</td>
-					<td>${cList.issuer}</td>
-					<td><fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/></td>
-					<td>${cList.remarks}</td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button class="updatebtn" onclick='updateView("modal4")'>추가</button>
-	</div>
-	<!--------------- modal4 ---------------->
-	<dialog id="modal4">
-	<h1>자격증 추가</h1>
-	<hr>
-	<form method="post" action="/certInsertok.do">
-		<table class="info-table table">
-			<!-- <tr class="info-tr1">
-				<th class="five">자격증번호</th>
-				<td><input type="text" class="infoupdate" name="certNum"></td>
-			</tr> -->
-			<tr class="info-tr1">
-				<th class="four">자격증명</th>
-				<td><input type="text" class="infoupdate" name="certName"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="three">발행처</th>
-				<td><input type="text" class="infoupdate" name="issuer"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="four">취득년월</th>
-				<td><input type="date" class="infoupdate" name="acqDate"></td>
-			</tr>
-			<tr class="info-tr1">
-				<th class="two">비고</th>
-				<td><textarea name="certRemarks" class="info-area" cols="70" rows="4"></textarea></td>
-			</tr>
-		</table>
+   <!------ tab2 ------>
+   <div class="modal-nav" id="tab-2" style="display: none;">
+      <table class="main-table table2">
+         <thead>
+            <tr>
+               <th>회사명</th>
+               <th>부서명</th>
+               <th>직급</th>
+               <th>주요업무</th>
+               <th>입사년월</th>
+               <th>퇴사년월</th>
+               <th>비고</th>
+            </tr>
+         </thead>
+         <tbody>
+            <c:forEach var="cList" items="${info.career}">
+            <tr data-careernum="${cList.career_num}"
+            data-companyname="${cList.company_name}"
+            data-dept="${cList.dept}"
+            data-rank="${cList.rank}"
+            data-maintesk="${cList.main_tesk}"
+            data-joindate="<fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/>"
+            data-leavedate="<fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/>"
+            data-remarks="${cList.remarks}">
+               <td>${cList.company_name}</td>
+               <td>${cList.dept}</td>
+               <td>${cList.rank}</td>
+               <td>${cList.main_tesk}</td>
+               <td><fmt:formatDate value="${cList.join_date}" pattern="yyyy-MM-dd"/></td>
+               <td><fmt:formatDate value="${cList.leave_date}" pattern="yyyy-MM-dd"/></td>
+               <td>${cList.remarks}</td>
+            </tr>
+            </c:forEach>
+         </tbody>
+      </table>
+      <button class="updatebtn" onclick='updateView("modal2")'>추가</button>
+   </div>
+   <!--------------- 추가 modal2 ---------------->
+   <dialog id="modal2">
+   <h2 class="diatitle">경력 추가</h2>
+   <hr>
+   <form method="post" action="/careerInsert.do">
+      <table class="info-table table">
+         <!-- <tr class="info-tr1">
+            <th class="four">경력번호</th>
+            <td><input type="text" class="infoupdate" name="careerNum"></td>
+         </tr> -->
+         <tr class="info-tr1">
+            <th class="three">회사명</th>
+            <td><input type="text" class="infoupdate" name="companyName"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="three">부서명</th>
+            <td><input type="text" class="infoupdate" name="dept"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="two">직급</th>
+            <td><input type="text" class="infoupdate" name="rank"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="four">주요업무</th>
+            <td><input type="text" class="infoupdate" name="mainTask"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="four">입사년월</th>
+            <td><input type="date" class="infoupdate" name="joinDate"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="four">퇴사년월</th>
+            <td><input type="date" class="infoupdate" name="leaveDate"></td>
+         </tr>
+         <tr>
+            <th class="two">비고</th>
+            <td><textarea name="careerRemarks" class="info-area" cols="70"
+                  rows="4"></textarea></td>
+         </tr>
+      </table>
+      <hr>
+      <div class="rights-btn">
+      <input type="submit" class="custom-btn btn-10 rights" value="추가">
+      <button class="dialogbtn custom-btn btn-10" type="button"
+         onclick="dialogClose('modal2');">닫기</button>
+       </div>
+   </form>
+   </dialog>
+   <!------ 수정 modal2 ------>
+   <dialog class="dialog2">
+   <h2 class="diatitle">경력 변경하기</h2>
+   <hr>
+   <form id="frm3">
+      <table id="careerUpdate" class="update-table">
+         
+      </table>
+      <hr>
+      <div class="bottom-btn">
+         <div class="right-btn">
+            <button type="button" id="careerUpdateBtn" class="custom-btn btn-10">수정하기</button>
+            <button type="button" id="careerDeleteBtn" class="custom-btn btn-10">삭제하기</button>
+            <button type="button" class="btn_close custom-btn btn-10"
+               onclick="dialogClose2();">닫기</button>
+         </div>
+      </div>
+   </form>
+   </dialog>
+   
+   <!------ tab4 ------>
+   <div class="modal-nav" id="tab-4" style="display: none;">
+      <table class="main-table table4">
+         <thead>
+            <tr>
+               <th>자격증번호</th>
+               <th>자격증명</th>
+               <th>발행처</th>
+               <th>취득년월</th>
+               <th>비고</th>
+            </tr>
+         </thead>
+         <tbody>
+            <c:forEach var="cList" items="${info.cert}">
+            <tr data-rnum="${cList.rnum}"
+               data-cert-num="${cList.cert_num}"
+               data-cert-name="${cList.crtfc_name}"
+               data-issuer="${cList.issuer}"
+               data-acq-date="<fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/>"
+               data-cert-remarks="${cList.remarks}">
+               <td>${cList.rnum}</td>
+               <td>${cList.crtfc_name}</td>
+               <td>${cList.issuer}</td>
+               <td><fmt:formatDate value="${cList.acquisition_date}" pattern="yyyy-MM-dd"/></td>
+               <td>${cList.remarks}</td>
+            </tr>
+            </c:forEach>
+         </tbody>
+      </table>
+      <button class="updatebtn" onclick='updateView("modal4")'>추가</button>
+   </div>
+   <!--------------- modal4 ---------------->
+   <dialog id="modal4">
+   <h2 class="diatitle">자격증 추가</h2>
+   <hr>
+   <form method="post" action="/certInsertok.do">
+      <table class="info-table table">
+         <!-- <tr class="info-tr1">
+            <th class="five">자격증번호</th>
+            <td><input type="text" class="infoupdate" name="certNum"></td>
+         </tr> -->
+         <tr class="info-tr1">
+            <th class="four">자격증명</th>
+            <td><input type="text" class="infoupdate" name="certName"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="three">발행처</th>
+            <td><input type="text" class="infoupdate" name="issuer"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="four">취득년월</th>
+            <td><input type="date" class="infoupdate" name="acqDate"></td>
+         </tr>
+         <tr class="info-tr1">
+            <th class="two">비고</th>
+            <td><textarea name="certRemarks" class="info-area" cols="70" rows="4"></textarea></td>
+         </tr>
+      </table>
 
-		<hr>
-		<input type="submit" class="custom-btn btn-10" value="전송">
-		<button class="dialogbtn custom-btn btn-10" type="button"
-			onclick="dialogClose('modal4');">닫기</button>
-	</form>
-	</dialog>
-	<!------ 수정 modal4 ------>
-	<dialog class="dialog4">
-	<h1 class="diatitle">자격증 변경하기</h1>
-	<hr>
-	<form id="frm2">
-		<table id="certUpdate" class="update-table">
-			
-		</table>
-		<hr>
-		<div class="bottom-btn">
-			<div class="right-btn">
-				<button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
-				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
-				<button type="button" class="btn_close custom-btn btn-10" 
-				 onclick="dialogClose4();">닫기</button>
-			</div>
-		</div>
-	</form>
-	</dialog>
-	<!-- 
+      <hr>
+      <div class="rights-btn">
+      <input type="submit" class="custom-btn btn-10 rights" value="전송">
+      <button class="dialogbtn custom-btn btn-10" type="button"
+         onclick="dialogClose('modal4');">닫기</button>
+        </div>
+   </form>
+   </dialog>
+   <!------ 수정 modal4 ------>
+   <dialog class="dialog4">
+   <h2 class="diatitle">자격증 변경하기</h1>
+   <hr>
+   <form id="frm2">
+      <table id="certUpdate" class="update-table">
+         
+      </table>
+      <hr>
+      <div class="bottom-btn">
+         <div class="right-btn">
+            <button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+            <button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
+            <button type="button" class="btn_close custom-btn btn-10" 
+             onclick="dialogClose4();">닫기</button>
+         </div>
+      </div>
+   </form>
+   </dialog>
+   <!-- 
       <div class="modal-nav" id="tab-5" style="display: none;"></div>
       <div class="modal-nav" id="tab-6" style="display: none;"></div>
        -->
 
 
-	<script type="text/javascript" src="/assets/js/modal.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script>
-	
-	function showImgInput() {
-		document.getElementById("imgInput").click();
-	}
-	
-	function previewImage(input) {
-		const preview = document.getElementById('imgPreview');
-		const test = document.getElementById('fileInputText');
-		const file = input.files[0];
-		const reader = new FileReader();
-	
-		reader.onload = function(e) {
-			preview.src = e.target.result;
-			preview.style.display = 'block';
-			test.style.display = 'none';
-		};
-	
-		if (file) {
-			reader.readAsDataURL(file);
-		} else {
-			preview.src = '#';
-			preview.style.display = 'none';
-		}
-	}
-	function validateForm() {
-		const fileInput = document.getElementById('imgInput');
+   <script type="text/javascript" src="/assets/js/modal.js"></script>
+   <script src="/assets/js/main.js"></script>
+   <script>
+   
+   function showImgInput() {
+      document.getElementById("imgInput").click();
+   }
+   
+   function previewImage(input) {
+      const preview = document.getElementById('imgPreview');
+      const test = document.getElementById('fileInputText');
+      const file = input.files[0];
+      const reader = new FileReader();
+   
+      reader.onload = function(e) {
+         preview.src = e.target.result;
+         preview.style.display = 'block';
+         test.style.display = 'none';
+      };
+   
+      if (file) {
+         reader.readAsDataURL(file);
+      } else {
+         preview.src = '#';
+         preview.style.display = 'none';
+      }
+   }
+   function validateForm() {
+      const fileInput = document.getElementById('imgInput');
 
-		if (fileInput.value === '') {
-			alert('파일을 등록하세요.');
-			return false;
-		}
-		return true;
-	}
-	
+      if (fileInput.value === '') {
+         alert('파일을 등록하세요.');
+         return false;
+      }
+      return true;
+   }
+   
     $('.tabs a').click(function(){
         let $tabId = $(this).data('tab')
        $('.modal-nav').hide()
@@ -560,98 +595,98 @@ height: 600px;
        })
        
         function updateView(input){
-	        const dialog = document.getElementById(input)
-			
-			let str = `
-				<tr class="info-tr1">
-				<th class="two">성함</th>
-				<td><input type="text" class="infoupdate" value="${info.emp_name}" name="name"></td>
-				</tr>
-				<!-- <tr class="info-tr1">
-					<th class="three">이메일</th>
-					<td><input type="text" class="infoupdate" name="" readonly></td>
-				</tr> -->
-				<tr class="info-tr1">
-					<th class="four">휴대전화</th>
-					<td><input type="text" class="infoupdate" value="${info.phone}" name="phone"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="four">우편번호</th>
-					<td><input type="text" class="infoupdate" value="${info.post_code}" name="postCode"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="two">주소</th>
-					<td><input type="text" class="infoupdate" value="${info.address}" name="address"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="four">상세주소</th>
-					<td><input type="text" class="infoupdate" value="${info.detail_address}" name="detailAddress"></td>
-				</tr>
-			`; 
-	
-			$('#infoUpdate').html(str);
-	        
-	        dialog.showModal();
-	        
+           const dialog = document.getElementById(input)
+         
+         let str = `
+            <tr class="info-tr1">
+            <th class="two">성함</th>
+            <td><input type="text" class="infoupdate" value="${info.emp_name}" name="name"></td>
+            </tr>
+            <!-- <tr class="info-tr1">
+               <th class="three">이메일</th>
+               <td><input type="text" class="infoupdate" name="" readonly></td>
+            </tr> -->
+            <tr class="info-tr1">
+               <th class="four">휴대전화</th>
+               <td><input type="text" class="infoupdate" value="${info.phone}" name="phone"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="four">우편번호</th>
+               <td><input type="text" class="infoupdate" value="${info.post_code}" name="postCode"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="two">주소</th>
+               <td><input type="text" class="infoupdate" value="${info.address}" name="address"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="four">상세주소</th>
+               <td><input type="text" class="infoupdate" value="${info.detail_address}" name="detailAddress"></td>
+            </tr>
+         `; 
+   
+         $('#infoUpdate').html(str);
+           
+           dialog.showModal();
+           
        }
        
        //dialog 삭제
        function dialogClose(input){
-	        const dialog = document.getElementById(input);
-	        dialog.close();
+           const dialog = document.getElementById(input);
+           dialog.close();
        }
       
       //수정 dialog close
       function dialogClose2(){
-        	dialog.close();
+           dialog.close();
       }
        
        //수정 dialog2 - 경력
       const updatedialog = document.querySelector(".dialog2");
       $(document).on("click", ".table2 tbody tr", function () {
-    	  $careerNum = $(this).data("careernum");
-    	  $companyName = $(this).data("companyname");
-    	  $dept = $(this).data("dept");
-    	  $rank = $(this).data("rank");
-    	  $mainTesk = $(this).data("maintesk");
-    	  $joinDate = $(this).data("joindate");
-    	  $leaveDate = $(this).data("leavedate");
-    	  $careerRemarks = $(this).data("remarks");
-    	  let str=`
-    		  <tr class="info-tr1">
-    	  		
-				<th class="three">회사명</th>
-					<input type="hidden" class="infoupdate" value="`+$careerNum+`" name="careerNum">
-					<td><input type="text" class="infoupdate" value="`+$companyName+`" name="companyName"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="three">부서명</th>
-					<td><input type="text" class="infoupdate" value="`+$dept+`" name="dept"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="two">직급</th>
-					<td><input type="text" class="infoupdate" value="`+$rank+`" name="rank"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="four">주요업무</th>
-					<td><input type="text" class="infoupdate" value="`+$mainTesk+`" name="mainTask"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="four">입사년월</th>
-					<td><input type="date" class="infoupdate" value="`+$joinDate+`" name="joinDate"></td>
-				</tr>
-				<tr class="info-tr1">
-					<th class="four">퇴사년월</th>
-					<td><input type="date" class="infoupdate" value="`+$leaveDate+`" name="leaveDate"></td>
-				</tr>
-				<tr>
-					<th class="two">비고</th>
-					<td><textarea name="careerRemarks" class="info-area" cols="70"
-							rows="4">`+$careerRemarks+`</textarea></td>
-				</tr>
-				`
-		  $('#careerUpdate').html(str);
-    	  updatedialog.showModal();
+         $careerNum = $(this).data("careernum");
+         $companyName = $(this).data("companyname");
+         $dept = $(this).data("dept");
+         $rank = $(this).data("rank");
+         $mainTesk = $(this).data("maintesk");
+         $joinDate = $(this).data("joindate");
+         $leaveDate = $(this).data("leavedate");
+         $careerRemarks = $(this).data("remarks");
+         let str=`
+            <tr class="info-tr1">
+               
+            <th class="three">회사명</th>
+               <input type="hidden" class="infoupdate" value="`+$careerNum+`" name="careerNum">
+               <td><input type="text" class="infoupdate" value="`+$companyName+`" name="companyName"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="three">부서명</th>
+               <td><input type="text" class="infoupdate" value="`+$dept+`" name="dept"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="two">직급</th>
+               <td><input type="text" class="infoupdate" value="`+$rank+`" name="rank"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="four">주요업무</th>
+               <td><input type="text" class="infoupdate" value="`+$mainTesk+`" name="mainTask"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="four">입사년월</th>
+               <td><input type="date" class="infoupdate" value="`+$joinDate+`" name="joinDate"></td>
+            </tr>
+            <tr class="info-tr1">
+               <th class="four">퇴사년월</th>
+               <td><input type="date" class="infoupdate" value="`+$leaveDate+`" name="leaveDate"></td>
+            </tr>
+            <tr>
+               <th class="two">비고</th>
+               <td><textarea name="careerRemarks" class="info-area" cols="70"
+                     rows="4">`+$careerRemarks+`</textarea></td>
+            </tr>
+            `
+        $('#careerUpdate').html(str);
+         updatedialog.showModal();
           console.log(this);
       });
       
@@ -662,51 +697,51 @@ height: 600px;
           $form2.submit()
       })
       $(document).on('click', '#careerDeleteBtn', function () {
-    	  $form2.attr('action', '/careerDelete.do')
+         $form2.attr('action', '/careerDelete.do')
           $form2.attr('method', 'post')
           $form2.submit()
       })
       
       function dialogClose2(){
-    	  updatedialog.close();
+         updatedialog.close();
        }
       
        //수정 dialog4 - 자격증
       const updatedialog4 = document.querySelector(".dialog4");
       $(document).on("click", ".table4 tbody tr", function () {
-    	  $certNum = $(this).data("cert-num");
-    	  $certName = $(this).data("cert-name");
-    	  $issuer = $(this).data("issuer");
-    	  $acqDate = $(this).data("acq-date");
-    	  $remarks = $(this).data("cert-remarks");
-    	  console.log($certNum);
-    	  let str = `
-        	  <tr class="info-tr1">
-    			<th class="five">자격증번호</th>
-    			<td><input type="text" class="infoupdate" value="`+$certNum+`" name="certNum"></td>
-    			</tr>
-    			<tr class="info-tr1">
-    				<th class="four">자격증명</th>
-    				<td><input type="text" class="infoupdate" value="`+$certName+`" name="certName"></td>
-    			</tr>
-    			<tr class="info-tr1">
-    				<th class="three">발행처</th>
-    				<td><input type="text" class="infoupdate" value="`+$issuer+`" name="issuer"></td>
-    			</tr>
-    			<tr class="info-tr1">
-    				<th class="four">취득년월</th>
-    				<td><input type="date" class="infoupdate" value="`+$acqDate+`" name="acqDate"></td>
-    			</tr>
-    			<tr class="info-tr1">
-    			<tr>
-    				<th class="two">비고</th>
-    				<td><textarea name="certRemarks" class="info-area" cols="70"
-    						rows="4" value="` + $remarks + `"></textarea></td>
-    			</tr>
-        	  `
-        	  
+         $certNum = $(this).data("cert-num");
+         $certName = $(this).data("cert-name");
+         $issuer = $(this).data("issuer");
+         $acqDate = $(this).data("acq-date");
+         $remarks = $(this).data("cert-remarks");
+         console.log($certNum);
+         let str = `
+             <tr class="info-tr1">
+             <th class="five">자격증번호</th>
+             <td><input type="text" class="infoupdate" value="`+$certNum+`" name="certNum"></td>
+             </tr>
+             <tr class="info-tr1">
+                <th class="four">자격증명</th>
+                <td><input type="text" class="infoupdate" value="`+$certName+`" name="certName"></td>
+             </tr>
+             <tr class="info-tr1">
+                <th class="three">발행처</th>
+                <td><input type="text" class="infoupdate" value="`+$issuer+`" name="issuer"></td>
+             </tr>
+             <tr class="info-tr1">
+                <th class="four">취득년월</th>
+                <td><input type="date" class="infoupdate" value="`+$acqDate+`" name="acqDate"></td>
+             </tr>
+             <tr class="info-tr1">
+             <tr>
+                <th class="two">비고</th>
+                <td><textarea name="certRemarks" class="info-area" cols="70"
+                      rows="4" value="` + $remarks + `"></textarea></td>
+             </tr>
+             `
+             
          $('#certUpdate').html(str);
-    	 updatedialog4.showModal();
+        updatedialog4.showModal();
          console.log(this);
       });
       
@@ -724,7 +759,7 @@ height: 600px;
       
       
       function dialogClose4(){
-    	 updatedialog4.close();
+        updatedialog4.close();
        }
       
       $(document).on('click', '.postbtn', function () {

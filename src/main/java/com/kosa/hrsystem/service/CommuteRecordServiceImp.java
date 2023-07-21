@@ -66,6 +66,7 @@ public class CommuteRecordServiceImp implements CommuteRecordService {
 			vo.setEmp_num(emp_num);
 			vo.setGo_work(go_work);
 			vo.setLeave_work(leave_work);
+			vo.setAtt_status(String.valueOf(att_status));
 
 			RequestHistoryDTO reqDTO = new RequestHistoryDTO();
 			reqDTO.setEmp_num(emp_num);

@@ -293,6 +293,7 @@ dialog {
                data-vctn-time="${vacationList.vctn_time}"
                data-deduction-day="${vacationList.deduction_day}"
                data-vctn-reason="${vacationList.vctn_reason}"
+               data-vctn-num="${vacationList.vctn_num}"
                >
             
                <td>${vacationList.emp_num}</td>

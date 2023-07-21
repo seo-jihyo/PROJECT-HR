@@ -19,7 +19,7 @@
 
 <style type="text/css">
 dialog {
-	width: 500px;
+	width: 367px;
 	height: 640px;
 	left: 40%;
 }
