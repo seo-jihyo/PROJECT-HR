@@ -214,7 +214,7 @@ height: 600px;
    text-align: left;
 }
 .two{
-   letter-spacing: 62px;
+   letter-spacing:52px;
 }
 .three{
    letter-spacing: 23px;
