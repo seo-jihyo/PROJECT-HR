@@ -49,6 +49,7 @@
 		a.go_work,
 		a.leave_work,
 		a.break_time,
+		a.att_status,
 		TRUNC((a.leave_work - a.go_work) * 24) work_time
 		FROM attendance a
 		JOIN emp e ON a.emp_num = e.emp_num
@@ -57,9 +58,9 @@
 
 	<insert id="insertRecord"
 		parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
-		insert into attendance(att_num, emp_num, go_work, leave_work)
+		insert into attendance(att_num, emp_num, go_work, leave_work,att_status)
 		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType =
-		DATE})
+		DATE},#{att_status})
 	</insert>
 
 	<update id="updateRecord"

@@ -1,4 +1,6 @@
 /* 출퇴근 버튼 토글 및 ajax */
+
+
 let storageAttState = localStorage.getItem('attendanceState');
 if(storageAttState!=null && storageAttState == 1){
     document.getElementById("rounded").checked = true;

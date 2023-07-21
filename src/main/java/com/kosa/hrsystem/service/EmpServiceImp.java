@@ -102,7 +102,7 @@ public class EmpServiceImp implements EmpService {
             json.put("status", "true");
 
             Encrypt en = new Encrypt();
-            String encryptPwd = en.getEncrypt("qwer"); // 암호화 emp_pwd
+            String encryptPwd = en.getEncrypt(emp_pwd); // 암호화 emp_pwd
             emailSend(emp_email, emp_pwd); // 메일 전송
 
             try {

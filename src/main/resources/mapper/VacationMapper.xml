@@ -118,4 +118,11 @@
     where to_char(v.vctn_start_date,'yyyy-MM-dd') >= #{startDate} and to_char(v.vctn_end_date,'yyyy-MM-dd') <![CDATA[ <= ]]> #{endDate}
      order by v.vctn_num desc
 	</select>
+    <update id="updateCalcVac" parameterType="HashMap">
+        update emp set  annual_num = annual_num-(select vt.deduction_day * floor(trunc(v.vctn_end_date,'MI')-trunc(v.vctn_start_date,'MI')) day
+                                                 from vacation v
+                                                          inner join emp e on v.emp_num = e.emp_num
+                                                          inner join vacation_type vt on v.vctn_type_num = vt.vctn_type_num
+                                                 where v.vctn_num = #{vctnNum}) where emp_num=#{empNum}
+    </update>
 </mapper>
