@@ -586,6 +586,16 @@ div.plusbtn{
     updateRowsPerPage(18);
 
     $("#sendEmail").click(function () {
+		name="emp-email"
+		if($.trim($("#keyEmp").val())==""){
+			alert("아이디를 입력해주세요")
+			return false;
+		}
+		if($.trim($("input[name='emp-name']").val())==""){
+			alert("이메일을 입력해주세요")
+			return false;
+		}
+
         $frm = $("#frm").serialize();
         $.ajax({
             url: "/empok.do",
