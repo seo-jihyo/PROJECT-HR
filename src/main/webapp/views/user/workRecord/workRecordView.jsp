@@ -20,86 +20,88 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/modal.css">
     <style type="text/css">
+.tab-scroll {
+	width: 90%;
+	margin: auto;
+}
 
-        .tab-scroll {
-            width: 90%;
-            margin: auto;
-        }
+.sec-table {
+	margin: 32px auto;
+	width: 90%;
+}
 
-        .sec-table {
-            margin: 32px auto;
-            width: 90%;
-        }
+.worrectitle {
+	margin: auto;
+	margin-top: 20px;
+	width: 90%;
+}
 
-        h1 {
-            margin-top: 30px;
-        }
+.workdate {
+	margin-top: 20px;
+	display: inline-block;
+	width: 150px;
+	height: 30px;
+	border: solid 1px black;
+}
 
-        .workdate {
-            margin-top: 20px;
-            display: inline-block;
-            width: 150px;
-            height: 30px;
-            border: solid 1px black;
-        }
+.side {
+	margin-top: 20px;
+	margin-right: 40px;
+	display: inline-block;
+	float: right;
+}
 
-        .side {
-            margin-top: 20px;
-            margin-right: 40px;
-            display: inline-block;
-            float: right;
-        }
+.side select {
+	width: 150px;
+	height: 30px;
+	border: solid 1px black;
+}
 
-        .side select {
-            width: 150px;
-            height: 30px;
-            border: solid 1px black;
-        }
+.workrec-table th {
+	padding: 20px 20px;
+	text-align: left;
+}
 
-        .workrec-table th {
-            padding: 20px 20px;
-            text-align: left;
-        }
+.workmodal-table {
+	padding: 20px 20px;
+	width: 100%;
+}
 
-        .workmodal-table {
-            padding: 20px 20px;
-            width: 100%;
-        }
+.workmodal-table tr {
+	margin: 5px;
+}
 
-        .workmodal-table tr {
-            margin: 5px;
-        }
+.workmodal-table tr td {
+	padding: 7px;
+	font-size: 15px;
+}
 
-        .workmodal-table tr td {
-            padding: 7px;
-            font-size: 15px;
-        }
+.workadd {
+	height: 30px;
+	width: 150px;
+	border: 1px solid black;
+}
 
-        .workadd {
-            height: 30px;
-            width: 150px;
-            border: 1px solid black;
-        }
+.twomodal {
+	letter-spacing: 30px;
+	padding: 0px;
+}
 
-        .twomodal {
-            letter-spacing: 30px;
-            padding: 0px;
-        }
+.workmodal-table th {
+	text-align: left;
+}
 
-        .workmodal-table th {
-            text-align: left;
-        }
-
-        .bottom-btn {
-            margin-top: 10px;
-        }
-
-    </style>
+.bottom-btn {
+	margin-top: 10px;
+}
+</style>
 </head>
 <body>
 <%@include file="/views/include/header_user.jsp" %>
-<div class="tab-scroll">
-    <h1>내 출퇴근기록</h1>
+
+    <h1 class="worrectitle">내 출퇴근기록</h1>
+    <br>
+    <div class="tab-scroll">
     <input type="text" class="dp" id="datepicker1" name="a"> - <input
         type="text" class="dp" id="datepicker2" name='b'>
     <div class="side">
