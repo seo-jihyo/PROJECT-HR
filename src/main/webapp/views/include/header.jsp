@@ -31,7 +31,7 @@
             <a class="nav_list"></a>
             <a href="/dashboard.do?cate=nav-home" id="nav-home" class="nav_link">
                 <i class='nav_icon bx bx-home'></i>
-                <span class="nav_name">대쉬보드</span>
+                <span class="nav_name">대시보드</span>
             </a>
             <a href="/workschedule.do?cate=nav-ws" id="nav-ws" class="nav_link">
                 <i class='nav_icon bx bx-calendar'></i>
