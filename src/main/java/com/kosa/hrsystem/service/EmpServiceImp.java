@@ -82,6 +82,7 @@ public class EmpServiceImp implements EmpService {
         String emp_rank = Objects.requireNonNullElse(request.getParameter("emp-rank"), "");
         String emp_phone = Objects.requireNonNullElse(request.getParameter("emp-phone"), "");
         int emp_permission_type = Integer.parseInt(Objects.requireNonNullElse(request.getParameter("emp-permission-type"), "0"));
+        System.out.println(emp_permission_type);
         String emp_direct_num = Objects.requireNonNullElse(request.getParameter("emp-direct-num"), "");
         String emp_post_code = Objects.requireNonNullElse(request.getParameter("emp-post-code"), "");
         String emp_address = Objects.requireNonNullElse(request.getParameter("emp-address"), "");
