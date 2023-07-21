@@ -634,8 +634,10 @@ div.plusbtn{
         //$annualNum = $(this).data("annual-num")
         $remarks = $(this).data("remarks")
         $email = $(this).data("email")
+		$workNum = $(this).data("work-num");
 
         let str = `
+        <input type="hidden" name="workNum" class="profile-text" value="` + $workNum + `">
          <tr>
             <th>사원번호</th>
             <td><input type="text" name="emp-num" class="profile-text" value="` + $empNum + `"></td>
