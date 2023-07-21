@@ -82,7 +82,6 @@ public class EmpDAO {
     // 직원 수정하기
     public int updateEmp(EmpDTO dto) throws Exception {
     	SqlSession sqlSession = factory.openSession(true);
-		System.out.println(dto);
     	int result = sqlSession.update("updateEmp", dto);
     	sqlSession.close();
     	return result;
