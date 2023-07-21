@@ -17,12 +17,13 @@
 		delete from IFILE where emp_num = #{emp_num}
 	</delete>
 	<select id="selectOneUser" parameterType="Integer" resultType="com.kosa.hrsystem.vo.MyPageVO">
-		select  
-			emp_num, emp_name, direct_num, 
-			dept, rank, permission_type, annual_num, 
-			hire_date, departure_date, email, 
-			phone, post_code, address, detail_address		
-		from EMP 
+		select
+			emp_num, emp_name, direct_num,
+			d.code_value dept, r.code_value rank, permission_type, annual_num,
+			hire_date, departure_date, email,
+			phone, post_code, address, detail_address
+		from EMP e join code_table d on e.dept = d.code_name
+				   join code_table r on e.rank = r.code_name
 		where emp_num = #{emp_num}
 	</select>
 	<select id="searchPwd" parameterType="HashMap" resultType="String">
