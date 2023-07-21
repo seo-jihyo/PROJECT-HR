@@ -565,7 +565,7 @@ div.plusbtn{
 		<hr>
 		<div class="bottom-btn">
 			<div class="right-btn">
-				<button type="submit" id="updateBtn" class="custom-btn btn-10">수정하기</button>
+				<button type="button" id="updateBtn" class="custom-btn btn-10">수정하기</button>
 				<button type="button" id="deleteBtn" class="custom-btn btn-10">삭제하기</button>
 				<button type="button" class="btn_close custom-btn btn-10"
 					onclick="dialogClose();">닫기</button>
