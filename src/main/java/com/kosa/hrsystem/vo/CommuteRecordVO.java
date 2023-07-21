@@ -22,6 +22,6 @@ public class CommuteRecordVO {
    private int break_time;      // 휴게시간 - ATTENDANCE
    private int work_time;     	// 근무시간 - ATTENDANCE
    private String work_name;    // 근무유형 - WORK_SCHEDULE_TYPE 
-   private String att_status;   // 근무상태 - ATTENDANCE 
+   private char att_status;   // 근무상태 - ATTENDANCE 
    
 }

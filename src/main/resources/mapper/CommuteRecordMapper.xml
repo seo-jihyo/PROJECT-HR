@@ -58,9 +58,8 @@
 
 	<insert id="insertRecord"
 		parameterType="com.kosa.hrsystem.vo.CommuteRecordVO">
-		insert into attendance(att_num, emp_num, go_work, leave_work,att_status)
-		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType =
-		DATE},#{att_status})
+		insert into attendance(att_num, emp_num, go_work, leave_work, att_status)
+		values (attseq.nextval, #{emp_num}, #{go_work}, #{leave_work, jdbcType = DATE}, #{att_status})
 	</insert>
 
 	<update id="updateRecord"
